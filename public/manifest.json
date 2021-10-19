@@ -1,0 +1,25 @@
+{
+  "short_name": "Trolliey",
+  "name": "Trolliey - modern ecommerce",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#597bad",
+  "background_color": "#ffffff"
+}
