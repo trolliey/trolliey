@@ -1,11 +1,18 @@
 import React from 'react'
 
-function BlueButton({outline, text, onClick, className}) {
+function BlueButton({ outline, text, onClick, className, loading }) {
     return (
-        <button 
-            onClick={onClick ? onClick : ()=> console.log('no action available')} 
+        <button
+            onClick={loading ? () => console.log('loading...') : onClick}
             className={`${className} ${outline ? "text-blue-primary bg-white border hover:bg-blue-primary hover:text-white" : "bg-blue-primary text-white hover:bg-blue-dark "} rounded outline-none border-blue-primary `}>
-            <div className="text-sm font-semibold md:p-3 p-2 capitalize">{text}</div>
+            {loading ? (
+                <div className="flex flex-row items-center justify-center font-semibold md:p-3 p-2 capitalize">
+                    <div className={`animate-spin rounded-full h-5 w-5 mr-2 border-t-2  border-b-2 ${outline ? "border-blue-primary hover:border-white" : "border-white"}`}></div>
+                    <p className="font-semibold capitalize">Loading...</p>
+                </div>
+            ) : (
+                <p className="font-semibold md:p-3 p-2 capitalize"> {text}</p>
+            )}
         </button>
     )
 }
