@@ -13,6 +13,8 @@ function GeneralNavbar() {
     const { basket } = _add_to_cart
     const [open_cart, setOpenCart] = useState(false)
     const history = useHistory()
+    const _logged_in = useSelector(state => state.user_login)
+    const {userInfo}= _logged_in
 
     const toggle_cart = () => {
         !open_cart ? setOpenCart(true) : setOpenCart(false)
@@ -39,7 +41,7 @@ function GeneralNavbar() {
 
             {/* //dropdown when suer icon has been presses */}
             <div className="md:flex hidden rounded-full cursor-pointer">
-                <UserDropdown user={false} />
+                <UserDropdown user={userInfo} />
             </div>
 
             {/* //drawer when on moblie view */}

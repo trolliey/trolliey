@@ -16,6 +16,8 @@ const reducer = combineReducers({
   // for authentication 
   user_register: register_user_Reducer,
   user_login: login_user_Reducer,
+
+  //fot adding to cart and removing from cart
   add_to_cart: add_to_cart_Reducer,
   remove_from_cart: remove_from_cart_Reducer,
 });
