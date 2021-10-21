@@ -29,7 +29,7 @@ function Login() {
                 history.push('/')
             }, 1000);
         }
-    }, [])
+    }, [history, message])
 
     return (
         <GeneralLayout no_text>

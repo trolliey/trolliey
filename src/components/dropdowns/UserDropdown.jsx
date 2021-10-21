@@ -20,13 +20,20 @@ const dropdown = {
 
 function UserDropdown({ user }) {
     const history = useHistory()
+
+    const logout_user = () => {
+        localStorage.removeItem('userInfo')
+        window.location.reload()
+        history.push('/')
+    }
+
     return (
         <div className="flex">
             <Menu>
                 <MenuButton>
                     {
                         user ? (
-                            <UserAvatar size="sm" />
+                            <UserAvatar size="sm" source={user?.user?.photoURL} name={user?.user?.displayName} />
                         ) : (
                             <div className="p-2 bg-gray-100 hover:bg-gray-200  rounded-full">
                                 <UserIcon height={20} width={20} className="text-gray-700" />
@@ -38,9 +45,9 @@ function UserDropdown({ user }) {
                     <MenuItem>
                         {
                             user ? (
-                                <div onClick={()=> history.push('/dashboard')} className="flex">
-                                    <UserAvatar size="sm" />
-                                    <Username name={'tatendaZw'} />
+                                <div onClick={() => history.push('/dashboard')} className="flex">
+                                    <UserAvatar size="sm" source={user?.user?.photoURL} name={user?.user?.displayName} />
+                                    <Username name={user?.user?.displayName} />
                                 </div>
                             ) : (
                                 <div className="flex">
@@ -53,7 +60,7 @@ function UserDropdown({ user }) {
                     <MenuDivider />
                     {
                         user ? (
-                            <MenuItem>
+                            <MenuItem onClick={logout_user}>
                                 <span className="capitalize text-gray-700 font-semibold">Logout</span>
                             </MenuItem>
                         ) : (
