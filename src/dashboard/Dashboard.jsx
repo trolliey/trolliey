@@ -1,11 +1,13 @@
-import {ScaleIcon} from '@heroicons/react/outline'
-import {CashIcon,CheckCircleIcon,ChevronRightIcon} from '@heroicons/react/solid'
+import { ScaleIcon } from '@heroicons/react/outline'
+import { CashIcon, CheckCircleIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import UserAvatar from '../components/user_avatar/UserAvatar'
 import BlueButton from '../components/buttons/BlueButton'
 import DashboardLayout from '../layouts/DashboardLayout'
+import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 
 const cards = [
-    { name: 'Account balance', href: '/account', icon: ScaleIcon, amount: '$30,659.45' },
+    { name: 'Account balance', href: '/account', icon: ScaleIcon, amount: '$0' },
     // More items...
 ]
 const transactions = [
@@ -18,28 +20,7 @@ const transactions = [
         status: 'success',
         date: 'July 11, 2020',
         datetime: '2020-07-11',
-    },
-    {
-        id: 2,
-        name: 'Payment to someone',
-        href: '/transactions',
-        amount: '$20,000',
-        currency: 'USD',
-        status: 'success',
-        date: 'July 11, 2020',
-        datetime: '2020-07-11',
-    },
-    {
-        id: 3,
-        name: 'Payment to someone',
-        href: '/transactions',
-        amount: '$20,000',
-        currency: 'USD',
-        status: 'success',
-        date: 'July 11, 2020',
-        datetime: '2020-07-11',
-    },
-    // More transactions...
+    }
 ]
 const statusStyles = {
     success: 'bg-green-100 text-green-800',
@@ -52,6 +33,11 @@ function classNames(...classes) {
 }
 
 export default function Dashboard() {
+
+    const _user = useSelector(state => state.user_login)
+    const { userInfo } = _user
+    const history = useHistory()
+
     return (
         <DashboardLayout>
             <main className="flex-1 relative pb-8 z-0 overflow-y-auto">
@@ -63,23 +49,32 @@ export default function Dashboard() {
                                 {/* Profile */}
                                 <div className="flex items-center">
                                     <div className="sm:block hidden rounded-full">
-                                        <UserAvatar size="lg" />
+                                        <UserAvatar size="lg" source={userInfo?.user?.photoURL} name={userInfo?.user?.displayName} />
                                     </div>
                                     <div>
                                         <div className="flex items-center">
                                             <div className="sm:hidden rounded-full">
-                                                <UserAvatar size="lg" />
+                                                <UserAvatar size="lg" source={userInfo?.user?.photoURL} name={userInfo?.user?.displayName} />
                                             </div>
                                             <h1 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate">
-                                                Good morning, Tatenda Bako
+                                                Good morning, {userInfo?.user?.displayName}
                                             </h1>
                                         </div>
                                         <dl className="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
                                             <dt className="sr-only">Account status</dt>
-                                            <dd className="mt-3 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
-                                                <CheckCircleIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-blue-400" aria-hidden="true" />
-                                                Verified account
-                                            </dd>
+                                            {
+                                                userInfo?.user?.verified ? (
+                                                    <dd className="mt-3 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
+                                                        <CheckCircleIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-blue-400" aria-hidden="true" />
+                                                        Verified account
+                                                    </dd>
+                                                ) : (
+                                                    <dd className="mt-3 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
+                                                        <CheckCircleIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+                                                        Account not verified
+                                                    </dd>
+                                                )
+                                            }
                                         </dl>
                                     </div>
                                 </div>
@@ -87,10 +82,10 @@ export default function Dashboard() {
                             <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
 
                                 <div className="flex mr-2">
-                                    <BlueButton text="Add Product" outline />
+                                    <BlueButton text="Add Product" outline onClick={() => history.push('/dashboard/inventory')} />
                                 </div>
                                 <div className="flex">
-                                    <BlueButton text="Manage Account" />
+                                    <BlueButton text="Manage Account" onClick={() => history.push('/dashboard/settings')} />
                                 </div>
                             </div>
                         </div>

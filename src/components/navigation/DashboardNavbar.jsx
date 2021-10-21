@@ -5,6 +5,8 @@ import {ChevronDownIcon, SearchIcon} from '@heroicons/react/solid'
 import UserAvatar from '../user_avatar/UserAvatar'
 import Username from '../username/Username'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -12,11 +14,21 @@ function classNames(...classes) {
 
 function DashboardNavbar({setSidebarOpen}) {
     const [query, setQuery] = useState()
+    const _user = useSelector(state => state.user_login)
+    const {userInfo} = _user
+    const history = useHistory()
 
     const search_items_handler = (e) =>{
         e.preventDefault()
         console.log(query)
     }
+
+    const logout_user = () => {
+        history.push('/')
+        localStorage.removeItem('userInfo')
+        window.location.reload()
+    }
+
 
     return (
         <>
@@ -64,10 +76,10 @@ function DashboardNavbar({setSidebarOpen}) {
                         <Menu as="div" className="ml-3 relative">
                             <div>
                                 <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
-                                    <UserAvatar size="sm" />
+                                    <UserAvatar size="sm" name={userInfo?.user?.displayName} source={userInfo?.user?.photoURL} />
                                     <span className="hidden text-gray-700 text-sm font-medium lg:block">
                                         <span className="sr-only">Open user menu for </span>
-                                        <Username name="tatendaZw" />
+                                        <Username name={userInfo?.user?.displayName} />
                                     </span>
                                     <ChevronDownIcon
                                         className="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block"
@@ -88,7 +100,7 @@ function DashboardNavbar({setSidebarOpen}) {
                                     <Menu.Item>
                                         {({ active }) => (
                                             <a
-                                                href="/account"
+                                                href="/profile"
                                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                             >
                                                 Your Profile
@@ -107,12 +119,11 @@ function DashboardNavbar({setSidebarOpen}) {
                                     </Menu.Item>
                                     <Menu.Item>
                                         {({ active }) => (
-                                            <a
-                                                href="/"
+                                            <div onClick={logout_user}
                                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                             >
                                                 Logout
-                                            </a>
+                                            </div>
                                         )}
                                     </Menu.Item>
                                 </Menu.Items>
