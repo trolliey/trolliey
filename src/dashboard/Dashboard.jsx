@@ -5,10 +5,11 @@ import BlueButton from '../components/buttons/BlueButton'
 import DashboardLayout from '../layouts/DashboardLayout'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { useDisclosure } from '@chakra-ui/react'
+import ChakraModal from '../components/modals/ChakraModal'
 
 const cards = [
     { name: 'Account balance', href: '/account', icon: ScaleIcon, amount: '$0' },
-    // More items...
 ]
 const transactions = [
     {
@@ -37,6 +38,7 @@ export default function Dashboard() {
     const _user = useSelector(state => state.user_login)
     const { userInfo } = _user
     const history = useHistory()
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <DashboardLayout>
@@ -82,7 +84,21 @@ export default function Dashboard() {
                             <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
 
                                 <div className="flex mr-2">
-                                    <BlueButton text="Add Product" outline onClick={() => history.push('/dashboard/inventory')} />
+                                    {
+                                        userInfo?.user?.role === 'seller' ? (
+                                            <BlueButton text="Add Product" outline onClick={() => history.push('/dashboard/addproduct')} />
+                                        ) : (
+                                            <BlueButton text="Add Product" outline onClick={onOpen} />
+                                        )
+                                    }
+                                    <>
+                                        <ChakraModal 
+                                            onClose={onClose} 
+                                            isOpen={isOpen} 
+                                            button_text="Proceed"
+                                            title="Become a seller"
+                                            body={<div>stuff</div>} />
+                                    </>
                                 </div>
                                 <div className="flex">
                                     <BlueButton text="Manage Account" onClick={() => history.push('/dashboard/settings')} />
@@ -253,6 +269,7 @@ export default function Dashboard() {
                     </div>
                 </div>
             </main>
+
         </DashboardLayout>
     )
 }

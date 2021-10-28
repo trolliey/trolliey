@@ -28,7 +28,7 @@ function ProductItem({picture, rating, name, description, price, discount_price,
                     ))
                 }
             </div>
-            <div onClick={()=> history.push(`/product/description/${id}`)} className="name overflow-ellipsis overflow-hidden">
+            <div onClick={()=> history.push(`/product/description/${id}`)} className="flex-1 overflow-ellipsis overflow-hidden">
                 <p className="text-gray-400 text-sm ">{name}</p>
                 <p className="line-clamp-2 text-sm text-gray-700 my-1 overflow-ellipsis font-semibold">{description}</p>
             </div>
