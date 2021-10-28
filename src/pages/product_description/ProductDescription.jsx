@@ -5,8 +5,8 @@ import { StarIcon } from '@heroicons/react/solid'
 import { HeartIcon, MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
 import BlueButton from '../../components/buttons/BlueButton'
 import RedButton from '../../components/buttons/RedButton'
-import {useDispatch} from 'react-redux'
-import {add_to_cart_Action} from '../../redux/actions/cartActions'
+import { useDispatch } from 'react-redux'
+import { add_to_cart_Action } from '../../redux/actions/cartActions'
 
 const product = {
     name: 'Zip Tote Basket',
@@ -44,7 +44,12 @@ const product = {
         },
         // More sections...
     ],
-    id: 1
+    id: 1,
+    shipping: {
+        shipping_type: 'for_everyone',
+        price: 12,
+        shipping_area: 'everywhere'
+    }
 }
 
 function classNames(...classes) {
@@ -55,13 +60,13 @@ function ProductDescription() {
 
     const dispatch = useDispatch()
 
-    const add_to_basket = () =>{
+    const add_to_basket = () => {
         const item = {
-            picture : product.images[0], 
-            rating:product.rating, 
-            description:product.description, 
-            price:product.price, 
-            id: product.id, 
+            picture: product.images[0],
+            rating: product.rating,
+            description: product.description,
+            price: product.price,
+            id: product.id,
             name: product.name
         }
         dispatch(add_to_cart_Action(item))
@@ -160,7 +165,26 @@ function ProductDescription() {
                                         <BlueButton text="Add to cart" className="flex-1" onClick={add_to_basket} />
                                         <div className="mx-1"></div>
                                         <RedButton text={<HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />} outline />
-                                        
+
+                                    </div>
+                                </div>
+
+                                <div className="mt-8 pt-4 border-t border-gray-200">
+                                    <p className="mb-2 text-gray-700 font-semibold text-sm capitalize">shipping </p>
+                                    <div className="flex flex-row items-center justify-between">
+                                        <p className="text-gray-500">Ships to : </p>
+                                        <p className="text-gray-500"> everywhere</p>
+
+                                    </div>
+                                    <div className="flex flex-row items-center justify-between">
+                                        <p className="text-gray-500">Ships for : </p>
+                                        <p className="text-gray-500"> everyone</p>
+
+                                    </div>
+                                    <div className="flex flex-row items-center justify-between">
+                                        <p className="text-gray-500">Shipment expense : </p>
+                                        <p className="text-gray-500"> $20</p>
+
                                     </div>
                                 </div>
 
