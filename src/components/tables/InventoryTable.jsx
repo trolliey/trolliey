@@ -2,37 +2,6 @@ import { ChevronRightIcon, PencilIcon, TrashIcon } from '@heroicons/react/outlin
 import React from 'react'
 import BlueButton from '../buttons/BlueButton'
 
-const products = [
-    {
-        id: 1,
-        name: 'Nike shoes',
-        brand: 'Nike',
-        price: '$20,000',
-        category: 'Fashion and beauty',
-        stock: '12',
-        orders: '2',
-        datetime: '2020-07-11',
-        date: 'July 11, 2020',
-        msrment: '',
-        status: 'public',
-        currency: 'USD'
-    },
-    {
-        id: 2,
-        name: 'Nike shoes',
-        brand: 'Nike',
-        price: '$20,000',
-        category: 'Fashion and beauty',
-        stock: '22',
-        orders: '20',
-        datetime: '2020-07-11',
-        date: 'July 11, 2020',
-        msrment: '',
-        status: 'out_of_stock',
-        currency: 'USD'
-    },
-]
-
 const statusStyles = {
     public: 'bg-green-100 text-green-800',
     out_of_stock: 'bg-yellow-100 text-yellow-800',
@@ -43,26 +12,26 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-function InventoryTable() {
-    const all_length = 200
+function InventoryTable({data}) {
+    // console.log(data)
     return (
         <div>
 
             {/* //on mobile view  */}
             <div className="shadow sm:hidden">
                 <ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-                    {products?.map((product, index) => (
-                        <li key={product.id}>
+                    {data?.products?.map((product, index) => (
+                        <li key={product._id}>
                             <div className="block px-4 py-4 bg-white hover:bg-gray-50">
                                 <span className="flex items-center space-x-4">
                                     <span className="flex-1 flex space-x-2 truncate">
                                         {/* <CashIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
                                         <p className="flex-shrink-0 h-5 w-5 text-gray-400">{index + 1}</p>
                                         <span className="flex flex-col text-gray-500 text-sm truncate">
-                                            <span className="truncate">{product.name}</span>
+                                            <span className="truncate">{product.title}</span>
                                             <span>
-                                                <span className="text-gray-900 font-medium">{product.price}</span>{' '}
-                                                {product.currency}
+                                                <span className="text-gray-900 font-medium">Price - ${product.price}</span>{' '}
+                                                {/* {product.currency} */}
                                             </span>
                                             <span className="truncate">{product.category}</span>
                                             {/* <time dateTime={product.datetime}>{product.date}</time> */}
@@ -119,8 +88,8 @@ function InventoryTable() {
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {products?.map((product, index) => (
-                                        <tr key={product.id} className="bg-white">
+                                    {data?.products?.map((product, index) => (
+                                        <tr key={product._id} className="bg-white">
                                             <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                                 <div className="flex">
                                                     <div className="group inline-flex space-x-2 truncate text-sm">
@@ -129,7 +98,7 @@ function InventoryTable() {
                                                             aria-hidden="true"
                                                         /> */}
                                                         <p className="flex-shrink-0 h-5 w-5 text-gray-400">{index + 1}</p>
-                                                        <p className="text-gray-500 truncate group-hover:text-gray-900">{product.name}</p>
+                                                        <p className="text-gray-500 truncate group-hover:text-gray-900">{product.title}</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -138,7 +107,7 @@ function InventoryTable() {
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
                                                 <span className="text-gray-900 font-medium">{product.stock} </span>
-                                                {product.msrment}
+                                                {/* {product.msrment} */}
                                             </td>
                                             <td className="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
                                                 <span
@@ -151,7 +120,7 @@ function InventoryTable() {
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                <span >{product.orders}</span>
+                                                <span >{product.orders.length}</span>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500 mr-2">
                                                 <button className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-blue-primary">
@@ -172,8 +141,8 @@ function InventoryTable() {
                             >
                                 <div className="hidden sm:block">
                                     <p className="text-sm text-gray-700">
-                                        Showing <span className="font-medium">1</span> to <span className="font-medium">{products?.length}</span> of{' '}
-                                        <span className="font-medium">{all_length}</span> results
+                                        Showing <span className="font-medium">1</span> to <span className="font-medium">{data?.products?.length}</span> of{' '}
+                                        <span className="font-medium">{data?.products.length}</span> results
                                     </p>
                                 </div>
                                 <div className="flex-1 flex justify-between sm:justify-end">
