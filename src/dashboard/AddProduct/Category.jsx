@@ -1,9 +1,20 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import BlueButton from '../../components/buttons/BlueButton'
 import DashboardLayout from '../../layouts/DashboardLayout'
-import { useDropzone } from 'react-dropzone'
+import { useDropzone } from 'react-dropzone' //try file ppond
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { get_all_categories_Action } from '../../redux/actions/categoryActions'
+import { get_subcategories_Action } from '../../redux/actions/subCategoryActions'
 
 function Category({ nextStep, handleChange, values, setPictures }) {
+    const _categoeries = useSelector(state => state.get_all_categories)
+    const { cat_loading, categories } = _categoeries
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(get_all_categories_Action())
+    }, [dispatch])
 
     const maxSize = 1048576;
     const onDrop = useCallback(acceptedFiles => {
@@ -17,6 +28,7 @@ function Category({ nextStep, handleChange, values, setPictures }) {
         minSize: 0,
         maxSize,
     });
+
     const isFileTooLarge = rejectedFiles?.length > 0 && rejectedFiles[0].size > maxSize;
 
     return (
@@ -26,7 +38,6 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                     <div className="flex-1 p-4 flex flex-col">
                         <p className="text-gray-700 mb-4 text-lg border-b border-gray-300 pb-4 capitalize">Category and pictures</p>
                         <div>
-
                             {/* //categories  */}
                             <div className="flex md:flex-row flex-col gap-4 w-full mb-8">
                                 <div className="flex-1">
@@ -40,9 +51,23 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                                         onChange={handleChange('category')}
                                         className="mt-1 w-full p-2 text-base border border-gray-200 focus:outline-none sm:text-sm rounded-md"
                                     >
-                                        <option>USA</option>
-                                        <option>Canada</option>
-                                        <option>EU</option>
+                                        {
+                                            cat_loading ? (
+                                                <option>loading ... </option>
+                                            ) : cat_loading ? (
+                                                <option>error, reload page</option>
+                                            ) : (
+                                                <>
+                                                    {
+                                                        categories?.categories.map((category, index) => (
+                                                            <option key={index} onClick={() => {
+                                                                dispatch(get_subcategories_Action(category._id))
+                                                            }}>{category.category}</option>
+                                                        ))
+                                                    }
+                                                </>
+                                            )
+                                        }
                                     </select>
                                 </div>
                                 <div className="flex-1">

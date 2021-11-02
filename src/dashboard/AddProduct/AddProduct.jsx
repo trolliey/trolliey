@@ -3,6 +3,7 @@ import { useState } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout'
 import Category from './Category';
 import Description from './Description';
+import FinalMessage from './FinalMessage';
 import Pricing from './Pricing';
 import Success from './Success';
 
@@ -115,6 +116,17 @@ function AddProduct() {
         case 4:
             return (
                 <Success
+                    prevStep={prevStep}
+                    handleChange={handleChange}
+                    values={values}
+                    additional_features={additional_features}
+                    pictures={pictures}
+                    nextStep={nextStep}
+                />
+            )
+        case 5:
+            return (
+                <FinalMessage
                     prevStep={prevStep}
                     handleChange={handleChange}
                     values={values}

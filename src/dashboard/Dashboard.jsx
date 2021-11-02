@@ -92,12 +92,15 @@ export default function Dashboard() {
                                         )
                                     }
                                     <>
-                                        <ChakraModal 
-                                            onClose={onClose} 
-                                            isOpen={isOpen} 
+                                        <ChakraModal
+                                            onClose={onClose}
+                                            isOpen={isOpen}
                                             button_text="Proceed"
+                                            modal_action={()=> history.push('/dashboard/settings')}
                                             title="Become a seller"
-                                            body={<div>stuff</div>} />
+                                            body={<div>
+                                                <p className="text-center text-gray-700 font-semibold">Your should provide us with more information about you and become a seller for you to sell to us</p>
+                                            </div>} />
                                     </>
                                 </div>
                                 <div className="flex">

@@ -25,7 +25,9 @@ function ChakraModal({ body, title, button_text, modal_action, isOpen, onClose }
                     </ModalBody>
 
                     <ModalFooter>
-                        <BlueButton text={'Close'} onClick={onClose} outline />
+                        <div className="mr-2">
+                            <BlueButton text={'Close'} onClick={onClose} outline />
+                        </div>
                         <BlueButton text={button_text} onClick={modal_action} />
                     </ModalFooter>
                 </ModalContent>

@@ -1,0 +1,24 @@
+import axios from 'axios'
+import { apiUrl } from '../../utils/apiUrl'
+import { GET_SUBCATEGORIES_FAIL, GET_SUBCATEGORIES_REQUEST, GET_SUBCATEGORIES_SUCCESS } from '../constants/getSubCategoryConstants'
+
+//GET ALL SUBCATEGORIRES FOR A CAEGORY
+export const get_subcategories_Action = (category) => (dispatch) => {
+    dispatch({
+        type: GET_SUBCATEGORIES_REQUEST,
+        payload: category
+    })
+    axios.get(`${apiUrl}/sub_category/all/${category}`).then(res => {
+        dispatch({
+            type: GET_SUBCATEGORIES_SUCCESS,
+            payload: res.data
+        })
+    }).catch(error => {
+        dispatch({
+            type: GET_SUBCATEGORIES_FAIL,
+            payload: error.response && error.response.data.error
+                ? error.response.data.error
+                : error.message,
+        })
+    })
+}

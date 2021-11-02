@@ -53,10 +53,10 @@ function Pricing({ handleChange, values, prevStep, nextStep }) {
                                 onChange={handleChange('shipping_offered')}
                                 className="mt-1 block w-full pl-3 pr-10 p-2 text-base border border-gray-200 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md capitalize"
                             >
-                                <option>yes</option>
-                                <option>no</option>
-                                <option>on bulk goods</option>
-                                <option>only on subscribers</option>
+                                <option value={'for_everyone'}>yes</option>
+                                <option value={'no_shipping'}>no</option>
+                                <option value={'on_bulk_goods'}>on bulk goods</option>
+                                <option value={'on_regulars'}>only on subscribers</option>
                             </select>
                         </div>
                         <div className="col-span-1">
