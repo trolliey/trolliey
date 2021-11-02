@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import DashboardLayout from '../layouts/DashboardLayout'
-import { SearchIcon, PlusIcon } from '@heroicons/react/outline'
+import { SearchIcon } from '@heroicons/react/outline'
 import BlueButton from '../components/buttons/BlueButton'
 import InventoryTable from '../components/tables/InventoryTable'
 import { useHistory } from 'react-router'
@@ -52,10 +52,7 @@ function Inventory() {
                         <BlueButton
                             onClick={() => history.push('/dashboard/addproduct')}
                             className={'hover:text-white text-blue-primary'}
-                            text={<div className="flex flex-row items-center">
-                                <p className="text-sm mr-2">Add</p>
-                                <PlusIcon height={12} width={12} />
-                            </div>}
+                            text={'Add Product'}
                             outline
                         />
                     </div>
