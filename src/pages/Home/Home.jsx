@@ -4,7 +4,9 @@ import SearchInput from '../../components/search/SearchInput'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import banner from '../../assets/main-banner.jpg'
 import { data } from '../../utils/data'
-import ProductItem from '../../components/product_item/ProductItem'
+import SpecialProducts from '../../components/home_sections/SpecialProducts'
+import FeaturedProducts from '../../components/home_sections/FeaturedProducts'
+import LatestProducts from '../../components/home_sections/LatestProducts'
 
 function Home() {
     return (
@@ -47,26 +49,9 @@ function Home() {
 
 
                 {/* // special products */}
-                <div className="items flex-col">
-                    <p className="text-lg font-semibold text-gray-700 capitalize py-8">special products</p>
-                    <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4">
-                        {
-                            data.products?.map((product, index) => (
-                                <ProductItem
-                                    key={index}
-                                    picture={product.picture}
-                                    price={product.price}
-                                    discount_price={product.discount_price}
-                                    name={product.name}
-                                    description={product.descrition}
-                                    rating={product.rating}
-                                    id={product.id}
-                                />
-                            ))
-                        }
-
-                    </div>
-                </div>
+                <>
+                    <SpecialProducts />
+                </>
 
 
                 {/* //two exclusive categories */}
@@ -76,25 +61,9 @@ function Home() {
                 </div>
 
                 {/* // featured products */}
-                <div className="items flex-col">
-                    <p className="text-lg font-semibold text-gray-700 capitalize py-8">Featured products</p>
-                    <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4">
-                        {
-                            data.products?.map((product, index) => (
-                                <ProductItem
-                                    key={index}
-                                    picture={product.picture}
-                                    price={product.price}
-                                    discount_price={product.discount_price}
-                                    name={product.name}
-                                    description={product.descrition}
-                                    rating={product.rating}
-                                />
-                            ))
-                        }
-
-                    </div>
-                </div>
+                <>
+                    <FeaturedProducts />
+                </>
 
                 {/* //two exclusive categories */}
                 <div className="grid md:grid-cols-3 grid-cols-1 md:gap-8 gap-4 md:pt-16 pt-8">
@@ -103,26 +72,9 @@ function Home() {
                 </div>
 
                 {/* // latest products */}
-                <div className="items flex-col">
-                    <p className="text-lg font-semibold text-gray-700 capitalize py-8">Latest products</p>
-                    <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4">
-                        {
-                            data.products?.map((product, index) => (
-                                <ProductItem
-                                    key={index}
-                                    picture={product.picture}
-                                    price={product.price}
-                                    discount_price={product.discount_price}
-                                    name={product.name}
-                                    description={product.descrition}
-                                    rating={product.rating}
-                                />
-                            ))
-                        }
-
-                    </div>
-                </div>
-
+                <>
+                    <LatestProducts />
+                </>
 
                 {/* //two Latest categories */}
                 <div className="grid md:grid-cols-3 grid-cols-1 md:gap-8 gap-4 md:pt-16 pt-8">
