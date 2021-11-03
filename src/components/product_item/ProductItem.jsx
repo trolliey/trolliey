@@ -18,7 +18,7 @@ function ProductItem({picture, rating, name, description, price, discount_price,
 
     return (
         <div  className="cursor-pointer relative flex flex-col w-full">
-            <div onClick={()=> history.push(`/product/description/${id}`)} className="md:h-56 h-40 overflow-hidden rounded">
+            <div onClick={()=> history.push(`/product/description/${id}`)} className="md:h-56 h-40 overflow-hidden rounded bg-gray-100">
                 <img src={picture} alt="product" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-full" />
             </div>
             <div onClick={()=> history.push(`/product/description/${id}`)} className="star flex flex-row items-center my-2">

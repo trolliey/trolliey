@@ -4,6 +4,7 @@ import { login_user_Reducer, register_user_Reducer } from "./reducers/authReduce
 import { add_to_cart_Reducer, remove_from_cart_Reducer } from "./reducers/cartReducer";
 import { get_all_categories_Reducer } from "./reducers/categoryReducers";
 import { create_a_product_Reducer } from "./reducers/productReducer";
+import { get_all_special_products_Reducer } from "./reducers/specialProductsReducers";
 import { get_store_products_Reducer } from "./reducers/storeReducer";
 import { get_subcategories_Reducer } from "./reducers/subcategoryReducer";
 
@@ -35,7 +36,10 @@ const reducer = combineReducers({
   get_subcategories: get_subcategories_Reducer,
 
   //for store
-  get_store_products: get_store_products_Reducer
+  get_store_products: get_store_products_Reducer,
+
+  //for special products
+  get_special_products: get_all_special_products_Reducer
 });
 
 const composeForBrowser =
