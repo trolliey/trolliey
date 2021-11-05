@@ -1,5 +1,5 @@
-import { Spinner } from '@chakra-ui/spinner'
 import React from 'react'
+import { Spinner } from '@chakra-ui/spinner'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
