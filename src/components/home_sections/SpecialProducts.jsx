@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { get_all_special_products_Actions } from '../../redux/actions/specialProductsActions'
-import { data } from '../../utils/data'
 import ProductItem from '../product_item/ProductItem'
 
 function SpecialProducts() {
@@ -15,8 +14,6 @@ function SpecialProducts() {
     useEffect(() => {
         dispatch(get_all_special_products_Actions())
     }, [dispatch])
-
-    console.log(spec_products?.all_products)
 
     return (
         <div className="items flex-col">

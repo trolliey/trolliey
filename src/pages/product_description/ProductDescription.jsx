@@ -5,8 +5,12 @@ import { StarIcon } from '@heroicons/react/solid'
 import { HeartIcon, MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
 import BlueButton from '../../components/buttons/BlueButton'
 import RedButton from '../../components/buttons/RedButton'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { add_to_cart_Action } from '../../redux/actions/cartActions'
+import { useEffect } from 'react'
+import { get_single_product_Action } from '../../redux/actions/productActions'
+import { useParams } from 'react-router'
+import { Spinner } from '@chakra-ui/spinner'
 
 const product = {
     name: 'Zip Tote Basket',
@@ -57,6 +61,9 @@ function classNames(...classes) {
 }
 
 function ProductDescription() {
+    const _product = useSelector(state => state.get_single_product)
+    const {loading, error} = _product
+    const {id} = useParams()
 
     const dispatch = useDispatch()
 
@@ -70,6 +77,44 @@ function ProductDescription() {
             name: product.name
         }
         dispatch(add_to_cart_Action(item))
+    }
+
+    useEffect(()=>{
+        dispatch(get_single_product_Action(id))
+    },[dispatch])
+
+    if(loading){
+        return(
+            <GeneralLayout>
+                <div className="flex bg-white md:p-8 px-4 w-full rounded">
+                <div className="bg-white w-full">
+                    <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
+                        <div className="flex flex-col items-center">
+                            <Spinner
+                                colorScheme="blue"
+                                size="lg"
+                                thickness={3}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </GeneralLayout>
+        )
+    }
+
+    if(error){
+        return(
+            <GeneralLayout>
+                <div className="flex bg-white md:p-8 px-4 w-full rounded">
+                <div className="bg-white w-full">
+                    <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
+                        <p className="text-center p-2 bg-red-100 rounded text-gray-700 font-semibold text-lg">There seems to be a problem. Try reloading the page!</p>
+                    </div>
+                </div>
+            </div>
+            </GeneralLayout>
+        )
     }
 
     return (
