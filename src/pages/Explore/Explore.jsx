@@ -6,7 +6,7 @@ function Explore() {
     return (
         <ExploreLayout>
             <>
-                <AllProducts cols="lg:grid-cols-4 " />
+                <AllProducts cols="lg:grid-cols-4 " no_text />
             </>
         </ExploreLayout>
     )

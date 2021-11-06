@@ -1,6 +1,7 @@
 import { StarIcon } from '@heroicons/react/outline'
 import { StarIcon as SolidStarIcon } from '@heroicons/react/solid'
 import React from 'react'
+import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
@@ -12,21 +13,27 @@ function ExploreLayout({ children }) {
     const _categories = useSelector(state => state.get_all_categories)
     const { cat_loading, categories } = _categories
     const dispatch = useDispatch()
+    const [min_price, setMinPrice]= useState(0)
+    const [max_price, setMaxPrice] = useState(0)
 
     useEffect(() => {
         dispatch(get_all_categories_Action())
     }, [dispatch])
+
+    const filter_by_price = () =>{
+        console.log(min_price, max_price)
+    }
 
     return (
         <GeneralLayout>
             <div className="bg-white md:p-8 p-2 rounded">
                 <div className="top w-full flex flex-row md:gap-8 gap-2">
                     <div className="md:w-1/5 md:flex flex-col hidden">
-                        {/* <CategoriesDropdown /> */}
                         <p className="text text-gray-700 mt-8 font-semibold pb-4 border-b border-blue-primary">Refine Search</p>
-                        {/* // categories */}
+
+                        {/* //filter by categories */}
                         <>
-                            <p className="text-gray-700 font-semibold mt-4">Categories</p>
+                            <p className="text-gray-700 font-bold mt-4">Categories</p>
                             {
                                 cat_loading ? (
                                     <p className="text-center text-gray-700 font-semibold my-2">Loading ...</p>
@@ -46,8 +53,10 @@ function ExploreLayout({ children }) {
                                 )
                             }
                         </>
+
+                        {/* filter by rating  */}
                         <>
-                            <p className="text-gray-700 font-semibold">Rating</p>
+                            <p className="text-gray-700 font-bold">Rating</p>
                             <div className="p-2">
                                 <div className="flex flex-row space-x-1 cursor-pointer items-center my-2 font-semibold text-gray-600">
                                     {[1, 2, 3, 4].map((star, index) => (
@@ -62,7 +71,7 @@ function ExploreLayout({ children }) {
                                     {[1, 2, 3].map((star, index) => (
                                         <SolidStarIcon key={index} height={20} width={20} className="text-yellow-500" />
                                     ))}
-                                    {[1,2].map((star, index) => (
+                                    {[1, 2].map((star, index) => (
                                         <StarIcon key={index} height={20} width={20} className="text-yellow-500" />
                                     ))}
                                     <p className="text-xs">& Up</p>
@@ -71,7 +80,7 @@ function ExploreLayout({ children }) {
                                     {[1, 2].map((star, index) => (
                                         <SolidStarIcon key={index} height={20} width={20} className="text-yellow-500" />
                                     ))}
-                                    {[1,2,3].map((star, index) => (
+                                    {[1, 2, 3].map((star, index) => (
                                         <StarIcon key={index} height={20} width={20} className="text-yellow-500" />
                                     ))}
                                     <p className="text-xs">& Up</p>
@@ -80,10 +89,30 @@ function ExploreLayout({ children }) {
                                     {[1].map((star, index) => (
                                         <SolidStarIcon key={index} height={20} width={20} className="text-yellow-500" />
                                     ))}
-                                    {[1,2,3,4].map((star, index) => (
+                                    {[1, 2, 3, 4].map((star, index) => (
                                         <StarIcon key={index} height={20} width={20} className="text-yellow-500" />
                                     ))}
                                     <p className="text-xs">& Up</p>
+                                </div>
+                            </div>
+                        </>
+
+                        {/* filter by price */}
+                        <>
+                            <p className="text-gray-700 font-bold">Price</p>
+                            <div className="p-2 flex flex-col">
+                                <input
+                                    type="number"
+                                    placeholder="min"
+                                    onChange={e=> setMinPrice(e.target.value)}
+                                    className="my-2 outline-none border border-gray-200 rounded p-2 text-sm text-gray-700" />
+                                <input
+                                    type="number"
+                                    placeholder="max"
+                                    onChange={e=> setMaxPrice(e.target.value)}
+                                    className="my-2 outline-none border border-gray-200 rounded p-2 text-sm text-gray-700" />
+                                <div className="flex flex-col items-end">
+                                    <button onClick={filter_by_price} className="text-sm border bg-white hover:bg-blue-primary hover:text-white border-blue-primary rounded text-blue-primary font-semibold px-2 py-1 uppercase">go</button>
                                 </div>
                             </div>
                         </>

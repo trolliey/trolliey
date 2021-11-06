@@ -105,7 +105,7 @@ export default function Footer() {
                         </a>
                     ))}
                 </div>
-                <p className="mt-8 text-center text-sm text-gray-500">&copy; {new Date().getFullYear()}{" "}E-Commerce. A product of Devbako Group{" "}</p>
+                <p className="mt-8 text-center text-sm text-gray-500">&copy; {new Date().getFullYear()}{" "}Trolliey.{" "}</p>
             </div>
         </footer>
     )
