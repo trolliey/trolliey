@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import { get_single_product_Action } from '../../redux/actions/productActions'
 import { useParams } from 'react-router'
 import { Spinner } from '@chakra-ui/spinner'
+import moment from 'moment'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -25,12 +26,12 @@ function ProductDescription() {
 
     const add_to_basket = () => {
         const item = {
-            picture: product.images[0],
-            rating: product.rating,
-            description: product.description,
-            price: product.price,
-            id: product.id,
-            name: product.name
+            picture: product?.product?.pictures[0],
+            rating: product?.product?.ratings.length,
+            description: product?.product?.description,
+            price: product?.product?.price,
+            id: product?.product?.id,
+            name: product?.product?.title
         }
         dispatch(add_to_cart_Action(item))
     }
@@ -76,7 +77,7 @@ function ProductDescription() {
     return (
         <GeneralLayout>
             <div className="flex bg-white md:p-8 px-4 w-full rounded">
-                <div className="bg-white">
+                <div className="bg-white flex-1">
                     <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
                         <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
                             {/* Image gallery */}
@@ -93,7 +94,7 @@ function ProductDescription() {
                                                     <>
                                                         <span className="sr-only">{image.name}</span>
                                                         <span className="absolute inset-0 rounded-md overflow-hidden">
-                                                            <img src={image} alt="" className="w-full h-full object-center object-cover" />
+                                                            <img src={image} alt="for a single product" className="w-full h-full object-center object-cover" />
                                                         </span>
                                                         <span
                                                             className={classNames(
@@ -109,13 +110,13 @@ function ProductDescription() {
                                     </Tab.List>
                                 </div>
 
-                                <Tab.Panels className="w-full aspect-w-1 aspect-h-1">
+                                <Tab.Panels className="w-full aspect-w-1 aspect-h-1 flex-1">
                                     {product?.product?.pictures.map((image, index) => (
                                         <Tab.Panel key={index}>
                                             <img
                                                 src={image}
-                                                alt={image.alt}
-                                                className="w-full h-full object-center object-cover sm:rounded-lg"
+                                                alt={'for the product'}
+                                                className="w-full h-full object-center object-cover sm:rounded-lg bg-gray-100"
                                             />
                                         </Tab.Panel>
                                     ))}
@@ -140,14 +141,14 @@ function ProductDescription() {
                                                 <StarIcon
                                                     key={rating}
                                                     className={classNames(
-                                                        product?.product?.ratings.length >  1 ? 'text-yellow-400' : 'text-gray-300',
+                                                        product?.product?.ratings.length > rating ? 'text-yellow-400' : 'text-gray-300',
                                                         'h-5 w-5 flex-shrink-0'
                                                     )}
                                                     aria-hidden="true"
                                                 />
                                             ))}
                                         </div>
-                                        <p className="sr-only">{product?.product?.ratings} out of 5 stars</p>
+                                        <p className="sr-only">{product?.product?.ratings.length} out of 5 stars</p>
                                     </div>
                                 </div>
 
@@ -156,7 +157,17 @@ function ProductDescription() {
 
                                     <div
                                         className="text-base text-gray-700 space-y-6"
-                                        dangerouslySetInnerHTML={{ __html: product?.product.description }}
+                                        dangerouslySetInnerHTML={{ __html: product?.product?.description }}
+                                    />
+                                </div>
+
+                                <div className="mt-6 border-t border-gray-200 pt-4 flex flex-row justify-between">
+                                    {/* <h3 className="sr-only">Time added</h3> */}
+                                    <p className="mr-2 capitalize font-semibold text-gray-700">added:</p>
+
+                                    <div
+                                        className="text-base text-gray-700 space-y-6"
+                                        dangerouslySetInnerHTML={{ __html: moment(product?.product?.createdAt).fromNow() }}
                                     />
                                 </div>
 
@@ -174,17 +185,17 @@ function ProductDescription() {
                                     <p className="mb-2 text-gray-700 font-semibold text-sm capitalize">shipping </p>
                                     <div className="flex flex-row items-center justify-between">
                                         <p className="text-gray-500">Ships to : </p>
-                                        <p className="text-gray-500">{product?.product.shipping_area}</p>
+                                        <p className="text-gray-500"> {product?.product?.shipping_area}</p>
 
                                     </div>
                                     <div className="flex flex-row items-center justify-between">
                                         <p className="text-gray-500">Ships for : </p>
-                                        <p className="text-gray-500">{product?.product.shipping_type}</p>
+                                        <p className="text-gray-500"> {product?.product?.shipping_type}</p>
 
                                     </div>
                                     <div className="flex flex-row items-center justify-between">
                                         <p className="text-gray-500">Shipment expense : </p>
-                                        <p className="text-gray-500"> ${product?.product.shipping_price}</p>
+                                        <p className="text-gray-500"> ${product?.product?.shipping_price}</p>
 
                                     </div>
                                 </div>
@@ -203,7 +214,7 @@ function ProductDescription() {
                                                                 <span
                                                                     className={classNames(open ? 'text-blue-primary' : 'text-gray-900', 'text-sm font-medium')}
                                                                 >
-                                                                    additional features
+                                                                    Product Features
                                                                 </span>
                                                                 <span className="ml-6 flex items-center">
                                                                     {open ? (

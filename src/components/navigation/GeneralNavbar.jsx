@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/outline'
+import { ShoppingCartIcon, HeartIcon, ChatIcon } from '@heroicons/react/outline'
 import { useSelector } from 'react-redux'
 import CartSidebar from '../cart_sidebar/CartSidebar'
 import { useHistory } from 'react-router'
@@ -27,7 +27,7 @@ function GeneralNavbar() {
             </div>
             <div className="flex-1"></div>
             <div className="md:flex hidden relative p-2 bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-full">
-                <HeartIcon height={20} width={20} className="text-gray-700" />
+                <ChatIcon height={20} width={20} className="text-gray-700" />
                 <span className="absolute right-0 top-0 rounded-full bg-blue-primary w-4 h-4 top right p-0 m-0 text-white text-xs font-semibold text-center">
                     0
                 </span>

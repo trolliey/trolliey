@@ -6,11 +6,13 @@ import { useSelector } from 'react-redux'
 import { get_all_special_products_Actions } from '../../redux/actions/specialProductsActions'
 import ProductItem from '../product_item/ProductItem'
 import { ArrowRightIcon } from '@heroicons/react/outline'
+import { useHistory } from 'react-router'
 
 function SpecialProducts() {
     const _special_p = useSelector(state => state.get_special_products)
     const { spec_products, loading, error } = _special_p
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(get_all_special_products_Actions())
@@ -20,7 +22,7 @@ function SpecialProducts() {
         <div className="items flex-col">
             <div className="text-lg py-8 flex flex-row items-center justify-between">
                 <p className="font-semibold text-gray-700 capitalize ">special products</p>
-                <div className="text-new-primary capitalize font-semibold flex flex-row items-center cursor-pointer hover:text-new-light">
+                <div onClick={() => history.push('/explore')} className="text-new-primary capitalize font-semibold flex flex-row items-center cursor-pointer hover:text-new-light">
                     View all
                     <ArrowRightIcon height={16} width={16} className="ml-2" />
                 </div>
