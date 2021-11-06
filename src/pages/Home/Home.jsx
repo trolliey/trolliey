@@ -7,6 +7,7 @@ import { data } from '../../utils/data'
 import SpecialProducts from '../../components/home_sections/SpecialProducts'
 import FeaturedProducts from '../../components/home_sections/FeaturedProducts'
 import LatestProducts from '../../components/home_sections/LatestProducts'
+import AllProducts from '../../components/home_sections/AllProducts'
 
 function Home() {
     return (
@@ -81,6 +82,12 @@ function Home() {
                     <div className="col-span-1 bg-blue-200 rounded md:h-40 h-32"></div>
                     <div className="md:col-span-2 col-start-1 bg-yellow-200 rounded md:h-40 h-32"></div>
                 </div>
+
+                {/* // all products */}
+                <>
+                    <AllProducts cols="lg:grid-cols-5 " />
+                </>
+
 
 
             </div>

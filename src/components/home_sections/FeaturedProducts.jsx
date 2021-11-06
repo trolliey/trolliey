@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Spinner } from '@chakra-ui/spinner'
 import { get_featured_products_Actions } from '../../redux/actions/featuredProductsActions'
 import ProductItem from '../product_item/ProductItem'
+import { ArrowRightIcon } from '@heroicons/react/outline'
 
 function FeaturedProducts() {
     const _featured_p = useSelector(state => state.get_featured_products)
@@ -15,7 +16,13 @@ function FeaturedProducts() {
 
     return (
         <div className="items flex-col">
-            <p className="text-lg font-semibold text-gray-700 capitalize py-8">featured products</p>
+            <div className="text-lg py-8 flex flex-row items-center justify-between">
+                <p className="font-semibold text-gray-700 capitalize ">featured products</p>
+                <div className="text-new-primary capitalize font-semibold flex flex-row items-center cursor-pointer hover:text-new-light">
+                    View all
+                    <ArrowRightIcon height={16} width={16} className="ml-2" />
+                </div>
+            </div>
             <div className={`${loading || error ? "flex-1 flex w-full " : "grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 "}  gap-4`}>
                 {
                     loading ? (
@@ -23,7 +30,7 @@ function FeaturedProducts() {
                             <Spinner colorScheme="blue" thickness={3} />
                         </div>
                     ) : error ? (
-                        <p className="text-gray-700 font-semibold text-lg text-center py-8 w-full">Could not load special products, Try reloading the page! </p>
+                        <p className="text-gray-700 font-semibold text-lg text-center py-8 w-full">Could not load featured products, Try reloading the page! </p>
                     ) : (
                         <>
                             {

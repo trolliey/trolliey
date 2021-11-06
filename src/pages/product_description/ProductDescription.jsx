@@ -12,57 +12,13 @@ import { get_single_product_Action } from '../../redux/actions/productActions'
 import { useParams } from 'react-router'
 import { Spinner } from '@chakra-ui/spinner'
 
-const product = {
-    name: 'Zip Tote Basket',
-    price: '$140',
-    rating: 4,
-    images: [
-        {
-            id: 1,
-            name: 'Angled view',
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
-            alt: 'Angled front view with bag zipped and handles upright.',
-        },
-        // More images...
-    ],
-    colors: [
-        { name: 'Washed Black', bgColor: 'bg-gray-700', selectedColor: 'ring-gray-700' },
-        { name: 'White', bgColor: 'bg-white', selectedColor: 'ring-gray-400' },
-        { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
-    ],
-    description: `
-      <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
-    `,
-    details: [
-        {
-            name: 'Features',
-            items: [
-                'Multiple strap configurations',
-                'Spacious interior with top zip',
-                'Leather handle and tabs',
-                'Interior dividers',
-                'Stainless strap loops',
-                'Double stitched construction',
-                'Water-resistant',
-            ],
-        },
-        // More sections...
-    ],
-    id: 1,
-    shipping: {
-        shipping_type: 'for_everyone',
-        price: 12,
-        shipping_area: 'everywhere'
-    }
-}
-
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 function ProductDescription() {
     const _product = useSelector(state => state.get_single_product)
-    const {loading, error} = _product
+    const {loading, error, product} = _product
     const {id} = useParams()
 
     const dispatch = useDispatch()
@@ -81,7 +37,7 @@ function ProductDescription() {
 
     useEffect(()=>{
         dispatch(get_single_product_Action(id))
-    },[dispatch])
+    },[dispatch, id])
 
     if(loading){
         return(
@@ -128,16 +84,16 @@ function ProductDescription() {
                                 {/* Image selector */}
                                 <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
                                     <Tab.List className="grid grid-cols-4 gap-6">
-                                        {product.images.map((image) => (
+                                        {product?.product?.pictures.map((image, index) => (
                                             <Tab
-                                                key={image.id}
+                                                key={index}
                                                 className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
                                             >
                                                 {({ selected }) => (
                                                     <>
                                                         <span className="sr-only">{image.name}</span>
                                                         <span className="absolute inset-0 rounded-md overflow-hidden">
-                                                            <img src={image.src} alt="" className="w-full h-full object-center object-cover" />
+                                                            <img src={image} alt="" className="w-full h-full object-center object-cover" />
                                                         </span>
                                                         <span
                                                             className={classNames(
@@ -154,10 +110,10 @@ function ProductDescription() {
                                 </div>
 
                                 <Tab.Panels className="w-full aspect-w-1 aspect-h-1">
-                                    {product.images.map((image) => (
-                                        <Tab.Panel key={image.id}>
+                                    {product?.product?.pictures.map((image, index) => (
+                                        <Tab.Panel key={index}>
                                             <img
-                                                src={image.src}
+                                                src={image}
                                                 alt={image.alt}
                                                 className="w-full h-full object-center object-cover sm:rounded-lg"
                                             />
@@ -168,11 +124,11 @@ function ProductDescription() {
 
                             {/* Product info */}
                             <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-                                <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{product.name}</h1>
+                                <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{product?.product?.title}</h1>
 
                                 <div className="mt-3">
                                     <h2 className="sr-only">Product information</h2>
-                                    <p className="text-3xl text-gray-900">{product.price}</p>
+                                    <p className="text-3xl text-gray-900">{product?.product?.price}</p>
                                 </div>
 
                                 {/* Reviews */}
@@ -184,14 +140,14 @@ function ProductDescription() {
                                                 <StarIcon
                                                     key={rating}
                                                     className={classNames(
-                                                        product.rating > rating ? 'text-yellow-400' : 'text-gray-300',
+                                                        product?.product?.ratings.length >  1 ? 'text-yellow-400' : 'text-gray-300',
                                                         'h-5 w-5 flex-shrink-0'
                                                     )}
                                                     aria-hidden="true"
                                                 />
                                             ))}
                                         </div>
-                                        <p className="sr-only">{product.rating} out of 5 stars</p>
+                                        <p className="sr-only">{product?.product?.ratings} out of 5 stars</p>
                                     </div>
                                 </div>
 
@@ -200,7 +156,7 @@ function ProductDescription() {
 
                                     <div
                                         className="text-base text-gray-700 space-y-6"
-                                        dangerouslySetInnerHTML={{ __html: product.description }}
+                                        dangerouslySetInnerHTML={{ __html: product?.product.description }}
                                     />
                                 </div>
 
@@ -218,17 +174,17 @@ function ProductDescription() {
                                     <p className="mb-2 text-gray-700 font-semibold text-sm capitalize">shipping </p>
                                     <div className="flex flex-row items-center justify-between">
                                         <p className="text-gray-500">Ships to : </p>
-                                        <p className="text-gray-500"> everywhere</p>
+                                        <p className="text-gray-500">{product?.product.shipping_area}</p>
 
                                     </div>
                                     <div className="flex flex-row items-center justify-between">
                                         <p className="text-gray-500">Ships for : </p>
-                                        <p className="text-gray-500"> everyone</p>
+                                        <p className="text-gray-500">{product?.product.shipping_type}</p>
 
                                     </div>
                                     <div className="flex flex-row items-center justify-between">
                                         <p className="text-gray-500">Shipment expense : </p>
-                                        <p className="text-gray-500"> $20</p>
+                                        <p className="text-gray-500"> ${product?.product.shipping_price}</p>
 
                                     </div>
                                 </div>
@@ -239,8 +195,7 @@ function ProductDescription() {
                                     </h2>
 
                                     <div className="border-t divide-y divide-gray-200">
-                                        {product.details.map((detail) => (
-                                            <Disclosure as="div" key={detail.name}>
+                                            <Disclosure as="div">
                                                 {({ open }) => (
                                                     <>
                                                         <h3>
@@ -248,7 +203,7 @@ function ProductDescription() {
                                                                 <span
                                                                     className={classNames(open ? 'text-blue-primary' : 'text-gray-900', 'text-sm font-medium')}
                                                                 >
-                                                                    {detail.name}
+                                                                    additional features
                                                                 </span>
                                                                 <span className="ml-6 flex items-center">
                                                                     {open ? (
@@ -267,7 +222,7 @@ function ProductDescription() {
                                                         </h3>
                                                         <Disclosure.Panel as="div" className="pb-6 prose prose-sm">
                                                             <ul>
-                                                                {detail.items.map((item) => (
+                                                                {product?.product?.additional_features.map((item) => (
                                                                     <li key={item}>{item}</li>
                                                                 ))}
                                                             </ul>
@@ -275,7 +230,6 @@ function ProductDescription() {
                                                     </>
                                                 )}
                                             </Disclosure>
-                                        ))}
                                     </div>
                                 </section>
                             </div>
