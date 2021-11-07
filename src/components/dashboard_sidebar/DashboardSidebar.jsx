@@ -18,7 +18,7 @@ import logo from '../../assets/icon.png'
 const navigation = [
     { name: 'Home', href: '/dashboard', icon: HomeIcon, current: false },
     { name: 'Inventory', href: '/dashboard/inventory', icon: ClipboardListIcon, current: false },
-    { name: 'History', href: '/dashboard/history', icon: ClockIcon, current: false },
+    // { name: 'History', href: '/dashboard/history', icon: ClockIcon, current: false },
     { name: 'Balances', href: '/dashboard/balances', icon: ScaleIcon, current: false },
     { name: 'Cards', href: '/dashboard/cards', icon: CreditCardIcon, current: false },
     { name: 'Recipients', href: '/dashboard/receipts', icon: UserGroupIcon, current: false },
