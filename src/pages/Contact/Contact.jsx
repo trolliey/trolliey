@@ -4,7 +4,6 @@ import { MailIcon, PhoneIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
 import BlueButton from '../../components/buttons/BlueButton'
 
-
 const Contact = () => {
 
     const [firstname, setFirstname] = useState('')
@@ -173,8 +172,7 @@ const Contact = () => {
                                         </div>
                                         <h3 className="text-lg font-medium text-white">Contact information</h3>
                                         <p className="mt-6 text-base text-teal-50 max-w-3xl">
-                                            Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor
-                                            lacus arcu.
+                                            Our team responds as soon as we see your message. Thank you for your feedback. Happy shopping
                                         </p>
                                         <dl className="mt-8 space-y-6">
                                             <dt>
@@ -182,14 +180,14 @@ const Contact = () => {
                                             </dt>
                                             <dd className="flex text-base text-teal-50">
                                                 <PhoneIcon className="flex-shrink-0 w-6 h-6 text-teal-200" aria-hidden="true" />
-                                                <span className="ml-3">+1 (555) 123-4567</span>
+                                                <span className="ml-3">+263 (771) 445-411</span>
                                             </dd>
                                             <dt>
                                                 <span className="sr-only">Email</span>
                                             </dt>
                                             <dd className="flex text-base text-teal-50">
                                                 <MailIcon className="flex-shrink-0 w-6 h-6 text-teal-200" aria-hidden="true" />
-                                                <span className="ml-3">support@workcation.com</span>
+                                                <span className="ml-3">support@trolliey.com</span>
                                             </dd>
                                         </dl>
                                         <ul className="mt-8 flex space-x-12">
