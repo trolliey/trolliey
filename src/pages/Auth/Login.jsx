@@ -81,7 +81,7 @@ function Login() {
                                                     <EyeOffIcon height={20} width={20} className="text-gray-400" />
                                                 </div>
                                             ) : (
-                                                <div onClick={() => setShowPassword(true)}>
+                                                <div onClick={() => setShowPassword(true)} className="cursor-pointer">
                                                     <EyeIcon height={20} width={20} className="text-gray-400" />
                                                 </div>
                                             )
@@ -114,8 +114,8 @@ function Login() {
                             <div>
                                 <BlueButton text="Sign In" className="w-full" onClick={login_user_handler} loading={loading} />
                             </div>
+                            <p onClick={() => history.push('/login')} className="text-center text-gray-500 hover:text-gray-700 font-semibold text-sm my-4 cursor-pointer">Not registered? Register instead!</p>
                         </div>
-
 
                     </div>
                 </div>

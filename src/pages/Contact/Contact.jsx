@@ -19,7 +19,7 @@ const Contact = () => {
     }
 
     return (
-        <GeneralLayout  no_text>
+        <GeneralLayout no_text>
             <div className="">
                 <main className="overflow-hidden">
                     {/* Header */}
@@ -148,8 +148,7 @@ const Contact = () => {
                                                 viewBox="0 0 160 678"
                                                 fill="none"
                                                 preserveAspectRatio="xMidYMid slice"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
+                                                xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M-161 679.107L546.107-28l707.103 707.107-707.103 707.103L-161 679.107z"
                                                     fill="url(#linear3)"
@@ -239,7 +238,7 @@ const Contact = () => {
                                                         type="text"
                                                         name="first-name"
                                                         id="first-name"
-                                                        onChange={e =>setFirstname(e.target.value)}
+                                                        onChange={e => setFirstname(e.target.value)}
                                                         autoComplete="given-name"
                                                         className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md"
                                                     />
@@ -254,7 +253,7 @@ const Contact = () => {
                                                         type="text"
                                                         name="last-name"
                                                         id="last-name"
-                                                        onChange={e =>setLastname(e.target.value)}
+                                                        onChange={e => setLastname(e.target.value)}
                                                         autoComplete="family-name"
                                                         className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md"
                                                     />
@@ -269,7 +268,7 @@ const Contact = () => {
                                                         id="email"
                                                         name="email"
                                                         type="email"
-                                                        onChange={e =>setEmail(e.target.value)}
+                                                        onChange={e => setEmail(e.target.value)}
                                                         autoComplete="email"
                                                         className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md"
                                                     />
@@ -289,7 +288,7 @@ const Contact = () => {
                                                         type="text"
                                                         name="phone"
                                                         id="phone"
-                                                        onChange={e =>setPhoneNumber(e.target.value)}
+                                                        onChange={e => setPhoneNumber(e.target.value)}
                                                         autoComplete="tel"
                                                         className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md"
                                                         aria-describedby="phone-optional"
@@ -305,7 +304,7 @@ const Contact = () => {
                                                         type="text"
                                                         name="subject"
                                                         id="subject"
-                                                        onChange={e =>setSubject(e.target.value)}
+                                                        onChange={e => setSubject(e.target.value)}
                                                         className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md"
                                                     />
                                                 </div>
@@ -324,7 +323,7 @@ const Contact = () => {
                                                         id="message"
                                                         name="message"
                                                         rows={4}
-                                                        onChange={e =>setMessage(e.target.value)}
+                                                        onChange={e => setMessage(e.target.value)}
                                                         className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border border-warm-gray-300 rounded-md"
                                                         aria-describedby="message-max"
                                                         defaultValue={''}

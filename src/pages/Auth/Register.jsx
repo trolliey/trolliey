@@ -100,7 +100,7 @@ function Register() {
                                                     <EyeOffIcon height={20} width={20} className="text-gray-400" />
                                                 </div>
                                             ) : (
-                                                <div onClick={() => setShowPassword(true)}>
+                                                <div onClick={() => setShowPassword(true)} className="cursor-pointer">
                                                     <EyeIcon height={20} width={20} className="text-gray-400" />
                                                 </div>
                                             )
@@ -130,6 +130,7 @@ function Register() {
                             <div>
                                 <BlueButton text="Register" className="w-full" loading={loading} />
                             </div>
+                            <p onClick={() => history.push('/register')} className="text-center text-gray-500 hover:text-gray-700 font-semibold text-sm my-4 cursor-pointer">Already registered? Login instead!</p>
                         </form>
 
 
