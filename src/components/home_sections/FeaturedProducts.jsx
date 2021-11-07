@@ -10,7 +10,7 @@ function FeaturedProducts() {
     const _featured_p = useSelector(state => state.get_featured_products)
     const { featured_products, loading, error } = _featured_p
     const dispatch = useDispatch()
-    const  history = useHistory()
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(get_featured_products_Actions())
@@ -36,18 +36,28 @@ function FeaturedProducts() {
                     ) : (
                         <>
                             {
-                                featured_products?.all_products?.map((product, index) => (
-                                    <ProductItem
-                                        key={index}
-                                        picture={product.pictures[0]}
-                                        price={product.price}
-                                        discount_price={product.discount_price}
-                                        name={product.title}
-                                        description={product.description}
-                                        rating={product.rating}
-                                        id={product._id}
-                                    />
-                                ))
+                                featured_products?.all_products.length >= 1 ? (
+                                    <>
+                                        {
+                                            featured_products?.all_products?.map((product, index) => (
+                                                <ProductItem
+                                                    key={index}
+                                                    picture={product.pictures[0]}
+                                                    price={product.price}
+                                                    discount_price={product.discount_price}
+                                                    name={product.title}
+                                                    description={product.description}
+                                                    rating={product.rating}
+                                                    id={product._id}
+                                                />
+                                            ))
+                                        }
+                                    </>
+                                ) : (
+                                    <div onClick={() => history.push('/dashboard/inventory')} className="flex lg:col-span-5 md:col-span-3 col-span-2">
+                                        <p className="text-lg text-gray-700 text-center flex-1 p-1 cursor-pointer hover:bg-gray-50 rounded w-full font-semibold my-4 capitalize">No featured products to show. click here to become a seller?</p>
+                                    </div>
+                                )
                             }
                         </>
                     )

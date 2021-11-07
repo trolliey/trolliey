@@ -37,18 +37,28 @@ function AllProducts({ cols, no_text }) {
                     ) : (
                         <>
                             {
-                                products?.products?.map((product, index) => (
-                                    <ProductItem
-                                        key={index}
-                                        picture={product.pictures[0]}
-                                        price={product.price}
-                                        discount_price={product.discount_price}
-                                        name={product.title}
-                                        description={product.description}
-                                        rating={product.rating}
-                                        id={product._id}
-                                    />
-                                ))
+                                products?.products.length >= 1 ? (
+                                    <>
+                                        {
+                                            products?.products?.map((product, index) => (
+                                                <ProductItem
+                                                    key={index}
+                                                    picture={product.pictures[0]}
+                                                    price={product.price}
+                                                    discount_price={product.discount_price}
+                                                    name={product.title}
+                                                    description={product.description}
+                                                    rating={product.rating}
+                                                    id={product._id}
+                                                />
+                                            ))
+                                        }
+                                    </>
+                                ) : (
+                                    <div onClick={() => history.push('/dashboard/inventory')} className="flex lg:col-span-5 md:col-span-3 col-span-2">
+                                        <p className="text-lg text-gray-700 text-center flex-1 p-1 cursor-pointer hover:bg-gray-50 rounded w-full font-semibold my-4 capitalize">No products to show. click here to become a seller?</p>
+                                    </div>
+                                )
                             }
                         </>
                     )
