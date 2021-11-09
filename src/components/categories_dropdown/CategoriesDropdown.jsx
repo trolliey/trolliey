@@ -52,7 +52,7 @@ function CategoriesDropdown({ open, name }) {
     return (
         <div onClick={show_categories ? () => setShowCategories(false) : () => setShowCategories(true)} className="w-full relative flex flex-col">
             <button className="flex flex-row items-center w-full justify-around bg-blue-primary md:p-3 p-2 rounded outline-none border-none">
-            {!name && <MenuIcon className="text-white " height={16} width={16} />}
+                {!name && <MenuIcon className="text-white " height={16} width={16} />}
                 <p className="lg:flex md:hidden hidden capitalize text-white text-sm font-semibold">{name ? name : "shop by categories"}</p>
                 <p className="lg:hidden md:flex hidden capitalize text-white text-sm font-semibold">{name ? name : "by categories"}</p>
                 <p className="lg:hidden md:hidden hidden capitalize text-white text-sm font-semibold">{name ? name : "shop by categories"}</p>
@@ -64,12 +64,13 @@ function CategoriesDropdown({ open, name }) {
                             categories?.categories.map((category, index) => (
                                 <div key={index} onClick={() => history.push('/explore')} className="flex flex-row items-center p-2 border-b border-gray-20 cursor-pointer hover:bg-gray-100">
                                     <ArrowRightIcon className="text-gray-700 mr-3" height={12} width={12} />
-                                    <p className="text-gray-700 text-sm font-semibold">{category.category}</p>
+                                    <p className="text-gray-700 text-sm font-semibold capitalize">{category.category}</p>
                                     <div className="flex-1"></div>
                                     <ChevronRightIcon className="text-gray-700" height={16} width={16} />
                                 </div>
                             ))
                         }
+                        <p className="text-gray-700 text-center py-2 capitalize cursor-pointer font-semibold">load more</p>
                     </div>
                 ) : null
             }

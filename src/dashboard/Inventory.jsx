@@ -68,7 +68,7 @@ function Inventory() {
                             />
                         </div>
                     ) : error ? (
-                        <p className="text-center text-gray-700 font-semibold text-lg my-2 py-2 bg-red-100 rounded">There seems to be an error loading your products. Try reloading your page</p>
+                        <p className="text-center text-gray-700 font-semibold text-lg my-2 py-2 bg-red-100 rounded">{error}</p>
                     ) : (
                         <>
                             <InventoryTable data={products} />
