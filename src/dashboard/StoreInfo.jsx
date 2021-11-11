@@ -1,5 +1,6 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 import BlueButton from '../components/buttons/BlueButton'
 import UserAvatar from '../components/user_avatar/UserAvatar'
 import DashboardLayout from '../layouts/DashboardLayout'
@@ -19,8 +20,13 @@ function StoreInfo() {
     const [province, setProvince] = useState('')
     const [postal, setPostal] = useState('')
     const [push_type, setpushType] = useState('')
+    const _create = useSelector(state => state.create_store)
+    const { edit_loading, message, edit_error } = _create
 
-    const change_details = (e) =>{
+    const dispatch = useDispatch()
+    const history = useHistory()
+
+    const change_details = (e) => {
         e.prevenrDefault()
         console.log('details changed')
     }

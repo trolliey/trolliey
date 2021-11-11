@@ -1,10 +1,12 @@
 import axios from "axios"
 import { apiUrl } from "../../utils/apiUrl"
 import {
-    GET_SINGLE_STORE_INFO_REQUEST,
+    CREATE_SINGLE_STORE_INFO_FAIL,
+    CREATE_SINGLE_STORE_INFO_REQUEST,
+    CREATE_SINGLE_STORE_INFO_SUCCESS,
     GET_STORE_PRODUCTS_FAIL,
     GET_STORE_PRODUCTS_REQUEST,
-    GET_STORE_PRODUCTS_SUCCESS
+    GET_STORE_PRODUCTS_SUCCESS,
 } from "../constants/storeConstants"
 
 //get all products for a single store
@@ -27,11 +29,31 @@ export const get_store_products_Actions = (id) => (dispatch) => {
         })
     })
 }
-
-// get sinlge store info
-export const get_single_store_info_Action = (id) => (dispatch) => {
+//edit single store actions
+export const create_single_store_Actions = (name, banner, logo, token) => (dispatch) => {
     dispatch({
-        type: GET_SINGLE_STORE_INFO_REQUEST,
-        payload: id
+        type: CREATE_SINGLE_STORE_INFO_REQUEST
+    })
+    axios.post(`${apiUrl}/store/create`, {
+        Headers: {
+            Authorization: token
+        }
+    }, {
+        name: name,
+        banner: banner,
+        logo: logo,
+
+    }).then(res => {
+        dispatch({
+            type: CREATE_SINGLE_STORE_INFO_SUCCESS,
+            payload: res.data
+        })
+    }).catch(error => {
+        dispatch({
+            type: CREATE_SINGLE_STORE_INFO_FAIL,
+            payload: error.response && error.response.data.error
+                ? error.response.data.error
+                : error.message,
+        })
     })
 }
