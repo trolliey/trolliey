@@ -73,7 +73,7 @@ export default function Dashboard() {
 
                                 <div className="flex mr-2">
                                     {
-                                        userInfo?.user?.role === 'seller' ? (
+                                        products ? (
                                             <BlueButton text="Add Product" outline onClick={() => history.push('/dashboard/addproduct')} />
                                         ) : (
                                             <BlueButton text="Add Product" outline onClick={onOpen} />
