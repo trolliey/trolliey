@@ -70,7 +70,7 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                                         }
                                     </select>
                                 </div>
-                                <div className="flex-1">
+                                {/* <div className="flex-1">
                                     <label htmlFor="sub-category" className="block text-sm font-medium text-gray-700">
                                         Sub-Category
                                     </label>
@@ -85,7 +85,7 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                                         <option>Canada</option>
                                         <option>EU</option>
                                     </select>
-                                </div>
+                                </div> */}
                             </div>
 
                             {/* //brand */}

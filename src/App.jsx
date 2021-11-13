@@ -16,6 +16,7 @@ import Jobs from './pages/Jobs/Jobs';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Explore from './pages/Explore/Explore';
+import UserSettings from './dashboard/UserSettings';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/dashboard/cards' component={Cards} />
         <Route path='/dashboard/receipts' component={Receipts} />
         <Route path='/dashboard/settings' component={StoreInfo} />
+        <Route path='/dashboard/usersettings' component={UserSettings} />
         <Route path='/dashboard/addproduct' component={AddProduct} />
         <Route path='/dashboard/inventory' component={Inventory} />
         <Route path='/explore' component={Explore} />

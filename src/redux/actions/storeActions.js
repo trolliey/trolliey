@@ -30,19 +30,20 @@ export const get_store_products_Actions = (id) => (dispatch) => {
     })
 }
 //edit single store actions
-export const create_single_store_Actions = (name, banner, logo, token) => (dispatch) => {
+export const create_single_store_Actions = (name, description, logo, token) => (dispatch) => {
     dispatch({
         type: CREATE_SINGLE_STORE_INFO_REQUEST
     })
     axios.post(`${apiUrl}/store/create`, {
-        Headers: {
+        name: name,
+        logo: logo,
+        banner: 'no baner',
+        description: description
+
+    }, {
+        headers: {
             Authorization: token
         }
-    }, {
-        name: name,
-        banner: banner,
-        logo: logo,
-
     }).then(res => {
         dispatch({
             type: CREATE_SINGLE_STORE_INFO_SUCCESS,

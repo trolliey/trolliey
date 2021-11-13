@@ -2,14 +2,14 @@ import React from 'react'
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
-    ClockIcon,
     CogIcon,
     CreditCardIcon,
     HomeIcon,
     ScaleIcon,
     UserGroupIcon,
     XIcon,
-    ClipboardListIcon
+    ClipboardListIcon,
+    UserIcon
 } from '@heroicons/react/outline'
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -24,6 +24,7 @@ const navigation = [
     { name: 'Recipients', href: '/dashboard/receipts', icon: UserGroupIcon, current: false },
 ]
 const secondaryNavigation = [
+    { name: 'User Settings', href: '/dashboard/usersettings', icon: UserIcon },
     { name: 'Store Settings', href: '/dashboard/settings', icon: CogIcon },
 ]
 
