@@ -1,16 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import BlueButton from '../components/buttons/BlueButton'
-import UserAvatar from '../components/user_avatar/UserAvatar'
 import DashboardLayout from '../layouts/DashboardLayout'
+import Dropzone from 'react-dropzone'
+import { Spinner } from '@chakra-ui/react'
+import { get_store_products_Actions } from '../redux/actions/storeActions'
+import { useRef } from 'react'
+import { CameraIcon } from '@heroicons/react/outline'
+import UserAvatar from '../components/user_avatar/UserAvatar'
+
 
 function StoreInfo() {
 
+    const _user = useSelector(state => state.user_login)
+    const { userInfo } = _user
+    const dispatch = useDispatch()
+    const history = useHistory()
+
     const [username, setUsername] = useState('')
     const [about, setAbout] = useState('')
-    // const [propic, setPropic] = useState('')
-    // const [cover, setCover] = useState('')
+
+    //for image picking
+    const [previewSrc, setPreviewSrc] = useState("");
+    const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+    const [picture, setPicture] = useState(null);
+    const dropRef = useRef();
+
     const [firstname, setFirstname] = useState('')
     const [lastname, setLastname] = useState('')
     const [email, setEmail] = useState('')
@@ -22,13 +38,53 @@ function StoreInfo() {
     const [push_type, setpushType] = useState('')
     const _create = useSelector(state => state.create_store)
     const { edit_loading, message, edit_error } = _create
+    const _info = useSelector(state => state.get_store_products)
+    const { loading, products } = _info
 
-    const dispatch = useDispatch()
-    const history = useHistory()
+    useEffect(() => {
+        dispatch(get_store_products_Actions(userInfo?.user?._id))
+    }, [dispatch, userInfo?.user?._id])
+
+    const onDrop = (files) => {
+        const [uploadedFile] = files;
+        setPicture(uploadedFile);
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            setPreviewSrc(fileReader.result);
+        };
+        fileReader.readAsDataURL(uploadedFile);
+        setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
+    };
+
+    const changeProPic = (e) => {
+        e.preventDefault();
+    };
 
     const change_details = (e) => {
         e.prevenrDefault()
         console.log('details changed')
+    }
+
+    if (loading) {
+        return (
+            <DashboardLayout>
+                <div className="flex-1 h-full min-h-screen w-full grid items-center justify-center">
+                    <Spinner
+                        thickness={0.7}
+                        size="lg"
+                    />
+                </div>
+            </DashboardLayout>
+
+        )
+    }
+
+    if (products) {
+        return (
+            <DashboardLayout>
+                <p>you are a store</p>
+            </DashboardLayout>
+        )
     }
 
     return (
@@ -45,6 +101,75 @@ function StoreInfo() {
                             </div>
 
                             <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
+                            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5">
+                                    <label htmlFor="photo" className="block text-sm font-medium text-gray-700">
+                                        Photo/Logo
+                                    </label>
+                                    <div className="mt-1 sm:mt-0 sm:col-span-2">
+                                        <div className="flex items-center">
+                                            <div className="flex flex-row self-center items-end pb-4">
+                                                <div className="relative">
+                                                    <div className="self-center bg-gray-200 rounded-full overflow-hidden border border-gray-300">
+                                                        <UserAvatar size="xl" source={userInfo?.user?.photoURL} />
+                                                    </div>
+
+
+                                                    <Dropzone onDrop={onDrop}>
+                                                        {({ getRootProps, getInputProps }) => (
+                                                            <div
+                                                                {...getRootProps({ className: "drop-zone" })}
+                                                                ref={dropRef}
+                                                            >
+                                                                <input {...getInputProps()} />
+                                                                <div className="cursor-pointer absolute right-0 bottom-0 bg-gray-300 rounded-full p-2 border-2 border-white">
+                                                                    <CameraIcon
+                                                                        width={24}
+                                                                        height={24}
+                                                                        className="text-blue-300 hover:text-blue-500"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                    </Dropzone>
+
+                                                </div>
+
+                                                {previewSrc ? (
+                                                    isPreviewAvailable ? (
+                                                        <div className="flex flex-row ml-2 items-center">
+
+                                                            <UserAvatar source={previewSrc} size="xl" alt="Preview" />
+
+                                                            {1 > 5 ? (
+                                                                <span
+                                                                    className="bg-blue-900 opacity-75 p-1 my-1 text-sm cursor-pointer hover:bg-blue-800 rounded-lg text-white text-center"
+                                                                >
+                                                                    Uploading...
+                                                                </span>
+                                                            ) : (
+                                                                <div className="flex flex-col ml-2">
+                                                                    <BlueButton
+                                                                        outline
+                                                                        onClick={changeProPic}
+                                                                        text="Save Image"
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    ) : (
+                                                        <div className="preview-message">
+                                                            <p>No preview available for this file</p>
+                                                        </div>
+                                                    )
+                                                ) : (
+                                                    <div className="font-semibold text-gray-700 dark:text-gray-300 text-sm ml-2">
+                                                        <p>Select picture</p>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                     <label htmlFor="username" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                         Username
@@ -52,7 +177,7 @@ function StoreInfo() {
                                     <div className="mt-1 sm:mt-0 sm:col-span-2">
                                         <div className="max-w-lg flex rounded-md shadow-sm">
                                             <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
-                                                ecommerce.com/
+                                                trolliey.com/
                                             </span>
                                             <input
                                                 type="text"
@@ -85,58 +210,7 @@ function StoreInfo() {
                                     </div>
                                 </div>
 
-                                <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5">
-                                    <label htmlFor="photo" className="block text-sm font-medium text-gray-700">
-                                        Photo/Logo
-                                    </label>
-                                    <div className="mt-1 sm:mt-0 sm:col-span-2">
-                                        <div className="flex items-center">
-                                            <span className="rounded-full overflow-hidden bg-gray-100">
-                                                <UserAvatar size="lg" />
-                                            </span>
-                                            <div className="flex ml-3">
-                                                <BlueButton text="Change" outline />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                    <label htmlFor="cover-photo" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                        Cover photo
-                                    </label>
-                                    <div className="mt-1 sm:mt-0 sm:col-span-2">
-                                        <div className="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                            <div className="space-y-1 text-center">
-                                                <svg
-                                                    className="mx-auto h-12 w-12 text-gray-400"
-                                                    stroke="currentColor"
-                                                    fill="none"
-                                                    viewBox="0 0 48 48"
-                                                    aria-hidden="true"
-                                                >
-                                                    <path
-                                                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                        strokeWidth={2}
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-                                                </svg>
-                                                <div className="flex text-sm text-gray-600">
-                                                    <label
-                                                        htmlFor="file-upload"
-                                                        className="relative cursor-pointer bg-white rounded-md font-medium text-blue-primary hover:text-blue-secondary p-1"
-                                                    >
-                                                        <span>Upload a file</span>
-                                                        <input id="file-upload" name="file-upload" type="file" className="sr-only" />
-                                                    </label>
-                                                    <p className="pl-1">or drag and drop</p>
-                                                </div>
-                                                <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                              
                             </div>
                         </div>
 
