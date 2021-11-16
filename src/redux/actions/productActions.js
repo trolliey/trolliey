@@ -15,7 +15,8 @@ import { apiUrl } from "../../utils/apiUrl"
 import { storage } from "../../utils/firebase"
 
 //create a product
-export const create_product_Action = (token, product, pictures) => (dispatch) => {
+export const create_product_Action = (token, values, additional_features, pictures) => (dispatch) => {
+
     dispatch({
         type: CREATE_PRODUCT_REQUEST,
         payload: token
@@ -42,17 +43,35 @@ export const create_product_Action = (token, product, pictures) => (dispatch) =>
             },
             () => {
                 uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+                    // do something with the url
                     picture_array.push(downloadURL);
                 })
-                // do something with the url
             }
         )
     })
 
+
+
     Promise.all(promises).then((response) => {
+        const product = {
+            title: values.name,
+            description: values.description,
+            price: values.price,
+            category: values.category,
+            sub_category: values.sub_category,
+            brand: values.brand,
+            condition: values.condition,
+            sub_title: values.sub_title,
+            stock: values.in_stock,
+            discount_price: values.discount,
+            shipping_type: values.shipping_offered,
+            shipping_area: values.shipping_radius,
+            shipping_price: values.shipping_price,
+            additional_features: additional_features,
+            pictures: picture_array
+        }
         axios.post(`${apiUrl}/product/create`, {
             product,
-            pictures: picture_array
         }, {
             headers: {
                 Authorization: token
@@ -70,7 +89,7 @@ export const create_product_Action = (token, product, pictures) => (dispatch) =>
                     : error.message,
             })
         })
-        console.log(picture_array)
+        // console.log(picture_array)
     }).catch(errorr => {
         dispatch({
             type: CREATE_PRODUCT_FAIL,

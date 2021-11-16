@@ -31,7 +31,7 @@ function Success({ values, prevStep, pictures, additional_features, nextStep }) 
             shipping_price: values.shipping_price,
             additional_features: additional_features
         }
-        dispatch(create_product_Action(userInfo?.token, product, pictures))
+        dispatch(create_product_Action(userInfo?.token, values, additional_features, pictures))
         // console.log(product)   
     }
 
