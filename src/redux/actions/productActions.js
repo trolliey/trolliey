@@ -9,34 +9,77 @@ import {
     GET_SINGLE_PRODUCT_REQUEST,
     GET_SINGLE_PRODUCT_SUCCESS
 } from "../constants/productConstants"
+import firebase from "@firebase/app-compat"
 import axios from 'axios'
 import { apiUrl } from "../../utils/apiUrl"
+import { storage } from "../../utils/firebase"
 
 //create a product
-export const create_product_Action = (token, product) => (dispatch) => {
+export const create_product_Action = (token, product, pictures) => (dispatch) => {
     dispatch({
         type: CREATE_PRODUCT_REQUEST,
         payload: token
     })
-    axios.post(`${apiUrl}/product/create`, {
-        product
-    }, {
-        headers: {
-            Authorization: token
-        }
-    }).then(res => {
-        dispatch({
-            type: CREATE_PRODUCT_SUCCESS,
-            payload: res.status
+    const picture_array = []
+    const promises = []
+    pictures.forEach(file => {
+        const uploadTask = storage.ref().child(`products/-${Date.now()}`).put(file);
+        promises.push(uploadTask);
+        uploadTask.on(
+            firebase.storage.TaskEvent.STATE_CHANGED,
+            snapshot => {
+                const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                if (snapshot.state === firebase.storage.TaskState.RUNNING) {
+                    console.log(`Progress: ${progress}%`);
+                }
+            },
+            error => {
+                dispatch({
+                    type: CREATE_PRODUCT_FAIL,
+                    payload: error.message
+                })
+            },
+            () => {
+                uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+                    picture_array.push(downloadURL);
+                })
+                // do something with the url
+            }
+        )
+    })
+
+    Promise.all(promises).then((response) => {
+        axios.post(`${apiUrl}/product/create`, {
+            product,
+            pictures: picture_array
+        }, {
+            headers: {
+                Authorization: token
+            }
+        }).then(res => {
+            dispatch({
+                type: CREATE_PRODUCT_SUCCESS,
+                payload: res.status
+            })
+        }).catch(error => {
+            dispatch({
+                type: CREATE_PRODUCT_FAIL,
+                payload: error.response && error.response.data.error
+                    ? error.response.data.error
+                    : error.message,
+            })
         })
-    }).catch(error => {
+        console.log(picture_array)
+    }).catch(errorr => {
         dispatch({
             type: CREATE_PRODUCT_FAIL,
-            payload: error.response && error.response.data.error
-                ? error.response.data.error
-                : error.message,
+            payload: errorr.message
         })
     })
+
+
+
 }
 
 // get all products

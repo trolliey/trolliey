@@ -6,10 +6,10 @@ import banner from '../../assets/main-banner.jpg'
 import { data } from '../../utils/data'
 import SpecialProducts from '../../components/home_sections/SpecialProducts'
 import FeaturedProducts from '../../components/home_sections/FeaturedProducts'
-import LatestProducts from '../../components/home_sections/LatestProducts'
 import AllProducts from '../../components/home_sections/AllProducts'
 
 function Home() {
+
     return (
         <GeneralLayout>
             <div className="bg-white md:p-8 p-2 rounded">
@@ -53,7 +53,6 @@ function Home() {
                 <>
                     <SpecialProducts />
                 </>
-
 
                 {/* //two exclusive categories */}
                 <div className="grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-4 md:pt-16 pt-8 ">
