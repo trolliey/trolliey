@@ -106,6 +106,7 @@ function Success({ values, prevStep, pictures, additional_features, nextStep }) 
                             </div>
                         </div>
                     </div>
+                    {loading && (<p className="p-2 bg-yellow-400 rounded w-full text-center my-2 capitalize text-gray-700 font-semibold">Please wait while we upload you images and saving the product!</p>)}
                     {message && <SuccessAlert message={message} />}
                     {error && <Error error={error} />}
                     <div className="border-t border-gray-200 p-4 flex flex-row items-center ">
