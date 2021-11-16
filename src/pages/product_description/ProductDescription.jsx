@@ -88,7 +88,7 @@ function ProductDescription() {
                                         {product?.product?.pictures.map((image, index) => (
                                             <Tab
                                                 key={index}
-                                                className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+                                                className="relative h-24 bg-gray-100 rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
                                             >
                                                 {({ selected }) => (
                                                     <>
@@ -112,7 +112,7 @@ function ProductDescription() {
 
                                 <Tab.Panels className="w-full aspect-w-1 aspect-h-1 flex-1">
                                     {product?.product?.pictures.map((image, index) => (
-                                        <Tab.Panel key={index}>
+                                        <Tab.Panel key={index} className="bg-gray-100 rounded">
                                             <img
                                                 src={image}
                                                 alt={'for the product'}
