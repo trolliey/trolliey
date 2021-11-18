@@ -17,6 +17,7 @@ import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Explore from './pages/Explore/Explore';
 import UserSettings from './dashboard/UserSettings';
+import SingleStore from './pages/Single_Store/SingleStore';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path='/dashboard/usersettings' component={UserSettings} />
         <Route path='/dashboard/addproduct' component={AddProduct} />
         <Route path='/dashboard/inventory' component={Inventory} />
+        <Route path='/stores/single/:id' component={SingleStore} />
         <Route path='/explore' component={Explore} />
         <Route path='/about' component={About} />
         <Route exact path='/dashboard' component={Dashboard} />

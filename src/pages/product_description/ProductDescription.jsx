@@ -2,14 +2,14 @@ import React from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { Disclosure, Tab } from '@headlessui/react'
 import { StarIcon } from '@heroicons/react/solid'
-import { HeartIcon, MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
+import { HeartIcon, MinusSmIcon, PlusSmIcon, UserCircleIcon } from '@heroicons/react/outline'
 import BlueButton from '../../components/buttons/BlueButton'
 import RedButton from '../../components/buttons/RedButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { add_to_cart_Action } from '../../redux/actions/cartActions'
 import { useEffect } from 'react'
 import { get_single_product_Action } from '../../redux/actions/productActions'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { Spinner } from '@chakra-ui/spinner'
 import moment from 'moment'
 
@@ -23,6 +23,7 @@ function ProductDescription() {
     const {id} = useParams()
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const add_to_basket = () => {
         const item = {
@@ -181,7 +182,7 @@ function ProductDescription() {
                                     </div>
                                 </div>
 
-                                <div className="mt-8 pt-4 border-t border-gray-200">
+                                <div className="md:my-8 my-4 pt-4 border-t border-gray-200">
                                     <p className="mb-2 text-gray-700 font-semibold text-sm capitalize">shipping </p>
                                     <div className="flex flex-row items-center justify-between">
                                         <p className="text-gray-500">Ships to : </p>
@@ -197,6 +198,16 @@ function ProductDescription() {
                                         <p className="text-gray-500">Shipment expense : </p>
                                         <p className="text-gray-500"> ${product?.product?.shipping_price}</p>
 
+                                    </div>
+                                </div>
+                                <div className="flex pt-4 border-t border-gray-200">
+                                    
+                                </div>
+                                <div onClick={() => history.push(`/stores/single/${product?.product?.owner}`)} className="flex flex-row mt-8 space-x-4 items-center p-4 rounded border border-gray-200 hover:bg-gray-100 cursor-pointer">
+                                    <UserCircleIcon className="text-gray-700" height={40} width={40} />
+                                    <div className="flex flex-col">
+                                        <p className="text-gray-700 font-semibold">View Seller</p>
+                                        <p className="text-gray-400 text-sm">View the seller's shop and catalogues</p>
                                     </div>
                                 </div>
 

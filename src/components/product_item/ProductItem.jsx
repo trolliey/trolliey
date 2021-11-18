@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { add_to_cart_Action } from '../../redux/actions/cartActions'
 import BlueButton from '../buttons/BlueButton'
 
-function ProductItem({ picture, rating, name, description, price, discount_price, dicount, id }) {
+function ProductItem({ picture, rating, name, description, price, discount_price, id }) {
     const dispatch = useDispatch()
     const history = useHistory()
 

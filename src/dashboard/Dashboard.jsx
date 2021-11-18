@@ -26,8 +26,6 @@ export default function Dashboard() {
         dispatch(get_store_products_Actions(userInfo?.user?._id))
     }, [dispatch, userInfo?.user?._id])
 
-    console.log(products)
-
     return (
         <DashboardLayout>
             <main className="flex-1 relative pb-8 z-0 overflow-y-auto">
