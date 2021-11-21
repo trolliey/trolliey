@@ -2,7 +2,7 @@ import { Spinner } from '@chakra-ui/spinner'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import ProductItem from '../../components/product_item/ProductItem'
 import UserAvatar from '../../components/user_avatar/UserAvatar'
 import GeneralLayout from '../../layouts/GeneralLayout'
@@ -19,7 +19,6 @@ function SingleStore() {
     const _info = useSelector(state => state.get_store_products)
     const { loading, products, error } = _info
     const dispatch = useDispatch()
-    const history = useHistory()
     const location = useLocation()
 
     useEffect(() => {
