@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ShoppingCartIcon, HeartIcon, ChatIcon } from '@heroicons/react/outline'
+import { ShoppingCartIcon } from '@heroicons/react/outline'
 import { useSelector } from 'react-redux'
 import CartSidebar from '../cart_sidebar/CartSidebar'
 import { useHistory } from 'react-router'

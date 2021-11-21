@@ -11,6 +11,7 @@ import { get_store_products_Actions } from '../../redux/actions/storeActions'
 const page_links = [
     { name: 'Products', location: '/stores/single/:id' },
     { name: 'About', location: '/stores/single/about/:id' },
+    {name: 'Reviews', location: '/stores/single/reviews/:id'}
 ]
 
 function SingleStore() {
@@ -24,8 +25,6 @@ function SingleStore() {
     useEffect(() => {
         dispatch(get_store_products_Actions(id))
     }, [dispatch, id])
-
-    console.log(location.pathname)
 
     if (loading) {
         return (

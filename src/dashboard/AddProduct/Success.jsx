@@ -15,22 +15,22 @@ function Success({ values, prevStep, pictures, additional_features, nextStep }) 
     const dispatch = useDispatch()
 
     const save_product = () => {
-        const product = {
-            title: values.name,
-            description: values.description,
-            price: values.price,
-            category: values.category,
-            sub_category: values.sub_category,
-            brand: values.brand,
-            condition: values.condition,
-            sub_title: values.sub_title,
-            stock: values.in_stock,
-            discount_price: values.discount,
-            shipping_type: values.shipping_offered,
-            shipping_area: values.shipping_radius,
-            shipping_price: values.shipping_price,
-            additional_features: additional_features
-        }
+        // const product = {
+        //     title: values.name,
+        //     description: values.description,
+        //     price: values.price,
+        //     category: values.category,
+        //     sub_category: values.sub_category,
+        //     brand: values.brand,
+        //     condition: values.condition,
+        //     sub_title: values.sub_title,
+        //     stock: values.in_stock,
+        //     discount_price: values.discount,
+        //     shipping_type: values.shipping_offered,
+        //     shipping_area: values.shipping_radius,
+        //     shipping_price: values.shipping_price,
+        //     additional_features: additional_features
+        // }
         dispatch(create_product_Action(userInfo?.token, values, additional_features, pictures))
         // console.log(product)   
     }
