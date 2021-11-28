@@ -1,12 +1,12 @@
 import React from 'react'
 import AdminLayout from '../layouts/AdminLayout'
 
-function ManageUsers() {
+function ManageAds() {
     return (
         <AdminLayout>
-            manage all users
+            manage all ads on the platform
         </AdminLayout>
     )
 }
 
-export default ManageUsers
+export default ManageAds

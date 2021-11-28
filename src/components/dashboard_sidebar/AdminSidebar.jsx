@@ -4,12 +4,12 @@ import { Dialog, Transition } from '@headlessui/react'
 import {
     CogIcon,
     HomeIcon,
-    ScaleIcon,
     UserGroupIcon,
     XIcon,
     ClipboardListIcon,
     UserIcon,
-    DatabaseIcon
+    DatabaseIcon,
+    ShoppingCartIcon
 } from '@heroicons/react/outline'
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -17,9 +17,9 @@ import logo from '../../assets/icon.png'
 
 const navigation = [
     { name: 'Home', href: '/admin/home', icon: HomeIcon, current: false },
-    { name: 'Ads', href: '/admin/ads', icon: ClipboardListIcon, current: false },
-    { name: 'Stores', href: '/admin/stores', icon: ScaleIcon, current: false },
     { name: 'Products', href: '/admin/products', icon: DatabaseIcon, current: false },
+    { name: 'Ads', href: '/admin/ads', icon: ClipboardListIcon, current: false },
+    { name: 'Stores', href: '/admin/stores', icon: ShoppingCartIcon, current: false },
     { name: 'Users', href: '/admin/users', icon: UserGroupIcon, current: false },
 ]
 const secondaryNavigation = [

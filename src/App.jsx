@@ -19,6 +19,10 @@ import Explore from './pages/Explore/Explore';
 import UserSettings from './dashboard/UserSettings';
 import SingleStore from './pages/Single_Store/SingleStore';
 import Admin from './admin/Admin';
+import ManageAds from './admin/ManageAds';
+import ManageStores from './admin/ManageStores';
+import ManageUsers from './admin/ManageUsers';
+import ManageProducts from './admin/ManageProducts';
 
 function App() {
   return (
@@ -28,6 +32,8 @@ function App() {
         <Route path='/contact' component={Contact} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
+
+        // user dashboard routes
         <Route path='/dashboard/history' component={History} />
         <Route path='/dashboard/balances' component={Balances} />
         <Route path='/dashboard/cards' component={Cards} />
@@ -40,10 +46,10 @@ function App() {
 
         //admin dashboard
         <Route path='/admin/home' component={Admin} />
-        <Route path='/admin/ads' component={Admin} />
-        <Route path='/admin/stores' component={Admin} />
-        <Route path='/admin/users' component={Admin} />
-        <Route path='/admin/products' component={Admin} />
+        <Route path='/admin/ads' component={ManageAds} />
+        <Route path='/admin/stores' component={ManageStores} />
+        <Route path='/admin/users' component={ManageUsers} />
+        <Route path='/admin/products' component={ManageProducts} />
 
         <Route path='/explore' component={Explore} />
         <Route path='/about' component={About} />

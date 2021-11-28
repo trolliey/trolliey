@@ -1,12 +1,12 @@
 import React from 'react'
 import AdminLayout from '../layouts/AdminLayout'
 
-function ManageUsers() {
+function ManageProducts() {
     return (
         <AdminLayout>
-            manage all users
+            manage all products 
         </AdminLayout>
     )
 }
 
-export default ManageUsers
+export default ManageProducts
