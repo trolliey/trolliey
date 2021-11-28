@@ -30,7 +30,7 @@ function UserSettings() {
     }, [dispatch, userInfo?.user?._id])
 
     const change_details = (e) => {
-        e.prevenrDefault()
+        e.preventDefault()
         console.log('details changed')
     }
 

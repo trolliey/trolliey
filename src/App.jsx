@@ -42,6 +42,7 @@ function App() {
         <Route path='/dashboard/usersettings' component={UserSettings} />
         <Route path='/dashboard/addproduct' component={AddProduct} />
         <Route path='/dashboard/inventory' component={Inventory} />
+        <Route exact path='/dashboard' component={Dashboard} />
         <Route path='/stores/single/:id' component={SingleStore} />
 
         //admin dashboard
@@ -53,7 +54,6 @@ function App() {
 
         <Route path='/explore' component={Explore} />
         <Route path='/about' component={About} />
-        <Route exact path='/dashboard' component={Dashboard} />
         <Route exact path='/explore' component={Home} />
         <Route exact path='/jobs' component={Jobs} />
         <Route exact path='/' component={Home} />
