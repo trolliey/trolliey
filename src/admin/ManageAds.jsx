@@ -19,7 +19,7 @@ function ManageAds() {
             <div className="flex flex-row items-center">
                 <p className="text-gray-700 text-lg text-center font-semibold my-8 capitalize w-full justify-between items-center">manage all ads on the platform</p>
                 <div className="flex flex-col mx-8">
-                    <div className="flex bg-blue-200 rounded-full p-2 cursor-pointer hover:bg-blue-300">
+                    <div onClick={() => set_ad_Modal_Open(true)} className="flex bg-blue-200 rounded-full p-2 cursor-pointer hover:bg-blue-300">
                         <PlusIcon className="text-gray-700" height={20} width={20} />
                     </div>
                 </div>
