@@ -1,18 +1,34 @@
-import React from 'react'
-import { Fragment, useRef, useState } from 'react'
+import React, { Fragment, useRef, useState, useCallback } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/outline'
-import { PencilIcon } from '@heroicons/react/outline'
-
+import { useDropzone } from 'react-dropzone'
 
 function AdsModal({ open, setOpen, ad_id }) {
     const cancelButtonRef = useRef(null)
     const [name, setName] = useState('')
     const [link, setLink] = useState('')
     const [deadline, setDeadline] = useState('')
+    const [picture, setPicture] = useState()
+
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+            const reader = new FileReader()
+
+            reader.onabort = () => console.log('file reading was aborted')
+            reader.onerror = () => console.log('file reading has failed')
+            reader.onload = () => {
+                // Do whatever you want with the file contents
+                const binaryStr = reader.result
+                console.log(binaryStr)
+                setPicture(binaryStr)
+            }
+            reader.readAsArrayBuffer(file)
+        })
+
+    }, [])
+    const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
     const change_ad = () => {
-        console.log(name, link, deadline)
+        console.log(name, link, deadline, picture, ad_id)
     }
 
     return (
@@ -53,9 +69,7 @@ function AdsModal({ open, setOpen, ad_id }) {
                                             Change ad
                                         </Dialog.Title>
                                         <div className="mt-2">
-                                            <p className="text-sm">
-                                                {ad_id}
-                                            </p>
+                   
                                             <input
                                                 type="text"
                                                 className="outline-none p-2 my-2 rounded border border-gray-300 w-full placeholder-gray-400"
@@ -71,6 +85,12 @@ function AdsModal({ open, setOpen, ad_id }) {
                                                 className="outline-none p-2 my-2 rounded border border-gray-300 w-full placeholder-gray-400"
                                                 onChange={e => setDeadline(e.target.value)}
                                                 placeholder="enter ad owner deadline" />
+                                            <p className="text-left text-gray-700 my-4 capitalize">pick ad image</p>
+                                            <div {...getRootProps()} className="p-4 border border-gray-300 rounded cursor-pointer hover:bg-gray-50">
+                                                <input {...getInputProps()} />
+                                                <p className="text-sm">Drag 'n' drop some files here, or click to select files</p>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
