@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import AdminLayout from '../layouts/AdminLayout'
 import image from '../assets/main-banner.jpg'
-import { PencilIcon } from '@heroicons/react/outline'
+import { PencilIcon, PlusIcon } from '@heroicons/react/outline'
 import AdsTable from './components/AdsTable'
 import AdsModal from './components/AdsModal'
 
@@ -16,7 +16,15 @@ function ManageAds() {
 
     return (
         <AdminLayout>
-            <p className="text-gray-700 text-lg text-center font-semibold my-8 capitalize">manage all ads on the platform</p>
+            <div className="flex flex-row items-center">
+                <p className="text-gray-700 text-lg text-center font-semibold my-8 capitalize w-full justify-between items-center">manage all ads on the platform</p>
+                <div className="flex flex-col mx-8">
+                    <div className="flex bg-blue-200 rounded-full p-2 cursor-pointer hover:bg-blue-300">
+                        <PlusIcon className="text-gray-700" height={20} width={20} />
+                    </div>
+                </div>
+            </div>
+
             <div className="flex flex-col w-full">
                 <div className="flex flex-col p-4 bg-white rounded mx-4">
                     <div className="flex w-full justify-between px-8">

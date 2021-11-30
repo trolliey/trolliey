@@ -63,13 +63,12 @@ function AdsModal({ open, setOpen, ad_id }) {
                         >
                             <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
                                 <div>
-
                                     <div className="mt-3 text-center">
                                         <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
                                             Change ad
                                         </Dialog.Title>
                                         <div className="mt-2">
-                   
+
                                             <input
                                                 type="text"
                                                 className="outline-none p-2 my-2 rounded border border-gray-300 w-full placeholder-gray-400"
