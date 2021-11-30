@@ -1,0 +1,3 @@
+export const ADD_NEW_AD_REQUEST = 'ADD_NEW_AD_REQUEST'
+export const ADD_NEW_AD_SUCCESS = 'ADD_NEW_AD_SUCCESS'
+export const ADD_NEW_AD_FAIL = 'ADD_NEW_AD_FAIL'

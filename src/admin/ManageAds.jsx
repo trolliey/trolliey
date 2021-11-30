@@ -4,10 +4,13 @@ import image from '../assets/main-banner.jpg'
 import { PencilIcon, PlusIcon } from '@heroicons/react/outline'
 import AdsTable from './components/AdsTable'
 import AdsModal from './components/AdsModal'
+import { useSelector } from 'react-redux'
 
 function ManageAds() {
     const [ad_modal, set_ad_Modal_Open] = useState(false)
     const [ad_id, set_Add_id] = useState('')
+    const _create_new_add = useSelector(state => state.create_new_add)
+    const { loading, error, message } = _create_new_add
 
     const open_big_ad = (id) => {
         set_Add_id(id)
@@ -20,15 +23,15 @@ function ManageAds() {
                 <p className="text-gray-700 text-lg text-center font-semibold my-8 capitalize w-full justify-between items-center">manage all ads on the platform</p>
                 <div className="flex flex-col mx-8">
                     <div onClick={() => set_ad_Modal_Open(true)} className="flex bg-blue-200 rounded-full p-2 cursor-pointer hover:bg-blue-300">
-                        <PlusIcon className="text-gray-700" height={20} width={20} />
+                        <PlusIcon className="text-gray-700" height={24} width={24} />
                     </div>
                 </div>
             </div>
 
             <div className="flex flex-col w-full">
                 <div className="flex flex-col p-4 bg-white rounded mx-4">
-                    <div className="flex w-full justify-between px-8">
-                        <p className="text-gray-700 font-semibold capitalize">First-large ad</p>
+                    <div className="flex w-full justify-between px-4">
+                        <p className="text-gray-900 font-semibold capitalize">First-large ad</p>
                         <span onClick={() => open_big_ad('1')} className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 cursor-pointer">
                             <PencilIcon className="text-gray-700" height={16} width={16} />
                         </span>
@@ -45,7 +48,10 @@ function ManageAds() {
                 </div>
 
                 <>
-                    <AdsModal open={ad_modal} setOpen={set_ad_Modal_Open} ad_id={ad_id} />
+                    <AdsModal 
+                        open={ad_modal}
+                        setOpen={set_ad_Modal_Open} 
+                        ad_id={ad_id} />
                 </>
             </div>
         </AdminLayout>
