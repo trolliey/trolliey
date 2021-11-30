@@ -33,7 +33,7 @@ function App() {
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
 
-        // user dashboard routes
+        {/* // user dashboard routes */}
         <Route path='/dashboard/history' component={History} />
         <Route path='/dashboard/balances' component={Balances} />
         <Route path='/dashboard/cards' component={Cards} />
@@ -45,7 +45,7 @@ function App() {
         <Route exact path='/dashboard' component={Dashboard} />
         <Route path='/stores/single/:id' component={SingleStore} />
 
-        //admin dashboard
+        {/* //admin dashboard */}
         <Route path='/admin/home' component={Admin} />
         <Route path='/admin/ads' component={ManageAds} />
         <Route path='/admin/stores' component={ManageStores} />

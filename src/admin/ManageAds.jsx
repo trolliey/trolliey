@@ -32,7 +32,7 @@ function ManageAds() {
                 <div className="flex flex-col p-4 bg-white rounded mx-4">
                     <div className="flex w-full justify-between px-4">
                         <p className="text-gray-900 font-semibold capitalize">First-large ad</p>
-                        <span onClick={() => open_big_ad('1')} className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 cursor-pointer">
+                        <span onClick={() => open_big_ad(null)} className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 cursor-pointer">
                             <PencilIcon className="text-gray-700" height={16} width={16} />
                         </span>
                     </div>
@@ -49,6 +49,9 @@ function ManageAds() {
 
                 <>
                     <AdsModal 
+                        loading={loading}
+                        error={error}
+                        message={message}
                         open={ad_modal}
                         setOpen={set_ad_Modal_Open} 
                         ad_id={ad_id} />

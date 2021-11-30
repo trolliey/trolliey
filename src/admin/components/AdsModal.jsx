@@ -1,8 +1,13 @@
 import React, { Fragment, useRef, useState, useCallback } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useDropzone } from 'react-dropzone'
+import { useDispatch } from 'react-redux'
+import { create_new_add_Action } from '../../redux/actions/adActions'
+import BlueButton from '../../components/buttons/BlueButton'
+import Error from '../../components/alerts/Error'
+import SuccessAlert from '../../components/alerts/SuccessAlert'
 
-function AdsModal({ open, setOpen, ad_id }) {
+function AdsModal({ open, setOpen, ad_id, loading, error, message }) {
     const cancelButtonRef = useRef(null)
     const [name, setName] = useState('')
     const [link, setLink] = useState('')
@@ -26,9 +31,15 @@ function AdsModal({ open, setOpen, ad_id }) {
 
     }, [])
     const { getRootProps, getInputProps } = useDropzone({ onDrop })
+    const dispatch = useDispatch()
 
     const change_ad = () => {
-        console.log(name, link, deadline, picture, ad_id)
+        // console.log(name, link, deadline, picture, ad_id)
+        if (ad_id) {
+            console.log(picture, name, link, deadline)
+        } else {
+            dispatch(create_new_add_Action(picture, name, link, deadline))
+        }
     }
 
     return (
@@ -93,22 +104,16 @@ function AdsModal({ open, setOpen, ad_id }) {
                                         </div>
                                     </div>
                                 </div>
+                                {error && <Error error={error} />}
+                                {message && <SuccessAlert message={message} />}
                                 <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
-                                    <button
-                                        type="button"
-                                        className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white sm:col-start-2 sm:text-sm"
-                                        onClick={change_ad}
-                                    >
-                                        Change ad
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:col-start-1 sm:text-sm"
-                                        onClick={() => setOpen(false)}
-                                        ref={cancelButtonRef}
-                                    >
-                                        Cancel
-                                    </button>
+                                    <div className="w-full inline-flex justify-center px-4 py-2 sm:col-start-2">
+                                        <BlueButton text="Change ad" onClick={change_ad} loading={loading} />
+                                    </div>
+
+                                    <div className="mt-3 w-full inline-flex justify-center px-4 py-2 sm:mt-0 sm:col-start-1">
+                                        <BlueButton text="Cancel" onClick={() => setOpen(false)} outline />
+                                    </div>
                                 </div>
                             </div>
                         </Transition.Child>
