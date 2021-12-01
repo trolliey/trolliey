@@ -35,7 +35,7 @@ function AdminLogin() {
             <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-4 sm:px-6 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     <img src={logo} alt="login page indicator of website" className="mx-auto self-center h-32" />
-                    <h2 className="mt-2 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+                    <h2 className="mt-2 text-center text-3xl font-extrabold text-gray-900">Sign in to Admin panel</h2>
                 </div>
 
                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -89,31 +89,13 @@ function AdminLogin() {
                                 </div>
                             </div>
 
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center">
-                                    <input
-                                        id="remember-me"
-                                        name="remember-me"
-                                        type="checkbox"
-                                        className="h-4 w-4 text-blue-primary focus:ring-red-400 border-gray-300 rounded"
-                                    />
-                                    <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                                        Remember me
-                                    </label>
-                                </div>
-
-                                <div className="text-sm">
-                                    <a href="/register" className="font-medium text-blue-primary hover:text-red-400">
-                                        Forgot your password?
-                                    </a>
-                                </div>
-                            </div>
+                            
                             {message && <SuccessAlert message={message} />}
                             {error && <Error error={error} />}
                             <div>
                                 <BlueButton text="Sign In" className="w-full" onClick={login_user_handler} loading={loading} />
                             </div>
-                            <p onClick={() => history.push('/login')} className="text-center text-gray-500 hover:text-gray-700 font-semibold text-sm my-4 cursor-pointer">Not registered? Register instead!</p>
+                           
                         </div>
 
                     </div>
