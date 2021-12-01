@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CategoriesDropdown from '../../components/categories_dropdown/CategoriesDropdown'
 import SearchInput from '../../components/search/SearchInput'
 import GeneralLayout from '../../layouts/GeneralLayout'
@@ -7,8 +7,20 @@ import { data } from '../../utils/data'
 import SpecialProducts from '../../components/home_sections/SpecialProducts'
 import FeaturedProducts from '../../components/home_sections/FeaturedProducts'
 import AllProducts from '../../components/home_sections/AllProducts'
+import { useDispatch, useSelector } from 'react-redux'
+import { get_all_ads_Action } from '../../redux/actions/adActions'
+import { Spinner } from '@chakra-ui/react'
 
 function Home() {
+
+    //get all ads from the store
+    const _get_all_ads = useSelector(state => state.get_all_ads)
+    const { ads_loading, ads_error, ads } = _get_all_ads
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(get_all_ads_Action())
+    }, [dispatch])
 
     return (
         <GeneralLayout>
@@ -22,7 +34,19 @@ function Home() {
                     <div className="flex-1">
                         <SearchInput />
                         <div className="flex content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
-                            <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                            {
+                                ads_loading ? (
+                                    <div className="grid justify-center items-center content-center w-full">
+                                        <Spinner size="xl" thickness={3} />
+                                    </div>
+                                ) : ads_error ? (
+                                    <div className="grid justify-center items-center content-center w-full">
+                                        <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
+                                    </div>
+                                ) : (
+                                    <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                )
+                            }
                         </div>
                     </div>
                 </div>
