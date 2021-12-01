@@ -4,18 +4,19 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import ConfirmModal from './ConfirmModal'
+import { useDisclosure } from '@chakra-ui/react'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 function ProductsDropdown() {
-    const [open_modal, setOpenModal] = useState(false)
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const [modal_heading, setModalHeading] = useState('')
     const [modal_descr, setModalDescr] = useState('')
 
     const special_modal = () => {
-        setOpenModal(true)
+        onOpen()
         setModalHeading('make item special')
         setModalDescr('Are you sure you want to make the product special?')
     }
@@ -110,9 +111,9 @@ function ProductsDropdown() {
                     </div>
                 </Menu.Items>
 
-                <>
-                    <ConfirmModal  open={open_modal} setOpen={setOpenModal} />
-                </>
+                {/* <div>
+                    <ConfirmModal  isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+                </div> */}
             </Transition>
         </Menu>
     )
