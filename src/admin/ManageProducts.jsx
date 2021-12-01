@@ -42,7 +42,7 @@ function ManageProducts() {
     return (
         <AdminLayout>
             <div className="flex flex-col w-full flex-1 px-4">
-                <p className="text-gray-900 font-semibold text-center my-8">Manage all products</p>
+                <p className="text-gray-900 font-semibold text-center my-4">Manage all products</p>
                 <div className="flex">
                     <ProductsTable products={products?.products} />
 

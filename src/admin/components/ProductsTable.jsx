@@ -1,10 +1,29 @@
+import React, { useState } from "react"
 import { Avatar } from "@chakra-ui/react"
 import ProductsDropdown from "./ProductsDropdown"
+import { SearchIcon } from "@heroicons/react/outline"
+import BlueButton from "../../components/buttons/BlueButton"
 
-export default function ProductsTable({products}) {
+export default function ProductsTable({ products }) {
+    const [search_query, setSearchQuery] = useState('')
+
+    const search_item = () => {
+        console.log(search_query)
+    }
     return (
         <div className="flex flex-col flex-1 min-h-screen">
-            <div className="grid grid-cols-5 capitalize py-2 border-b border-gray-300 mb-2">
+            <div className="flex flex-row items-center space-x-2 w-full mb-4 ">
+                <div className="flex flex-row items-center border border-gray-200 rounded px-4 py-1 flex-1">
+                    <SearchIcon height={16} width={16} className="text-gray-300" />
+                    <input
+                        type="text"
+                        placeholder="Search product by name or id"
+                        onChange={e => setSearchQuery(e.target.value)}
+                        className="p-2 bg-gray-100 flex-1 outline-none border-none" />
+                </div>
+                <BlueButton text="Search" onClick={search_item} />
+            </div>
+            <div className="grid grid-cols-5 capitalize py-2 border-b border-gray-300 mb-2 bg-white p-2 rounded-t">
                 <div className="flex flex-row col-span-1 items-center gap-4">
                     <div className="text-gray-900 font-semibold">
                         title

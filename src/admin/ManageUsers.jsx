@@ -41,10 +41,10 @@ function ManageUsers() {
     return (
         <AdminLayout>
             <div className="min-h-screen">
-            <p className="text-center text-lg text-gray-700 capitalize font-semibold my-8">manage all users</p>
-            <>
-                <UsersTable users={users?.users} />
-            </>
+                <p className="text-center text-lg text-gray-700 capitalize font-semibold my-4">manage all users</p>
+                <>
+                    <UsersTable users={users?.users} />
+                </>
             </div>
         </AdminLayout>
     )
