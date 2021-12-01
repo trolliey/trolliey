@@ -21,38 +21,45 @@ export const create_product_Action = (token, values, additional_features, pictur
         type: CREATE_PRODUCT_REQUEST,
         payload: token
     })
-    const picture_array = []
-    const promises = []
-    pictures.forEach(file => {
-        const uploadTask = storage.ref().child(`products/-${Date.now()}`).put(file);
-        promises.push(uploadTask);
-        uploadTask.on(
-            firebase.storage.TaskEvent.STATE_CHANGED,
-            snapshot => {
-                const progress =
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                if (snapshot.state === firebase.storage.TaskState.RUNNING) {
-                    console.log(`Progress: ${progress}%`);
+
+    //Firebase Storage Reference
+    const storageRef = firebase.storage().ref();
+
+    //Upload Image Function returns a promise  
+    async function uploadImageAsPromise(imageFile) {
+        return new Promise(function (resolve, reject) {
+            const task = storage.ref().child(`products/-${Date.now()}`).put(imageFile);
+
+            task.on(
+                "state_changed",
+                function progress(snapshot) {
+                    const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                },
+
+                function error(err) {
+                    reject(err);
+                },
+
+                async function complete() {
+                    //The getDownloadURL returns a promise and it is resolved to get the image url.
+                    const imageURL = await task.snapshot.ref.getDownloadURL();
+                    resolve(imageURL);
                 }
-            },
-            error => {
-                dispatch({
-                    type: CREATE_PRODUCT_FAIL,
-                    payload: error.message
-                })
-            },
-            () => {
-                uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-                    // do something with the url
-                    picture_array.push(downloadURL);
-                })
-            }
-        )
-    })
+            );
+        });
+    }
 
+    //Handling the files
+    const promises = [];
+    for (const file of pictures) {//Instead of e.target.files, you could also have your files variable
+        promises.push(uploadImageAsPromise(file))
+    }
 
+    //The Promise.all() will stop the execution, until all of the promises are resolved.
+    Promise.all(promises).then((fileURLS) => {
+        //Once all the promises are resolved, you will get the urls in a array.
+        console.log(fileURLS)
 
-    Promise.all(promises).then((response) => {
         const product = {
             title: values.name,
             description: values.description,
@@ -68,7 +75,7 @@ export const create_product_Action = (token, values, additional_features, pictur
             shipping_area: values.shipping_radius,
             shipping_price: values.shipping_price,
             additional_features: additional_features,
-            pictures: picture_array
+            pictures: fileURLS
         }
         axios.post(`${apiUrl}/product/create`, {
             product,
@@ -89,15 +96,7 @@ export const create_product_Action = (token, values, additional_features, pictur
                     : error.message,
             })
         })
-        // console.log(picture_array)
-    }).catch(errorr => {
-        dispatch({
-            type: CREATE_PRODUCT_FAIL,
-            payload: errorr.message
-        })
     })
-
-
 
 }
 
@@ -106,7 +105,7 @@ export const get_all_products_Action = (query) => (dispatch) => {
     dispatch({
         type: GET_ALL_PRODUCTS_REQUEST,
     })
-    axios.post(`${apiUrl}/product/all`,{
+    axios.post(`${apiUrl}/product/all`, {
         search: query
     }).then(res => {
         dispatch({
