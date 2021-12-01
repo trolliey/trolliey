@@ -106,7 +106,7 @@ export const get_all_products_Action = (query) => (dispatch) => {
     dispatch({
         type: GET_ALL_PRODUCTS_REQUEST,
     })
-    axios.get(`${apiUrl}/product/all`,{
+    axios.post(`${apiUrl}/product/all`,{
         search: query
     }).then(res => {
         dispatch({
