@@ -1,10 +1,9 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/outline'
 
-function ConfirmModal() {
-    const [open, setOpen] = useState(true)
+function ConfirmModal({open, setOpen}) {
     const cancelButtonRef = useRef(null)
     
     return (

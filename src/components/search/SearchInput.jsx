@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 import { get_all_categories_Action } from '../../redux/actions/categoryActions'
+import { set_search_query_Action } from '../../redux/actions/searchAction'
 import BlueButton from '../buttons/BlueButton'
 
 function SearchInput() {
@@ -10,12 +12,15 @@ function SearchInput() {
     const _categoeries = useSelector(state => state.get_all_categories)
     const { cat_loading, categories } = _categoeries
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(get_all_categories_Action())
     }, [dispatch])
 
     const search_handler = () => {
+        dispatch(set_search_query_Action(search_query))
+        history.push('/explore')
         console.log(search_category, search_query)
     }
 

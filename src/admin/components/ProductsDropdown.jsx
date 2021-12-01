@@ -1,14 +1,25 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React from 'react'
+import React, { useState } from 'react'
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import ConfirmModal from './ConfirmModal'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 function ProductsDropdown() {
+    const [open_modal, setOpenModal] = useState(false)
+    const [modal_heading, setModalHeading] = useState('')
+    const [modal_descr, setModalDescr] = useState('')
+
+    const special_modal = () => {
+        setOpenModal(true)
+        setModalHeading('make item special')
+        setModalDescr('Are you sure you want to make the product special?')
+    }
+
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
@@ -70,15 +81,15 @@ function ProductsDropdown() {
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="/"
+                                <div
+                                    onClick={special_modal}
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Make Featured
-                                </a>
+                                </div>
                             )}
                         </Menu.Item>
                         <form method="POST" action="#">
@@ -98,6 +109,10 @@ function ProductsDropdown() {
                         </form>
                     </div>
                 </Menu.Items>
+
+                <>
+                    <ConfirmModal  open={open_modal} setOpen={setOpenModal} />
+                </>
             </Transition>
         </Menu>
     )

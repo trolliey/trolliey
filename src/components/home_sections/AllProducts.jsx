@@ -12,10 +12,14 @@ function AllProducts({ cols, no_text }) {
     const { products, loading, error } = _products
     const dispatch = useDispatch()
     const history = useHistory()
+    const _search_query = useSelector(state => state.search_query)
+    const {query} = _search_query
 
     useEffect(() => {
-        dispatch(get_all_products_Action())
-    }, [dispatch])
+        dispatch(get_all_products_Action(query))
+    }, [dispatch, query])
+
+    console.log(query)
 
     return (
         <div className="items flex-col">
