@@ -25,6 +25,7 @@ import ManageUsers from './admin/ManageUsers';
 import ManageProducts from './admin/ManageProducts';
 import AdminSettings from './admin/AdminSettings';
 import AdminLogin from './admin/AdminLogin';
+import AdminRoute from './hocs/AdminRoute';
 
 function App() {
   return (
@@ -48,12 +49,12 @@ function App() {
         <Route path='/stores/single/:id' component={SingleStore} />
 
         {/* //admin dashboard */}
-        <Route path='/admin/home' component={Admin} />
-        <Route path='/admin/ads' component={ManageAds} />
-        <Route path='/admin/stores' component={ManageStores} />
-        <Route path='/admin/users' component={ManageUsers} />
-        <Route path='/admin/products' component={ManageProducts} />
-        <Route path='/admin/settings' component={AdminSettings} />
+        <AdminRoute path='/admin/home' component={Admin} />
+        <AdminRoute path='/admin/ads' component={ManageAds} />
+        <AdminRoute path='/admin/stores' component={ManageStores} />
+        <AdminRoute path='/admin/users' component={ManageUsers} />
+        <AdminRoute path='/admin/products' component={ManageProducts} />
+        <AdminRoute path='/admin/settings' component={AdminSettings} />
         <Route exact path='/admin' component={AdminLogin} />
 
         <Route path='/explore' component={Explore} />
