@@ -1,5 +1,4 @@
 import React from 'react'
-import {PencilIcon, TrashIcon} from '@heroicons/react/outline'
 import UsersDropdown from './UsersDropdown'
 
 function UsersTable({ users }) {

@@ -7,13 +7,6 @@ import AdminLayout from '../layouts/AdminLayout'
 import { get_all_users_Action } from '../redux/actions/userActions'
 import UsersTable from './components/UsersTable'
 
-/* This example requires Tailwind CSS v2.0+ */
-const people = [
-    { name: 'Jane Cooper', title: 'Regional Paradigm Technician', role: 'Admin', email: 'jane.cooper@example.com' },
-    { name: 'Cody Fisher', title: 'Product Directives Officer', role: 'Owner', email: 'cody.fisher@example.com' },
-    // More people...
-]
-
 function ManageUsers() {
     const _get_all_users = useSelector(state => state.get_all_users)
     const { loading, users, error } = _get_all_users

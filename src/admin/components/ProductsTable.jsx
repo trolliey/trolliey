@@ -1,13 +1,5 @@
 import { Avatar } from "@chakra-ui/react"
-import picture from '../../assets/cat-travel.jpg'
-import { DotsHorizontalIcon } from '@heroicons/react/outline'
 import ProductsDropdown from "./ProductsDropdown"
-
-// const products = [
-//     { name: 'hp 250 g5', description: 'iam a descripion of the product', seller: 'tatendaZw', status: 'special', picture: picture },
-//     { name: 'hp 250 g5', description: 'iam a descripion of the product', seller: 'tatendaZw', status: 'special', picture: picture },
-
-// ]
 
 export default function ProductsTable({products}) {
     return (
@@ -50,7 +42,6 @@ export default function ProductsTable({products}) {
                         </div>
                         <div className="flex col-span-1">
                             <div className="flex flex-col cursor-pointer">
-                                {/* <DotsHorizontalIcon height={16} width={16} className="text-gray-700" /> */}
                                 <ProductsDropdown />
                             </div>
                         </div>

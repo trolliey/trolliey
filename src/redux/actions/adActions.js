@@ -40,6 +40,8 @@ export const create_new_add_Action = (picture, name, link_to, delete_at) => (dis
                 case firebase.storage.TaskState.RUNNING: // or 'running'
                     console.log('Upload is running');
                     break;
+                default:
+                    return snapshot.state
             }
         },
         (error) => {
@@ -56,6 +58,8 @@ export const create_new_add_Action = (picture, name, link_to, delete_at) => (dis
                 case 'storage/unknown':
                     // Unknown error occurred, inspect error.serverResponse
                     break;
+                default:
+                    return error.code
             }
         },
         () => {
@@ -136,6 +140,8 @@ export const edit_single_ad_Action = (id, picture, name, link_to, delete_at) => 
                 case firebase.storage.TaskState.RUNNING: // or 'running'
                     console.log('Upload is running');
                     break;
+                default:
+                    return snapshot.state
             }
         },
         (error) => {
@@ -152,6 +158,8 @@ export const edit_single_ad_Action = (id, picture, name, link_to, delete_at) => 
                 case 'storage/unknown':
                     // Unknown error occurred, inspect error.serverResponse
                     break;
+                default:
+                    return error.code
             }
         },
         () => {
