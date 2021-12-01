@@ -27,14 +27,14 @@ export default function ProductsTable({ products }) {
                 </div>
                 <BlueButton text="Search" onClick={search_item} />
             </div>
-            <div className="grid grid-cols-6 capitalize py-2 border-b border-gray-300 mb-2 bg-white p-2 rounded-t">
+            <div className="grid grid-cols-5 capitalize py-2 border-b border-gray-300 mb-2 bg-white p-2 rounded-t">
                 <div className="flex flex-row col-span-1 items-center gap-4">
                     <div className="text-gray-900 font-semibold">
                         title
                     </div>
                 </div>
-                <div className="flex col-span-2">
-                    <p className="text-gray-900 font-semibold">description</p>
+                <div className="flex col-span-1">
+                    <p className="text-gray-900 font-semibold">category</p>
                 </div>
                 <div className="flex col-span-1">
                     <p className="text-gray-900 font-semibold">status</p>
@@ -48,7 +48,7 @@ export default function ProductsTable({ products }) {
             </div>
             {
                 products?.map((product, index) => (
-                    <div key={index} className="grid grid-cols-6 py-2 border-b border-gray-300 mb-2 text-sm items-center">
+                    <div key={index} className="grid grid-cols-5 py-2 border-b border-gray-300 mb-2 text-sm items-center">
                         <div className="flex flex-row col-span-1 items-center gap-4 overflow-ellipsis truncate">
                             <Avatar rounded="md" size="sm" name={product.title} src={product.pictures[0]} />
                             <div className="flex flex-col">
@@ -60,8 +60,8 @@ export default function ProductsTable({ products }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex col-span-2 px-2">
-                            <p className="text-gray-700">{product.description}</p>
+                        <div className="flex col-span-1 px-2">
+                            <p className="text-gray-700">{product.category}</p>
                         </div>
                         <div className="flex col-span-1">
                             <p className="text-gray-700">{product.status}</p>
