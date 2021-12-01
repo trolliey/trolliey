@@ -71,7 +71,7 @@ export default function ProductsTable({ products }) {
                         </div>
                         <div className="flex col-span-1">
                             <div className="flex flex-col cursor-pointer">
-                                <ProductsDropdown />
+                                <ProductsDropdown  id={product._id} owner={product.owner}/>
                             </div>
                         </div>
                     </div>

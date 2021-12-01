@@ -1,24 +1,20 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { useState } from 'react'
+import React from 'react'
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import ConfirmModal from './ConfirmModal'
-import { useDisclosure } from '@chakra-ui/react'
+import { useHistory } from 'react-router'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-function ProductsDropdown() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const [modal_heading, setModalHeading] = useState('')
-    const [modal_descr, setModalDescr] = useState('')
+function ProductsDropdown({ id, owner }) {
+    const history = useHistory()
+    const make_featured = () => {
+    }
 
-    const special_modal = () => {
-        onOpen()
-        setModalHeading('make item special')
-        setModalDescr('Are you sure you want to make the product special?')
+    const make_special = () => {
     }
 
     return (
@@ -43,47 +39,47 @@ function ProductsDropdown() {
                     <div className="py-1">
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="/"
+                                <div
+                                    onClick={() => history.push(`/product/description/${id}`)}
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     View Product
-                                </a>
+                                </div>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="/"
+                                <div
+                                    onClick={() => history.push(`/stores/single/${owner}`)}
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     View Seller
-                                </a>
+                                </div>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="/"
+                                <div
+                                    onClick={make_special}
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Make Special
-                                </a>
+                                </div>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
                                 <div
-                                    onClick={special_modal}
+                                    onClick={make_featured}
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
@@ -110,10 +106,6 @@ function ProductsDropdown() {
                         </form>
                     </div>
                 </Menu.Items>
-
-                {/* <div>
-                    <ConfirmModal  isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
-                </div> */}
             </Transition>
         </Menu>
     )
