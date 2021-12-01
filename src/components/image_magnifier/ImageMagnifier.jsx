@@ -4,8 +4,8 @@ function ImageMagnifier({
     src,
     width,
     height,
-    magnifierHeight = 100,
-    magnifieWidth = 100,
+    magnifierHeight = 150,
+    magnifieWidth = 150,
     zoomLevel = 1.5
 }) {
     const [[x, y], setXY] = useState([0, 0]);
@@ -66,8 +66,7 @@ function ImageMagnifier({
                     backgroundRepeat: "no-repeat",
 
                     //calculate zoomed image size
-                    backgroundSize: `${imgWidth * zoomLevel}px ${imgHeight * zoomLevel
-                        }px`,
+                    backgroundSize: `${imgWidth * zoomLevel}px ${imgHeight * zoomLevel}px`,
 
                     //calculate position of zoomed image.
                     backgroundPositionX: `${-x * zoomLevel + magnifieWidth / 2}px`,
