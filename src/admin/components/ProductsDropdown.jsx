@@ -4,6 +4,7 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { useHistory } from 'react-router'
+import { useToast } from '@chakra-ui/react'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -11,10 +12,25 @@ function classNames(...classes) {
 
 function ProductsDropdown({ id, owner }) {
     const history = useHistory()
+    const toast = useToast()
     const make_featured = () => {
+        toast({
+            title: 'Featured created.',
+            description: "Item is now featured.",
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+        })
     }
 
     const make_special = () => {
+        toast({
+            title: 'Special created.',
+            description: "Item is now special.",
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+        })
     }
 
     return (
