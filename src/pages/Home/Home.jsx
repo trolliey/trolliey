@@ -82,18 +82,43 @@ function Home() {
 
                 {/* //two exclusive categories */}
                 <div className="grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-4 md:pt-16 pt-8 ">
-                    <div className="col-span-1 bg-blue-200 rounded md:h-40 h-32 grid items-center content-center justify-center cursor-pointer overflow-hidden">
-                        {/* <p className="font-semibold">Contact us to add an ad here</p> */}
+                    <div className="col-span-1 bg-gray-100 rounded md:h-40 h-32 grid items-center content-center justify-center cursor-pointer overflow-hidden">
                         {
-                            ads?.[1] ? (
+                            ads_error ? (
+                                <div className="grid justify-center items-center content-center w-full">
+                                    <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
+                                </div>
+                            ) : ads_loading ? (
+                                <div className="grid justify-center items-center content-center w-full">
+                                    <Spinner size="xl" thickness={3} />
+                                </div>
+                            ) : ads?.[1] ? (
                                 <img src={ads?.[1]?.picture} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+
                             ) : (
                                 <p className="font-semibold">Contact us to add an ad here</p>
+
                             )
                         }
                     </div>
-                    <div className="col-span-1 bg-yellow-200 rounded md:h-40 h-32 cursor-pointer grid items-center content-center justify-center">
-                        <p className="font-semibold">Contact us to add an ad here</p>
+                    <div className="col-span-1 bg-gray-100 rounded md:h-40 h-32 grid items-center content-center justify-center cursor-pointer overflow-hidden">
+                        {
+                            ads_error ? (
+                                <div className="grid justify-center items-center content-center w-full">
+                                    <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
+                                </div>
+                            ) : ads_loading ? (
+                                <div className="grid justify-center items-center content-center w-full">
+                                    <Spinner size="xl" thickness={3} />
+                                </div>
+                            ) : ads?.[2] ? (
+                                <img src={ads?.[2]?.picture} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+
+                            ) : (
+                                <p className="font-semibold">Contact us to add an ad here</p>
+
+                            )
+                        }
                     </div>
                 </div>
 
@@ -106,11 +131,43 @@ function Home() {
 
                 {/* //two Latest categories */}
                 <div className="grid md:grid-cols-3 grid-cols-1 md:gap-8 gap-4 md:pt-16 pt-8">
-                    <div className="col-span-1 bg-blue-200 rounded md:h-40 h-32 cursor-pointer grid items-center content-center justify-center">
-                        <p className="font-semibold">Contact us to add an ad here</p>
+                    <div className="col-span-1 bg-gray-100 rounded md:h-40 h-32 cursor-pointer grid items-center content-center justify-center">
+                        {
+                            ads_error ? (
+                                <div className="grid justify-center items-center content-center w-full">
+                                    <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
+                                </div>
+                            ) : ads_loading ? (
+                                <div className="grid justify-center items-center content-center w-full">
+                                    <Spinner size="xl" thickness={3} />
+                                </div>
+                            ) : ads?.[3] ? (
+                                <img src={ads?.[3]?.picture} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+
+                            ) : (
+                                <p className="font-semibold">Contact us to add an ad here</p>
+
+                            )
+                        }
                     </div>
-                    <div className="md:col-span-2 col-start-1 bg-yellow-100 rounded md:h-40 h-32 cursor-pointer grid items-center content-center justify-center">
-                        <p className="font-semibold">Contact us to add an ad here</p>
+                    <div className="md:col-span-2 col-start-1 bg-gray-100 rounded md:h-40 h-32 cursor-pointer grid items-center content-center justify-center">
+                        {
+                            ads_error ? (
+                                <div className="grid justify-center items-center content-center w-full">
+                                    <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
+                                </div>
+                            ) : ads_loading ? (
+                                <div className="grid justify-center items-center content-center w-full">
+                                    <Spinner size="xl" thickness={3} />
+                                </div>
+                            ) : ads?.[4] ? (
+                                <img src={ads?.[4]?.picture} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+
+                            ) : (
+                                <p className="font-semibold">Contact us to add an ad here</p>
+
+                            )
+                        }
                     </div>
                 </div>
 
