@@ -26,13 +26,13 @@ function AdsTable({name, goes_to, added_on, remove_on}) {
                     </div>
                 </div>
                 <div className="flex col-span-2">
-                    <p className="text-gray-900">{goes_to}</p>
+                    <p className="text-gray-700">{goes_to}</p>
                 </div>
                 <div className="flex col-span-1">
-                    <p className="text-gray-900">{added_on}</p>
+                    <p className="text-gray-700">{added_on}</p>
                 </div>
                 <div className="flex col-span-1">
-                    <p className="text-gray-900">{remove_on}</p>
+                    <p className="text-gray-700">{remove_on}</p>
                 </div>
             </div>
         </div>

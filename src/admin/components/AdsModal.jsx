@@ -76,7 +76,7 @@ function AdsModal({ open, setOpen, ad_id, loading, error, message }) {
                                 <div>
                                     <div className="mt-3 text-center">
                                         <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                                            Change ad
+                                            Change ad - {ad_id}
                                         </Dialog.Title>
                                         <div className="mt-2">
 
@@ -108,7 +108,13 @@ function AdsModal({ open, setOpen, ad_id, loading, error, message }) {
                                 {message && <SuccessAlert message={message} />}
                                 <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
                                     <div className="w-full inline-flex justify-center px-4 py-2 sm:col-start-2">
-                                        <BlueButton text="Change ad" onClick={change_ad} loading={loading} />
+                                        {
+                                            ad_id ? (
+                                                <BlueButton text="Change ad" onClick={change_ad} loading={loading} />
+                                            ) : (
+                                                <BlueButton text="Create ad" onClick={change_ad} loading={loading} />
+                                            )
+                                        }
                                     </div>
 
                                     <div className="mt-3 w-full inline-flex justify-center px-4 py-2 sm:mt-0 sm:col-start-1">

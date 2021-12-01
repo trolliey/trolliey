@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
-import { create_new_add_Reducer } from "./reducers/adReducer";
+import { create_new_add_Reducer, get_all_ads_Reducer } from "./reducers/adReducer";
 import { login_user_Reducer, register_user_Reducer } from "./reducers/authReducers";
 import { add_to_cart_Reducer, remove_from_cart_Reducer } from "./reducers/cartReducer";
 import { get_all_categories_Reducer } from "./reducers/categoryReducers";
@@ -50,7 +50,8 @@ const reducer = combineReducers({
   get_featured_products: get_featured_products_Reducer,
 
   //for adcs
-  create_new_add: create_new_add_Reducer
+  create_new_add: create_new_add_Reducer,
+  get_all_ads: get_all_ads_Reducer
 });
 
 const composeForBrowser =
