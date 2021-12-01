@@ -102,10 +102,9 @@ export const create_product_Action = (token, values, additional_features, pictur
 }
 
 // get all products
-export const get_all_products_Action = (token, product) => (dispatch) => {
+export const get_all_products_Action = () => (dispatch) => {
     dispatch({
         type: GET_ALL_PRODUCTS_REQUEST,
-        payload: token
     })
     axios.get(`${apiUrl}/product/all`).then(res => {
         dispatch({

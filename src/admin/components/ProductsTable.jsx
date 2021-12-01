@@ -3,13 +3,13 @@ import picture from '../../assets/cat-travel.jpg'
 import { DotsHorizontalIcon } from '@heroicons/react/outline'
 import ProductsDropdown from "./ProductsDropdown"
 
-const products = [
-    { name: 'hp 250 g5', description: 'iam a descripion of the product', seller: 'tatendaZw', status: 'special', picture: picture },
-    { name: 'hp 250 g5', description: 'iam a descripion of the product', seller: 'tatendaZw', status: 'special', picture: picture },
+// const products = [
+//     { name: 'hp 250 g5', description: 'iam a descripion of the product', seller: 'tatendaZw', status: 'special', picture: picture },
+//     { name: 'hp 250 g5', description: 'iam a descripion of the product', seller: 'tatendaZw', status: 'special', picture: picture },
 
-]
+// ]
 
-export default function ProductsTable() {
+export default function ProductsTable({products}) {
     return (
         <div className="flex flex-col flex-1 min-h-screen">
             <div className="grid grid-cols-5 capitalize py-2 border-b border-gray-300 mb-2">
@@ -31,14 +31,14 @@ export default function ProductsTable() {
             {
                 products?.map((product, index) => (
                     <div key={index} className="grid grid-cols-5 py-2 border-b border-gray-300 mb-2 text-sm items-center">
-                        <div className="flex flex-row col-span-1 items-center gap-4">
-                            <Avatar rounded="md" size="sm" />
+                        <div className="flex flex-row col-span-1 items-center gap-4 overflow-ellipsis truncate">
+                            <Avatar rounded="md" size="sm" name={product.title} src={product.pictures[0]} />
                             <div className="flex flex-col">
                                 <div className="text-gray-900 font-semibold text-sm">
-                                    {product.name}
+                                    {product.title}
                                 </div>
-                                <div className="text-xs text-gray-400">
-                                    {product.seller}
+                                <div className="text-xs text-gray-400 truncate">
+                                    {product.owner}
                                 </div>
                             </div>
                         </div>
