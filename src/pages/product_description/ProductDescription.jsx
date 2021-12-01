@@ -206,7 +206,7 @@ function ProductDescription() {
                                 <div onClick={() => history.push(`/stores/single/${product?.product?.owner}`)} className="flex flex-row mt-8 space-x-4 items-center p-4 rounded border border-gray-200 hover:bg-gray-100 cursor-pointer">
                                     <UserCircleIcon className="text-gray-700" height={40} width={40} />
                                     <div className="flex flex-col">
-                                        <p className="text-gray-700 font-semibold">View Seller</p>
+                                        <p className="text-gray-700 font-semibold">View Store</p>
                                         <p className="text-gray-400 text-sm">View the seller's shop and catalogues</p>
                                     </div>
                                 </div>
