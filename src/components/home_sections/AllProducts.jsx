@@ -19,8 +19,6 @@ function AllProducts({ cols, no_text }) {
         dispatch(get_all_products_Action(query))
     }, [dispatch, query])
 
-    console.log(query)
-
     return (
         <div className="items flex-col">
             <div className="text-lg py-8 flex flex-row items-center justify-between">

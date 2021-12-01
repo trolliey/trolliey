@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import SearchInput from '../components/search/SearchInput'
 import { get_all_categories_Action } from '../redux/actions/categoryActions'
+import { set_search_query_Action } from '../redux/actions/searchAction'
 import GeneralLayout from './GeneralLayout'
 
 function ExploreLayout({ children }) {
@@ -22,6 +23,10 @@ function ExploreLayout({ children }) {
 
     const filter_by_price = () =>{
         console.log(min_price, max_price)
+    }
+
+    const filter_by_category = (category) =>{
+        dispatch(set_search_query_Action(category))
     }
 
     return (
@@ -41,7 +46,7 @@ function ExploreLayout({ children }) {
                                     <>
                                         {
                                             categories?.categories.map((category, index) => (
-                                                <div key={index} className="flex text-gray-700 hover:text-gray-900 flex-row items-center p-2 cursor-pointer">
+                                                <div key={index} onClick={() => filter_by_category(category.category)} className="flex text-gray-700 hover:text-gray-900 flex-row items-center p-2 cursor-pointer hover:bg-gray-50 rounded">
                                                     {/* <ArrowRightIcon className="text-gray-700 mr-3" height={12} width={12} /> */}
                                                     <p className=" text-sm capitalize ">{category.category}</p>
                                                     <div className="flex-1"></div>
