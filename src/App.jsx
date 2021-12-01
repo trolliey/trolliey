@@ -23,6 +23,7 @@ import ManageAds from './admin/ManageAds';
 import ManageStores from './admin/ManageStores';
 import ManageUsers from './admin/ManageUsers';
 import ManageProducts from './admin/ManageProducts';
+import AdminSettings from './admin/AdminSettings';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
         <Route path='/admin/stores' component={ManageStores} />
         <Route path='/admin/users' component={ManageUsers} />
         <Route path='/admin/products' component={ManageProducts} />
+        <Route path='/admin/settings' component={AdminSettings} />
 
         <Route path='/explore' component={Explore} />
         <Route path='/about' component={About} />

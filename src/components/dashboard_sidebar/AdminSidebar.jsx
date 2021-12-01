@@ -7,7 +7,6 @@ import {
     UserGroupIcon,
     XIcon,
     ClipboardListIcon,
-    UserIcon,
     DatabaseIcon,
     ShoppingCartIcon
 } from '@heroicons/react/outline'
@@ -23,8 +22,7 @@ const navigation = [
     { name: 'Users', href: '/admin/users', icon: UserGroupIcon, current: false },
 ]
 const secondaryNavigation = [
-    { name: 'User Settings', href: '/dashboard/usersettings', icon: UserIcon },
-    { name: 'Store Settings', href: '/dashboard/settings', icon: CogIcon },
+    { name: 'Admin Settings', href: '/admin/settings', icon: CogIcon },
 ]
 
 function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
