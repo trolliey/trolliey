@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import CategoriesDropdown from '../../components/categories_dropdown/CategoriesDropdown'
 import SearchInput from '../../components/search/SearchInput'
 import GeneralLayout from '../../layouts/GeneralLayout'
-import banner from '../../assets/main-banner.jpg'
 import { data } from '../../utils/data'
 import SpecialProducts from '../../components/home_sections/SpecialProducts'
 import FeaturedProducts from '../../components/home_sections/FeaturedProducts'
@@ -10,6 +9,7 @@ import AllProducts from '../../components/home_sections/AllProducts'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_all_ads_Action } from '../../redux/actions/adActions'
 import { Spinner } from '@chakra-ui/react'
+import logo from '../../assets/main-banner.jpg'
 
 function Home() {
 
@@ -21,6 +21,8 @@ function Home() {
     useEffect(() => {
         dispatch(get_all_ads_Action())
     }, [dispatch])
+
+    console.log(ads)
 
     return (
         <GeneralLayout>
@@ -44,7 +46,7 @@ function Home() {
                                         <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
                                     </div>
                                 ) : (
-                                    <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                    <img src={ads?.[0].picture} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
                                 )
                             }
                         </div>
@@ -80,8 +82,15 @@ function Home() {
 
                 {/* //two exclusive categories */}
                 <div className="grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-4 md:pt-16 pt-8 ">
-                    <div className="col-span-1 bg-blue-200 rounded md:h-40 h-32 grid items-center content-center justify-center cursor-pointer">
-                        <p className="font-semibold">Contact us to add an ad here</p>
+                    <div className="col-span-1 bg-blue-200 rounded md:h-40 h-32 grid items-center content-center justify-center cursor-pointer overflow-hidden">
+                        {/* <p className="font-semibold">Contact us to add an ad here</p> */}
+                        {
+                            ads?.[1] ? (
+                                <img src={ads?.[1]?.picture} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                            ) : (
+                                <p className="font-semibold">Contact us to add an ad here</p>
+                            )
+                        }
                     </div>
                     <div className="col-span-1 bg-yellow-200 rounded md:h-40 h-32 cursor-pointer grid items-center content-center justify-center">
                         <p className="font-semibold">Contact us to add an ad here</p>
