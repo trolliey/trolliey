@@ -19,11 +19,6 @@ function AdminRoute({ component: Component, ...rest }) {
                 : (<Redirect to='/admin' />)
         )} />
     )
-    return (
-        <div>
-
-        </div>
-    )
 }
 
 export default AdminRoute

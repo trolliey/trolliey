@@ -1,10 +1,14 @@
 import React from 'react'
 import AdminLayout from '../layouts/AdminLayout'
+import StoresTable from './components/StoresTable'
 
 function ManageStores() {
     return (
         <AdminLayout>
-            manage all store
+            <p className="text-center text-lg text-gray-700 capitalize font-semibold my-4">manage all stores</p>
+            <>
+                <StoresTable />
+            </>
         </AdminLayout>
     )
 }
