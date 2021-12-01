@@ -9,6 +9,7 @@ import { create_a_product_Reducer, get_all_products_Reducer, get_single_product_
 import { get_all_special_products_Reducer } from "./reducers/specialProductsReducers";
 import { create_single_store_Reducer, get_store_products_Reducer } from "./reducers/storeReducer";
 import { get_subcategories_Reducer } from "./reducers/subcategoryReducer";
+import { get_all_users_Reducer } from "./reducers/userReducer";
 
 const initialState = {
   user_login: {
@@ -27,6 +28,9 @@ const reducer = combineReducers({
   //fot adding to cart and removing from cart
   add_to_cart: add_to_cart_Reducer,
   remove_from_cart: remove_from_cart_Reducer,
+
+  //for users
+  get_all_users: get_all_users_Reducer,
 
   //for products
   create_a_product: create_a_product_Reducer,
