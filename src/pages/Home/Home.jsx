@@ -9,7 +9,6 @@ import AllProducts from '../../components/home_sections/AllProducts'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_all_ads_Action } from '../../redux/actions/adActions'
 import { Spinner } from '@chakra-ui/react'
-import logo from '../../assets/main-banner.jpg'
 
 function Home() {
 
@@ -21,8 +20,6 @@ function Home() {
     useEffect(() => {
         dispatch(get_all_ads_Action())
     }, [dispatch])
-
-    console.log(ads)
 
     return (
         <GeneralLayout>

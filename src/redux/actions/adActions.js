@@ -167,7 +167,7 @@ export const edit_single_ad_Action = (id, picture, name, link_to, delete_at) => 
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                 console.log('File available at', downloadURL);
                 axios.patch(`${apiUrl}/ads/edit/${id}`, {
-                    picture: downloadURL,
+                    logo: downloadURL,
                     name,
                     link_to,
                     delete_at
