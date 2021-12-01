@@ -52,7 +52,7 @@ function StoreInfo() {
     };
 
     const create_store = (e) => {
-        dispatch(create_single_store_Actions(username, about, 'no picture', userInfo?.token))
+        dispatch(create_single_store_Actions(username, about, picture, userInfo?.token))
     }
 
     if (loading) {

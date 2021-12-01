@@ -6,7 +6,6 @@ import {
     CreditCardIcon,
     HomeIcon,
     ScaleIcon,
-    UserGroupIcon,
     XIcon,
     ClipboardListIcon,
     UserIcon
@@ -21,7 +20,7 @@ const navigation = [
     // { name: 'History', href: '/dashboard/history', icon: ClockIcon, current: false },
     { name: 'Balances', href: '/dashboard/balances', icon: ScaleIcon, current: false },
     { name: 'Cards', href: '/dashboard/cards', icon: CreditCardIcon, current: false },
-    { name: 'Recipients', href: '/dashboard/receipts', icon: UserGroupIcon, current: false },
+    // { name: 'Recipients', href: '/dashboard/receipts', icon: UserGroupIcon, current: false },
 ]
 const secondaryNavigation = [
     { name: 'User Settings', href: '/dashboard/usersettings', icon: UserIcon },

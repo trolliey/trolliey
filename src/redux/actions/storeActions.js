@@ -89,8 +89,8 @@ export const create_single_store_Actions = (name, description, logo, token) => (
                 console.log('File available at', downloadURL);
                 axios.post(`${apiUrl}/store/create`, {
                     name: name,
-                    logo: logo,
-                    banner: downloadURL,
+                    logo: downloadURL,
+                    banner: 'no baner',
                     description: description
 
                 }, {
