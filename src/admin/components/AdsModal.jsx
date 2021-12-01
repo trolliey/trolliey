@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState, useCallback } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useDropzone } from 'react-dropzone'
 import { useDispatch } from 'react-redux'
-import { create_new_add_Action } from '../../redux/actions/adActions'
+import { create_new_add_Action, edit_single_ad_Action } from '../../redux/actions/adActions'
 import BlueButton from '../../components/buttons/BlueButton'
 import Error from '../../components/alerts/Error'
 import SuccessAlert from '../../components/alerts/SuccessAlert'
@@ -34,9 +34,8 @@ function AdsModal({ open, setOpen, ad_id, loading, error, message }) {
     const dispatch = useDispatch()
 
     const change_ad = () => {
-        // console.log(name, link, deadline, picture, ad_id)
         if (ad_id) {
-            console.log(picture, name, link, deadline)
+            dispatch(edit_single_ad_Action(ad_id, picture, name, link, deadline))
         } else {
             dispatch(create_new_add_Action(picture, name, link, deadline))
         }
