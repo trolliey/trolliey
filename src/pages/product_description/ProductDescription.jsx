@@ -12,6 +12,7 @@ import { get_single_product_Action } from '../../redux/actions/productActions'
 import { useHistory, useParams } from 'react-router'
 import { Spinner } from '@chakra-ui/spinner'
 import moment from 'moment'
+import ImageMagnifier from '../../components/image_magnifier/ImageMagnifier'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -114,11 +115,14 @@ function ProductDescription() {
                                 <Tab.Panels className="w-full aspect-w-1 aspect-h-1 flex-1">
                                     {product?.product?.pictures.map((image, index) => (
                                         <Tab.Panel key={index} className="bg-gray-100 rounded">
-                                            <img
+                                            <>
+                                            <ImageMagnifier src={image} height={'100%'} width={"100%"} />
+                                            </>
+                                            {/* <img
                                                 src={image}
                                                 alt={'for the product'}
                                                 className="w-full h-full object-center object-cover sm:rounded-lg bg-gray-100"
-                                            />
+                                            /> */}
                                         </Tab.Panel>
                                     ))}
                                 </Tab.Panels>
