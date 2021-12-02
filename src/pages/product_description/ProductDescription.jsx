@@ -114,7 +114,7 @@ function ProductDescription() {
 
                                 <Tab.Panels className="w-full aspect-w-1 aspect-h-1 flex-1">
                                     {product?.product?.pictures.map((image, index) => (
-                                        <Tab.Panel key={index} className="bg-gray-100 rounded">
+                                        <Tab.Panel key={index} className=" rounded">
                                             <>
                                             <ImageMagnifier src={image} height={'100%'} width={"100%"} />
                                             </>
