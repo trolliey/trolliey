@@ -28,8 +28,6 @@ function AllProducts({ cols, no_text }) {
         }
     }
 
-    console.log(products?.result)
-
     useEffect(() => {
         dispatch(get_all_products_Action(query, page, limit))
         setLimit(5)

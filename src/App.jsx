@@ -28,6 +28,7 @@ import AdminLogin from './admin/AdminLogin';
 import AdminRoute from './hocs/AdminRoute';
 import AboutStore from './pages/Single_Store/AboutStore';
 import StoreReviews from './pages/Single_Store/StoreReviews';
+import Categories from './pages/categories/Categories';
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
         <AdminRoute path='/admin/settings' component={AdminSettings} />
         <Route exact path='/admin' component={AdminLogin} />
 
+        <Route path='/categories' component={Categories} />
         <Route path='/explore' component={Explore} />
         <Route path='/about' component={About} />
         <Route exact path='/explore' component={Home} />

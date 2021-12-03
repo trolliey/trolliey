@@ -77,7 +77,7 @@ function CategoriesDropdown({ open, name }) {
                                 </div>
                             ))
                         }
-                        <p className="text-gray-700 text-center py-2 capitalize cursor-pointer font-semibold">load more</p>
+                        <p onClick={() => history.push('/categories')} className="text-gray-700 text-center py-2 capitalize cursor-pointer font-semibold">load more</p>
                     </div>
                 ) : null
             }
