@@ -2,23 +2,16 @@ import { Spinner } from '@chakra-ui/spinner'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { useLocation, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import ProductItem from '../../components/product_item/ProductItem'
 import StoreLayout from '../../layouts/StoreLayout'
 import { get_store_products_Actions } from '../../redux/actions/storeActions'
-
-const page_links = [
-    { name: 'Products', location: '/stores/single/:id' },
-    { name: 'About', location: '/stores/single/about/:id' },
-    { name: 'Reviews', location: '/stores/single/reviews/:id' }
-]
 
 function SingleStore() {
     const { id } = useParams()
     const _info = useSelector(state => state.get_store_products)
     const { loading, products, error } = _info
     const dispatch = useDispatch()
-    const location = useLocation()
 
     useEffect(() => {
         dispatch(get_store_products_Actions(id))
