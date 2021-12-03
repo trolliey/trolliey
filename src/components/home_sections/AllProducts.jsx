@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Spinner } from '@chakra-ui/spinner'
 import ProductItem from '../product_item/ProductItem'
@@ -13,11 +13,25 @@ function AllProducts({ cols, no_text }) {
     const dispatch = useDispatch()
     const history = useHistory()
     const _search_query = useSelector(state => state.search_query)
-    const {query} = _search_query
+    const { query } = _search_query
+    const [page, setPage] = useState(1)
+
+    const next_page = () => {
+        if (products?.result.next) {
+            setPage(page + 1)
+        }
+    }
+    const prev_page = () => {
+        if (products?.result.previous) {
+            setPage(page - 1)
+        }
+    }
+
+    console.log(products?.result)
 
     useEffect(() => {
-        dispatch(get_all_products_Action(query))
-    }, [dispatch, query])
+        dispatch(get_all_products_Action(query, page))
+    }, [dispatch, query, page])
 
     return (
         <div className="items flex-col">
@@ -67,8 +81,26 @@ function AllProducts({ cols, no_text }) {
                 }
             </div>
 
-            <div className="flex flex-col w-full items-center py-16">
-                <BlackButton text="Load More" />
+            <div className="flex flex-row w-full py-16 justify-between">
+                <div className="self-start">
+                    {
+                        products?.result.previous ? (
+                            <BlackButton 
+                                text="Previous Page"
+                                onClick={prev_page}
+                                />
+                        ) : <div className="flex"></div>
+                    }
+                </div>
+                <div className="self-end">
+                    {
+                        products?.result.next ? (
+                            <BlackButton 
+                                text="Next Page" 
+                                onClick={next_page} />
+                        ) : <div className="flex"></div>
+                    }
+                </div>
             </div>
         </div>
     )
