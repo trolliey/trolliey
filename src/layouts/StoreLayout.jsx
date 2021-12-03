@@ -32,7 +32,7 @@ function StoreLayout({ children, loading, error }) {
                         <div className="flex flex-col">
                             <div className="flex flex-col bg-white">
                                 <div className="header relative w-full lg:h-80 md:h-64 h-40 bg-gray-200">
-                                    <div className="absolute md:flex hidden bg-gray-200 border-4 border-white rounded-full -bottom-12 md:left-12 left-4 ">
+                                    <div className="absolute md:flex hidden bg-gray-200 border-4 border-white rounded-full -bottom-16 md:left-12 left-4 ">
                                         <UserAvatar size="2xl" name={products?.store?.name} />
                                     </div>
                                     <div className="absolute md:hidden flex bg-gray-200 border-4 border-white rounded-full -bottom-12 md:left-12 left-4 ">

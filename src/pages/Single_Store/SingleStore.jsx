@@ -27,7 +27,7 @@ function SingleStore() {
     if (loading) {
         return (
             <StoreLayout>
-                <div className="grid items-center content-center bg-white md:p-8 px-4 w-full rounded min-h-screen">
+                <div className="grid items-center content-center bg-white md:p-8 px-4 w-full rounded">
                     <div className="bg-white w-full">
                         <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
                             <div className="flex flex-col items-center">
