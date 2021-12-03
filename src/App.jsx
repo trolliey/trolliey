@@ -26,6 +26,8 @@ import ManageProducts from './admin/ManageProducts';
 import AdminSettings from './admin/AdminSettings';
 import AdminLogin from './admin/AdminLogin';
 import AdminRoute from './hocs/AdminRoute';
+import AboutStore from './pages/Single_Store/AboutStore';
+import StoreReviews from './pages/Single_Store/StoreReviews';
 
 function App() {
   return (
@@ -46,6 +48,10 @@ function App() {
         <Route path='/dashboard/addproduct' component={AddProduct} />
         <Route path='/dashboard/inventory' component={Inventory} />
         <Route exact path='/dashboard' component={Dashboard} />
+
+        {/* //store page */}
+        <Route path='/stores/single/about/:id' component={AboutStore} />
+        <Route path='/stores/single/reviews/:id' component={StoreReviews} />
         <Route path='/stores/single/:id' component={SingleStore} />
 
         {/* //admin dashboard */}
