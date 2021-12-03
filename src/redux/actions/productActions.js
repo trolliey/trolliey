@@ -101,11 +101,11 @@ export const create_product_Action = (token, values, additional_features, pictur
 }
 
 // get all products
-export const get_all_products_Action = (query, page) => (dispatch) => {
+export const get_all_products_Action = (query, page, limit) => (dispatch) => {
     dispatch({
         type: GET_ALL_PRODUCTS_REQUEST,
     })
-    axios.post(`${apiUrl}/product/all?page=${page}&limit=3`, {
+    axios.post(`${apiUrl}/product/all?page=${page}&limit=${limit}`, {
         search: query
     }).then(res => {
         dispatch({

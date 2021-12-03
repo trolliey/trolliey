@@ -15,6 +15,7 @@ function AllProducts({ cols, no_text }) {
     const _search_query = useSelector(state => state.search_query)
     const { query } = _search_query
     const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(5)
 
     const next_page = () => {
         if (products?.result.next) {
@@ -30,7 +31,8 @@ function AllProducts({ cols, no_text }) {
     console.log(products?.result)
 
     useEffect(() => {
-        dispatch(get_all_products_Action(query, page))
+        dispatch(get_all_products_Action(query, page, limit))
+        setLimit(5)
     }, [dispatch, query, page])
 
     return (
@@ -85,18 +87,18 @@ function AllProducts({ cols, no_text }) {
                 <div className="self-start">
                     {
                         products?.result.previous ? (
-                            <BlackButton 
+                            <BlackButton
                                 text="Previous Page"
                                 onClick={prev_page}
-                                />
+                            />
                         ) : <div className="flex"></div>
                     }
                 </div>
                 <div className="self-end">
                     {
                         products?.result.next ? (
-                            <BlackButton 
-                                text="Next Page" 
+                            <BlackButton
+                                text="Next Page"
                                 onClick={next_page} />
                         ) : <div className="flex"></div>
                     }
