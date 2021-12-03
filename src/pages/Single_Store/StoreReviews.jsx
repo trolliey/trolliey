@@ -8,8 +8,11 @@ function StoreReviews() {
         <StoreLayout>
             <div className="flex flex-col p-4 rounded">
                 <div className="flex flex-row items-center rounded flex-1 mb-4">
-                    <input type="text" placeholder="Enter your review" className="p-2 bg-gray-100 flex-1 rounded" />
-                    <div className="flex pl-4">
+                    <input 
+                        type="text" 
+                        placeholder="Enter your review" 
+                        className="p-2 border-none outline-none bg-gray-100 flex-1 rounded" />
+                    <div className="flex ml-4 p-2 hover:bg-gray-100 rounded-full cursor-pointer">
                         <PaperAirplaneIcon className="text-gray-700" height={20} width={20} />
                     </div>
                 </div>
