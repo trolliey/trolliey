@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { create_a_review_Action, get_all_store_reviews_Action } from '../../redux/actions/reviewActions'
 import { useParams } from 'react-router'
 import { Spinner } from '@chakra-ui/react'
+import BlackButton from '../../components/buttons/BlackButton'
 
 function StoreReviews() {
 
@@ -27,6 +28,13 @@ function StoreReviews() {
 
     const post_review = () => {
         dispatch(create_a_review_Action(id, review, userInfo?.token))
+    }
+
+    const next_page = () => {
+        setPage(page + 1)
+    }
+    const prev_page = () => {
+        setPage(page - 1)
     }
 
     useEffect(() => {
@@ -51,6 +59,7 @@ function StoreReviews() {
     }, [message, rev_error, dispatch])
 
     useEffect(() => {
+        setLimit(10)
         dispatch(get_all_store_reviews_Action(id, page, limit))
     }, [dispatch])
 
@@ -88,23 +97,52 @@ function StoreReviews() {
                         ) : (
                             <>
                                 {
-                                    reviews?.reviews?.map((review, index) => (
-                                        <div key={index} className="flex flex-col">
-                                            <ReviewItem
-                                                name={review.username}
-                                                review={review.body}
-                                                likes={review.likes.length}
-                                                dislikes={review.disliked.length}
-                                                pro_pic={review.photoURL}
+                                    reviews?.reviews?.length < 1 ? (
+                                        <p className="text-gray-700 capitalize text-center font-semibold mt-4">no reviews yet</p>
+                                    ) : (
+                                        <>
+                                            {
+                                                reviews?.reviews?.map((review, index) => (
+                                                    <div key={index} className="flex flex-col">
+                                                        <ReviewItem
+                                                            name={review.username}
+                                                            review={review.body}
+                                                            likes={review.likes.length}
+                                                            dislikes={review.disliked.length}
+                                                            pro_pic={review.photoURL}
 
-                                            />
-                                            
-                                        </div>
-                                    ))
+                                                        />
+
+                                                    </div>
+                                                ))
+                                            }
+                                        </>
+                                    )
                                 }
                             </>
                         )
                     }
+                </div>
+                <div className="flex flex-row w-full py-16 justify-between">
+                    <div className="self-start">
+                        {
+                            reviews?.result.previous ? (
+                                <BlackButton
+                                    text="Previous Page"
+                                    onClick={prev_page}
+                                />
+                            ) : <div className="flex"></div>
+                        }
+                    </div>
+                    <div className="self-end">
+                        {
+                            reviews?.result.next ? (
+                                <BlackButton
+                                    text="Next Page"
+                                    onClick={next_page} />
+                            ) : <div className="flex"></div>
+                        }
+                    </div>
                 </div>
             </div>
         </StoreLayout>
