@@ -3,7 +3,7 @@ import StoreLayout from '../../layouts/StoreLayout'
 import { PaperAirplaneIcon } from '@heroicons/react/solid'
 import ReviewItem from '../../components/review_item/ReviewItem'
 import { useSelector } from 'react-redux'
-import { useToast } from '@chakra-ui/react'
+import { useToast, Avatar } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 import { create_a_review_Action, get_all_store_reviews_Action } from '../../redux/actions/reviewActions'
 import { useParams } from 'react-router'
@@ -69,11 +69,12 @@ function StoreReviews() {
         <StoreLayout>
             <div className="flex flex-col md:p-4 p-2 rounded">
                 <div className="flex flex-row items-center rounded flex-1 mb-4">
+                    <Avatar size="sm" source={userInfo?.user?.photoURL} name={userInfo?.user?.displayName} />
                     <input
                         type="text"
                         placeholder="Enter your review"
                         onChange={e => setReview(e.target.value)}
-                        className="p-2 border-none outline-none bg-gray-100 flex-1 rounded" />
+                        className="p-2 border-none outline-none bg-gray-100 flex-1 rounded ml-2" />
                     {
                         rev_loading ? (
                             <div className="flex ml-4 p-2 hover:bg-gray-100 rounded-full cursor-pointer">
