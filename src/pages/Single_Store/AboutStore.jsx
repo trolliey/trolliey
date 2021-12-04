@@ -11,8 +11,6 @@ function AboutStore() {
     const { products, loading } = _info
     const history = useHistory()
 
-    console.log(products?.store)
-
     if (loading) {
         return (
             <StoreLayout>

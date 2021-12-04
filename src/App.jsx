@@ -29,6 +29,7 @@ import AdminRoute from './hocs/AdminRoute';
 import AboutStore from './pages/Single_Store/AboutStore';
 import StoreReviews from './pages/Single_Store/StoreReviews';
 import Categories from './pages/categories/Categories';
+import EditProduct from './dashboard/EditProduct/EditProduct';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path='/dashboard/usersettings' component={UserSettings} />
         <Route path='/dashboard/addproduct' component={AddProduct} />
         <Route path='/dashboard/inventory' component={Inventory} />
+        <Route path='/dashboard/edit-product/:id' component={EditProduct} />
         <Route exact path='/dashboard' component={Dashboard} />
 
         {/* //store page */}

@@ -1,5 +1,6 @@
 import { ChevronRightIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import React from 'react'
+import { useHistory } from 'react-router'
 import BlueButton from '../buttons/BlueButton'
 
 const statusStyles = {
@@ -13,7 +14,9 @@ function classNames(...classes) {
 }
 
 function InventoryTable({data}) {
-    // console.log(data)
+
+    const history = useHistory()
+    
     return (
         <div>
 
@@ -123,7 +126,7 @@ function InventoryTable({data}) {
                                                 <span >{product.orders.length}</span>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500 mr-2">
-                                                <button className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-blue-primary">
+                                                <button onClick={()=> history.push(`/dashboard/edit-product/${product._id}`)} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-blue-primary">
                                                     <PencilIcon height={12} width={12} className="" />
                                                 </button>
                                                 <button className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-red-400 ml-2">
