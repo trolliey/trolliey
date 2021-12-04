@@ -56,12 +56,12 @@ function StoreReviews() {
                 isClosable: true,
             })
         }
-    }, [message, rev_error, dispatch])
+    }, [message, rev_error, dispatch, id, toast])
 
     useEffect(() => {
         setLimit(10)
         dispatch(get_all_store_reviews_Action(id, page, limit))
-    }, [dispatch])
+    }, [dispatch, limit, page, id])
 
     console.log(reviews?.reviews)
 

@@ -4,6 +4,9 @@ import {
     CREATE_SINGLE_STORE_INFO_FAIL,
     CREATE_SINGLE_STORE_INFO_REQUEST,
     CREATE_SINGLE_STORE_INFO_SUCCESS,
+    GET_ALL_STORES_FAIL,
+    GET_ALL_STORES_REQUEST,
+    GET_ALL_STORES_SUCCESS,
     GET_STORE_PRODUCTS_FAIL,
     GET_STORE_PRODUCTS_REQUEST,
     GET_STORE_PRODUCTS_SUCCESS,
@@ -115,4 +118,24 @@ export const create_single_store_Actions = (name, description, logo, token) => (
     );
 
 
+}
+
+//get all stores
+export const get_all_stores_Action = () => (dispatch) => {
+    dispatch({
+        type: GET_ALL_STORES_REQUEST
+    })
+    axios.get(`${apiUrl}/user/stores`).then(res => {
+        dispatch({
+            type: GET_ALL_STORES_SUCCESS,
+            payload: res.data
+        })
+    }).catch(error => {
+        dispatch({
+            type: GET_ALL_STORES_FAIL,
+            payload: error.response && error.response.data.error
+                ? error.response.data.error
+                : error.message,
+        })
+    })
 }

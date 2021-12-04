@@ -31,7 +31,7 @@ function AllProducts({ cols, no_text }) {
     useEffect(() => {
         dispatch(get_all_products_Action(query, page, limit))
         setLimit(5)
-    }, [dispatch, query, page])
+    }, [dispatch, query, page, limit])
 
     return (
         <div className="items flex-col">

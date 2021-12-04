@@ -9,7 +9,6 @@ import {
     GET_SINGLE_PRODUCT_REQUEST,
     GET_SINGLE_PRODUCT_SUCCESS
 } from "../constants/productConstants"
-import firebase from "@firebase/app-compat"
 import axios from 'axios'
 import { apiUrl } from "../../utils/apiUrl"
 import { storage } from "../../utils/firebase"
@@ -22,9 +21,6 @@ export const create_product_Action = (token, values, additional_features, pictur
         payload: token
     })
 
-    //Firebase Storage Reference
-    const storageRef = firebase.storage().ref();
-
     //Upload Image Function returns a promise  
     async function uploadImageAsPromise(imageFile) {
         return new Promise(function (resolve, reject) {
@@ -34,6 +30,7 @@ export const create_product_Action = (token, values, additional_features, pictur
                 "state_changed",
                 function progress(snapshot) {
                     const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('percentage upload - ', percentage)
                 },
 
                 function error(err) {

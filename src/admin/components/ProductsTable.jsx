@@ -6,14 +6,16 @@ import BlueButton from "../../components/buttons/BlueButton"
 import { useDispatch } from "react-redux"
 import { set_search_query_Action } from "../../redux/actions/searchAction"
 import moment from 'moment'
+import BlackButton from "../../components/buttons/BlackButton"
 
-export default function ProductsTable({ products }) {
+export default function ProductsTable({ products, next_page, prev_page, result }) {
     const [search_query, setSearchQuery] = useState('')
     const dispatch = useDispatch()
 
     const search_item = () => {
         dispatch(set_search_query_Action(search_query))
     }
+    
     return (
         <div className="flex flex-col flex-1 min-h-screen">
             <div className="flex flex-row items-center space-x-2 w-full mb-4 ">
@@ -71,12 +73,33 @@ export default function ProductsTable({ products }) {
                         </div>
                         <div className="flex col-span-1">
                             <div className="flex flex-col cursor-pointer">
-                                <ProductsDropdown  id={product._id} owner={product.owner}/>
+                                <ProductsDropdown id={product._id} owner={product.owner} />
                             </div>
                         </div>
                     </div>
                 ))
             }
+            <div className="flex flex-row w-full py-16 justify-between">
+                <div className="self-start">
+                    {
+                        result?.previous ? (
+                            <BlackButton
+                                text="Previous Page"
+                                onClick={prev_page}
+                            />
+                        ) : <div className="flex"></div>
+                    }
+                </div>
+                <div className="self-end">
+                    {
+                        result?.next ? (
+                            <BlackButton
+                                text="Next Page"
+                                onClick={next_page} />
+                        ) : <div className="flex"></div>
+                    }
+                </div>
+            </div>
         </div>
     )
 }

@@ -9,7 +9,7 @@ import { create_a_product_Reducer, get_all_products_Reducer, get_single_product_
 import { create_a_review_Reducer, get_all_store_reviews_Reducer } from "./reducers/reviewReducers";
 import { set_search_query_Reducer } from "./reducers/searchReducers";
 import { get_all_special_products_Reducer } from "./reducers/specialProductsReducers";
-import { create_single_store_Reducer, get_store_products_Reducer } from "./reducers/storeReducer";
+import { create_single_store_Reducer, get_all_stores_Reducer, get_store_products_Reducer } from "./reducers/storeReducer";
 import { get_subcategories_Reducer } from "./reducers/subcategoryReducer";
 import { get_all_users_Reducer } from "./reducers/userReducer";
 
@@ -48,6 +48,7 @@ const reducer = combineReducers({
   //for store
   get_store_products: get_store_products_Reducer,
   create_store: create_single_store_Reducer,
+  get_all_stores: get_all_stores_Reducer,
 
   //for special products
   get_special_products: get_all_special_products_Reducer,

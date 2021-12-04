@@ -3,12 +3,14 @@ import React from 'react'
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import { useHistory } from 'react-router'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-function UsersDropdown() {
+function UsersDropdown({ id }) {
+    const history = useHistory()
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
@@ -31,18 +33,18 @@ function UsersDropdown() {
                     <div className="py-1">
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="/"
+                                <div
+                                    onClick={() => history.push(`/stores/single/${id}`)}
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
-                                    View User
-                                </a>
+                                    View Store
+                                </div>
                             )}
                         </Menu.Item>
-                       
+
                     </div>
                     <div className="py-1">
                         <Menu.Item>

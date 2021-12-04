@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import UsersDropdown from './UsersDropdown'
 import { SearchIcon } from '@heroicons/react/outline'
 import BlueButton from '../../components/buttons/BlueButton'
+import { Avatar } from '@chakra-ui/avatar'
 
 function UsersTable({ users }) {
     const [search_query, setSearchQuery] = useState('')
@@ -23,14 +24,14 @@ function UsersTable({ users }) {
                 </div>
                 <BlueButton text="Search" onClick={search_item} />
             </div>
-            <div className="grid grid-cols-5 items-center rounded-t shadow border-b border-gray-100">
-                <div className="col-span-1 text-gray-400 uppercase p-2 bg-gray-50  ">
+            <div className="grid grid-cols-7 items-center rounded-t shadow border-b border-gray-100">
+                <div className="col-span-2 text-gray-400 uppercase p-2 bg-gray-50  ">
                     name
                 </div>
                 <div className="col-span-1 text-gray-400 uppercase p-2 bg-gray-50 ">
                     verified
                 </div>
-                <div className="col-span-1 text-gray-400 uppercase p-2 bg-gray-50 ">
+                <div className="col-span-2 text-gray-400 uppercase p-2 bg-gray-50 ">
                     email
                 </div>
                 <div className="col-span-1 text-gray-400 uppercase p-2 bg-gray-50 ">
@@ -42,21 +43,30 @@ function UsersTable({ users }) {
             </div>
             {
                 users?.map((user, index) => (
-                    <div key={index} className="grid grid-cols-5 w-full bg-white p-2 flex-1 items-center rounded-t shadow border-b text-gray-800 border-gray-100 ">
-                        <div className="col-span-1   ">
-                            {user.displayName}
+                    <div key={index} className="grid grid-cols-7 w-full bg-white p-2 flex-1 items-center rounded-t shadow border-b text-gray-800 border-gray-100 ">
+                       
+                        <div className="flex flex-row col-span-2 items-center gap-4 overflow-ellipsis truncate">
+                            <Avatar size="sm" name={user.displayName} src={user.photoURL} />
+                            <div className="flex flex-col">
+                                <div className="text-gray-900 font-semibold text-sm">
+                                    {user.displayName}
+                                </div>
+                                <div className="text-xs text-gray-400 truncate">
+                                    {user._id}
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-span-1  ">
+                        <div className="col-span-1 ml-2 ">
                             {user.verified ? 'true' : 'false'}
                         </div>
-                        <div className="col-span-1  ">
+                        <div className="col-span-2  ">
                             {user.email}
                         </div>
                         <div className="col-span-1  ">
                             {user.role}
                         </div>
                         <div className="col-span-1  text-blue-primary ">
-                            <UsersDropdown />
+                            <UsersDropdown id={user?._id} />
                         </div>
                     </div>
                 ))

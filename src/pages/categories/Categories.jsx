@@ -13,6 +13,8 @@ function Categories() {
         dispatch(get_all_categories_Action())
     }, [dispatch])
 
+    console.log(cat_error, cat_loading, categories)
+
     return (
         <GeneralLayout>
             <div className="flex flex-row flex-wrap items-center">
