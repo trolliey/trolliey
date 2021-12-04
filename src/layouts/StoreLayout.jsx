@@ -48,7 +48,7 @@ function StoreLayout({ children, loading, error }) {
                                 </div>
                             </div>
 
-                            <div className="bg-white p-4 rounded my-4">
+                            <div className="bg-white md:p-4 p-2 rounded my-4">
                                 {
                                     loading ? (
                                         <div className="w-full flex flex-col items-center py-8">
