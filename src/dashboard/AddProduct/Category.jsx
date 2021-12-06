@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import BlueButton from '../../components/buttons/BlueButton'
 import DashboardLayout from '../../layouts/DashboardLayout'
 import { useDropzone } from 'react-dropzone' //try file ppond
@@ -6,11 +6,13 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { get_all_categories_Action } from '../../redux/actions/categoryActions'
 import { get_subcategories_Action } from '../../redux/actions/subCategoryActions'
+import ImageUpload from '../../components/image_uploads/ImageUpload'
 
 function Category({ nextStep, handleChange, values, setPictures }) {
     const _categoeries = useSelector(state => state.get_all_categories)
     const { cat_loading, categories } = _categoeries
     const dispatch = useDispatch()
+    const [image_previews, setImagePreviews] = useState([])
 
     useEffect(() => {
         dispatch(get_all_categories_Action())
@@ -20,6 +22,7 @@ function Category({ nextStep, handleChange, values, setPictures }) {
     const onDrop = useCallback(acceptedFiles => {
         // console.log(acceptedFiles);
         setPictures(acceptedFiles)
+        setImagePreviews(acceptedFiles)
     }, [setPictures]);
 
     const { isDragActive, getRootProps, getInputProps, isDragReject, acceptedFiles, rejectedFiles } = useDropzone({
@@ -28,6 +31,8 @@ function Category({ nextStep, handleChange, values, setPictures }) {
         minSize: 0,
         maxSize,
     });
+
+    console.log(image_previews);
 
     const isFileTooLarge = rejectedFiles?.length > 0 && rejectedFiles[0].size > maxSize;
 
@@ -104,11 +109,18 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                             </div>
 
                             {/* //pitures  */}
-                            <div className="gap-4 mb-8 flex-1">
+                            {/* <div className="gap-4 mb-8 flex-1">
                                 <ul className="list-group my-4">
                                     {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
                                         <li key={acceptedFile.name} className="list-group-item text-gray-700 text-sm font-semibold list-group-item-success">
                                             {acceptedFile.name}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <ul className="list-group my-4">
+                                    {acceptedFiles.length > 0 && acceptedFiles.map(acceptedFile => (
+                                        <li key={acceptedFile.name} className="list-group-item text-gray-700 text-sm font-semibold list-group-item-success">
+                                            {acceptedFile.path}
                                         </li>
                                     ))}
                                 </ul>
@@ -156,7 +168,11 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
+
+                            <ImageUpload />
+
+
                         </div>
                     </div>
 
