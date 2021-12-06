@@ -1,39 +1,115 @@
 import React from 'react'
+import shortid from 'shortid'
+import { FilePond, registerPlugin } from "react-filepond";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+
+// And import the necessary css
+import "filepond/dist/filepond.min.css"
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+import firebase from 'firebase/compat/app';
 import { useState } from 'react';
+import { storage } from '../../utils/firebase';
+import { useEffect } from 'react';
 
-function ImageUpload() {
-    const fileObj = [];
-    const fileArray = [];
+// register the filepond plugins for additional functionality
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
-    const [file, setFile] = useState([null])
 
-    const uploadMultipleFiles = (e) => {
-        fileObj.push(e.target.files)
-        for (let i = 0; i < fileObj[0].length; i++) {
-            fileArray.push(URL.createObjectURL(fileObj[0][i]))
-        }
-        setFile(fileArray)
+function ImageUpload(
+    {
+        onRequestSave,
+        onRequestClear,
+        defaultFiles = [],
+        setPictures
+    }
+) {
+    // use a useState hook to maintain our files collection
+    const [files, setFiles] = React.useState(defaultFiles)
+    const [image_urls, setImageUrls] = useState([])
+    // const images = []
+    const server = {
+        // this uploads the image using firebase
+        process: (fieldName, file, metadata, load, error, progress, abort) => {
+            // create a unique id for the file
+            const id = shortid.generate()
+
+            // upload the image to firebase
+            const task = storage.ref().child('products/' + id).put(file, {
+                contentType: 'image/jpeg',
+            })
+
+            // monitor the task to provide updates to FilePond
+            task.on(
+                firebase.storage.TaskEvent.STATE_CHANGED,
+                snap => {
+                    // provide progress updates
+                    progress(true, snap.bytesTransferred, snap.totalBytes)
+                },
+                err => {
+                    // provide errors
+                    error(err.message)
+                },
+                () => {
+                    // the file has been uploaded
+                    task.snapshot.ref.getDownloadURL().then(url => {
+                        setImageUrls(oldArray => [...oldArray, url]);
+                    })
+                    load(id)
+                    // onRequestSave(id)
+                }
+            )
+        },
+
+        // this loads an already uploaded image to firebase
+        load: (source, load, error, progress, abort) => {
+            // reset our progress
+            progress(true, 0, 1024)
+
+            // fetch the download URL from firebase
+            storage.ref()
+                .child('products/' + source)
+                .getDownloadURL()
+                .then(url => {
+                    // fetch the actual image using the download URL
+                    console.log(url)
+                    // and provide the blob to FilePond using the load callback
+                    let xhr = new XMLHttpRequest()
+                    xhr.responseType = 'blob'
+                    xhr.onload = function (event) {
+                        let blob = xhr.response
+                        load(blob)
+                    }
+                    xhr.open('GET', url)
+                    xhr.send()
+                })
+                .catch(err => {
+                    error(err.message)
+                    abort()
+                })
+        },
     }
 
-    const uploadFiles = (e) => {
-        e.preventDefault()
-        console.log(file)
-    }
+    useEffect(() => {
+        console.log(image_urls)
+        setPictures(image_urls)
+    }, [image_urls])
 
     return (
-        <div className="flex flex-col w-full flex-1">
-            <form>
-                <div className="form-group multi-preview">
-                    {(fileArray || []).map(url => (
-                        <img src={url} alt="..." />
-                    ))}
-                </div>
+        <div>
+            <FilePond
+                files={files}
+                allowMultiple={true}
+                maxFiles={4}
+                onupdatefiles={fileItems => {
+                    if (fileItems.length === 0) {
+                        onRequestClear()
+                    }
 
-                <div className="form-group">
-                    <input type="file" className="form-control" onChange={uploadMultipleFiles} multiple />
-                </div>
-                <button type="button" className="btn btn-danger btn-block" onClick={uploadFiles}>Upload</button>
-            </form >
+                    setFiles(fileItems.map(fileItem => fileItem.file))
+                }}
+                server={server} // todo: add custom server functionality using firebase
+            />
         </div>
     )
 }

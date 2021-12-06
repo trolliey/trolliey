@@ -11,7 +11,6 @@ import {
 } from "../constants/productConstants"
 import axios from 'axios'
 import { apiUrl } from "../../utils/apiUrl"
-import { storage } from "../../utils/firebase"
 
 //create a product
 export const create_product_Action = (token, values, additional_features, pictures) => (dispatch) => {
@@ -21,77 +20,41 @@ export const create_product_Action = (token, values, additional_features, pictur
         payload: token
     })
 
-    //Upload Image Function returns a promise  
-    async function uploadImageAsPromise(imageFile) {
-        return new Promise(function (resolve, reject) {
-            const task = storage.ref().child(`products/-${Date.now()}`).put(imageFile);
 
-            task.on(
-                "state_changed",
-                function progress(snapshot) {
-                    const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('percentage upload - ', percentage)
-                },
-
-                function error(err) {
-                    reject(err);
-                },
-
-                async function complete() {
-                    //The getDownloadURL returns a promise and it is resolved to get the image url.
-                    const imageURL = await task.snapshot.ref.getDownloadURL();
-                    resolve(imageURL);
-                }
-            );
-        });
+    const product = {
+        title: values.name,
+        description: values.description,
+        price: values.price,
+        category: values.category,
+        sub_category: values.sub_category,
+        brand: values.brand,
+        condition: values.condition,
+        sub_title: values.sub_title,
+        stock: values.in_stock,
+        discount_price: values.discount,
+        shipping_type: values.shipping_offered,
+        shipping_area: values.shipping_radius,
+        shipping_price: values.shipping_price,
+        additional_features: additional_features,
+        pictures: pictures
     }
-
-    //Handling the files
-    const promises = [];
-    for (const file of pictures) {//Instead of e.target.files, you could also have your files variable
-        promises.push(uploadImageAsPromise(file))
-    }
-
-    //The Promise.all() will stop the execution, until all of the promises are resolved.
-    Promise.all(promises).then((fileURLS) => {
-        //Once all the promises are resolved, you will get the urls in a array.
-        console.log(fileURLS)
-
-        const product = {
-            title: values.name,
-            description: values.description,
-            price: values.price,
-            category: values.category,
-            sub_category: values.sub_category,
-            brand: values.brand,
-            condition: values.condition,
-            sub_title: values.sub_title,
-            stock: values.in_stock,
-            discount_price: values.discount,
-            shipping_type: values.shipping_offered,
-            shipping_area: values.shipping_radius,
-            shipping_price: values.shipping_price,
-            additional_features: additional_features,
-            pictures: fileURLS
+    axios.post(`${apiUrl}/product/create`, {
+        product,
+    }, {
+        headers: {
+            Authorization: token
         }
-        axios.post(`${apiUrl}/product/create`, {
-            product,
-        }, {
-            headers: {
-                Authorization: token
-            }
-        }).then(res => {
-            dispatch({
-                type: CREATE_PRODUCT_SUCCESS,
-                payload: res.status
-            })
-        }).catch(error => {
-            dispatch({
-                type: CREATE_PRODUCT_FAIL,
-                payload: error.response && error.response.data.error
-                    ? error.response.data.error
-                    : error.message,
-            })
+    }).then(res => {
+        dispatch({
+            type: CREATE_PRODUCT_SUCCESS,
+            payload: res.status
+        })
+    }).catch(error => {
+        dispatch({
+            type: CREATE_PRODUCT_FAIL,
+            payload: error.response && error.response.data.error
+                ? error.response.data.error
+                : error.message,
         })
     })
 
