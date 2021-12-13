@@ -70,10 +70,10 @@ export default function Footer() {
                 <div onClick={() => history.push('/')} className="md:flex hidden md:mr-16 mr-2">
                     <img src={logo} alt="logo representing the website icon" className="h-24" />
                 </div>
-                <div className="input flex flex-row py-1 items-center flex-1 bg-white rounded px-2">
+                {/* <div className="input flex flex-row py-1 items-center flex-1 bg-white rounded px-2">
                     <input type="text" className="p-1 rounded outline-none md:mr-4 mr-2 flex-1" placeholder="Type a message ..." />
                     <PaperAirplaneIcon className="text-gray-900" height={20} width={20} />
-                </div>
+                </div> */}
                 <div className="flex md:ml-8 ml-4">
                     <div className="flex flex-row items-center">
                         <div className="bg-blue-dark p-2 mr-2 rounded-full">
