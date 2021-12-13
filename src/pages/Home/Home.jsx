@@ -43,7 +43,7 @@ function Home() {
                                         <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
                                     </div>
                                 ) : (
-                                    <img src={ads?.[0].picture} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                    <img src={ads?.[0]?.picture} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
                                 )
                             }
                         </div>
