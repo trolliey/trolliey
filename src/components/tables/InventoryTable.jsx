@@ -1,6 +1,10 @@
+import { useDisclosure } from '@chakra-ui/react'
 import { ChevronRightIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
+import { remove_product_Action } from '../../redux/actions/productActions'
 import BlueButton from '../buttons/BlueButton'
 
 const statusStyles = {
@@ -13,10 +17,17 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-function InventoryTable({data}) {
+function InventoryTable({ data }) {
 
     const history = useHistory()
-    
+    const dispatch = useDispatch()
+    const _user = useSelector(state => state.user_login)
+    const { userInfo } = _user
+
+    const delete_product = (id) => {
+        dispatch(remove_product_Action(id, userInfo?.token))
+    }
+
     return (
         <div>
 
@@ -24,20 +35,20 @@ function InventoryTable({data}) {
             <div className="shadow sm:hidden">
                 <ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
                     {data?.products?.map((product, index) => (
-                        <li key={product._id}>
+                        <li key={product?._id}>
                             <div className="block px-4 py-4 bg-white hover:bg-gray-50">
                                 <span className="flex items-center space-x-4">
                                     <span className="flex-1 flex space-x-2 truncate">
                                         {/* <CashIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
                                         <p className="flex-shrink-0 h-5 w-5 text-gray-400">{index + 1}</p>
                                         <span className="flex flex-col text-gray-500 text-sm truncate">
-                                            <span className="truncate">{product.title}</span>
+                                            <span className="truncate">{product?.title}</span>
                                             <span>
-                                                <span className="text-gray-900 font-medium">Price - ${product.price}</span>{' '}
-                                                {/* {product.currency} */}
+                                                <span className="text-gray-900 font-medium">Price - ${product?.price}</span>{' '}
+                                                {/* {product?.currency} */}
                                             </span>
-                                            <span className="truncate">{product.category}</span>
-                                            {/* <time dateTime={product.datetime}>{product.date}</time> */}
+                                            <span className="truncate">{product?.category}</span>
+                                            {/* <time dateTime={product?.datetime}>{product?.date}</time> */}
                                         </span>
                                     </span>
                                     <ChevronRightIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -92,7 +103,7 @@ function InventoryTable({data}) {
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
                                     {data?.products?.map((product, index) => (
-                                        <tr key={product._id} className="bg-white">
+                                        <tr key={product?._id} className="bg-white">
                                             <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                                 <div className="flex">
                                                     <div className="group inline-flex space-x-2 truncate text-sm">
@@ -101,35 +112,35 @@ function InventoryTable({data}) {
                                                             aria-hidden="true"
                                                         /> */}
                                                         <p className="flex-shrink-0 h-5 w-5 text-gray-400">{index + 1}</p>
-                                                        <p className="text-gray-500 truncate group-hover:text-gray-900">{product.title}</p>
+                                                        <p className="text-gray-500 truncate group-hover:text-gray-900">{product?.title}</p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                <p className="text-gray-500 truncate group-hover:text-gray-900">{product.category}</p>
+                                                <p className="text-gray-500 truncate group-hover:text-gray-900">{product?.category}</p>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                <span className="text-gray-900 font-medium">{product.stock} </span>
-                                                {/* {product.msrment} */}
+                                                <span className="text-gray-900 font-medium">{product?.stock} </span>
+                                                {/* {product?.msrment} */}
                                             </td>
                                             <td className="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
                                                 <span
                                                     className={classNames(
-                                                        statusStyles[product.status],
+                                                        statusStyles[product?.status],
                                                         'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize'
                                                     )}
                                                 >
-                                                    {product.status}
+                                                    {product?.status}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                <span >{product.orders.length}</span>
+                                                <span >{product?.orders.length}</span>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500 mr-2">
-                                                <button onClick={()=> history.push(`/dashboard/edit-product/${product._id}`)} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-blue-primary">
+                                                <button onClick={() => history.push(`/dashboard/edit-product/${product?._id}`)} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-blue-primary">
                                                     <PencilIcon height={12} width={12} className="" />
                                                 </button>
-                                                <button className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-red-400 ml-2">
+                                                <button onClick={() => delete_product(product?._id)} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-red-400 ml-2">
                                                     <TrashIcon height={12} width={12} className="" />
                                                 </button>
                                             </td>
@@ -161,6 +172,8 @@ function InventoryTable({data}) {
                     </div>
                 </div>
             </div>
+
+
 
         </div>
     )

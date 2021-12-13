@@ -7,7 +7,10 @@ import {
     GET_ALL_PRODUCTS_SUCCESS,
     GET_SINGLE_PRODUCT_FAIL,
     GET_SINGLE_PRODUCT_REQUEST,
-    GET_SINGLE_PRODUCT_SUCCESS
+    GET_SINGLE_PRODUCT_SUCCESS,
+    REMOVE_PRODUCT_FAIL,
+    REMOVE_PRODUCT_REQUEST,
+    REMOVE_PRODUCT_SUCCESS
 } from "../constants/productConstants"
 
 //create productr reducer
@@ -47,6 +50,21 @@ export const get_single_product_Reducer = (state = { loading: false }, action) =
             return { loading: false, product: action.payload }
         case GET_SINGLE_PRODUCT_FAIL:
             return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+//remove product redcuert
+//create product reducer
+export const remove_product_Reducer = (state = { remove_loading: false }, action) => {
+    switch (action.type) {
+        case REMOVE_PRODUCT_REQUEST:
+            return { remove_loading: true }
+        case REMOVE_PRODUCT_SUCCESS:
+            return { remove_loading: false, removed: action.payload, message: 'Removed successfully' }
+        case REMOVE_PRODUCT_FAIL:
+            return { remove_loading: false, remove_error: action.payload }
         default:
             return state
     }
