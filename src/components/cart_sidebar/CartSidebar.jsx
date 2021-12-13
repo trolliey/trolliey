@@ -7,9 +7,11 @@ import RedButton from '../buttons/RedButton'
 import { getBasketTotal } from '../../utils/getBasketTotal'
 import { useDispatch } from 'react-redux'
 import { remove_from_cart_Action } from '../../redux/actions/cartActions'
+import { useHistory } from 'react-router'
 
 export default function CartSidebar({ open, setOpen, cart }) {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const remove_from_cart = () =>{
         dispatch(remove_from_cart_Action())
@@ -111,7 +113,7 @@ export default function CartSidebar({ open, setOpen, cart }) {
                                         </div>
                                         <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                                         <div className="mt-6">
-                                            <BlueButton text="Checkout" className="flex justify-center w-full" />
+                                            <BlueButton text="Checkout" className="flex justify-center w-full" onClick={() => history.push('/payment')} />
                                         </div>
                                         <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
                                             <p>

@@ -30,6 +30,7 @@ import AboutStore from './pages/Single_Store/AboutStore';
 import StoreReviews from './pages/Single_Store/StoreReviews';
 import Categories from './pages/categories/Categories';
 import EditProduct from './dashboard/EditProduct/EditProduct';
+import Payment from './pages/Payment/Payment';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path='/contact' component={Contact} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
+        <Route path='/payment' component={Payment} />
 
         {/* // user dashboard routes */}
         <Route path='/dashboard/history' component={History} />
