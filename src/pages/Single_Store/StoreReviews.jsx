@@ -111,7 +111,7 @@ function StoreReviews() {
                                                             likes={review.likes.length}
                                                             dislikes={review.disliked.length}
                                                             pro_pic={review.photoURL}
-
+                                                            id={review._id}
                                                         />
 
                                                     </div>

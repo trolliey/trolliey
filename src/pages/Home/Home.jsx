@@ -128,7 +128,7 @@ function Home() {
 
                 {/* //two Latest categories */}
                 <div className="grid md:grid-cols-3 grid-cols-1 md:gap-8 gap-4 md:pt-16 pt-8">
-                    <div className="col-span-1 bg-gray-100 rounded md:h-40 h-32 cursor-pointer grid items-center content-center justify-center">
+                    <div className="col-span-1 bg-gray-100 rounded md:h-40 h-32 cursor-pointer grid items-center content-center justify-center overflow-hidden">
                         {
                             ads_error ? (
                                 <div className="grid justify-center items-center content-center w-full">
