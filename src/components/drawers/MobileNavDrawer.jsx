@@ -11,9 +11,12 @@ import {
 import { MenuIcon } from '@heroicons/react/outline'
 import UserAvatar from '../user_avatar/UserAvatar'
 import Username from '../username/Username'
+import BlueButton from '../buttons/BlueButton'
+import { useHistory } from 'react-router'
 
 function MobileNavDrawer({ user }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const history = useHistory()
 
     return (
         <>
@@ -35,13 +38,24 @@ function MobileNavDrawer({ user }) {
                             <UserAvatar size="sm" />
                             {
                                 user ? (
-                                    <Username name={'tatendaZw'} />
+                                    <Username name={user?.user?.displayName} />
                                 ) : (
                                     <Username name={'Guest User'} />
                                 )
                             }
                         </div>
                         <Divider />
+                       <div className="mt-2 flex flex-col items-center">
+                       {
+                            user?.user.role === 'user' ? (
+                                <BlueButton
+                                    text="Become a seller"
+                                    outline
+                                    onClick={() => history.push('/dashboard/settings')}
+                                />
+                            ) : null
+                        }
+                       </div>
 
                     </DrawerBody>
                 </DrawerContent>

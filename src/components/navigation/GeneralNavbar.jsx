@@ -47,7 +47,7 @@ function GeneralNavbar() {
 
             {/* //drawer when on moblie view */}
             <div className="md:hidden flex">
-                <MobileNavDrawer />
+                <MobileNavDrawer user={userInfo} />
             </div>
 
             {/* //sidebar when cart is open */}
@@ -55,6 +55,7 @@ function GeneralNavbar() {
                 <CartSidebar open={open_cart} setOpen={setOpenCart} cart={basket} />
             </div>
 
+            <div className="md:flex hidden">
             {
                 userInfo?.user.role === 'user' ? (
                     <BlueButton 
@@ -64,6 +65,7 @@ function GeneralNavbar() {
                         />
                 ) : null
             }
+            </div>
         </div>
     )
 }
