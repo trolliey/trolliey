@@ -13,6 +13,7 @@ import UserAvatar from '../user_avatar/UserAvatar'
 import Username from '../username/Username'
 import BlueButton from '../buttons/BlueButton'
 import { useHistory } from 'react-router'
+import logo from '../../assets/logo.png'
 
 function MobileNavDrawer({ user }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -32,13 +33,16 @@ function MobileNavDrawer({ user }) {
                 <DrawerContent>
                     <DrawerCloseButton />
                     <DrawerBody>
-                        <p className="text-lg font-semibold text-gray-700 uppercase mx-auto text-center my-4">logo</p>
+                        {/* <p className="text-lg font-semibold text-gray-700 uppercase mx-auto text-center my-4">logo</p> */}
+                        <div className="flex h-24">
+                            <img src={logo} alt="logo for mobile view" className="object-contain mx-auto" />
+                        </div>
                         <Divider />
                         <div className="flex flex-row items-center my-4">
-                            <UserAvatar size="sm" />
+                            <UserAvatar size="sm" name={user?.user?.displayName} />
                             {
                                 user ? (
-                                    <Username name={user?.user?.displayName} />
+                                    <Username  name={user?.user?.displayName} />
                                 ) : (
                                     <Username name={'Guest User'} />
                                 )
