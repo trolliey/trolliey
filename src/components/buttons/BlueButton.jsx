@@ -11,7 +11,7 @@ function BlueButton({ outline, text, onClick, className, loading }) {
                     <p className="font-semibold capitalize">Loading...</p>
                 </div>
             ) : (
-                <p className="font-semibold md:p-3 p-2 capitalize"> {text}</p>
+                <p className="font-semibold md:p-3 p-2 capitalize text-sm"> {text}</p>
             )}
         </button>
     )

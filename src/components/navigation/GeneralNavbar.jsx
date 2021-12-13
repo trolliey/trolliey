@@ -6,6 +6,7 @@ import { useHistory } from 'react-router'
 import UserDropdown from '../dropdowns/UserDropdown'
 import MobileNavDrawer from '../drawers/MobileNavDrawer'
 import logo from '../../assets/logo.png'
+import BlueButton from '../buttons/BlueButton'
 
 function GeneralNavbar() {
 
@@ -14,7 +15,7 @@ function GeneralNavbar() {
     const [open_cart, setOpenCart] = useState(false)
     const history = useHistory()
     const _logged_in = useSelector(state => state.user_login)
-    const {userInfo}= _logged_in
+    const { userInfo } = _logged_in
 
     const toggle_cart = () => {
         !open_cart ? setOpenCart(true) : setOpenCart(false)
@@ -53,6 +54,16 @@ function GeneralNavbar() {
             <div>
                 <CartSidebar open={open_cart} setOpen={setOpenCart} cart={basket} />
             </div>
+
+            {
+                userInfo?.user.role === 'user' ? (
+                    <BlueButton 
+                        text="Become a seller" 
+                        outline 
+                        onClick={() => history.push('/dashboard/settings')}
+                        />
+                ) : null
+            }
         </div>
     )
 }
