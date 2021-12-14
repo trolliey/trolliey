@@ -195,10 +195,16 @@ function ProductDescription() {
 
                                 <div className="mt-6">
                                     {/* Colors */}
-                                    <div className="mt-10 flex md:flex-row flex-col md:space-x-4 space-x-0">
-                                        <BlueButton text="Add to cart" className="flex-1" onClick={add_to_basket} />
-                                        <BlueButton text="Compare" outline onClick={add_to_compare} />
-                                        <RedButton text={<HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />} outline />
+                                    <div className="mt-10 grid grid-cols-4 gap-4">
+                                        <div className="md:col-span-2 col-span-4">
+                                            <BlueButton text="Add to cart" className="flex-1 w-full" onClick={add_to_basket} />
+                                        </div>
+                                        <div className="md:col-span-1 col-span-3">
+                                            <BlueButton text="Compare" className="w-full" outline onClick={add_to_compare} />
+                                        </div>
+                                        <div className="col-span-1 items-end self-end w-full">
+                                            <RedButton className="self-end ml-auto" text={<HeartIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />} outline />
+                                        </div>
 
                                     </div>
                                     <div className="my-4"></div>
