@@ -1,4 +1,4 @@
-import { GET_All_CATEGORIES_FAIL, GET_All_CATEGORIES_REQUEST, GET_All_CATEGORIES_SUCCESS } from "../constants/categoryConstants"
+import { ADD_CATEGORY_FAIL, ADD_CATEGORY_REQUEST, ADD_CATEGORY_SUCCESS, GET_All_CATEGORIES_FAIL, GET_All_CATEGORIES_REQUEST, GET_All_CATEGORIES_SUCCESS } from "../constants/categoryConstants"
 
 //geth all categories redicer
 export const get_all_categories_Reducer = (state = { cat_loading: false }, action) => {
@@ -12,4 +12,18 @@ export const get_all_categories_Reducer = (state = { cat_loading: false }, actio
         default:
             return state
     }
-}   
+}
+
+//geth all categories redicer
+export const add_category_Reducer = (state = { add_cat_loading: false }, action) => {
+    switch (action.type) {
+        case ADD_CATEGORY_REQUEST:
+            return { add_cat_loading: true }
+        case ADD_CATEGORY_SUCCESS:
+            return { add_cat_loading: false, category: action.payload, add_cat_message: 'Category added!' }
+        case ADD_CATEGORY_FAIL:
+            return { add_cat_loading: false, add_cat_error: action.payload }
+        default:
+            return state
+    }
+}

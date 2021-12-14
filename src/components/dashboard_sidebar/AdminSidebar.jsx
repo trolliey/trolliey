@@ -17,6 +17,7 @@ import logo from '../../assets/icon.png'
 const navigation = [
     { name: 'Home', href: '/admin/home', icon: HomeIcon, current: false },
     { name: 'Products', href: '/admin/products', icon: DatabaseIcon, current: false },
+    { name: 'Categories', href: '/admin/categories', icon: DatabaseIcon, current: false },
     { name: 'Ads', href: '/admin/ads', icon: ClipboardListIcon, current: false },
     { name: 'Stores', href: '/admin/stores', icon: ShoppingCartIcon, current: false },
     { name: 'Users', href: '/admin/users', icon: UserGroupIcon, current: false },
