@@ -1,8 +1,13 @@
 import React from 'react'
 import Footer from '../components/navigation/Footer'
 import GeneralNavbar from '../components/navigation/GeneralNavbar'
+import CompareFooter from '../components/compare_item/CompareFooter'
+import { useSelector } from 'react-redux'
 
 function GeneralLayout({children, no_text}) {
+    const add_to_compare = useSelector(state => state.add_to_compare)
+    const { compare_basket } = add_to_compare
+
     return (
         <div>
             <div className="z-50 sticky top-0 w-full">
@@ -17,6 +22,9 @@ function GeneralLayout({children, no_text}) {
             <div className="footer">
                 <Footer/>
             </div>
+            <>
+                {compare_basket.length > 0 && <CompareFooter items={compare_basket}/>}
+            </>
         </div>
     )
 }

@@ -13,6 +13,7 @@ import { useHistory, useParams } from 'react-router'
 import { Spinner } from '@chakra-ui/spinner'
 import moment from 'moment'
 import ImageMagnifier from '../../components/image_magnifier/ImageMagnifier'
+import { add_to_compare_Action } from '../../redux/actions/compareActions'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -20,8 +21,8 @@ function classNames(...classes) {
 
 function ProductDescription() {
     const _product = useSelector(state => state.get_single_product)
-    const {loading, error, product} = _product
-    const {id} = useParams()
+    const { loading, error, product } = _product
+    const { id } = useParams()
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -38,40 +39,55 @@ function ProductDescription() {
         dispatch(add_to_cart_Action(item))
     }
 
-    useEffect(()=>{
-        dispatch(get_single_product_Action(id))
-    },[dispatch, id])
+    const add_to_compare = () => {
+        const item = {
+            pictures: product?.product?.pictures,
+            rating: product?.product?.ratings.length,
+            description: product?.product?.description,
+            price: product?.product?.price,
+            id: product?.product?.id,
+            name: product?.product?.title,
+            features: product?.product.additional_features
+        }
+        dispatch(add_to_compare_Action(item))
+    }
 
-    if(loading){
-        return(
+    useEffect(() => {
+        dispatch(get_single_product_Action(id))
+    }, [dispatch, id])
+
+    console.log(product)
+
+    if (loading) {
+        return (
             <GeneralLayout>
                 <div className="flex bg-white md:p-8 px-4 w-full rounded">
-                <div className="bg-white w-full">
-                    <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
-                        <div className="flex flex-col items-center">
-                            <Spinner
-                                colorScheme="blue"
-                                size="lg"
-                                thickness={3}
-                            />
+                    <div className="bg-white w-full">
+                        <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
+                            <div className="flex flex-col items-center">
+                                <Spinner
+                                    colorScheme="blue"
+                                    size="lg"
+                                    thickness={3}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </GeneralLayout>
         )
     }
 
-    if(error){
-        return(
+    if (error) {
+        return (
             <GeneralLayout>
                 <div className="flex bg-white md:p-8 px-4 w-full rounded">
-                <div className="bg-white w-full">
-                    <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
-                        <p className="text-center p-2 bg-red-100 rounded text-gray-700 font-semibold text-lg">There seems to be a problem. Try reloading the page!</p>
+                    <div className="bg-white w-full">
+                        <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
+                            <p className="text-center p-2 bg-red-100 rounded text-gray-700 font-semibold text-lg">There seems to be a problem. Try reloading the page!</p>
+                        </div>
                     </div>
                 </div>
-            </div>
             </GeneralLayout>
         )
     }
@@ -116,7 +132,7 @@ function ProductDescription() {
                                     {product?.product?.pictures.map((image, index) => (
                                         <Tab.Panel key={index} className=" rounded">
                                             <>
-                                            <ImageMagnifier src={image} height={'100%'} width={"100%"} />
+                                                <ImageMagnifier src={image} height={'100%'} width={"100%"} />
                                             </>
                                             {/* <img
                                                 src={image}
@@ -178,9 +194,9 @@ function ProductDescription() {
 
                                 <div className="mt-6">
                                     {/* Colors */}
-                                    <div className="mt-10 flex sm:flex-col1">
+                                    <div className="mt-10 flex md:flex-row flex-col md:space-x-4 space-x-0">
                                         <BlueButton text="Add to cart" className="flex-1" onClick={add_to_basket} />
-                                        <div className="mx-1"></div>
+                                        <BlueButton text="Compare" outline onClick={add_to_compare} />
                                         <RedButton text={<HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />} outline />
 
                                     </div>
@@ -205,7 +221,7 @@ function ProductDescription() {
                                     </div>
                                 </div>
                                 <div className="flex pt-4 border-t border-gray-200">
-                                    
+
                                 </div>
                                 <div onClick={() => history.push(`/stores/single/${product?.product?.owner}`)} className="flex flex-row mt-8 space-x-4 items-center p-4 rounded border border-gray-200 hover:bg-gray-100 cursor-pointer">
                                     <UserCircleIcon className="text-gray-700" height={40} width={40} />
@@ -221,41 +237,41 @@ function ProductDescription() {
                                     </h2>
 
                                     <div className="border-t divide-y divide-gray-200">
-                                            <Disclosure as="div">
-                                                {({ open }) => (
-                                                    <>
-                                                        <h3>
-                                                            <Disclosure.Button className="group relative w-full py-6 flex justify-between items-center text-left">
-                                                                <span
-                                                                    className={classNames(open ? 'text-blue-primary' : 'text-gray-900', 'text-sm font-medium')}
-                                                                >
-                                                                    Product Features
-                                                                </span>
-                                                                <span className="ml-6 flex items-center">
-                                                                    {open ? (
-                                                                        <MinusSmIcon
-                                                                            className="block h-6 w-6 text-blue-primary group-hover:text-blue-primary"
-                                                                            aria-hidden="true"
-                                                                        />
-                                                                    ) : (
-                                                                        <PlusSmIcon
-                                                                            className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                                                                            aria-hidden="true"
-                                                                        />
-                                                                    )}
-                                                                </span>
-                                                            </Disclosure.Button>
-                                                        </h3>
-                                                        <Disclosure.Panel as="div" className="pb-6 prose prose-sm">
-                                                            <ul>
-                                                                {product?.product?.additional_features.map((item) => (
-                                                                    <li key={item}>{item}</li>
-                                                                ))}
-                                                            </ul>
-                                                        </Disclosure.Panel>
-                                                    </>
-                                                )}
-                                            </Disclosure>
+                                        <Disclosure as="div">
+                                            {({ open }) => (
+                                                <>
+                                                    <h3>
+                                                        <Disclosure.Button className="group relative w-full py-6 flex justify-between items-center text-left">
+                                                            <span
+                                                                className={classNames(open ? 'text-blue-primary' : 'text-gray-900', 'text-sm font-medium')}
+                                                            >
+                                                                Product Features
+                                                            </span>
+                                                            <span className="ml-6 flex items-center">
+                                                                {open ? (
+                                                                    <MinusSmIcon
+                                                                        className="block h-6 w-6 text-blue-primary group-hover:text-blue-primary"
+                                                                        aria-hidden="true"
+                                                                    />
+                                                                ) : (
+                                                                    <PlusSmIcon
+                                                                        className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                                                                        aria-hidden="true"
+                                                                    />
+                                                                )}
+                                                            </span>
+                                                        </Disclosure.Button>
+                                                    </h3>
+                                                    <Disclosure.Panel as="div" className="pb-6 prose prose-sm">
+                                                        <ul>
+                                                            {product?.product?.additional_features.map((item) => (
+                                                                <li key={item}>{item}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </Disclosure.Panel>
+                                                </>
+                                            )}
+                                        </Disclosure>
                                     </div>
                                 </section>
                             </div>

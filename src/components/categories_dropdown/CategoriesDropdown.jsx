@@ -81,7 +81,13 @@ function CategoriesDropdown({ open, name }) {
                                             category.sub_categories.map(sub_cat => (
                                                 <div className="flex flex-row items-center">
                                                     <ChevronRightIcon className="text-gray-700" height={12} width={12} />
-                                                    <p key={sub_cat.sub_category_id} className="text-gray-700 font-semibold my-2 text-sm ml-2 capitalize">{sub_cat.sub_category}</p>
+                                                    {
+                                                        category.sub_categories.length < 1 ? (
+                                                            <p className="text-gray-700 text-sm font-semibold text-center">No Sub-Categories</p>
+                                                        ) : (
+                                                            <p key={sub_cat.sub_category_id} className="text-gray-700 font-semibold my-2 text-sm ml-2 capitalize">{sub_cat.sub_category}</p>
+                                                        )
+                                                    }
                                                 </div>
                                             ))
                                         }

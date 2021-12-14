@@ -4,6 +4,7 @@ import { create_new_add_Reducer, edit_single_ad_Reducer, get_all_ads_Reducer } f
 import { login_user_Reducer, register_user_Reducer } from "./reducers/authReducers";
 import { add_to_cart_Reducer, remove_from_cart_Reducer } from "./reducers/cartReducer";
 import { add_category_Reducer, get_all_categories_Reducer } from "./reducers/categoryReducers";
+import { add_to_compare_Reducer } from "./reducers/compareReducers";
 import { get_featured_products_Reducer } from "./reducers/featuredProductsReducers";
 import { create_a_product_Reducer, get_all_products_Reducer, get_single_product_Reducer, remove_product_Reducer } from "./reducers/productReducer";
 import { create_a_review_Reducer, get_all_store_reviews_Reducer, like_a_review_Reducer } from "./reducers/reviewReducers";
@@ -30,6 +31,8 @@ const reducer = combineReducers({
   //fot adding to cart and removing from cart
   add_to_cart: add_to_cart_Reducer,
   remove_from_cart: remove_from_cart_Reducer,
+
+  add_to_compare: add_to_compare_Reducer,
 
   //for users
   get_all_users: get_all_users_Reducer,

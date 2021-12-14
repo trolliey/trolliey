@@ -32,6 +32,7 @@ import Categories from './pages/categories/Categories';
 import EditProduct from './dashboard/EditProduct/EditProduct';
 import Payment from './pages/Payment/Payment';
 import ManageCategories from './admin/ManageCategories';
+import Compare from './pages/Compare/Compare';
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
         <AdminRoute path='/admin/categories' component={ManageCategories} />
         <Route exact path='/admin' component={AdminLogin} />
 
+        <Route path='/compare' component={Compare} />
         <Route path='/categories' component={Categories} />
         <Route path='/explore' component={Explore} />
         <Route path='/about' component={About} />
