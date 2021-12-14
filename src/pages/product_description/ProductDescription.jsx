@@ -14,6 +14,7 @@ import { Spinner } from '@chakra-ui/spinner'
 import moment from 'moment'
 import ImageMagnifier from '../../components/image_magnifier/ImageMagnifier'
 import { add_to_compare_Action } from '../../redux/actions/compareActions'
+import BlackButton from '../../components/buttons/BlackButton'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -200,6 +201,8 @@ function ProductDescription() {
                                         <RedButton text={<HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />} outline />
 
                                     </div>
+                                    <div className="my-4"></div>
+                                    <BlackButton text='Buy Item Now' className="w-full flex-1" onClick={()=> history.push('/payment')} />
                                 </div>
 
                                 <div className="md:my-8 my-4 pt-4 border-t border-gray-200">
