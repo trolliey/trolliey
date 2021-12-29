@@ -16,7 +16,7 @@ function CategoriesDropdown({ open, name }) {
     useEffect(() => {
         dispatch(get_all_categories_Action())
     }, [dispatch])
-    console.log(categories?.categories)
+    // console.log(categories?.categories)
 
     const search_by_category = (category) => {
         dispatch(set_search_query_Action(category))
@@ -76,10 +76,10 @@ function CategoriesDropdown({ open, name }) {
                                     <p className="text-gray-700 text-sm font-semibold capitalize">{category.category}</p>
                                     <div className="flex-1"></div>
                                     <ChevronRightIcon className="text-gray-700" height={16} width={16} />
-                                    <div class="absolute bg-white border border-grey-100 px-4 py-2 -right-28 hover-target shadow rounded">
+                                    <div className="absolute bg-white border border-grey-100 px-4 py-2 -right-28 hover-target shadow rounded">
                                         {
-                                            category.sub_categories.map(sub_cat => (
-                                                <div className="flex flex-row items-center">
+                                            category.sub_categories.map((sub_cat, index) => (
+                                                <div key={index} className="flex flex-row items-center">
                                                     <ChevronRightIcon className="text-gray-700" height={12} width={12} />
                                                     {
                                                         category.sub_categories.length < 1 ? (

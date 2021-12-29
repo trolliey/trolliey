@@ -177,10 +177,10 @@ function ProductDescription() {
                                 <div className="mt-6">
                                     <h3 className="sr-only">Description</h3>
 
-                                    <div
+                                    {/* <div
                                         className="text-base text-gray-700 space-y-6"
                                         dangerouslySetInnerHTML={{ __html: product?.product?.description }}
-                                    />
+                                    /> */}
                                 </div>
 
                                 <div className="mt-6 border-t border-gray-200 pt-4 flex flex-row justify-between">
@@ -199,12 +199,17 @@ function ProductDescription() {
                                         <div className="md:col-span-2 col-span-4">
                                             <BlueButton text="Add to cart" className="flex-1 w-full" onClick={add_to_basket} />
                                         </div>
-                                        <div className="md:col-span-1 col-span-3">
-                                            <BlueButton text="Compare" className="w-full" outline onClick={add_to_compare} />
-                                        </div>
-                                        <div className="col-span-1 items-end self-end w-full">
-                                            <RedButton className="self-end ml-auto" text={<HeartIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />} outline />
-                                        </div>
+                                       
+                                        <div className="md:col-span-2 col-start-4 flex flex-row items-center w-full">
+                                            <div onClick={add_to_compare} className="text-blue-primary flex-1 border border-blue-primary rounded-l p-2 text-center font-semibold capitalize hover:bg-blue-primary hover:text-white cursor-pointer">
+                                                compare
+                                            </div>
+                                            <div className="flex">
+                                                <div className="border border-new-primary p-2 text-new-primary rounded-r hover:bg-new-primary hover:text-white cursor-pointer">
+                                                    <HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                                                </div>
+                                            </div>
+                                        </div>   
 
                                     </div>
                                     <div className="my-4"></div>

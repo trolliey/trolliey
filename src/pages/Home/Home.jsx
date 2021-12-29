@@ -37,25 +37,25 @@ function Home() {
                             ads?.length < 1 ? (
                                 <div className="flex content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
                                     <img src={logo} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
-                                    </div>
-                            ) :
-                            <>
-                                <div className="flex content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
-                                    {
-                                        ads_loading ? (
-                                            <div className="grid justify-center items-center content-center w-full">
-                                                <Spinner size="xl" thickness={3} />
-                                            </div>
-                                        ) : ads_error ? (
-                                            <div className="grid justify-center items-center content-center w-full">
-                                                <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
-                                            </div>
-                                        ) : (
-                                            <img src={ads?.[0]?.picture} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
-                                        )
-                                    }
                                 </div>
-                            </>
+                            ) :
+                                <>
+                                    <div className="flex content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
+                                        {
+                                            ads_loading ? (
+                                                <div className="grid justify-center items-center content-center w-full">
+                                                    <Spinner size="xl" thickness={3} />
+                                                </div>
+                                            ) : ads_error ? (
+                                                <div className="grid justify-center items-center content-center w-full">
+                                                    <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
+                                                </div>
+                                            ) : (
+                                                <img src={ads?.[0]?.picture} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                            )
+                                        }
+                                    </div>
+                                </>
                         }
                     </div>
                 </div>
@@ -103,7 +103,14 @@ function Home() {
                                 <img src={ads?.[1]?.picture} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
 
                             ) : (
-                                <p className="font-semibold">Contact us to add an ad here</p>
+                                <div className="font-semibold" style = {{
+                                    backgroundImage: logo,
+                                    backgroundSize:'100%',
+                                    objectFit:'cover'
+                                }} >
+                                    {/* <img src={logo} alt="banner showing ads for the home page" className="flex-1 opacity-70 max-h-full flex-shrink-0 object-cover w-auto h-auto" /> */}
+                                    <p className=''>Contact us to add an ad here</p>
+                                </div>
 
                             )
                         }
