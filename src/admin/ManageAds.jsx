@@ -55,6 +55,8 @@ function ManageAds() {
                         goes_to={ads?.[0]?.link_to}
                         remove_on={ads?.[0]?.delete_at}
                         added_on={moment(ads?.[0]?.createdAt).fromNow()}
+                        heading={'Special discount on sale'}
+                        body={'Best collection for kids'}
                     />
                     <div className="picture items-center mx-auto my-4 md:max-h-96 max-h-48 md:h-96 h-auto w-full">
                         {ads_loading ? (
@@ -88,6 +90,8 @@ function ManageAds() {
                         goes_to={ads?.[1]?.link_to}
                         remove_on={ads?.[1]?.delete_at}
                         added_on={moment(ads?.[1]?.createdAt).fromNow()}
+                        heading={'Special discount on sale'}
+                        body={'Best collection for kids'}
                     />
                     <div className="picture items-center mx-auto my-4  w-full">
                         {ads_loading ? (
@@ -124,6 +128,8 @@ function ManageAds() {
                         goes_to={ads?.[2]?.link_to}
                         remove_on={ads?.[2]?.delete_at}
                         added_on={moment(ads?.[2]?.createdAt).fromNow()}
+                        heading={'Special discount on sale'}
+                        body={'Best collection for kids'}
                     />
                     <div className="picture items-center mx-auto my-4  w-full">
                         {ads_loading ? (
@@ -160,6 +166,8 @@ function ManageAds() {
                         goes_to={ads?.[3]?.link_to}
                         remove_on={ads?.[3]?.delete_at}
                         added_on={moment(ads?.[3]?.createdAt).fromNow()}
+                        heading={'Special discount on sale'}
+                        body={'Best collection for kids'}
                     />
                     <div className="picture items-center mx-auto my-4  w-full">
                         {ads_loading ? (
@@ -196,6 +204,8 @@ function ManageAds() {
                         goes_to={ads?.[4]?.link_to}
                         remove_on={ads?.[4]?.delete_at}
                         added_on={moment(ads?.[4]?.createdAt).fromNow()}
+                        heading={'Special discount on sale'}
+                        body={'Best collection for kids'}
                     />
                     <div className="picture items-center mx-auto my-4  w-full">
                         {ads_loading ? (
@@ -232,6 +242,8 @@ function ManageAds() {
                         goes_to={ads?.[5]?.link_to}
                         remove_on={ads?.[5]?.delete_at}
                         added_on={moment(ads?.[5]?.createdAt).fromNow()}
+                        heading={'Special discount on sale'}
+                        body={'Best collection for kids'}
                     />
                     <div className="picture items-center mx-auto my-4  w-full">
                         {ads_loading ? (

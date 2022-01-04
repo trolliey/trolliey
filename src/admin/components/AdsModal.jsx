@@ -12,6 +12,8 @@ function AdsModal({ open, setOpen, ad_id, loading, error, message }) {
     const [name, setName] = useState('')
     const [link, setLink] = useState('')
     const [deadline, setDeadline] = useState('')
+    const [heading, setHeading] = useState('')
+    const [body, setBody] = useState('')
     const [picture, setPicture] = useState()
 
     const onDrop = useCallback((acceptedFiles) => {
@@ -37,7 +39,7 @@ function AdsModal({ open, setOpen, ad_id, loading, error, message }) {
         if (ad_id) {
             dispatch(edit_single_ad_Action(ad_id, picture, name, link, deadline))
         } else {
-            dispatch(create_new_add_Action(picture, name, link, deadline))
+            dispatch(create_new_add_Action(picture, name, link, deadline, heading, body))
         }
     }
 
@@ -93,6 +95,17 @@ function AdsModal({ open, setOpen, ad_id, loading, error, message }) {
                                                 type="text"
                                                 className="outline-none p-2 my-2 rounded border border-gray-300 w-full placeholder-gray-400"
                                                 onChange={e => setDeadline(e.target.value)}
+                                                placeholder="enter ad owner deadline" />
+
+                                            <input
+                                                type="text"
+                                                className="outline-none p-2 my-2 rounded border border-gray-300 w-full placeholder-gray-400"
+                                                onChange={e => setHeading(e.target.value)}
+                                                placeholder="enter ad owner deadline" />
+                                            <input
+                                                type="text"
+                                                className="outline-none p-2 my-2 rounded border border-gray-300 w-full placeholder-gray-400"
+                                                onChange={e => setBody(e.target.value)}
                                                 placeholder="enter ad owner deadline" />
                                             <p className="text-left text-gray-700 my-4 capitalize">pick ad image</p>
                                             <div {...getRootProps()} className="p-4 border border-gray-300 rounded cursor-pointer hover:bg-gray-50">

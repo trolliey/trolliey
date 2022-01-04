@@ -76,7 +76,7 @@ function CategoriesDropdown({ open, name }) {
                                     <p className="text-gray-700 text-sm font-semibold capitalize">{category.category}</p>
                                     <div className="flex-1"></div>
                                     <ChevronRightIcon className="text-gray-700" height={16} width={16} />
-                                    <div className="absolute bg-white border border-grey-100 px-4 py-2 -right-28 hover-target shadow rounded">
+                                    <div className="absolute bg-white border border-grey-100 px-4 py-2 -right-16 hover-target shadow rounded">
                                         {
                                             category.sub_categories.map((sub_cat, index) => (
                                                 <div key={index} className="flex flex-row items-center">

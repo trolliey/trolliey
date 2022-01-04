@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { get_all_ads_Action } from '../../redux/actions/adActions'
 import { Spinner } from '@chakra-ui/react'
 import logo from '../../assets/logo.png'
+import Courosel from '../../components/courosel/Courosel'
+import banner from '../../assets/main-banner.jpg'
 
 function Home() {
 
@@ -35,8 +37,9 @@ function Home() {
                         <SearchInput />
                         {
                             ads?.length < 1 ? (
-                                <div className="flex content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
-                                    <img src={logo} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                <div className="grid content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
+                                    <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                    {/* <Courosel data={ads}/> */}
                                 </div>
                             ) :
                                 <>
@@ -51,7 +54,7 @@ function Home() {
                                                     <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
                                                 </div>
                                             ) : (
-                                                <img src={ads?.[0]?.picture} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                                <img src={ads?.[0]?.image} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
                                             )
                                         }
                                     </div>
@@ -100,7 +103,7 @@ function Home() {
                                     <Spinner size="xl" thickness={3} />
                                 </div>
                             ) : ads?.[1] ? (
-                                <img src={ads?.[1]?.picture} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                <img src={ads?.[1]?.image} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
 
                             ) : (
                                 <div className="font-semibold" style = {{
@@ -126,7 +129,7 @@ function Home() {
                                     <Spinner size="xl" thickness={3} />
                                 </div>
                             ) : ads?.[2] ? (
-                                <img src={ads?.[2]?.picture} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                <img src={ads?.[2]?.image} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
 
                             ) : (
                                 <p className="font-semibold">Contact us to add an ad here</p>
@@ -156,7 +159,7 @@ function Home() {
                                     <Spinner size="xl" thickness={3} />
                                 </div>
                             ) : ads?.[3] ? (
-                                <img src={ads?.[3]?.picture} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                <img src={ads?.[3]?.image} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
 
                             ) : (
                                 <p className="font-semibold">Contact us to add an ad here</p>
@@ -175,7 +178,7 @@ function Home() {
                                     <Spinner size="xl" thickness={3} />
                                 </div>
                             ) : ads?.[4] ? (
-                                <img src={ads?.[4]?.picture} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                <img src={ads?.[4]?.image} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
 
                             ) : (
                                 <p className="font-semibold">Contact us to add an ad here</p>
