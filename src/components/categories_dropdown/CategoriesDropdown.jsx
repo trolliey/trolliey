@@ -59,7 +59,7 @@ function CategoriesDropdown({ open, name }) {
     }
 
     return (
-        <div onClick={show_categories ? () => setShowCategories(false) : () => setShowCategories(true)} className="w-full relative flex flex-col">
+        <div onClick={show_categories ? () => setShowCategories(false) : () => setShowCategories(true)} className="w-full relative flex flex-col z-40">
             <button className="flex flex-row items-center w-full justify-around bg-blue-primary md:p-3 p-2 rounded outline-none border-none">
                 {!name && <MenuIcon className="text-white " height={16} width={16} />}
                 <p className="lg:flex md:hidden hidden capitalize text-white text-sm font-semibold">{name ? name : "shop by categories"}</p>
@@ -71,11 +71,11 @@ function CategoriesDropdown({ open, name }) {
                     <div className="absolute w-full bg-white border border-gray-300 rounded mt-12">
                         {
                             categories?.categories.map((category, index) => (
-                                <div key={index} onClick={() => search_by_category(category.category)} className="relative hover-trigger flex flex-row items-center p-2 border-b border-gray-20 cursor-pointer hover:bg-gray-100">
-                                    <ArrowRightIcon className="text-gray-700 mr-3" height={12} width={12} />
-                                    <p className="text-gray-700 text-sm font-semibold capitalize">{category.category}</p>
+                                <div key={index} onClick={() => search_by_category(category.category)} className="relative hover-trigger flex flex-row p-2 border-b border-gray-20 cursor-pointer hover:bg-gray-100">
+                                    <ArrowRightIcon className="text-gray-700 mr-3 self-center" height={12} width={12} />
+                                    <p className="text-gray-700 text-sm font-semibold capitalize self-center">{category.category}</p>
                                     <div className="flex-1"></div>
-                                    <ChevronRightIcon className="text-gray-700" height={16} width={16} />
+                                    <ChevronRightIcon className="text-gray-700 self-center" height={16} width={16} />
                                     <div className="absolute bg-white border border-grey-100 px-4 py-2 -right-16 hover-target shadow rounded">
                                         {
                                             category.sub_categories.map((sub_cat, index) => (

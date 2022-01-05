@@ -101,12 +101,12 @@ function AdsModal({ open, setOpen, ad_id, loading, error, message }) {
                                                 type="text"
                                                 className="outline-none p-2 my-2 rounded border border-gray-300 w-full placeholder-gray-400"
                                                 onChange={e => setHeading(e.target.value)}
-                                                placeholder="enter ad owner deadline" />
+                                                placeholder="enter heading" />
                                             <input
                                                 type="text"
                                                 className="outline-none p-2 my-2 rounded border border-gray-300 w-full placeholder-gray-400"
                                                 onChange={e => setBody(e.target.value)}
-                                                placeholder="enter ad owner deadline" />
+                                                placeholder="enter ad body" />
                                             <p className="text-left text-gray-700 my-4 capitalize">pick ad image</p>
                                             <div {...getRootProps()} className="p-4 border border-gray-300 rounded cursor-pointer hover:bg-gray-50">
                                                 <input {...getInputProps()} />

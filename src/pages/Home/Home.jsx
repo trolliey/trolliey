@@ -37,9 +37,9 @@ function Home() {
                         <SearchInput />
                         {
                             ads?.length < 1 ? (
-                                <div className="grid content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
-                                    <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
-                                    {/* <Courosel data={ads}/> */}
+                                <div className="grid content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-50">
+                                    <img src={logo} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                    {/* <Courosel data={ads} /> */}
                                 </div>
                             ) :
                                 <>
@@ -54,7 +54,10 @@ function Home() {
                                                     <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
                                                 </div>
                                             ) : (
-                                                <img src={ads?.[0]?.image} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                                <div className="grid content-center items-center overflow-hidden rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
+                                                    {/* <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" /> */}
+                                                    <Courosel data={ads} />
+                                                </div>
                                             )
                                         }
                                     </div>
@@ -106,10 +109,10 @@ function Home() {
                                 <img src={ads?.[1]?.image} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
 
                             ) : (
-                                <div className="font-semibold" style = {{
+                                <div className="font-semibold" style={{
                                     backgroundImage: logo,
-                                    backgroundSize:'100%',
-                                    objectFit:'cover'
+                                    backgroundSize: '100%',
+                                    objectFit: 'cover'
                                 }} >
                                     {/* <img src={logo} alt="banner showing ads for the home page" className="flex-1 opacity-70 max-h-full flex-shrink-0 object-cover w-auto h-auto" /> */}
                                     <p className=''>Contact us to add an ad here</p>

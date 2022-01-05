@@ -71,7 +71,7 @@ function ManageAds() {
                             </div>
                         ) : (
                             <div className="picture items-center mx-auto my-4 md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-50">
-                                <img src={ads?.[0]?.picture} alt="banner add for big one" className="md:max-h-96 max-h-48 md:h-96 h-auto mx-auto" />
+                                <img src={ads?.[0]?.image} alt="banner add for big one" className="md:max-h-96 max-h-48 md:h-96 h-auto mx-auto" />
                             </div>
                         )}
                     </div>
@@ -93,7 +93,7 @@ function ManageAds() {
                         heading={'Special discount on sale'}
                         body={'Best collection for kids'}
                     />
-                    <div className="picture items-center mx-auto my-4  w-full">
+                    <div className="image items-center mx-auto my-4  w-full">
                         {ads_loading ? (
                             <div className="grid content-center items-center h-full w-full bg-gray-50 justify-center">
                                 <Spinner
@@ -105,9 +105,9 @@ function ManageAds() {
                                 <Error error="Error loading ads, try reloading page" />
                             </div>
                         ) : (
-                            <div className="picture items-center mx-auto my-4 max-h-48 md:h-32 bg-gray-50">
+                            <div className="image items-center mx-auto my-4 max-h-48 md:h-32 bg-gray-50">
                                 <img
-                                    src={ads?.[1]?.picture}
+                                    src={ads?.[1]?.image}
                                     alt="banner add for big one"
                                     className="md:max-h-96 max-h-48 md:h-32 mx-auto object-cover w-full rounded" />
                             </div>
@@ -131,7 +131,7 @@ function ManageAds() {
                         heading={'Special discount on sale'}
                         body={'Best collection for kids'}
                     />
-                    <div className="picture items-center mx-auto my-4  w-full">
+                    <div className="image items-center mx-auto my-4  w-full">
                         {ads_loading ? (
                             <div className="grid content-center items-center h-full w-full bg-gray-50 justify-center">
                                 <Spinner
@@ -143,9 +143,9 @@ function ManageAds() {
                                 <Error error="Error loading ads, try reloading page" />
                             </div>
                         ) : (
-                            <div className="picture items-center mx-auto my-4 max-h-48 md:h-32 bg-gray-50">
+                            <div className="image items-center mx-auto my-4 max-h-48 md:h-32 bg-gray-50">
                                 <img
-                                    src={ads?.[2]?.picture}
+                                    src={ads?.[2]?.image}
                                     alt="banner add for big one"
                                     className="md:max-h-96 max-h-48 md:h-32 mx-auto object-cover w-full rounded" />
                             </div>
@@ -169,7 +169,7 @@ function ManageAds() {
                         heading={'Special discount on sale'}
                         body={'Best collection for kids'}
                     />
-                    <div className="picture items-center mx-auto my-4  w-full">
+                    <div className="image items-center mx-auto my-4  w-full">
                         {ads_loading ? (
                             <div className="grid content-center items-center h-full w-full bg-gray-50 justify-center">
                                 <Spinner
@@ -181,9 +181,9 @@ function ManageAds() {
                                 <Error error="Error loading ads, try reloading page" />
                             </div>
                         ) : (
-                            <div className="picture items-center mx-auto my-4 max-h-48 md:h-32 bg-gray-50">
+                            <div className="image items-center mx-auto my-4 max-h-48 md:h-32 bg-gray-50">
                                 <img
-                                    src={ads?.[3]?.picture}
+                                    src={ads?.[3]?.image}
                                     alt="banner add for big one"
                                     className="md:max-h-96 max-h-48 md:h-32 mx-auto object-cover w-full rounded" />
                             </div>
@@ -207,7 +207,7 @@ function ManageAds() {
                         heading={'Special discount on sale'}
                         body={'Best collection for kids'}
                     />
-                    <div className="picture items-center mx-auto my-4  w-full">
+                    <div className="image items-center mx-auto my-4  w-full">
                         {ads_loading ? (
                             <div className="grid content-center items-center h-full w-full bg-gray-50 justify-center">
                                 <Spinner
@@ -219,9 +219,9 @@ function ManageAds() {
                                 <Error error="Error loading ads, try reloading page" />
                             </div>
                         ) : (
-                            <div className="picture items-center mx-auto my-4 max-h-48 md:h-32 bg-gray-50">
+                            <div className="image items-center mx-auto my-4 max-h-48 md:h-32 bg-gray-50">
                                 <img
-                                    src={ads?.[4]?.picture}
+                                    src={ads?.[4]?.image}
                                     alt="banner add for big one"
                                     className="md:max-h-96 max-h-48 md:h-32 mx-auto object-cover w-full rounded" />
                             </div>
@@ -245,7 +245,7 @@ function ManageAds() {
                         heading={'Special discount on sale'}
                         body={'Best collection for kids'}
                     />
-                    <div className="picture items-center mx-auto my-4  w-full">
+                    <div className="image items-center mx-auto my-4  w-full">
                         {ads_loading ? (
                             <div className="grid content-center items-center h-full w-full bg-gray-50 justify-center">
                                 <Spinner
@@ -257,9 +257,9 @@ function ManageAds() {
                                 <Error error="Error loading ads, try reloading page" />
                             </div>
                         ) : (
-                            <div className="picture items-center mx-auto my-4 max-h-48 md:h-32 bg-gray-50">
+                            <div className="image items-center mx-auto my-4 max-h-48 md:h-32 bg-gray-50">
                                 <img
-                                    src={ads?.[5]?.picture}
+                                    src={ads?.[5]?.image}
                                     alt="banner add for big one"
                                     className="md:max-h-96 max-h-48 md:h-32 mx-auto object-cover w-full rounded" />
                             </div>
