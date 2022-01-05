@@ -46,15 +46,15 @@ function Home() {
                                     <div className="flex content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
                                         {
                                             ads_loading ? (
-                                                <div className="grid justify-center items-center content-center w-full">
+                                                <div className="grid justify-center md:max-h-96 max-h-48 md:h-96 h-auto items-center content-center w-full">
                                                     <Spinner size="xl" thickness={3} />
                                                 </div>
                                             ) : ads_error ? (
-                                                <div className="grid justify-center items-center content-center w-full">
+                                                <div className="grid justify-center md:max-h-96 max-h-48 md:h-96 h-auto items-center content-center w-full">
                                                     <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
                                                 </div>
                                             ) : (
-                                                <div className="grid content-center items-center overflow-hidden rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
+                                                <div className="grid content-center items-center overflow-hidden rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-white">
                                                     {/* <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" /> */}
                                                     <Courosel data={ads} />
                                                 </div>

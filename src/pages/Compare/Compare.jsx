@@ -9,22 +9,33 @@ function Compare() {
 
     return (
         <GeneralLayout>
-            <div className="grid md:grid-cols-3 grid-cols-2">
-                {
-                    compare_basket?.map((item, index) => (
-                        <div key={index} className="col-span-1">
-                            <CompareItem 
-                                picture={item.pictures[0]}
-                                name={item.name}
-                                add_features={item.features}
-                                description={item.description}
-                                price={item.price}
-                                id={item.id}
-                            />
-                        </div>
-                    ))
-                }
-            </div>
+            {
+                compare_basket?.length < 1 ? (
+                    <div className="grid items-center content-center justify-center h-96">
+                        <p className='="text-gray-00 font-semibold'>
+                            No items to compare
+                        </p>
+                    </div>
+                ) : (
+                    <div className="grid md:grid-cols-3 grid-cols-2">
+                        {
+                            compare_basket?.map((item, index) => (
+                                <div key={index} className="col-span-1">
+                                    <CompareItem
+                                        picture={item.pictures[0]}
+                                        name={item.name}
+                                        add_features={item.features}
+                                        description={item.description}
+                                        price={item.price}
+                                        id={item.id}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+                )
+            }
+
         </GeneralLayout>
     )
 }
