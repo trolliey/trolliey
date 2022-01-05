@@ -33,7 +33,7 @@ function ProductDescription() {
             rating: product?.product?.ratings.length,
             description: product?.product?.description,
             price: product?.product?.price,
-            id: product?.product?.id,
+            id: id,
             name: product?.product?.title
         }
         dispatch(add_to_cart_Action(item))
@@ -45,7 +45,7 @@ function ProductDescription() {
             rating: product?.product?.ratings.length,
             description: product?.product?.description,
             price: product?.product?.price,
-            id: product?.product?.id,
+            id: id,
             name: product?.product?.title,
             features: product?.product.additional_features
         }
@@ -56,7 +56,7 @@ function ProductDescription() {
         dispatch(get_single_product_Action(id))
     }, [dispatch, id])
 
-    console.log(product)
+    console.log(id)
 
     if (loading) {
         return (
@@ -199,7 +199,7 @@ function ProductDescription() {
                                             <BlueButton text="Add to cart" className="flex-1 w-full" onClick={add_to_basket} />
                                         </div>
                                        
-                                        <div className="md:col-span-2 col-start-4 flex flex-row items-center w-full">
+                                        <div className="md:col-span-2 col-span-4 flex flex-row items-center w-full">
                                             <div onClick={add_to_compare} className="text-blue-primary flex-1 border border-blue-primary rounded-l p-2 text-center font-semibold capitalize hover:bg-blue-primary hover:text-white cursor-pointer">
                                                 compare
                                             </div>

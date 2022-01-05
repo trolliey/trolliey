@@ -9,7 +9,7 @@ function Compare() {
 
     return (
         <GeneralLayout>
-            <div className="grid grid-cols-3">
+            <div className="grid md:grid-cols-3 grid-cols-2">
                 {
                     compare_basket?.map((item, index) => (
                         <div key={index} className="col-span-1">
@@ -18,6 +18,8 @@ function Compare() {
                                 name={item.name}
                                 add_features={item.features}
                                 description={item.description}
+                                price={item.price}
+                                id={item.id}
                             />
                         </div>
                     ))
