@@ -7,6 +7,18 @@ import { useHistory } from 'react-router'
 import { remove_product_Action } from '../../redux/actions/productActions'
 import BlueButton from '../buttons/BlueButton'
 
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    Button
+} from '@chakra-ui/react'
+import RedButton from '../buttons/RedButton'
+
 const statusStyles = {
     public: 'bg-green-100 text-green-800',
     out_of_stock: 'bg-yellow-100 text-yellow-800',
@@ -23,6 +35,7 @@ function InventoryTable({ data }) {
     const dispatch = useDispatch()
     const _user = useSelector(state => state.user_login)
     const { userInfo } = _user
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const delete_product = (id) => {
         dispatch(remove_product_Action(id, userInfo?.token))
@@ -140,11 +153,33 @@ function InventoryTable({ data }) {
                                                 <button onClick={() => history.push(`/dashboard/edit-product/${product?._id}`)} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-blue-primary">
                                                     <PencilIcon height={12} width={12} className="" />
                                                 </button>
-                                                <button onClick={() => delete_product(product?._id)} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-red-400 ml-2">
+                                                <button onClick={onOpen} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-red-400 ml-2">
                                                     <TrashIcon height={12} width={12} className="" />
                                                 </button>
                                             </td>
+                                            <>
+
+                                                <Modal isOpen={isOpen} onClose={onClose}>
+                                                    <ModalOverlay />
+                                                    <ModalContent>
+                                                        <ModalHeader>Delete Product</ModalHeader>
+                                                        <ModalCloseButton />
+                                                        <ModalBody>
+                                                            <p className='text-center'>Are you sure you want to delete the product</p>
+                                                        </ModalBody>
+
+                                                        <ModalFooter>
+                                                            <RedButton text={'Close'} colorScheme='blue' mr={3} onClick={onClose} outline/>
+                                                            <div className="mr-1"></div>
+                                                            <RedButton text={'Confirm Delete'} variant='ghost' onClick={() => delete_product(product?._id)} />
+                                                        </ModalFooter>
+                                                    </ModalContent>
+                                                </Modal>
+                                            </>
                                         </tr>
+
+
+
                                     ))}
                                 </tbody>
                             </table>
@@ -172,6 +207,8 @@ function InventoryTable({ data }) {
                     </div>
                 </div>
             </div>
+
+
 
 
 

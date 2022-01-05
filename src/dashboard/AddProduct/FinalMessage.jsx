@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
 import Error from '../../components/alerts/Error'
 import SuccessAlert from '../../components/alerts/SuccessAlert'
 import BlueButton from '../../components/buttons/BlueButton'
@@ -9,7 +8,6 @@ import DashboardLayout from '../../layouts/DashboardLayout'
 function FinalMessage() {
     const _product = useSelector(state => state.create_a_product)
     const { error, message, loading } = _product
-    const history = useHistory()
 
     return (
         <DashboardLayout>
@@ -33,7 +31,7 @@ function FinalMessage() {
                             </div>
                             <div className="ml-auto flex flex-row items-center">
                                 <div className="mx-2"></div>
-                                <BlueButton text="Add another" onClick={() => history.push('/dashboard/addproduct')} loading={loading} />
+                                <BlueButton text="Add another" onClick={() => window.location.reload()} loading={loading} />
                             </div>
                         </div>
                     </div>

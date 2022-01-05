@@ -45,15 +45,15 @@ function App() {
         <Route path='/payment' component={Payment} />
 
         {/* // user dashboard routes */}
-        <Route path='/dashboard/history' component={History} />
-        <Route path='/dashboard/balances' component={Balances} />
-        <Route path='/dashboard/cards' component={Cards} />
-        <Route path='/dashboard/receipts' component={Receipts} />
-        <Route path='/dashboard/settings' component={StoreInfo} />
-        <Route path='/dashboard/usersettings' component={UserSettings} />
-        <Route path='/dashboard/addproduct' component={AddProduct} />
-        <Route path='/dashboard/inventory' component={Inventory} />
-        <Route path='/dashboard/edit-product/:id' component={EditProduct} />
+        <Route exact path='/dashboard/history' component={History} />
+        <Route exact path='/dashboard/balances' component={Balances} />
+        <Route exact path='/dashboard/cards' component={Cards} />
+        <Route exact path='/dashboard/receipts' component={Receipts} />
+        <Route exact path='/dashboard/settings' component={StoreInfo} />
+        <Route exact path='/dashboard/usersettings' component={UserSettings} />
+        <Route exact path='/dashboard/addproduct' component={AddProduct} />
+        <Route exact path='/dashboard/inventory' component={Inventory} />
+        <Route exact path='/dashboard/edit-product/:id' component={EditProduct} />
         <Route exact path='/dashboard' component={Dashboard} />
 
         {/* //store page */}

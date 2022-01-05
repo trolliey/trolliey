@@ -55,6 +55,12 @@ function StoreInfo() {
         dispatch(create_single_store_Actions(username, about, picture, userInfo?.token))
     }
 
+    useEffect(() => {
+        if (message === 'Successfully edited') {
+            window.location.reload()
+        }
+    }, [message])
+
     if (loading) {
         return (
             <DashboardLayout>
