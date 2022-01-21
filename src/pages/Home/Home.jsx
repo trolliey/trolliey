@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import CategoriesDropdown from '../../components/categories_dropdown/CategoriesDropdown'
-import SearchInput from '../../components/search/SearchInput'
 import GeneralLayout from '../../layouts/GeneralLayout'
-import { data } from '../../utils/data'
 import SpecialProducts from '../../components/home_sections/SpecialProducts'
 import FeaturedProducts from '../../components/home_sections/FeaturedProducts'
 import AllProducts from '../../components/home_sections/AllProducts'
@@ -11,7 +9,12 @@ import { get_all_ads_Action } from '../../redux/actions/adActions'
 import { Spinner } from '@chakra-ui/react'
 import logo from '../../assets/logo.png'
 import Courosel from '../../components/courosel/Courosel'
-import banner from '../../assets/main-banner.jpg'
+import surprise from '../../assets/surprise.jpg'
+import tech_stuff from '../../assets/tech_stuff.jpg'
+import clothes from '../../assets/clothes.jpg'
+
+
+
 
 function Home() {
 
@@ -26,7 +29,7 @@ function Home() {
 
     return (
         <GeneralLayout>
-            <div className="bg-white md:p-8 p-2 rounded">
+            <div className=" md:p-8 py-2 px-4 bg-white rounded">
 
                 {/* // banner and categories */}
                 <div className="top w-full flex flex-row md:gap-8 gap-2">
@@ -34,16 +37,17 @@ function Home() {
                         <CategoriesDropdown open={true} />
                     </div>
                     <div className="flex-1">
-                        <SearchInput />
+                        {/* <SearchInput /> */}
+                    
                         {
                             ads?.length < 1 ? (
-                                <div className="grid content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-50">
+                                <div className="grid content-center items-center overflow-hidden mt-1 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-50">
                                     <img src={logo} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
                                     {/* <Courosel data={ads} /> */}
                                 </div>
                             ) :
                                 <>
-                                    <div className="flex content-center items-center overflow-hidden mt-4 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
+                                    <div className="flex content-center items-center overflow-hidden mt-1 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
                                         {
                                             ads_loading ? (
                                                 <div className="grid justify-center md:max-h-96 max-h-48 md:h-96 h-auto items-center content-center w-full">
@@ -66,25 +70,97 @@ function Home() {
                     </div>
                 </div>
 
-                {/* //benefits */}
-                <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 md:py-16 md:pt-16 pt-8 md:pb-4 pb-2 md:border-b border-b-none border-gray-200 items-center">
-                    {
-                        data.benefits.map((benefit, index) => (
-                            <div key={index} className="col-span-1 flex md:flex-row flex-col md:border-none border-b border-gray-200 md:pb-0 pb-4 text-blue-primary hover:text-new-primary cursor-pointer items-center">
-                                <div className="md:block hidden">
-                                    <benefit.icon height={32} width={32} className="mr-2" />
-                                </div>
-                                <div className="md:hidden block mb-1">
-                                    <benefit.icon height={24} width={24} className="mr-2" />
-                                </div>
-                                <div className="flex flex-col md:items-start items-center">
-                                    <p className="text-gray-700 font-semibold capitalize">{benefit.heading}</p>
-                                    <p className="text-gray-500 text-sm capitalize">{benefit.details}</p>
+                <section aria-labelledby="category-heading" className="">
+                    <div className="max-w-7xl mx-auto py-16">
+                        <div className="sm:flex sm:items-baseline sm:justify-between">
+                            <h2 id="category-heading" className="text-xl font-bold tracking-tight text-gray-700">
+                                Shop by Category
+                            </h2>
+                            <a href="/categories" className="hidden font-semibold text-blue-primary hover:text-blue-primary sm:block">
+                                Browse all categories<span aria-hidden="true"> &rarr;</span>
+                            </a>
+                        </div>
+
+                        <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8 ">
+                            <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:aspect-h-1 sm:aspect-w-1 sm:row-span-2 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
+                                <img
+                                    src={surprise}
+                                    alt="suprised user."
+                                    className="object-center object-cover group-hover:opacity-75"
+                                />
+                                <div aria-hidden="true" className="bg-gradient-to-b from-transparent to-black opacity-50" />
+                                <div className="p-6 flex items-end">
+                                    <div>
+                                        <h3 className="font-semibold text-white">
+                                            <a href="#">
+                                                <span className="absolute inset-0" />
+                                                Suprise Me
+                                            </a>
+                                        </h3>
+                                        <p aria-hidden="true" className="mt-1 text-sm text-white">
+                                            Shop now
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        ))
-                    }
-                </div>
+                            <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
+                                <img
+                                    src={tech_stuff}
+                                    alt="tech category."
+                                    className="object-center object-cover group-hover:opacity-75 sm:absolute sm:inset-0 sm:w-full sm:h-full"
+                                />
+                                <div
+                                    aria-hidden="true"
+                                    className="bg-gradient-to-b from-transparent to-black opacity-50 sm:absolute sm:inset-0"
+                                />
+                                <div className="p-6 flex items-end sm:absolute sm:inset-0">
+                                    <div>
+                                        <h3 className="font-semibold text-white">
+                                            <a href="#">
+                                                <span className="absolute inset-0" />
+                                                Tech Stuff
+                                            </a>
+                                        </h3>
+                                        <p aria-hidden="true" className="mt-1 text-sm text-white">
+                                            Shop now
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
+                                <img
+                                    src={clothes}
+                                    alt="Clothes and fashion"
+                                    className="object-center object-cover group-hover:opacity-75 sm:absolute sm:inset-0 sm:w-full sm:h-full"
+                                />
+                                <div
+                                    aria-hidden="true"
+                                    className="bg-gradient-to-b from-transparent to-black opacity-50 sm:absolute sm:inset-0"
+                                />
+                                <div className="p-6 flex items-end sm:absolute sm:inset-0">
+                                    <div>
+                                        <h3 className="font-semibold text-white">
+                                            <a href="#">
+                                                <span className="absolute inset-0" />
+                                                Clothes and fashion
+                                            </a>
+                                        </h3>
+                                        <p aria-hidden="true" className="mt-1 text-sm text-white">
+                                            Shop now
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mt-6 sm:hidden">
+                            <a href="#" className="block font-semibold text-blue-primary hover:text-blue-primary">
+                                Browse all categories<span aria-hidden="true"> &rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
 
 
 

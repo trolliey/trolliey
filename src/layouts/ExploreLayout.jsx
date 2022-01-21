@@ -31,7 +31,7 @@ function ExploreLayout({ children }) {
 
     return (
         <GeneralLayout>
-            <div className="bg-white md:p-8 p-2 rounded">
+            <div className="bg-white md:p-8 p-2 rounded max-w-7xl mx-auto">
                 <div className="top w-full flex flex-row md:gap-8 gap-2">
                     <div className="md:w-1/5 md:flex flex-col hidden">
                         <p className="text text-gray-700 mt-8 font-semibold pb-4 border-b border-blue-primary">Refine Search</p>

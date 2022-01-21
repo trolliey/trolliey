@@ -4,7 +4,8 @@ import { useHistory } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import android from '../../assets/android.svg'
 import apple from '../../assets/apple.svg'
-import {PaperAirplaneIcon} from '@heroicons/react/solid'
+import { PaperAirplaneIcon } from '@heroicons/react/solid'
+import { data } from '../../utils/data'
 
 const navigation = {
     main: [
@@ -50,7 +51,7 @@ const navigation = {
         },
         {
             name: 'Twitter',
-            href: 'https://twitter.com/Daypitch1',
+            href: 'https://twitter.com/trollieyS',
             icon: (props) => (
                 <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
                     <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
@@ -65,24 +66,26 @@ export default function Footer() {
     const history = useHistory()
 
     return (
-        <footer className="bg-white">
-            <div className="bg-gradient-to-r from-blue-light to-blue-primary md:h-20 h-16 flex flex-row items-center justify-between lg:px-32 md:px-16 px-2">
-                <div onClick={() => history.push('/')} className="md:flex hidden md:mr-16 mr-2">
-                    <img src={logo} alt="logo representing the website icon" className="h-24" />
-                </div>
-                {/* <div className="input flex flex-row py-1 items-center flex-1 bg-white rounded px-2">
-                    <input type="text" className="p-1 rounded outline-none md:mr-4 mr-2 flex-1" placeholder="Type a message ..." />
-                    <PaperAirplaneIcon className="text-gray-900" height={20} width={20} />
-                </div> */}
-                <div className="flex md:ml-8 ml-4">
-                    <div className="flex flex-row items-center">
-                        <div className="bg-blue-dark p-2 mr-2 rounded-full">
-                            <img src={android} className="h-6" alt="download android app from store" />
-                        </div>
-                        <div className="bg-blue-dark p-2 mr-2 rounded-full">
-                            <img src={apple} className="h-6" alt="download android app from store" />
-                        </div>
-                    </div>
+        <footer className="bg-white flex-col w-full">
+
+            <div className=" md:border-b border-b-none border-gray-200">
+                <div className="md:grid hidden lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 md:py-8 py-4 items-center w-full mx-auto max-w-7xl items-center">
+                    {
+                        data.benefits.map((benefit, index) => (
+                            <div key={index} className="col-span-1 flex md:flex-row flex-col md:border-none border-b border-gray-200 md:pb-0 pb-4 text-blue-primary mx-auto hover:text-new-primary cursor-pointer items-center">
+                                <div className="md:block hidden">
+                                    <benefit.icon height={32} width={32} className="mr-2" />
+                                </div>
+                                <div className="md:hidden block mb-1">
+                                    <benefit.icon height={24} width={24} className="mr-2" />
+                                </div>
+                                <div className="flex flex-col md:items-start items-center">
+                                    <p className="text-gray-700 font-semibold capitalize">{benefit.heading}</p>
+                                    <p className="text-gray-500 text-sm capitalize">{benefit.details}</p>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
             <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">

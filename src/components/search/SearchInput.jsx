@@ -25,8 +25,8 @@ function SearchInput() {
     }
 
     return (
-        <div className="flex flex-row items-center">
-            <div className="flex flex-row search_and_dropdown border items-center border-gray-300 w-full rounded mr-2">
+        <div className="flex flex-row items-center ">
+            <div className="flex flex-row search_and_dropdown border items-center border-gray-300 w-full rounded mr-2 bg-white">
                 <select
                     onChange={e => setSearchCategory(e.target.value)}
                     name="categories"
