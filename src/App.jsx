@@ -39,7 +39,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-      <Route path='/' component={ComingSoon} />
+        <Route path='/' component={ComingSoon} />
         <Route path='/product/description/:id' component={ProductDescription} />
         <Route path='/contact' component={Contact} />
         <Route path='/login' component={Login} />
