@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import CategoriesDropdown from '../../components/categories_dropdown/CategoriesDropdown'
 import GeneralLayout from '../../layouts/GeneralLayout'
-import SpecialProducts from '../../components/home_sections/SpecialProducts'
-import FeaturedProducts from '../../components/home_sections/FeaturedProducts'
 import AllProducts from '../../components/home_sections/AllProducts'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_all_ads_Action } from '../../redux/actions/adActions'
@@ -12,9 +10,8 @@ import Courosel from '../../components/courosel/Courosel'
 import surprise from '../../assets/surprise.jpg'
 import tech_stuff from '../../assets/tech_stuff.jpg'
 import clothes from '../../assets/clothes.jpg'
-
-
-
+import { set_search_query_Action } from '../../redux/actions/searchAction'
+import { useHistory } from 'react-router-dom'
 
 function Home() {
 
@@ -22,10 +19,16 @@ function Home() {
     const _get_all_ads = useSelector(state => state.get_all_ads)
     const { ads_loading, ads_error, ads } = _get_all_ads
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(get_all_ads_Action())
     }, [dispatch])
+
+    const search_by_category = (category) => {
+        dispatch(set_search_query_Action(category))
+        history.push('/explore')
+    }
 
     return (
         <GeneralLayout>
@@ -82,7 +85,7 @@ function Home() {
                         </div>
 
                         <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8 ">
-                            <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:aspect-h-1 sm:aspect-w-1 sm:row-span-2 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
+                            <div onClick={() => search_by_category('tech')} className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:aspect-h-1 sm:aspect-w-1 sm:row-span-2 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
                                 <img
                                     src={surprise}
                                     alt="suprised user."
@@ -103,7 +106,7 @@ function Home() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
+                            <div onClick={() => search_by_category('tech')} className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
                                 <img
                                     src={tech_stuff}
                                     alt="tech category."
@@ -127,7 +130,7 @@ function Home() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
+                            <div onClick={() => search_by_category('fashion')} className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
                                 <img
                                     src={clothes}
                                     alt="Clothes and fashion"
@@ -164,114 +167,10 @@ function Home() {
 
 
 
-                {/* // special products */}
-                <>
-                    <SpecialProducts />
-                </>
-
-                {/* //two exclusive categories */}
-                <div className="grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-4 md:pt-16 pt-8 ">
-                    <div className="col-span-1 bg-gray-100 rounded md:h-40 h-32 grid items-center content-center justify-center cursor-pointer overflow-hidden">
-                        {
-                            ads_error ? (
-                                <div className="grid justify-center items-center content-center w-full">
-                                    <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
-                                </div>
-                            ) : ads_loading ? (
-                                <div className="grid justify-center items-center content-center w-full">
-                                    <Spinner size="xl" thickness={3} />
-                                </div>
-                            ) : ads?.[1] ? (
-                                <img src={ads?.[1]?.image} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
-
-                            ) : (
-                                <div className="font-semibold" style={{
-                                    backgroundImage: logo,
-                                    backgroundSize: '100%',
-                                    objectFit: 'cover'
-                                }} >
-                                    {/* <img src={logo} alt="banner showing ads for the home page" className="flex-1 opacity-70 max-h-full flex-shrink-0 object-cover w-auto h-auto" /> */}
-                                    <p className=''>Contact us to add an ad here</p>
-                                </div>
-
-                            )
-                        }
-                    </div>
-                    <div className="col-span-1 bg-gray-100 rounded md:h-40 h-32 grid items-center content-center justify-center cursor-pointer overflow-hidden">
-                        {
-                            ads_error ? (
-                                <div className="grid justify-center items-center content-center w-full">
-                                    <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
-                                </div>
-                            ) : ads_loading ? (
-                                <div className="grid justify-center items-center content-center w-full">
-                                    <Spinner size="xl" thickness={3} />
-                                </div>
-                            ) : ads?.[2] ? (
-                                <img src={ads?.[2]?.image} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
-
-                            ) : (
-                                <p className="font-semibold">Contact us to add an ad here</p>
-
-                            )
-                        }
-                    </div>
-                </div>
-
-                {/* // featured products */}
-                <>
-                    <FeaturedProducts />
-                </>
-
-
-
-                {/* //two Latest categories */}
-                <div className="grid md:grid-cols-3 grid-cols-1 md:gap-8 gap-4 md:pt-16 pt-8">
-                    <div className="col-span-1 bg-gray-100 rounded md:h-40 h-32 cursor-pointer grid items-center content-center justify-center overflow-hidden">
-                        {
-                            ads_error ? (
-                                <div className="grid justify-center items-center content-center w-full">
-                                    <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
-                                </div>
-                            ) : ads_loading ? (
-                                <div className="grid justify-center items-center content-center w-full">
-                                    <Spinner size="xl" thickness={3} />
-                                </div>
-                            ) : ads?.[3] ? (
-                                <img src={ads?.[3]?.image} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
-
-                            ) : (
-                                <p className="font-semibold">Contact us to add an ad here</p>
-
-                            )
-                        }
-                    </div>
-                    <div className="md:col-span-2 col-start-1 bg-gray-100 rounded md:h-40 h-32 cursor-pointer grid items-center content-center overflow-hidden justify-center">
-                        {
-                            ads_error ? (
-                                <div className="grid justify-center items-center content-center w-full">
-                                    <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
-                                </div>
-                            ) : ads_loading ? (
-                                <div className="grid justify-center items-center content-center w-full">
-                                    <Spinner size="xl" thickness={3} />
-                                </div>
-                            ) : ads?.[4] ? (
-                                <img src={ads?.[4]?.image} alt="second as" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
-
-                            ) : (
-                                <p className="font-semibold">Contact us to add an ad here</p>
-
-                            )
-                        }
-                    </div>
-                </div>
-
-                {/* // all products */}
-                <>
+               {/* // all products */}
+               <>
                     <AllProducts cols="lg:grid-cols-5 " />
                 </>
-
 
 
             </div>

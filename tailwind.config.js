@@ -12,9 +12,9 @@ module.exports = {
           dark: '#3e577d',
           light: '#94aaca'
         },
-        new:{
-          primary:'#ad596d',
-          light:'#bf7e8e'
+        new: {
+          primary: '#ad596d',
+          light: '#bf7e8e'
         }
       }
     },
@@ -22,8 +22,8 @@ module.exports = {
   variants: {
     extend: {
       transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
+    }
     },
-  },
   plugins: [
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),

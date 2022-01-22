@@ -55,7 +55,22 @@ function MobileNavDrawer({ user }) {
                             }
                         </div>
                         <Divider />
-                        <div className="capitalize text-gray-700 py-4 bg-white px-4 text-gray-700 font-semibold flex flex-row items-center justify-between">
+                        <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
+                            <p>shop by categories</p>
+                            <ChevronRightIcon height={20} width={20} />
+                        </div>
+                        <Divider />
+                        <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
+                            <p>shop by categories</p>
+                            <ChevronRightIcon height={20} width={20} />
+                        </div>
+                        <Divider />
+                        <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
+                            <p>shop by categories</p>
+                            <ChevronRightIcon height={20} width={20} />
+                        </div>
+                        <Divider />
+                        <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
                             <p>shop by categories</p>
                             <ChevronRightIcon height={20} width={20} />
                         </div>
