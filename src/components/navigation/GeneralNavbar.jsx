@@ -95,9 +95,6 @@ function GeneralNavbar() {
                             {basket?.length}
                         </span>
                     </div>
-
-
-
                 </div>
 
             </div>

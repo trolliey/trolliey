@@ -14,9 +14,8 @@ import { MenuIcon, ChevronRightIcon, } from '@heroicons/react/outline'
 import { UserCircleIcon } from '@heroicons/react/solid'
 import UserAvatar from '../user_avatar/UserAvatar'
 import Username from '../username/Username'
-import BlueButton from '../buttons/BlueButton'
 import { useHistory } from 'react-router'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/full_logo.png'
 
 function MobileNavDrawer({ user }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -39,7 +38,7 @@ function MobileNavDrawer({ user }) {
 
                         {/* <p className="text-lg font-semibold text-gray-700 uppercase mx-auto text-center my-4">logo</p> */}
                         <div className="flex py-2 text-black font-extrabold font-myriad-pro">
-                            <p>trolliey.com</p>
+                            <img src={logo} alt="logo for mobile drawer" className='h-6' />
                         </div>
                     </DrawerHeader>
                     <DrawerBody bg={'gray.200'} p={0}>
@@ -61,19 +60,15 @@ function MobileNavDrawer({ user }) {
                         </div>
                         <Divider />
                         <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
-                            <p>shop by categories</p>
+                            <p>Sell on trolliey</p>
                             <ChevronRightIcon height={20} width={20} />
                         </div>
                         <Divider />
                         <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
-                            <p>shop by categories</p>
+                            <p>Help</p>
                             <ChevronRightIcon height={20} width={20} />
                         </div>
                         <Divider />
-                        <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
-                            <p>shop by categories</p>
-                            <ChevronRightIcon height={20} width={20} />
-                        </div>
 
                         <Divider />
                     </DrawerBody>
