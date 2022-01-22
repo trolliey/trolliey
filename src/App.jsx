@@ -33,7 +33,6 @@ import EditProduct from './dashboard/EditProduct/EditProduct';
 import Payment from './pages/Payment/Payment';
 import ManageCategories from './admin/ManageCategories';
 import Compare from './pages/Compare/Compare';
-import ComingSoon from './pages/coming_soon/ComingSoon';
 
 function App() {
     return (
