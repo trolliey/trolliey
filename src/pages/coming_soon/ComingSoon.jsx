@@ -1,21 +1,9 @@
 import React from 'react';
 import BlueButton from '../../components/buttons/BlueButton';
 import GeneralLayout from '../../layouts/GeneralLayout';
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
-    Button
-} from '@chakra-ui/react'
 import icon from '../../assets/logo.png'
 
 function ComingSoon() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <GeneralLayout no_text>
@@ -43,7 +31,7 @@ function ComingSoon() {
                                 <BlueButton text={'Notify'} />
                             </div>
 
-                            <div onClick={onOpen} className="mt-2">
+                            <div className="mt-2">
                                 <span className="text-base font-medium text-blue-primary hover:text-blue-primary cursor-pointer">
                                     Notify me wen App is launched
                                 </span>
