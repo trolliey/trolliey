@@ -12,6 +12,7 @@ import {
     useDisclosure,
     Button
 } from '@chakra-ui/react'
+import icon from '../../assets/logo.png'
 
 function ComingSoon() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -24,9 +25,9 @@ function ComingSoon() {
                         <a href="/" className="inline-flex">
                             <span className="sr-only">E-Commerce</span>
                             <img
-                                className="h-12 w-auto"
-                                src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
-                                alt=""
+                                className="h-28 w-auto"
+                                src={icon}
+                                alt="logo icon for trolliey"
                             />
                         </a>
                     </div>
@@ -34,29 +35,19 @@ function ComingSoon() {
                         <div className="text-center flex flex-col items-center">
                             {/* <p className="text-sm font-semibold text-blue-primary uppercase tracking-wide">404 error</p> */}
                             <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">Coming Soon.</h1>
-                            <p className="mt-2 text-base text-gray-500">Trolliet is an online retailer which sells products on its website alllwing third-party sellsers to sell their products too. Customers buy products from suppliers around Zimbabwe including Trolliey Online (Pty) LTD. Products are delivered to your doorste, payment on delivery option is available.</p>
-                            <p>We have many payment methods including, Ecocash, Visa and many more</p>
+                            <p className="mt-4 text-base text-gray-500">Trolliey is an online retailer which sells products on its website alllwing third-party sellsers to sell their products too. Customers buy products from suppliers around Zimbabwe including Trolliey Online (Pty) LTD. Products are delivered to your doorste, payment on delivery option is available.</p>
+                            <p className="my-2">We have many payment methods including, Ecocash, Visa and many more</p>
 
-                            <div onClick={onOpen} className="mt-6">
+                            <div className="flex flex-row items-center md:w-2/5 mt-8 w-full self-center mx-auto">
+                                <input type="text" placeholder='Enter your email' className='p-3 rounded text-sm outline-none border-none bg-gray-100 flex-1' />
+                                <BlueButton text={'Notify'} />
+                            </div>
+
+                            <div onClick={onOpen} className="mt-2">
                                 <span className="text-base font-medium text-blue-primary hover:text-blue-primary cursor-pointer">
                                     Notify me wen App is launched
                                 </span>
-                                <Modal onClose={onClose} isOpen={isOpen} isCentered>
-                                    <ModalOverlay />
-                                    <ModalContent>
-                                        <ModalHeader>Enter Email</ModalHeader>
-                                        <ModalCloseButton />
-                                        <ModalBody>
-                                            <div className="flex flex-row items-center w-full self-center mx-auto">
-                                                <input type="text" placeholder='Enter your email' className='p-2 rounded-l outline-none border-none bg-gray-100 flex-1' />
-                                                <BlueButton text={'Notify'} />
-                                            </div>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            <Button onClick={onClose}>Close</Button>
-                                        </ModalFooter>
-                                    </ModalContent>
-                                </Modal>
+
                             </div>
                         </div>
                     </div>
