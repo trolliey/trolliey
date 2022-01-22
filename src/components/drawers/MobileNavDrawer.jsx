@@ -82,12 +82,17 @@ function MobileNavDrawer({ user }) {
                                     }
                                 </div>
                                 <Divider />
+                                <div onClick={() => history.push('/explore')} className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
+                                    <p>explore products</p>
+                                    <ChevronRightIcon height={20} width={20} />
+                                </div>
+                                <Divider />
                                 <div onClick={() => setShowCotegory(true)} className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
                                     <p>shop by categories</p>
                                     <ChevronRightIcon height={20} width={20} />
                                 </div>
                                 <Divider />
-                                <div  onClick={() => history.push('/dashboard')} className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
+                                <div onClick={() => history.push('/dashboard')} className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
                                     <p>Sell on trolliey</p>
                                     <ChevronRightIcon height={20} width={20} />
                                 </div>
