@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Drawer,
     DrawerBody,
@@ -10,16 +10,15 @@ import {
     DrawerFooter,
     DrawerHeader
 } from "@chakra-ui/react"
-import { MenuIcon, ChevronRightIcon, } from '@heroicons/react/outline'
+import { MenuIcon, ChevronRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import { UserCircleIcon } from '@heroicons/react/solid'
 import UserAvatar from '../user_avatar/UserAvatar'
 import Username from '../username/Username'
-import { useHistory } from 'react-router'
 import logo from '../../assets/full_logo.png'
 
 function MobileNavDrawer({ user }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const history = useHistory()
+    const [show_category, setShowCotegory] = useState(false)
 
     return (
         <>
@@ -41,37 +40,66 @@ function MobileNavDrawer({ user }) {
                             <img src={logo} alt="logo for mobile drawer" className='h-6' />
                         </div>
                     </DrawerHeader>
-                    <DrawerBody bg={'gray.200'} p={0}>
-                        <Divider />
-                        <div className="flex flex-row items-center py-4 bg-white mt-4 px-4">
-                            <UserAvatar size="sm" name={user?.user?.displayName} />
-                            {
-                                user ? (
-                                    <Username name={user?.user?.displayName} />
-                                ) : (
-                                    <Username name={'Guest User'} />
-                                )
-                            }
-                        </div>
-                        <Divider />
-                        <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
-                            <p>shop by categories</p>
-                            <ChevronRightIcon height={20} width={20} />
-                        </div>
-                        <Divider />
-                        <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
-                            <p>Sell on trolliey</p>
-                            <ChevronRightIcon height={20} width={20} />
-                        </div>
-                        <Divider />
-                        <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
-                            <p>Help</p>
-                            <ChevronRightIcon height={20} width={20} />
-                        </div>
-                        <Divider />
+                    {
+                        show_category ? (
+                            <DrawerBody bg={'white'} p={0}>
+                                <Divider />
+                                <div className="flex flex-row items-center py-4 bg-white mt-4 px-4">
+                                    <UserAvatar size="sm" name={user?.user?.displayName} />
+                                    {
+                                        user ? (
+                                            <Username name={user?.user?.displayName} />
+                                        ) : (
+                                            <Username name={'Guest User'} />
+                                        )
+                                    }
+                                </div>
+                                <Divider />
+                                <div className="flex flex-row items-center">
+                                    <span onClick={() => setShowCotegory(false)} className='ml-2'>
+                                        <ArrowLeftIcon height={20} width={20} />
+                                    </span>
+                                    <p className='font-semibold capitalize text-center my-4 text-gray-700 mx-auto '>a list of categories</p>
+                                </div>
+                                <div className="px-4">
+                                    <p>Category</p>
+                                </div>
 
-                        <Divider />
-                    </DrawerBody>
+                            </DrawerBody>
+                        ) : (
+                            <DrawerBody bg={'gray.200'} p={0}>
+                                <Divider />
+                                <div className="flex flex-row items-center py-4 bg-white mt-4 px-4">
+                                    <UserAvatar size="sm" name={user?.user?.displayName} />
+                                    {
+                                        user ? (
+                                            <Username name={user?.user?.displayName} />
+                                        ) : (
+                                            <Username name={'Guest User'} />
+                                        )
+                                    }
+                                </div>
+                                <Divider />
+                                <div onClick={() => setShowCotegory(true)} className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
+                                    <p>shop by categories</p>
+                                    <ChevronRightIcon height={20} width={20} />
+                                </div>
+                                <Divider />
+                                <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
+                                    <p>Sell on trolliey</p>
+                                    <ChevronRightIcon height={20} width={20} />
+                                </div>
+                                <Divider />
+                                <div className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
+                                    <p>Help</p>
+                                    <ChevronRightIcon height={20} width={20} />
+                                </div>
+                                <Divider />
+
+                                <Divider />
+                            </DrawerBody>
+                        )
+                    }
                     <Divider />
                     <DrawerFooter width={'full'} borderTopColor={'gray.200'}>
                         <div className="flex flex-row items-center justify-between">
@@ -88,7 +116,13 @@ function MobileNavDrawer({ user }) {
                                 </div>
                             </div>
                             <div className="flex-1"></div>
-                            <p className='font-bold text-gray-700 ml-8'>Logout</p>
+                            {
+                                user ? (
+                                    <p className='font-bold text-gray-700 ml-8'>Logout</p>
+                                ) : (
+                                    <p className='font-bold text-gray-700 ml-8'>Join/Login</p>
+                                )
+                            }
                         </div>
                     </DrawerFooter>
                 </DrawerContent>
