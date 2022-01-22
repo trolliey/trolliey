@@ -33,6 +33,7 @@ import EditProduct from './dashboard/EditProduct/EditProduct';
 import Payment from './pages/Payment/Payment';
 import ManageCategories from './admin/ManageCategories';
 import Compare from './pages/Compare/Compare';
+import Help from './pages/help/Help';
 
 function App() {
     return (
@@ -43,6 +44,7 @@ function App() {
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
                 <Route path='/payment' component={Payment} />
+                <Route path='/help' component={Help} />
 
                 {/* // user dashboard routes */}
                 <Route exact path='/dashboard/history' component={History} />
