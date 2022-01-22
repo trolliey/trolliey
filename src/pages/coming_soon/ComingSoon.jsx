@@ -35,7 +35,7 @@ function ComingSoon() {
                         <div className="text-center flex flex-col items-center">
                             {/* <p className="text-sm font-semibold text-blue-primary uppercase tracking-wide">404 error</p> */}
                             <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">Coming Soon.</h1>
-                            <p className="mt-4 text-base text-gray-500">Trolliey is an online retailer which sells products on its website alllwing third-party sellsers to sell their products too. Customers buy products from suppliers around Zimbabwe including Trolliey Online (Pty) LTD. Products are delivered to your doorste, payment on delivery option is available.</p>
+                            <p className="mt-4 text-base text-gray-500">Trolliey is an online retailer which sells products on its website allowing third-party sellsers to sell their products too. Customers buy products from suppliers around Zimbabwe including Trolliey Online (Pty) LTD. Products are delivered to your doorstep, payment on delivery option is available.</p>
                             <p className="my-2">We have many payment methods including, Ecocash, Visa and many more</p>
 
                             <div className="flex flex-row items-center md:w-2/5 mt-8 w-full self-center mx-auto">
