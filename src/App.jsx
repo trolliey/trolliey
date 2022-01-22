@@ -36,54 +36,54 @@ import Compare from './pages/Compare/Compare';
 import ComingSoon from './pages/coming_soon/ComingSoon';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path='/' component={ComingSoon} />
-        <Route path='/product/description/:id' component={ProductDescription} />
-        <Route path='/contact' component={Contact} />
-        <Route path='/login' component={Login} />
-        <Route path='/register' component={Register} />
-        <Route path='/payment' component={Payment} />
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route path='/' component={ComingSoon} />
+                <Route path='/product/description/:id' component={ProductDescription} />
+                <Route path='/contact' component={Contact} />
+                <Route path='/login' component={Login} />
+                <Route path='/register' component={Register} />
+                <Route path='/payment' component={Payment} />
 
-        {/* // user dashboard routes */}
-        <Route exact path='/dashboard/history' component={History} />
-        <Route exact path='/dashboard/balances' component={Balances} />
-        <Route exact path='/dashboard/cards' component={Cards} />
-        <Route exact path='/dashboard/receipts' component={Receipts} />
-        <Route exact path='/dashboard/settings' component={StoreInfo} />
-        <Route exact path='/dashboard/usersettings' component={UserSettings} />
-        <Route exact path='/dashboard/addproduct' component={AddProduct} />
-        <Route exact path='/dashboard/inventory' component={Inventory} />
-        <Route exact path='/dashboard/edit-product/:id' component={EditProduct} />
-        <Route exact path='/dashboard' component={Dashboard} />
+                {/* // user dashboard routes */}
+                <Route exact path='/dashboard/history' component={History} />
+                <Route exact path='/dashboard/balances' component={Balances} />
+                <Route exact path='/dashboard/cards' component={Cards} />
+                <Route exact path='/dashboard/receipts' component={Receipts} />
+                <Route exact path='/dashboard/settings' component={StoreInfo} />
+                <Route exact path='/dashboard/usersettings' component={UserSettings} />
+                <Route exact path='/dashboard/addproduct' component={AddProduct} />
+                <Route exact path='/dashboard/inventory' component={Inventory} />
+                <Route exact path='/dashboard/edit-product/:id' component={EditProduct} />
+                <Route exact path='/dashboard' component={Dashboard} />
 
-        {/* //store page */}
-        <Route path='/stores/single/about/:id' component={AboutStore} />
-        <Route path='/stores/single/reviews/:id' component={StoreReviews} />
-        <Route path='/stores/single/:id' component={SingleStore} />
+                {/* //store page */}
+                <Route path='/stores/single/about/:id' component={AboutStore} />
+                <Route path='/stores/single/reviews/:id' component={StoreReviews} />
+                <Route path='/stores/single/:id' component={SingleStore} />
 
-        {/* //admin dashboard */}
-        <AdminRoute path='/admin/home' component={Admin} />
-        <AdminRoute path='/admin/ads' component={ManageAds} />
-        <AdminRoute path='/admin/stores' component={ManageStores} />
-        <AdminRoute path='/admin/users' component={ManageUsers} />
-        <AdminRoute path='/admin/products' component={ManageProducts} />
-        <AdminRoute path='/admin/settings' component={AdminSettings} />
-        <AdminRoute path='/admin/categories' component={ManageCategories} />
-        <Route exact path='/admin' component={AdminLogin} />
+                {/* //admin dashboard */}
+                <AdminRoute path='/admin/home' component={Admin} />
+                <AdminRoute path='/admin/ads' component={ManageAds} />
+                <AdminRoute path='/admin/stores' component={ManageStores} />
+                <AdminRoute path='/admin/users' component={ManageUsers} />
+                <AdminRoute path='/admin/products' component={ManageProducts} />
+                <AdminRoute path='/admin/settings' component={AdminSettings} />
+                <AdminRoute path='/admin/categories' component={ManageCategories} />
+                <Route exact path='/admin' component={AdminLogin} />
 
-        <Route path='/compare' component={Compare} />
-        <Route path='/categories' component={Categories} />
-        <Route path='/explore' component={Explore} />
-        <Route path='/about' component={About} />
-        <Route exact path='/explore' component={Home} />
-        <Route exact path='/jobs' component={Jobs} />
-        <Route exact path='/' component={Home} />
-        <Route path='*' component={NotFound} />
-      </Switch>
-    </BrowserRouter>
-  );
+                <Route path='/compare' component={Compare} />
+                <Route path='/categories' component={Categories} />
+                <Route path='/explore' component={Explore} />
+                <Route path='/about' component={About} />
+                <Route exact path='/explore' component={Home} />
+                <Route exact path='/jobs' component={Jobs} />
+                <Route exact path='/' component={Home} />
+                <Route path='*' component={NotFound} />
+            </Switch>
+        </BrowserRouter>
+    );
 }
 
 export default App;
