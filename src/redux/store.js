@@ -5,6 +5,7 @@ import { login_user_Reducer, register_user_Reducer } from "./reducers/authReduce
 import { add_to_cart_Reducer, remove_from_cart_Reducer } from "./reducers/cartReducer";
 import { add_category_Reducer, get_all_categories_Reducer } from "./reducers/categoryReducers";
 import { add_to_compare_Reducer } from "./reducers/compareReducers";
+import { save_email_Reducer } from "./reducers/emailReducers";
 import { get_featured_products_Reducer } from "./reducers/featuredProductsReducers";
 import { create_a_product_Reducer, get_all_products_Reducer, get_single_product_Reducer, remove_product_Reducer } from "./reducers/productReducer";
 import { create_a_review_Reducer, get_all_store_reviews_Reducer, like_a_review_Reducer } from "./reducers/reviewReducers";
@@ -73,7 +74,10 @@ const reducer = combineReducers({
   // fore reviews
   create_review: create_a_review_Reducer,
   get_all_reviews: get_all_store_reviews_Reducer,
-  like_a_review: like_a_review_Reducer
+  like_a_review: like_a_review_Reducer,
+
+  //for emails
+  save_email: save_email_Reducer
 });
 
 const composeForBrowser =

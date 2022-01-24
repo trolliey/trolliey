@@ -3,12 +3,21 @@ import BlueButton from '../../components/buttons/BlueButton';
 import icon from '../../assets/full_logo.png'
 import ComingSoonLayout from '../../layouts/ComingSoonLayout';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { save_email_Action } from '../../redux/actions/emailActions';
+import { useSelector } from 'react-redux';
+import Error from '../../components/alerts/Error';
+import SuccessAlert from '../../components/alerts/SuccessAlert';
 
 function ComingSoon() {
     const [email, setEmail] = useState('')
+    const dispatch = useDispatch()
+    const _save_emails = useSelector(state => state.save_email)
+    const {save_email_loading, save_email_message, save_email_error} = _save_emails
 
     const save_email = () =>{
-        console.log(email)
+        // console.log(email)
+        dispatch(save_email_Action(email))
     }
 
     return (
@@ -31,10 +40,11 @@ function ComingSoon() {
                             <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-6xl">Coming Soon.</h1>
 
                             <p className="my-2 text-gray-500">We have many payment methods including, Ecocash, Visa and many more</p>
-
+                            {save_email_error && <Error error={save_email_error} />}
+                            {save_email_message && <SuccessAlert message={save_email_message} />}
                             <div className="flex flex-row items-center md:w-4/5 mt-8 w-full self-center mx-auto">
                                 <input onChange={e=> setEmail(e.target.value)} type="text" placeholder='Enter your email' className='p-3 rounded text-sm outline-none border-none bg-gray-100 flex-1' />
-                                <BlueButton text={'Notify'} onClick={save_email} />
+                                <BlueButton text={'Notify'} onClick={save_email} loading={save_email_loading} />
                             </div>
 
                             <div className="mt-2">
