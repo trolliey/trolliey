@@ -23,7 +23,7 @@ function ComingSoonNavbar() {
 
         <div className="bg-white ">
             <div className="md:flex hidden flex-row items-center  h-16 lg:px-0 md:16 md:px-4 px-2 space-x-4 max-w-7xl mx-auto justify-between">
-                <div onClick={() => history.push('/')} className="uppercase cursor-pointer font-bold text-sm text-gray-700 flex flex-row items-center">
+                <div onClick={() => history.push('/')} className="uppercase md:flex hidden cursor-pointer font-bold text-sm text-gray-700 flex flex-row items-center">
                     <img src={logo} alt="logo representing the website icon" className="md:h-32 h-24" />
                 </div>
                 <div className="flex-1"></div>
