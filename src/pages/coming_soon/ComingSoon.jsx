@@ -41,7 +41,7 @@ function ComingSoon() {
 
                             <p> </p>
                        
-                            <p className="my-2 text-gray-500">Shop online, Save and Smile on Trolliey. </p>
+                            <p className="my-2 text-gray-500"> </p>
                             <p className="my-2 text-gray-500">We offer free delivery, many payment methods and wholesale for many products.</p>
                             {save_email_error && <Error error={save_email_error} />}
                             {save_email_message && <SuccessAlert message={save_email_message} />}
