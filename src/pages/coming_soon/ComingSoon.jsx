@@ -1,6 +1,6 @@
 import React from 'react';
 import BlueButton from '../../components/buttons/BlueButton';
-import icon from '../../assets/full_logo.png'
+import icon from '../../assets/TROLLIEY.png'
 import ComingSoonLayout from '../../layouts/ComingSoonLayout';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
