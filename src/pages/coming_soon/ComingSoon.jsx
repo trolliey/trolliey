@@ -39,7 +39,8 @@ function ComingSoon() {
                             {/* <p className="text-sm font-semibold text-blue-primary uppercase tracking-wide">404 error</p> */}
                             <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-6xl">Coming Soon.</h1>
 
-                            <p className="my-2 text-gray-500">We offer free delivery, many payment methods and wholesale prices for everything.</p>
+                              <p className="my-2 text-gray-500">Shop online, save and smile on trolliey</p>
+                            <p className="my-2 text-gray-500">We offer free delivery, many payment methods and wholesale for many products.</p>
                             {save_email_error && <Error error={save_email_error} />}
                             {save_email_message && <SuccessAlert message={save_email_message} />}
                             <div className="flex flex-row items-center md:w-4/5 mt-8 w-full self-center mx-auto">
