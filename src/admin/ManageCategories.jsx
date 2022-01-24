@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import AdminLayout from '../layouts/AdminLayout'
@@ -10,6 +10,8 @@ import { Spinner } from '@chakra-ui/react'
 import Error from '../components/alerts/Error'
 import SuccessAlert from '../components/alerts/SuccessAlert'
 import { add_subcategory_Action } from '../redux/actions/subCategoryActions'
+import CategoryImageUpload from '../components/image_uploads/CategoryImageUpload'
+import SubCategoryComponent from './components/sub_category_component/SubCategoryComponent'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -19,32 +21,31 @@ function ManageCategories() {
     const dispatch = useDispatch()
     const _categories = useSelector(state => state.get_all_categories)
     const { cat_loading, cat_error, categories } = _categories
+
+    //for adding category
     const [category, setCategory] = useState('')
+    const [parent_id, setParent_id] = useState('')
+    const [category_picture, setCategory_picture] = useState()
+
     const _new_category = useSelector(state => state.add_category)
     const { add_cat_loading, add_cat_error, add_cat_message } = _new_category
-    const [toggle_subcategory_on, setToggleCategory] = useState(false)
-    const _add_sub_cat = useSelector(state => state.create_subcategory)
-    const { add_subcat_loading, add_subcat_error, add_subcat_message } = _add_sub_cat
-    const [sub_cat, setSubCat] = useState('')
+    
+
+    console.log(category_picture)
 
     useEffect(() => {
         dispatch(get_all_categories_Action())
     }, [dispatch])
 
-    const toggle_sub_category_Handler = () => {
-        toggle_subcategory_on ? setToggleCategory(false) : setToggleCategory(true)
-    }
-
+    
     const add_category = () => {
-        dispatch(add_category_Action(category))
+        dispatch(add_category_Action(category, category_picture[0], parent_id))
         setCategory('')
     }
 
-    const add_sub_cat_Handler = (id) => {
-        dispatch(add_subcategory_Action(id, sub_cat))
-    }
+    
 
-    console.log(categories)
+    console.log(categories?.categories)
     if (cat_loading) {
         return (
             <AdminLayout>
@@ -69,14 +70,29 @@ function ManageCategories() {
         <AdminLayout>
             {add_cat_error && <Error error={add_cat_error} />}
             {add_cat_message && <SuccessAlert message={add_cat_message} />}
-            <div className="flex flex-row items-center w-full">
-                <input
-                    type="text"
-                    className="border border-gray-300 p-2 rounded outline-none flex-1 m-2"
-                    placeholder="Add category"
-                    onChange={e => setCategory(e.target.value)}
-                />
-                <div className="mx-2">
+            <div className="flex flex-col w-full">
+                <p className='my-4 text-gray-700 font-semibold text-lg text-center'>NB: If adding a parent category search for the parent category and copy its id</p>
+                <div className="grid md:grid-cols-2 grid-cols-1 items-center md:gap-8 gap-2">
+                    <input
+                        type="text"
+                        className="border border-gray-300 p-2 rounded outline-none flex-1 my-2"
+                        placeholder="Add category"
+                        onChange={e => setCategory(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        className="border border-gray-300 p-2 rounded outline-none flex-1 my-2"
+                        placeholder="Add parent-category id"
+                        onChange={e => setParent_id(e.target.value)}
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" for="art">
+                        Category Picture
+                    </label>
+                    <CategoryImageUpload setPictures={setCategory_picture} />
+                </div>
+                <div className="mx-2 flex-end ml-auto">
                     <BlueButton
                         text="Add category"
                         onClick={add_category}
@@ -87,14 +103,14 @@ function ManageCategories() {
             <p className="text-sm text-gray-500 font-semibold ml-4">Expand to see sub-categories</p>
             <div className="mx-4">
                 <dl className="space-y-6 divide-y divide-gray-200">
-                    {categories?.categories.map((category, index) => (
+                    {categories?.categories?.map((category, index) => (
                         <Disclosure as="div" key={index} className="pt-6">
                             {({ open }) => (
                                 <>
-                                    <dt className="text-lg">
-                                        <Disclosure.Button className="text-left w-full flex justify-between items-start text-gray-400">
+                                    <dt className="text-lg" onClick={() => setParent_id(category._id)}>
+                                        <Disclosure.Button className="text-left w-full flex justify-between items-start text-gray-400" >
 
-                                            <span className="font-medium text-gray-900">{category.category}</span>
+                                            <span className="font-medium text-gray-900">{category.name}</span>
                                             <span className="ml-6 h-7 flex items-center">
                                                 <ChevronDownIcon
                                                     className={classNames(open ? '-rotate-180' : 'rotate-0', 'h-6 w-6 transform')}
@@ -103,43 +119,9 @@ function ManageCategories() {
                                             </span>
                                         </Disclosure.Button>
                                     </dt>
-                                    <Disclosure.Panel as="dd" className="mt-2 pr-12">
-                                        <div className="flex flex-col items-end w-full">
-                                            <div className="flex flex-row items-center font-semibold capitalize text-sm">
-                                                <span className="text-blue-400 hover:text-blue-700 mr-2 cursor-pointer">Edit </span> |
-                                                <span className="mx-2 text-red-400 hover:text-red-700 cursor-pointer"> delete </span> |
-                                                <span
-                                                    onClick={toggle_sub_category_Handler}
-                                                    className="ml-2 cursor-pointer text-gray-700 hover:text-black"> {!toggle_subcategory_on ? "add sub-category" : "cancel"}</span>
-                                            </div>
-                                            {add_subcat_error && <Error error={add_subcat_error} />}
-                                            {add_subcat_message && <SuccessAlert message={add_subcat_message} />}
-                                            {
-                                                toggle_subcategory_on ? (
-                                                    <div className="flex flex-row items-center w-full">
-                                                        <input
-                                                            type="text"
-                                                            className="border border-gray-300 p-2 rounded outline-none flex-1 m-2"
-                                                            placeholder="Add sub-category"
-                                                            onChange={e => setSubCat(e.target.value)}
-                                                        />
-                                                        <div className="mx-2">
-                                                            <BlueButton
-                                                                text="Add Sub-Category"
-                                                                onClick={() => add_sub_cat_Handler(category._id)}
-                                                                loading={add_subcat_loading}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                ) : null
-                                            }
-                                        </div>
-                                        {
-                                            category.sub_categories.map(sub_cat => (
-                                                <p key={sub_cat.sub_category_id} className="text-base text-gray-600 mx-2">{sub_cat?.sub_category}</p>
-                                            ))
-                                        }
-                                    </Disclosure.Panel>
+                                    <>
+                                        <SubCategoryComponent category_id={parent_id} />
+                                    </>
                                 </>
                             )}
                         </Disclosure>

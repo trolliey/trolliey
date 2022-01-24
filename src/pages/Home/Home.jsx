@@ -5,7 +5,7 @@ import AllProducts from '../../components/home_sections/AllProducts'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_all_ads_Action } from '../../redux/actions/adActions'
 import { Spinner } from '@chakra-ui/react'
-import logo from '../../assets/logo.png'
+import main_banner from '../../assets/main-banner.png'
 import Courosel from '../../components/courosel/Courosel'
 import surprise from '../../assets/surprise.jpg'
 import tech_stuff from '../../assets/tech_stuff.jpg'
@@ -45,7 +45,7 @@ function Home() {
                         {
                             ads?.length < 1 ? (
                                 <div className="grid content-center items-center overflow-hidden mt-1 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-50">
-                                    <img src={logo} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
+                                    <img src={main_banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
                                     {/* <Courosel data={ads} /> */}
                                 </div>
                             ) :

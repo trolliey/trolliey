@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AdminSidebar from '../components/dashboard_sidebar/AdminSidebar'
 import DashboardNavbar from '../components/navigation/DashboardNavbar'
 
-function AdminLayout({children}) {
+function AdminLayout({ children }) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     return (
         <div className="relative h-screen flex overflow-hidden bg-gray-100">
@@ -18,7 +18,9 @@ function AdminLayout({children}) {
                     <DashboardNavbar setSidebarOpen={setSidebarOpen} />
 
                     {/* // the rest of the dashboard */}
-                    {children}
+                    <div className="md:px-8 px-4">
+                        {children}
+                    </div>
                 </main>
             </div>
         </div>

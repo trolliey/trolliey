@@ -1,7 +1,70 @@
-.hover-trigger .hover-target {
-    display: none;
+.menu-container {
+    width:100%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+.menu {
+    width: 250px;
+}
+.menu > li {
+    display: block;
+    text-align: center;
+}
+.menu > li > a {
+    padding:20px 18px;
+    display: block;
 }
 
-.hover-trigger:hover .hover-target {
+/* Megadrop width dropdown */
+ .menu > li > .megadrop {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0px;
+    left: 253px;
+    width: 400px;
+    min-height: 100%;
+    text-align: left;
+    z-index: 99;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+}
+.menu > li:hover .megadrop {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0px;
+}
+.menu .col {
+    width: 14.1%;
+    float: left;
+    margin: 0 0 0 2.2%;
+}
+.menu .col ul {
+    padding: 0;
+    margin: 0;
+}
+.menu .col h3 {
+    font-size: 16px;
+    padding: 10px 0;
+    font-weight: bold;
+    margin: 5px 0 5px 0;
+    color: #227087;
+    background: #eee;
+}
+.menu .col ul li a {
     display: block;
+    padding: 0 0 15px 0;
+    color: #227087;
+}
+.menu .col ul li a:hover {
+    color: #111;
+    text-decoration: underline;
+}
+.menu > li > ul li ul, .menu li >ul li, .menu > li > .megadrop, .menu > li > ul, .menu > li {
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-outs;
 }

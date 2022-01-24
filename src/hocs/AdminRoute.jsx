@@ -8,7 +8,7 @@ function AdminRoute({ component: Component, ...rest }) {
         const { userInfo } = user
         return (
             <Route {...rest} render={(props) => (
-                userInfo.user.role === 'admin' ? (<Component {...props} />)
+                userInfo?.user.role === 'admin' ? (<Component {...props} />)
                     : (<Redirect to='/admin' />)
             )} />
         )

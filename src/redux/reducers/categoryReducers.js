@@ -1,4 +1,4 @@
-import { ADD_CATEGORY_FAIL, ADD_CATEGORY_REQUEST, ADD_CATEGORY_SUCCESS, GET_All_CATEGORIES_FAIL, GET_All_CATEGORIES_REQUEST, GET_All_CATEGORIES_SUCCESS } from "../constants/categoryConstants"
+import { ADD_CATEGORY_FAIL, ADD_CATEGORY_REQUEST, ADD_CATEGORY_SUCCESS, GET_All_CATEGORIES_FAIL, GET_All_CATEGORIES_REQUEST, GET_All_CATEGORIES_SUCCESS, GET_All_SUBCATEGORIES_OF_PARENT_FAIL, GET_All_SUBCATEGORIES_OF_PARENT_REQUEST, GET_All_SUBCATEGORIES_OF_PARENT_SUCCESS } from "../constants/categoryConstants"
 
 //geth all categories redicer
 export const get_all_categories_Reducer = (state = { cat_loading: false }, action) => {
@@ -23,6 +23,20 @@ export const add_category_Reducer = (state = { add_cat_loading: false }, action)
             return { add_cat_loading: false, category: action.payload, add_cat_message: 'Category added!' }
         case ADD_CATEGORY_FAIL:
             return { add_cat_loading: false, add_cat_error: action.payload }
+        default:
+            return state
+    }
+}
+
+//get all subcategories
+export const get_all_subcategories_Reducer = (state = { sub_cat_loading: false }, action) => {
+    switch (action.type) {
+        case GET_All_SUBCATEGORIES_OF_PARENT_REQUEST:
+            return { sub_cat_loading: true }
+        case GET_All_SUBCATEGORIES_OF_PARENT_SUCCESS:
+            return { sub_cat_loading: false, sub_categories: action.payload }
+        case GET_All_SUBCATEGORIES_OF_PARENT_FAIL:
+            return { sub_cat_loading: false, sub_cat_error: action.payload }
         default:
             return state
     }

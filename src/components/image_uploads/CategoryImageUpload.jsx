@@ -26,7 +26,7 @@ function ImageUpload(
 ) {
     // use a useState hook to maintain our files collection
     const [files, setFiles] = React.useState(defaultFiles)
-    const [image_urls, setImageUrls] = useState([])
+    const [image_urls, setImageUrls] = useState('')
     // const images = []
     const server = {
         // this uploads the image using firebase
@@ -35,7 +35,7 @@ function ImageUpload(
             const id = shortid.generate()
 
             // upload the image to firebase
-            const task = storage.ref().child('products/' + id).put(file, {
+            const task = storage.ref().child('categories/' + id).put(file, {
                 contentType: 'image/jpeg',
             })
 
@@ -68,7 +68,7 @@ function ImageUpload(
 
             // fetch the download URL from firebase
             storage.ref()
-                .child('products/' + source)
+                .child('categories/' + source)
                 .getDownloadURL()
                 .then(url => {
                     // fetch the actual image using the download URL
@@ -99,11 +99,11 @@ function ImageUpload(
         <div>
             <FilePond
                 files={files}
-                allowMultiple={true}
-                maxFiles={8}
+                allowMultiple={false}
+                maxFiles={1}
                 onupdatefiles={fileItems => {
                     if (fileItems.length === 0) {
-                        onRequestClear()
+                        // onRequestClear()
                     }
 
                     setFiles(fileItems.map(fileItem => fileItem.file))

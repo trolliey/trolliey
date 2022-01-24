@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import { create_new_add_Reducer, edit_single_ad_Reducer, get_all_ads_Reducer } from "./reducers/adReducer";
 import { login_user_Reducer, register_user_Reducer } from "./reducers/authReducers";
 import { add_to_cart_Reducer, remove_from_cart_Reducer } from "./reducers/cartReducer";
-import { add_category_Reducer, get_all_categories_Reducer } from "./reducers/categoryReducers";
+import { add_category_Reducer, get_all_categories_Reducer, get_all_subcategories_Reducer } from "./reducers/categoryReducers";
 import { add_to_compare_Reducer } from "./reducers/compareReducers";
 import { get_featured_products_Reducer } from "./reducers/featuredProductsReducers";
 import { create_a_product_Reducer, get_all_products_Reducer, get_single_product_Reducer, remove_product_Reducer } from "./reducers/productReducer";
@@ -46,6 +46,7 @@ const reducer = combineReducers({
   //for categories
   get_all_categories: get_all_categories_Reducer,
   add_category: add_category_Reducer,
+  get_all_subcats: get_all_subcategories_Reducer,
 
   //for subcategories
   get_subcategories: get_subcategories_Reducer,
