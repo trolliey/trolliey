@@ -49,7 +49,7 @@ function ComingSoon() {
 
                             <div className="mt-2">
                                 <span className="text-base font-medium text-blue-primary hover:text-blue-primary cursor-pointer">
-                                    Notify me when trolliey is launched
+                                    We will notify you when trolliey is launched
                                 </span>
 
                             </div>
