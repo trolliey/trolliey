@@ -63,13 +63,13 @@ function ComingSoonNavbar() {
     return (
 
         <div className="bg-white ">
-            <div className="md:flex hidden flex-row items-center  h-16 lg:px-0 md:16 md:px-4 px-2 space-x-4 max-w-7xl mx-auto justify-between">
+            <div className="flex flex-row items-center  h-16 lg:px-0 md:16 md:px-4 px-2 space-x-4 max-w-7xl mx-auto justify-between">
                 <div onClick={() => history.push('/')} className="uppercase md:flex hidden cursor-pointer font-bold text-sm text-gray-700 flex flex-row items-center">
                     <img src={logo} alt="logo representing the website icon" className="md:h-32 h-24" />
                 </div>
                 <div className="flex-1"></div>
 
-                <div className="md:flex hidden">
+                <div className="md:flex flex mr-4">
                     <div className="mt-8 flex justify-center space-x-6">
                         {navigation.social.map((item) => (
                             <a target="_blank" rel="noreferrer" key={item.name} href={item.href} className="text-gray-500 hover:text-gray-700">
@@ -82,7 +82,7 @@ function ComingSoonNavbar() {
                 </div>
             </div>
 
-            <div className="md:hidden flex flex-row items-center h-16 max-w-7xl mx-auto justify-between">
+            <div className="md:hidden hidden flex-row items-center h-16 max-w-7xl mx-auto justify-between">
                 <div onClick={() => history.push('/')} className="cursor-pointer mx-auto text-gray-700 flex flex-row items-center">
                     <img src={logo} alt="logo representing the website icon" className="h-32" />
                 </div>
