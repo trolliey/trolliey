@@ -19,12 +19,6 @@ function ComingSoonLayout({ children }) {
                     {children}
                 </div>
             </div>
-            <div className="footer">
-                <Footer />
-            </div>
-            <>
-                {compare_basket.length > 0 && <CompareFooter items={compare_basket} />}
-            </>
         </div>
     );
 }
