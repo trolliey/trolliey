@@ -22,7 +22,7 @@
     position: absolute;
     top: 0px;
     left: 253px;
-    width: 400px;
+    width: 500px;
     min-height: 100%;
     text-align: left;
     z-index: 99;
@@ -45,22 +45,14 @@
     margin: 0;
 }
 .menu .col h3 {
-    font-size: 16px;
     padding: 10px 0;
-    font-weight: bold;
     margin: 5px 0 5px 0;
-    color: #227087;
-    background: #eee;
 }
 .menu .col ul li a {
     display: block;
     padding: 0 0 15px 0;
-    color: #227087;
 }
-.menu .col ul li a:hover {
-    color: #111;
-    text-decoration: underline;
-}
+
 .menu > li > ul li ul, .menu li >ul li, .menu > li > .megadrop, .menu > li > ul, .menu > li {
     transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;

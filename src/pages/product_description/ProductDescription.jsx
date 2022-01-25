@@ -14,6 +14,7 @@ import moment from 'moment'
 import ImageMagnifier from '../../components/image_magnifier/ImageMagnifier'
 import { add_to_compare_Action } from '../../redux/actions/compareActions'
 import BlackButton from '../../components/buttons/BlackButton'
+import AllProducts from '../../components/home_sections/AllProducts'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -158,12 +159,13 @@ function ProductDescription() {
                                     <h3 className="sr-only">Reviews</h3>
                                     <div className="flex items-center">
                                         <div className="flex items-center">
-                                            {[0, 1, 2, 3, 4].map((rating) => (
+                                            {[0, 1, 2, 3, 4].map((rating, index) => (
                                                 <StarIcon
-                                                    key={rating}
+                                                    key={index}
+                                                    onMouseEnter={() => console.log(index)}
                                                     className={classNames(
                                                         product?.product?.ratings.length > rating ? 'text-yellow-400' : 'text-gray-300',
-                                                        'h-5 w-5 flex-shrink-0'
+                                                        'h-5 w-5 flex-shrink-0 hover:text-yellow-400 cursor-pointer'
                                                     )}
                                                     aria-hidden="true"
                                                 />
@@ -198,7 +200,7 @@ function ProductDescription() {
                                         <div className="md:col-span-2 col-span-4">
                                             <BlueButton text="Add to cart" className="flex-1 w-full" onClick={add_to_basket} />
                                         </div>
-                                       
+
                                         <div className="md:col-span-2 col-span-4 flex flex-row items-center w-full">
                                             <div onClick={add_to_compare} className="text-blue-primary flex-1 border border-blue-primary rounded-l p-2 text-center font-semibold capitalize hover:bg-blue-primary hover:text-white cursor-pointer">
                                                 compare
@@ -208,11 +210,11 @@ function ProductDescription() {
                                                     <HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                                                 </div>
                                             </div>
-                                        </div>   
+                                        </div>
 
                                     </div>
                                     <div className="my-4"></div>
-                                    <BlackButton text='Buy Item Now' className="w-full flex-1" onClick={()=> history.push('/payment')} />
+                                    <BlackButton text='Buy Item Now' className="w-full flex-1" onClick={() => history.push('/payment')} />
                                 </div>
 
                                 <div className="md:my-8 my-4 pt-4 border-t border-gray-200">
@@ -289,6 +291,13 @@ function ProductDescription() {
                                 </section>
                             </div>
                         </div>
+                    </div>
+                    <div className="related_products mt-32">
+                        <p className='text-gray-700 font-bold text-center'>Related products</p>
+                        {/* // all products */}
+               <>
+                    <AllProducts cols="lg:grid-cols-5 " />
+                </>
                     </div>
                 </div>
             </div>

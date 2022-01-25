@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ShoppingCartIcon } from '@heroicons/react/outline'
+import { ShoppingCartIcon, BellIcon } from '@heroicons/react/outline'
 import { useSelector } from 'react-redux'
 import CartSidebar from '../cart_sidebar/CartSidebar'
 import { useHistory } from 'react-router'
@@ -8,6 +8,8 @@ import MobileNavDrawer from '../drawers/MobileNavDrawer'
 import logo from '../../assets/logo.png'
 import BlueButton from '../buttons/BlueButton'
 import NavSearch from '../search/NavSearch'
+import { Tooltip } from '@chakra-ui/react'
+import NotificationMenu from '../nav_menus/NotificationMenu'
 
 function GeneralNavbar() {
 
@@ -17,6 +19,8 @@ function GeneralNavbar() {
     const history = useHistory()
     const _logged_in = useSelector(state => state.user_login)
     const { userInfo } = _logged_in
+
+    const [notifications_menu, setOpenNotificationMenu] = useState(false)
 
     const toggle_cart = () => {
         !open_cart ? setOpenCart(true) : setOpenCart(false)
@@ -34,7 +38,19 @@ function GeneralNavbar() {
                 <>
                     <NavSearch />
                 </>
-                <div onClick={toggle_cart} className="relative flex p-2 bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-full">
+                <Tooltip label={'Notifications'} bg='gray.100' color="gray.700" rounded="lg" size="xs">
+
+                <div onClick={() => !notifications_menu ? setOpenNotificationMenu(true): setOpenNotificationMenu(false)} className="relative flex p-2 hover:bg-gray-200 cursor-pointer rounded-full">
+                    <BellIcon height={20} width={20} className="text-gray-700" />
+                    <span className="absolute right-0 top-0 rounded-full bg-blue-primary w-4 h-4 top right p-0 m-0 text-white text-xs font-semibold text-center">
+                        {2}
+                    </span>
+
+                    <NotificationMenu show={notifications_menu} setShow={setOpenNotificationMenu} />
+                </div>
+                </Tooltip>
+
+                <div onClick={toggle_cart} className="relative flex p-2 hover:bg-gray-200 cursor-pointer rounded-full">
                     <ShoppingCartIcon height={20} width={20} className="text-gray-700" />
                     <span className="absolute right-0 top-0 rounded-full bg-blue-primary w-4 h-4 top right p-0 m-0 text-white text-xs font-semibold text-center">
                         {basket?.length}
@@ -45,6 +61,8 @@ function GeneralNavbar() {
                 <div className="md:flex hidden rounded-full cursor-pointer">
                     <UserDropdown user={userInfo} />
                 </div>
+
+
 
                 {/* //drawer when on moblie view */}
                 <div className="md:hidden flex">
@@ -89,7 +107,7 @@ function GeneralNavbar() {
                     <div>
                         <NavSearch />
                     </div>
-                    <div onClick={toggle_cart} className="relative flex p-2 bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-full">
+                    <div onClick={toggle_cart} className="relative flex p-2 hover:bg-gray-200 cursor-pointer rounded-full">
                         <ShoppingCartIcon height={20} width={20} className="text-gray-700" />
                         <span className="absolute right-0 top-0 rounded-full bg-blue-primary w-4 h-4 top right p-0 m-0 text-white text-xs font-semibold text-center">
                             {basket?.length}

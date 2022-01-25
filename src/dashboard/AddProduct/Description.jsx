@@ -2,6 +2,8 @@ import React from 'react'
 import BlueButton from '../../components/buttons/BlueButton'
 import Tags from '../../components/tags/Tags';
 import DashboardLayout from '../../layouts/DashboardLayout'
+import ReactQuill from 'react-quill'; // ES6
+import 'react-quill/dist/quill.snow.css'; // ES6
 
 function Description({ nextStep, handleChange, values, prevStep, setAdditional_features }) {
     const selectedTags = (tags) => {
@@ -105,6 +107,10 @@ function Description({ nextStep, handleChange, values, prevStep, setAdditional_f
                                 <label htmlFor="description" className="block text-sm font-medium text-gray-700 capitalize">
                                     Description
                                 </label>
+                                {/* <ReactQuill
+                                    value={values.description}
+                                    onChange={handleChange('description')}
+                                /> */}
                                 <textarea
                                     rows={10}
                                     id="description"

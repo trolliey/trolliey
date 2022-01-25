@@ -47,7 +47,7 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                                                         categories?.categories.map((category, index) => (
                                                             <option key={index} onClick={() => {
                                                                 dispatch(get_subcategories_Action(category._id))
-                                                            }}>{category.category}</option>
+                                                            }}>{category.name}</option>
                                                         ))
                                                     }
                                                 </>

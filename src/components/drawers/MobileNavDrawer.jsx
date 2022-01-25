@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Drawer,
     DrawerBody,
@@ -16,11 +16,20 @@ import UserAvatar from '../user_avatar/UserAvatar'
 import Username from '../username/Username'
 import logo from '../../assets/full_logo.png'
 import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { get_all_categories_Action } from '../../redux/actions/categoryActions'
 
 function MobileNavDrawer({ user }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [show_category, setShowCotegory] = useState(false)
     const history = useHistory()
+    const dispatch = useDispatch()
+    const _categories = useSelector(state => state.get_all_categories)
+    const { cat_loading, cat_error, categories } = _categories
+
+    useEffect(() => {
+        dispatch(get_all_categories_Action())
+    }, [dispatch])
 
     return (
         <>
@@ -64,7 +73,24 @@ function MobileNavDrawer({ user }) {
                                     <p className='font-semibold capitalize text-center my-4 text-gray-700 mx-auto '>a list of categories</p>
                                 </div>
                                 <div className="px-4">
-                                    <p>Category</p>
+                                    {
+                                        cat_loading ? (
+                                            <div className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
+                                                <p>loading...</p>
+                                            </div>
+                                        ) : (
+                                            <>
+                                                {
+                                                    categories?.categories.map((category, index) => (
+                                                        <div key={index} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
+                                                            <p className='capitalize'>{category.name}</p>
+                                                            <ChevronRightIcon height={16} width={16} className='text-gray-400' />
+                                                        </div>
+                                                    ))
+                                                }
+                                            </>
+                                        )
+                                    }
                                 </div>
 
                             </DrawerBody>
