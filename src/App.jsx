@@ -34,6 +34,7 @@ import Payment from './pages/Payment/Payment';
 import ManageCategories from './admin/ManageCategories';
 import Compare from './pages/Compare/Compare';
 import Help from './pages/help/Help';
+import Chat from './pages/Chat/Chat';
 
 function App() {
     return (
@@ -62,6 +63,10 @@ function App() {
                 <Route path='/stores/single/about/:id' component={AboutStore} />
                 <Route path='/stores/single/reviews/:id' component={StoreReviews} />
                 <Route path='/stores/single/:id' component={SingleStore} />
+
+                {/* //for chat  */}
+                <Route path='/chat/:id' component={Chat} />
+                <Route path='/chat' component={Chat} />
 
                 {/* //admin dashboard */}
                 <AdminRoute path='/admin/home' component={Admin} />
