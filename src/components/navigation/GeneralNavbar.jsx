@@ -40,15 +40,17 @@ function GeneralNavbar() {
                 </>
                 <Tooltip label={'Notifications'} bg='gray.100' color="gray.700" rounded="lg" size="xs">
 
-                <div onClick={() => !notifications_menu ? setOpenNotificationMenu(true): setOpenNotificationMenu(false)} className="relative flex p-2 hover:bg-gray-200 cursor-pointer rounded-full">
-                    <BellIcon height={20} width={20} className="text-gray-700" />
-                    <span className="absolute right-0 top-0 rounded-full bg-blue-primary w-4 h-4 top right p-0 m-0 text-white text-xs font-semibold text-center">
-                        {2}
-                    </span>
+                    <div onClick={() => !notifications_menu ? setOpenNotificationMenu(true) : setOpenNotificationMenu(false)} className="relative flex p-2 hover:bg-gray-200 cursor-pointer rounded-full">
+                        <BellIcon height={20} width={20} className="text-gray-700" />
+                        <span className="absolute right-0 top-0 rounded-full bg-blue-primary w-4 h-4 top right p-0 m-0 text-white text-xs font-semibold text-center">
+                            {2}
+                        </span>
 
-                    <NotificationMenu show={notifications_menu} setShow={setOpenNotificationMenu} />
-                </div>
+                    </div>
                 </Tooltip>
+                <>
+                    <NotificationMenu show={notifications_menu} setShow={setOpenNotificationMenu} />
+                </>
 
                 <div onClick={toggle_cart} className="relative flex p-2 hover:bg-gray-200 cursor-pointer rounded-full">
                     <ShoppingCartIcon height={20} width={20} className="text-gray-700" />
