@@ -42,7 +42,7 @@ function ComingSoon() {
                             <p> </p>
                        
                             <p className="my-2 text-gray-500"> </p>
-                            <p className="my-2 text-gray-500">We offer free delivery, many payment methods and wholesale for many products.</p>
+                            <p className="my-2 text-gray-500">We offer free delivery, many payment methods and wholesale prices for many products.</p>
                             {save_email_error && <Error error={save_email_error} />}
                             {save_email_message && <SuccessAlert message={save_email_message} />}
                             <div className="flex flex-row items-center md:w-4/5 mt-8 w-full self-center mx-auto">
