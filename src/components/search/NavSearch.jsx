@@ -22,7 +22,7 @@ function NavSearch() {
         history.push('/explore')
     }
     return <>
-        <div onClick={onOpen} className="flex p-2 bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-full">
+        <div onClick={onOpen} className="flex p-2 hover:bg-gray-200 cursor-pointer rounded-full">
             <SearchIcon height={20} width={20} className="text-gray-700" />
         </div>
 
