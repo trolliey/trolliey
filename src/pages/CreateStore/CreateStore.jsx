@@ -46,7 +46,7 @@ function CreateStore() {
 
     useEffect(() => {
         if (message === 'Successfully edited') {
-            history.push('/dashboard')
+            history.push('/login')
             window.location.reload()
         }
     }, [message])

@@ -118,10 +118,19 @@ function MobileNavDrawer({ user }) {
                                     <ChevronRightIcon height={20} width={20} />
                                 </div>
                                 <Divider />
-                                <div onClick={() => history.push('/dashboard')} className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
-                                    <p>Sell on trolliey</p>
-                                    <ChevronRightIcon height={20} width={20} />
-                                </div>
+                                {
+                                    user?.user?.role === 'seller' ? (
+                                        <div onClick={() => history.push('/dashboard')} className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
+                                            <p>Sell on trolliey</p>
+                                            <ChevronRightIcon height={20} width={20} />
+                                        </div>
+                                    ) : (
+                                        <div onClick={() => history.push('/become-a-seller')} className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
+                                            <p>Sell on trolliey</p>
+                                            <ChevronRightIcon height={20} width={20} />
+                                        </div>
+                                    )
+                                }
                                 <Divider />
                                 <div onClick={() => history.push('/help')} className="capitalize text-gray-700 py-4 bg-white px-4 font-semibold flex flex-row items-center justify-between">
                                     <p>Help</p>
