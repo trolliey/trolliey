@@ -13,7 +13,7 @@ function CategoriesDropdown() {
     const [parent_id, setParentId] = useState('')
     const [cat_name, setCatName] = useState('')
 
-    const handle_hover = (id, name) =>{
+    const handle_hover = (id, name) => {
         setParentId(id)
         setCatName(name)
     }
@@ -23,13 +23,15 @@ function CategoriesDropdown() {
     }, [dispatch])
 
     return (
-        <div>
-            <ul className="menu relative text-gray-700 font-semibold border border-gray-200 rounded w-[150px]">
-                <div className="flex flex-row items-center gap-8 bg-blue-primary text-white p-2 justify-between capitalize text-sm">
-                    <p className='pl-2 pr-8'>Shop By Category</p>
+        <div className='lg:w-60 md:w-96'>
+            <ul className="menu relative text-gray-700 font-semibold">
+                <div className="flex flex-row items-center gap-8 bg-blue-primary text-white p-3 justify-between capitalize text-sm rounded-t">
+                    <p className='pl-2 pr-8 lg:flex md:hidden hidden'>By Category</p>
+                    <p className='pl-2 pr-8 lg:hidden md:flex hidden'>By Category</p>
+
                     <ChevronDownIcon height={16} width={16} />
                 </div>
-                <li>
+                <li className='border border-gray-200 rounded-b'>
                     {
                         cat_loading ? (
                             <div className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
@@ -39,8 +41,8 @@ function CategoriesDropdown() {
                             <>
                                 {
                                     categories?.categories.map((category, index) => (
-                                        <div key={index} onMouseEnter={() => handle_hover(category._id, category.name)} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
-                                            <p className='capitalize'>{category.name}</p>
+                                        <div key={index} onMouseEnter={() => handle_hover(category._id, category.name)} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100 overflow-ellipsis overflow-hidden">
+                                            <p className='capitalize overflow-ellipsis line-clamp-1'>{category.name}</p>
                                             <ChevronRightIcon height={16} width={16} className='text-gray-400' />
                                         </div>
                                     ))
@@ -48,6 +50,11 @@ function CategoriesDropdown() {
                             </>
                         )
                     }
+
+                    <div className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
+                        <p className='capitalize'>all categories</p>
+                        <ChevronRightIcon height={16} width={16} className='text-gray-400' />
+                    </div>
 
                     <>
                         <SubCategoryComponent category_id={parent_id} cat_name={cat_name} />

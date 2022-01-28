@@ -21,6 +21,12 @@ function Home() {
     const dispatch = useDispatch()
     const history = useHistory()
 
+    const banner_images = [
+        { body: '', image: main_banner },
+        { body: '', image: main_banner },
+        { body: '', image: main_banner }
+    ]
+
     useEffect(() => {
         dispatch(get_all_ads_Action())
     }, [dispatch])
@@ -40,41 +46,22 @@ function Home() {
                         <CategoriesDropdown open={true} />
                     </div>
                     <div className="flex-1">
-                        {/* <SearchInput /> */}
-                    
-                        {
-                            ads?.length < 1 ? (
-                                <div className="grid content-center items-center overflow-hidden mt-1 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-50">
-                                    <img src={main_banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" />
-                                    {/* <Courosel data={ads} /> */}
+
+                        <>
+                            <div className="flex content-center items-center overflow-hidden rounded w-full  h-auto bg-gray-100">
+
+                                <div className="grid content-center items-center overflow-hidden rounded w-full  bg-white">
+                                    {/* <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" /> */}
+                                    <Courosel data={banner_images} />
                                 </div>
-                            ) :
-                                <>
-                                    <div className="flex content-center items-center overflow-hidden mt-1 rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-gray-100">
-                                        {
-                                            ads_loading ? (
-                                                <div className="grid justify-center md:max-h-96 max-h-48 md:h-96 h-auto items-center content-center w-full">
-                                                    <Spinner size="xl" thickness={3} />
-                                                </div>
-                                            ) : ads_error ? (
-                                                <div className="grid justify-center md:max-h-96 max-h-48 md:h-96 h-auto items-center content-center w-full">
-                                                    <p className="text-gray-700 font-semibold bg-red-200 p-2 rounded">Error loading ad</p>
-                                                </div>
-                                            ) : (
-                                                <div className="grid content-center items-center overflow-hidden rounded w-full md:max-h-96 max-h-48 md:h-96 h-auto bg-white">
-                                                    {/* <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" /> */}
-                                                    <Courosel data={ads} />
-                                                </div>
-                                            )
-                                        }
-                                    </div>
-                                </>
-                        }
+
+                            </div>
+                        </>
                     </div>
                 </div>
 
                 {/* // all products */}
-               <div className='flex md:my-16 my-8`'>
+                <div className='flex md:my-16 my-8`'>
                     <AllProducts cols="lg:grid-cols-5 " />
                 </div>
 
@@ -172,7 +159,7 @@ function Home() {
 
 
 
-               
+
 
 
             </div>

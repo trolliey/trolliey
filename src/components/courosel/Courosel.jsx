@@ -20,7 +20,7 @@ function Courosel({data}) {
             width="100%"
             height="100%"
             captionStyle={captionStyle}
-            radius="10px"
+            radius="5px"
             slideNumber={false}
             slideNumberStyle={slideNumberStyle}
             captionPosition="bottom"
@@ -29,7 +29,7 @@ function Courosel({data}) {
             pauseIconColor="white"
             pauseIconSize="40px"
             slideBackgroundColor="darkgrey"
-            slideImageFit="cover"
+            slideImageFit="contain"
             thumbnails={false}
             thumbnailWidth="100px"
             style={{

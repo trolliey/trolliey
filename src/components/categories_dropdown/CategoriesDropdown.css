@@ -4,7 +4,13 @@
     padding: 20px 0;
 }
 .menu {
+    width: 250px;
 }
+@media screen and (max-width: 768px) {
+    .menu{
+        display: none;
+    }
+  }
 .menu > li {
     display: block;
     text-align: center;
