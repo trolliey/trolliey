@@ -10,7 +10,7 @@ function ContactInfo({ nextStep, handleChange, values }) {
         <GeneralLayout no_text>
             <div className="py-8 max-w-7xl">
                 <div className="bg-white rounded md:p-8 p-4 mx-auto">
-                    <p className='text-gray-700 text-lg font-semibold text-center'>How do we get in tounch?</p>
+                    <p className='text-gray-700 text-lg font-semibold text-center'>How do we get in touch?</p>
 
                     <div className="md:py-8 py-4 lg:px-32 md:px-16 px-4">
                         <div className="space-y-8 divide-y divide-gray-200">
@@ -26,7 +26,7 @@ function ContactInfo({ nextStep, handleChange, values }) {
                                     <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                             <label htmlFor="username" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                                First Name
+                                                First Name <span className='text-red-600'>*</span>
                                             </label>
                                             <div className="mt-1 sm:mt-0 sm:col-span-2">
                                                 <div className="max-w-lg flex rounded-md shadow-sm">
@@ -45,7 +45,7 @@ function ContactInfo({ nextStep, handleChange, values }) {
                                         </div>
                                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                             <label htmlFor="username" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                                Last Name
+                                                Last Name <span className='text-red-600'>*</span>
                                             </label>
                                             <div className="mt-1 sm:mt-0 sm:col-span-2">
                                                 <div className="max-w-lg flex rounded-md shadow-sm">
@@ -64,7 +64,7 @@ function ContactInfo({ nextStep, handleChange, values }) {
                                         </div>
                                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                             <label htmlFor="username" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                                Email
+                                                Email <span className='text-red-600'>*</span>
                                             </label>
                                             <div className="mt-1 sm:mt-0 sm:col-span-2">
                                                 <div className="max-w-lg flex rounded-md shadow-sm">
@@ -102,7 +102,7 @@ function ContactInfo({ nextStep, handleChange, values }) {
                                         </div>
                                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                             <label htmlFor="username" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                                Mobile Number
+                                                Mobile Number <span className='text-red-600'>*</span>
                                             </label>
                                             <div className="mt-1 sm:mt-0 sm:col-span-1">
                                                 <div className="max-w-lg flex rounded-md shadow-sm">
@@ -148,9 +148,9 @@ function ContactInfo({ nextStep, handleChange, values }) {
                         <div className="ml-auto">
                             {
                                 values.first_name && values.last_name && values.email && values.mobile_number ? (
-                                    <BlueButton text={'Next Step'} onClick={() => nextStep(values)} outline />
+                                    <BlueButton text={'Next Step'} onClick={() => nextStep(values)}  />
                                 ) : (
-                                    <BlueButton text={'Next Step'} onClick={() => setPageErr('Please enter all requires fields')} />
+                                    <BlueButton text={'Next Step'} onClick={() => setPageErr('Please enter all requires fields')} outline />
                                 )
                             }
                         </div>

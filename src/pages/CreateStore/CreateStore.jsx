@@ -11,6 +11,7 @@ import UserAvatar from '../../components/user_avatar/UserAvatar';
 import { useHistory } from 'react-router-dom';
 import ContactInfo from './ContactInfo';
 import BusinessInfo from './BusinessInfo';
+import ProductsInfo from './ProductsInfo';
 
 function CreateStore() {
     const [step, setActiveStep] = useState(1);
@@ -25,6 +26,7 @@ function CreateStore() {
         company_name: '',
         business_category: '',
         company_website: '',
+        about: '',
         facebook: '',
         instagram: '',
         twitter: '',
@@ -35,6 +37,7 @@ function CreateStore() {
         number_of_uniqe_products: 0,
         brands_products: [],
         stock: false,
+        stock_handle: '',
         physical_store: false,
         physical_store_address: '',
         supplier_to_retailer: false,
@@ -67,6 +70,7 @@ function CreateStore() {
         company_name,
         business_category,
         company_website,
+        about,
         facebook,
         instagram,
         twitter,
@@ -77,6 +81,7 @@ function CreateStore() {
         number_of_uniqe_products,
         brands_products,
         stock,
+        stock_handle,
         physical_store,
         physical_store_address,
         supplier_to_retailer,
@@ -92,6 +97,7 @@ function CreateStore() {
         company_name,
         business_category,
         company_website,
+        about,
         facebook,
         instagram,
         twitter,
@@ -102,6 +108,7 @@ function CreateStore() {
         number_of_uniqe_products,
         brands_products,
         stock,
+        stock_handle,
         physical_store,
         physical_store_address,
         supplier_to_retailer,
@@ -125,6 +132,16 @@ function CreateStore() {
                     handleChange={handleChange}
                     values={values}
                     prevStep={prevStep}
+                />
+            )
+        case 3:
+            return (
+                <ProductsInfo
+                    nextStep={nextStep}
+                    handleChange={handleChange}
+                    values={values}
+                    prevStep={prevStep}
+                    setBrands={setBrands}
                 />
             )
     }
