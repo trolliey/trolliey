@@ -19,7 +19,7 @@ function ProductItem({ picture, rating, name, description, price, discount_price
     return (
         <div className="cursor-pointer relative flex flex-col min-h-96 w-full bg-white rounded overflow-hidden transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border border-gray-100  hover:shadow-lg">
             <div onClick={() => history.push(`/product/description/${id}`)} className="md:h-56 h-40 overflow-hidden flex flex-col items-center rounded bg-white">
-                <img src={picture} alt="product" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-full" />
+                <img src={picture} alt="product" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-full rounded" />
             </div>
             <div className="px-2">
                 <div onClick={() => history.push(`/product/description/${id}`)} className="star flex flex-row items-center mt-2">
@@ -37,8 +37,8 @@ function ProductItem({ picture, rating, name, description, price, discount_price
 
                 <div className="mb-16"></div>
                 {/* //price */}
-                <div className="absolute bottom-0 w-full">
-                    <p className='text-gray-400 text-sm font-semibold'>Price:</p>
+                <div className="absolute bottom-0 w-full pb-2">
+                    <p className='text-gray-500 text-sm'>Price:</p>
                     <div className="flex flex-row items-center justify-between">
                             {
                                 discount_price ? (

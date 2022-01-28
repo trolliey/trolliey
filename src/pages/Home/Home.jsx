@@ -32,10 +32,10 @@ function Home() {
 
     return (
         <GeneralLayout>
-            <div className=" md:p-8 py-2 px-4 bg-white rounded">
+            <div className="">
 
                 {/* // banner and categories */}
-                <div className="top w-full flex flex-row md:gap-8 gap-2">
+                <div className="top w-full flex flex-row md:gap-8 gap-2 bg-white md:p-8 rounded px-4 py-2">
                     <div className="md:w-1/5 md:flex hidden">
                         <CategoriesDropdown open={true} />
                     </div>
@@ -73,8 +73,13 @@ function Home() {
                     </div>
                 </div>
 
+                {/* // all products */}
+               <div className='flex md:my-16 my-8`'>
+                    <AllProducts cols="lg:grid-cols-5 " />
+                </div>
+
                 <section aria-labelledby="category-heading" className="">
-                    <div className="max-w-7xl mx-auto py-16">
+                    <div className="max-w-7xl mx-auto bg-white md:p-8 p-4 rounded">
                         <div className="sm:flex sm:items-baseline sm:justify-between">
                             <h2 id="category-heading" className="text-xl font-bold tracking-tight text-gray-700">
                                 Shop by Category
@@ -167,10 +172,7 @@ function Home() {
 
 
 
-               {/* // all products */}
-               <>
-                    <AllProducts cols="lg:grid-cols-5 " />
-                </>
+               
 
 
             </div>

@@ -17,7 +17,6 @@ function CategoriesDropdown() {
         setParentId(id)
         setCatName(name)
     }
-    console.log(cat_name)
 
     useEffect(() => {
         dispatch(get_all_categories_Action())
@@ -27,7 +26,7 @@ function CategoriesDropdown() {
         <div>
             <ul className="menu relative text-gray-700 font-semibold border border-gray-200 rounded w-[150px]">
                 <div className="flex flex-row items-center gap-8 bg-blue-primary text-white p-2 justify-between capitalize text-sm">
-                    <p>Shop By Category</p>
+                    <p className='pl-2 pr-8'>Shop By Category</p>
                     <ChevronDownIcon height={16} width={16} />
                 </div>
                 <li>

@@ -34,7 +34,7 @@ function AllProducts({ cols, no_text }) {
     }, [dispatch, query, page, limit])
 
     return (
-        <div className="items flex-col">
+        <div className="items flex-col bg-white rounded md:px-8 px-4">
             <div className="text-lg py-8 flex flex-row items-center justify-between">
                 <p className="font-semibold text-gray-700 capitalize ">all products</p>
                 {!no_text && <div onClick={() => history.push('/explore')} className="text-new-primary capitalize font-semibold flex flex-row items-center cursor-pointer hover:text-new-light">
@@ -81,7 +81,7 @@ function AllProducts({ cols, no_text }) {
                 }
             </div>
 
-            <div className="flex flex-row w-full py-16 justify-between">
+            <div className="flex flex-row w-full py-4 justify-between">
                 <div className="self-start">
                     {
                         products?.result.previous ? (
