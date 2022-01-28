@@ -1,3 +1,4 @@
+import { Divider } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import Error from '../../components/alerts/Error';
 import BlueButton from '../../components/buttons/BlueButton';
@@ -6,6 +7,7 @@ import GeneralLayout from '../../layouts/GeneralLayout';
 
 function ProductsInfo({ nextStep, handleChange, values, setBrands, prevStep }) {
     const [page_err, setPageErr] = useState('')
+    const [agreed, setAgreed] = useState(false)
 
     const selectedTags = (tags) => {
         setBrands(tags)
@@ -22,7 +24,7 @@ function ProductsInfo({ nextStep, handleChange, values, setBrands, prevStep }) {
                             <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                                 <div>
                                     <div>
-                                        <h3 className="text-lg leading-6 font-medium text-gray-900">Profile</h3>
+                                        <h3 className="text-lg leading-6 font-medium text-gray-900">Products Information</h3>
                                         <p className="mt-1 max-w-2xl text-sm text-gray-500">
                                             This information will help us provide suitable customers for your shop.
                                         </p>
@@ -65,16 +67,16 @@ function ProductsInfo({ nextStep, handleChange, values, setBrands, prevStep }) {
 
                                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                             <label htmlFor="username" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                                Do you carry stock? <span className='text-red-600'>*</span>
+                                                Do have a physical store? <span className='text-red-600'>*</span>
                                             </label>
                                             <div className="mt-1 sm:mt-0 sm:col-span-2">
                                                 <div className="flex items-center p-3 rounded bg-gray-100">
                                                     <input
-                                                        id="stock"
-                                                        name="stock"
+                                                        id="physical_store"
+                                                        name="physical_store"
                                                         type="radio"
                                                         value={'store_available'}
-                                                        onChange={e => handleChange('stock')}
+                                                        onChange={handleChange('physical_store')}
                                                         className="focus:ring-blue-primary h-4 w-4 textblue-primary border-gray-300"
                                                         required
                                                     />
@@ -85,10 +87,10 @@ function ProductsInfo({ nextStep, handleChange, values, setBrands, prevStep }) {
                                                 <div className="flex items-center p-3 rounded bg-gray-100 mt-2">
                                                     <input
                                                         id="stock"
-                                                        name="stock"
+                                                        name="physical_store"
                                                         type="radio"
-                                                        value={'store_available'}
-                                                        onChange={e => handleChange('stock')}
+                                                        value={'store_not_available'}
+                                                        onChange={handleChange('physical_store')}
                                                         className="focus:ring-blue-primary h-4 w-4 textblue-primary border-gray-300"
                                                         required
                                                     />
@@ -99,6 +101,29 @@ function ProductsInfo({ nextStep, handleChange, values, setBrands, prevStep }) {
                                             </div>
                                         </div>
 
+                                        {
+                                            values.physical_store === 'store_available' && (
+                                                <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                                    <label htmlFor="username" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                                        Enter address of store <span className='text-red-600'>*</span>
+                                                    </label>
+                                                    <div className="mt-1 sm:mt-0 sm:col-span-2">
+                                                        <div className="max-w-lg flex rounded-md shadow-sm">
+                                                            <textarea
+                                                                id="physical_store_address"
+                                                                name="physical_store_address"
+                                                                value={values.physical_store_address}
+                                                                onChange={handleChange('physical_store_address')}
+                                                                rows={7}
+                                                                className="max-w-lg shadow-sm block w-full p-3 outline-none sm:text-sm border border-gray-300 rounded-md"
+                                                                defaultValue={''}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+
                                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                             <label htmlFor="username" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                                 How do you like to handle stock? <span className='text-red-600'>*</span>
@@ -106,11 +131,11 @@ function ProductsInfo({ nextStep, handleChange, values, setBrands, prevStep }) {
                                             <div className="mt-1 sm:mt-0 sm:col-span-2">
                                                 <div className="flex items-center p-3 rounded bg-gray-100">
                                                     <input
-                                                        id="stock"
-                                                        name="stock"
+                                                        id="stock_handle"
+                                                        name="stock_handle"
                                                         type="radio"
-                                                        value={'store_available'}
-                                                        onChange={e => handleChange('stock')}
+                                                        value={'stock_handled_by_self'}
+                                                        onChange={handleChange('stock_handle')}
                                                         className="focus:ring-blue-primary h-4 w-4 textblue-primary border-gray-300"
                                                         required
                                                     />
@@ -120,16 +145,16 @@ function ProductsInfo({ nextStep, handleChange, values, setBrands, prevStep }) {
                                                 </div>
                                                 <div className="flex items-center p-3 rounded bg-gray-100 mt-2">
                                                     <input
-                                                        id="stock"
-                                                        name="stock"
+                                                        id="stock_handle"
+                                                        name="stock_handle"
                                                         type="radio"
-                                                        value={'store_available'}
-                                                        onChange={e => handleChange('stock')}
+                                                        value={'stock_handled_by_trolliey'}
+                                                        onChange={handleChange('stock_handle')}
                                                         className="focus:ring-blue-primary h-4 w-4 textblue-primary border-gray-300"
                                                         required
                                                     />
                                                     <label htmlFor="push-nothing" className="ml-3 block text-sm font-semibold text-gray-700">
-                                                        Let Trolliey Keep my stock and deliver for me when items are ordered
+                                                        Let Trolliey keep my stock and deliver for me when items are ordered
                                                     </label>
                                                 </div>
                                             </div>
@@ -139,17 +164,39 @@ function ProductsInfo({ nextStep, handleChange, values, setBrands, prevStep }) {
                                 </div>
                             </div>
                         </div>
+                        <Divider className='my-8' />
+                        <div className="flex items-center">
+                            <input
+                                id="terms"
+                                name="terms"
+                                type="checkbox"
+                                value={agreed}
+                                onChange={e => setAgreed(e.target.checked)}
+                                className="h-4 w-4 text-blue-primary focus:ring-red-400 border-gray-300 rounded"
+                            />
+                            <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
+                                By applying to sell on Trolliey I agree to the terms and conditions
+                            </label>
+                        </div>
+                        <Divider className='my-8' />
+                        <div className=''>
+                            <h3 className="text-lg leading-6 font-medium text-gray-900">Disclaimer</h3>
+                            <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                                Trolliey will contact you before approving your store to check if you are a legit seller. Thank You!.
+                            </p>
+                        </div>
                     </div>
+
                     {page_err && <Error error={page_err} />}
                     <div className="flex flex-row items-center w-full justify-between">
                         <div className="">
                             <BlueButton text={'Prev Step'} onClick={() => prevStep(values)} />
                         </div>
                         {
-                            values.business_category && values.company_name && values.about && values.business_owner_email ? (
-                                <BlueButton text={'Next Step'} onClick={() => nextStep(values)} />
+                            values.stock_handle && values.physical_store && values.stock_handle ? (
+                                <BlueButton text={'Apply For Store'} onClick={() => console.log(values)} />
                             ) : (
-                                <BlueButton text={'Next Step'} onClick={() => setPageErr('Please enter all requires fields')} outline />
+                                <BlueButton text={'Apply For Store'} onClick={() => setPageErr('Please enter all requires fields')} outline />
                             )
                         }
                     </div>
