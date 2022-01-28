@@ -28,11 +28,13 @@ function ProductsInfo({ brands, handleChange, values, setBrands, prevStep }) {
         dispatch(create_single_store_Actions(values, brands, userInfo?.token))
     }
 
-    useEffect(()=>{
-        if(message === 'Store Created!'){
-            history.push('/store-created')
+    useEffect(() => {
+        if (message === 'Sucessfully Applied!') {
+            setTimeout(() => {
+                history.push('/store-created')
+            }, 1500);
         }
-    },[])
+    }, [])
 
     return (
         <GeneralLayout no_text>
