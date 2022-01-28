@@ -1,7 +1,9 @@
 import { Divider } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Error from '../../components/alerts/Error';
+import SuccessAlert from '../../components/alerts/SuccessAlert';
 import BlueButton from '../../components/buttons/BlueButton';
 import Tags from '../../components/tags/Tags';
 import GeneralLayout from '../../layouts/GeneralLayout';
@@ -11,16 +13,26 @@ function ProductsInfo({ brands, handleChange, values, setBrands, prevStep }) {
     const [page_err, setPageErr] = useState('')
     const [agreed, setAgreed] = useState(false)
     const dispatch = useDispatch()
+    const history = useHistory()
     const _logged_in = useSelector(state => state.user_login)
     const { userInfo } = _logged_in
+
+    const _create = useSelector(state => state.create_store)
+    const { create_loading, message, create_error } = _create
 
     const selectedTags = (tags) => {
         setBrands(tags)
     };
 
     const create_store = () => {
-        dispatch(create_single_store_Actions(values,brands, userInfo?.token))
+        dispatch(create_single_store_Actions(values, brands, userInfo?.token))
     }
+
+    useEffect(()=>{
+        if(message === 'Store Created!'){
+            history.push('/store-created')
+        }
+    },[])
 
     return (
         <GeneralLayout no_text>
@@ -197,13 +209,15 @@ function ProductsInfo({ brands, handleChange, values, setBrands, prevStep }) {
                     </div>
 
                     {page_err && <Error error={page_err} />}
+                    {message && <SuccessAlert message={message} />}
+                    {create_error && <Error error={create_error} />}
                     <div className="flex flex-row items-center w-full justify-between">
                         <div className="">
                             <BlueButton text={'Prev Step'} onClick={() => prevStep(values)} />
                         </div>
                         {
                             values.stock_handle && values.physical_store && values.stock_handle ? (
-                                <BlueButton text={'Apply For Store'} onClick={() => create_store()} />
+                                <BlueButton text={'Apply For Store'} onClick={() => create_store()} loading={create_loading} />
                             ) : (
                                 <BlueButton text={'Apply For Store'} onClick={() => setPageErr('Please enter all requires fields')} outline />
                             )

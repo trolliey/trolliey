@@ -14,14 +14,14 @@ export const get_store_products_Reducer = (state = { loading: false }, action) =
     }
 }
 
-export const create_single_store_Reducer = (state = { edit_loading: false }, action) => {
+export const create_single_store_Reducer = (state = { create_loading: false }, action) => {
     switch (action.type) {
         case CREATE_SINGLE_STORE_INFO_REQUEST:
-            return { edit_loading: true }
+            return { create_loading: true }
         case CREATE_SINGLE_STORE_INFO_SUCCESS:
-            return { edit_loading: false, message: 'Successfully edited' }
+            return { create_loading: false, message: 'Successfully edited' }
         case CREATE_SINGLE_STORE_INFO_FAIL:
-            return { edit_loading: false, edit_error: action.payload }
+            return { create_loading: false, create_error: action.payload }
         default:
             return state
     }

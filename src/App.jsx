@@ -37,6 +37,7 @@ import Help from './pages/help/Help';
 import Chat from './pages/Chat/Chat';
 import BecomeASellerAd from './pages/BecomeASellerAd/BecomeASellerAd';
 import CreateStore from './pages/CreateStore/CreateStore';
+import FinaliseStoreRegistry from './pages/CreateStore/FinaliseStoreRegistry';
 
 function App() {
     return (
@@ -80,6 +81,7 @@ function App() {
                 <AdminRoute path='/admin/categories' component={ManageCategories} />
                 <Route exact path='/admin' component={AdminLogin} />
 
+                <Route path='/store-created' component={FinaliseStoreRegistry} />
                 <Route path='/create-store' component={CreateStore} />
                 <Route path='/become-a-seller' component={BecomeASellerAd} />
                 <Route path='/compare' component={Compare} />
