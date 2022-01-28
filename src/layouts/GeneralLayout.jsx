@@ -14,7 +14,7 @@ function GeneralLayout({ children, no_text }) {
                 <GeneralNavbar />
             </div>
             <div className="lg:px-0 md:px-16 px-2 bg-gray-100 min-h-screen w-full pb-8 ">
-                <div className="max-w-7xl mx-auto ">
+                <div className="max-w-7xl mx-auto bg-gray-100 ">
                     {
                         !no_text && (<p className="flex text-gray-700 text-sm py-4 font-semibold lg:px-8 md:px-4 px-2 bg-gray-100">Free Shipping On All Order Over $100 Code</p>)
                     }

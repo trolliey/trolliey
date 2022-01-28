@@ -6,7 +6,6 @@ import { useHistory } from 'react-router'
 import UserDropdown from '../dropdowns/UserDropdown'
 import MobileNavDrawer from '../drawers/MobileNavDrawer'
 import logo from '../../assets/logo.png'
-import BlueButton from '../buttons/BlueButton'
 import NavSearch from '../search/NavSearch'
 import { Tooltip } from '@chakra-ui/react'
 import NotificationMenu from '../nav_menus/NotificationMenu'
@@ -20,8 +19,6 @@ function GeneralNavbar() {
     const _logged_in = useSelector(state => state.user_login)
     const { userInfo } = _logged_in
     const notifications = []
-
-    console.log(userInfo)
 
     const [notifications_menu, setOpenNotificationMenu] = useState(false)
 
