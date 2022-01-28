@@ -142,6 +142,7 @@ function CreateStore() {
                     values={values}
                     prevStep={prevStep}
                     setBrands={setBrands}
+                    brands={brands}
                 />
             )
     }

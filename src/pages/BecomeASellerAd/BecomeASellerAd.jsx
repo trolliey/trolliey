@@ -2,11 +2,20 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import GeneralLayout from '../../layouts/GeneralLayout';
 import dashboard_screenshot from '../../assets/dashboard_screenshot.png'
+import { useSelector } from 'react-redux';
+import {
+    useDisclosure,
+} from '@chakra-ui/react'
+import AuthModal from '../../components/auth_modal/AuthModal';
 
 function BecomeASellerAd() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const history = useHistory()
-    return (<GeneralLayout no_text>
 
+    const _logged_in = useSelector(state => state.user_login)
+    const { userInfo } = _logged_in
+
+    return (<GeneralLayout no_text>
         <div className="">
             <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
                 <div className="bg-blue-dark rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4 mb-16">
@@ -19,11 +28,25 @@ function BecomeASellerAd() {
                             <p className="mt-4 text-lg leading-6 text-indigo-200">
                                 Become a seller at Trolliey and enjoy many incredible features created to give you the best experience. Start to sell you products and receice the hoghest amount of your earnings today. One of the features you will get is a dashboard that you can use to manage your inventory, customers and track your feedbacks.
                             </p>
-                            <div onClick={() => history.push('/create-store')}
-                                className="mt-8 bg-white border cursor-pointer border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-blue-dark hover:bg-gray-50"
-                            >
-                                Open A Shop
-                            </div>
+                            {
+                                userInfo ? (
+                                    <div onClick={() => history.push('/create-store')}
+                                        className="mt-8 bg-white border cursor-pointer border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-blue-dark hover:bg-gray-50"
+                                    >
+                                        Apply to Sell
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <div onClick={onOpen}
+                                            className="mt-8 bg-white border cursor-pointer border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-blue-dark hover:bg-gray-50"
+                                        >
+                                            Apply to Sell
+                                        </div>
+                                        <AuthModal onClose={onClose} isOpen={isOpen} />
+                                        
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                     <div className="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">

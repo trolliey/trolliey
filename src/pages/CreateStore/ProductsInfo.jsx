@@ -1,17 +1,26 @@
 import { Divider } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Error from '../../components/alerts/Error';
 import BlueButton from '../../components/buttons/BlueButton';
 import Tags from '../../components/tags/Tags';
 import GeneralLayout from '../../layouts/GeneralLayout';
+import { create_single_store_Actions } from '../../redux/actions/storeActions';
 
-function ProductsInfo({ nextStep, handleChange, values, setBrands, prevStep }) {
+function ProductsInfo({ brands, handleChange, values, setBrands, prevStep }) {
     const [page_err, setPageErr] = useState('')
     const [agreed, setAgreed] = useState(false)
+    const dispatch = useDispatch()
+    const _logged_in = useSelector(state => state.user_login)
+    const { userInfo } = _logged_in
 
     const selectedTags = (tags) => {
         setBrands(tags)
     };
+
+    const create_store = () => {
+        dispatch(create_single_store_Actions(values,brands, userInfo?.token))
+    }
 
     return (
         <GeneralLayout no_text>
@@ -194,7 +203,7 @@ function ProductsInfo({ nextStep, handleChange, values, setBrands, prevStep }) {
                         </div>
                         {
                             values.stock_handle && values.physical_store && values.stock_handle ? (
-                                <BlueButton text={'Apply For Store'} onClick={() => console.log(values)} />
+                                <BlueButton text={'Apply For Store'} onClick={() => create_store()} />
                             ) : (
                                 <BlueButton text={'Apply For Store'} onClick={() => setPageErr('Please enter all requires fields')} outline />
                             )
