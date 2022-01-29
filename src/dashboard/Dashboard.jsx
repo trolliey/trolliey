@@ -99,11 +99,6 @@ export default function Dashboard() {
 
                 <div className="mt-8">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div>
-                            {!products && (
-                                <div onClick={() => history.push('/dashboard/settings')} className="w-full p-2 bg-red-100 text-gray-700 font-semibold text-center rounded mb-2 cursor-pointer">No store yet. Click here to create one!</div>
-                            )}
-                        </div>
                         <h2 className="text-lg leading-6 font-medium text-gray-900">Overview</h2>
                         <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                             {/* Card */}
