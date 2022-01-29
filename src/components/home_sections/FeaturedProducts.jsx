@@ -5,6 +5,7 @@ import { get_featured_products_Actions } from '../../redux/actions/featuredProdu
 import ProductItem from '../product_item/ProductItem'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 import { useHistory } from 'react-router'
+import ProductLoading from '../product_item/ProductLoading'
 
 function FeaturedProducts() {
     const _featured_p = useSelector(state => state.get_featured_products)
@@ -25,16 +26,22 @@ function FeaturedProducts() {
                     <ArrowRightIcon height={16} width={16} className="ml-2" />
                 </div>
             </div>
-            <div className={`${loading || error ? "flex-1 flex w-full " : "grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 "}  gap-4`}>
+            <div >
                 {
                     loading ? (
-                        <div className="w-full flex flex-col items-center py-8">
-                            <Spinner colorScheme="blue" thickness={3} />
+                        <div className={`${loading || error ? "flex-1 flex w-full " : "grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 "}  gap-4`}>
+                             {
+                                [1, 2, 3, 4, 5]?.map((item, index) => (
+                                    <div key={index} className="flex">
+                                        <ProductLoading />
+                                    </div>
+                                ))
+                            }
                         </div>
                     ) : error ? (
                         <p className="text-gray-700 font-semibold text-lg text-center py-8 w-full">Could not load featured products, Try reloading the page! </p>
                     ) : (
-                        <>
+                        <div className={`${loading || error ? "flex-1 flex w-full " : "grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 "}  gap-4`}>
                             {
                                 featured_products?.all_products.length >= 1 ? (
                                     <>
@@ -59,7 +66,7 @@ function FeaturedProducts() {
                                     </div>
                                 )
                             }
-                        </>
+                        </div>
                     )
                 }
 

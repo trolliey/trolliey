@@ -12,6 +12,7 @@ import tech_stuff from '../../assets/tech_stuff.jpg'
 import clothes from '../../assets/clothes.jpg'
 import { set_search_query_Action } from '../../redux/actions/searchAction'
 import { useHistory } from 'react-router-dom'
+import ProductLoading from '../../components/product_item/ProductLoading'
 
 function Home() {
 
