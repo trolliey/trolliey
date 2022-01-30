@@ -73,9 +73,9 @@ function ManageCategories() {
                                             </span>
                                         </Disclosure.Button>
                                     </dt>
-                                    <>
+                                    <div className='bg-white'>
                                         <SubCategoryComponent category_slug={slugify(category.name)} />
-                                    </>
+                                    </div>
                                 </>
                             )}
                         </Disclosure>

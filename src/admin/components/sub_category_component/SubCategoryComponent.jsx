@@ -5,7 +5,6 @@ import { get_all_subcategories_Action } from '../../../redux/actions/categoryAct
 import BlueButton from '../../../components/buttons/BlueButton';
 import Error from '../../../components/alerts/Error';
 import SuccessAlert from '../../../components/alerts/SuccessAlert';
-import CategoryImageUpload from '../../../components/image_uploads/CategoryImageUpload'
 import { add_subcategory_Action } from '../../../redux/actions/subCategoryActions';
 import FileUploadCompoent from '../../../components/file_upload_component/FileUploadCompoent';
 
@@ -16,15 +15,20 @@ function SubCategoryComponent({ category_slug }) {
     const { sub_categories, sub_cat_loading, sub_cat_error } = sub_cats
     const [toggle_subcategory_on, setToggleCategory] = useState(false)
     const [sub_cat, setSubCat] = useState('')
-    const [picture, setPicture] = useState()
     const dispatch = useDispatch()
+
+    const [pictures_for_upload, setPicturesForUpload] = useState([])
+
+    const selectedPictures = (pictures) => {
+        setPicturesForUpload(pictures)
+    };
 
     const toggle_sub_category_Handler = () => {
         toggle_subcategory_on ? setToggleCategory(false) : setToggleCategory(true)
     }
 
     const add_sub_cat_Handler = () => {
-        dispatch(add_subcategory_Action(sub_cat, picture[0], category_slug))
+        dispatch(add_subcategory_Action(sub_cat, 'picture', category_slug))
     }
     useEffect(() => {
         dispatch(get_all_subcategories_Action(category_slug))
@@ -33,9 +37,9 @@ function SubCategoryComponent({ category_slug }) {
     console.log(sub_categories)
 
     return (<div>
-        <Disclosure.Panel as="dd" className="mt-2 pr-12">
+        <Disclosure.Panel as="dd" className="mt-2 pr-12 bg-white">
             <div className="flex flex-col items-end w-full">
-                <div className="flex flex-row items-center font-semibold capitalize text-sm">
+                <div className="flex flex-row items-center font-semibold capitalize text-sm py-2">
                     <span className="text-blue-400 hover:text-blue-700 mr-2 cursor-pointer">Edit </span> |
                     <span className="mx-2 text-red-400 hover:text-red-700 cursor-pointer"> delete </span> |
                     <span
@@ -46,14 +50,16 @@ function SubCategoryComponent({ category_slug }) {
                 {add_subcat_message && <SuccessAlert message={add_subcat_message} />}
                 {
                     toggle_subcategory_on ? (
-                        <div className="flex flex-col w-full">
+                        <div className="flex flex-col w-full mb-2">
                             <input
                                 type="text"
                                 className="border border-gray-300 p-2 rounded outline-none flex-1 m-2"
                                 placeholder="add category"
                                 onChange={e => setSubCat(e.target.value)}
                             />
-                            <FileUploadCompoent />
+                            <FileUploadCompoent
+                                selectedPictures={selectedPictures}
+                            />
                             <div className="mx-2 ml-auto">
                                 <BlueButton
                                     text="Add Sub-Category"
