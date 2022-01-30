@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import AdminLayout from '../layouts/AdminLayout'
 import { add_category_Action } from '../redux/actions/categoryActions'
 import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline'
-import BlueButton from '../components/buttons/BlueButton'
-import Error from '../components/alerts/Error'
-import SuccessAlert from '../components/alerts/SuccessAlert'
-import CategoryImageUpload from '../components/image_uploads/CategoryImageUpload'
 import SubCategoryComponent from './components/sub_category_component/SubCategoryComponent'
 import { data } from '../utils/data'
 
@@ -22,10 +17,6 @@ function ManageCategories() {
     const [category, setCategory] = useState('')
     const [parent_id, setParent_id] = useState('')
     const [category_picture, setCategory_picture] = useState()
-
-    const _new_category = useSelector(state => state.add_category)
-    const { add_cat_loading, add_cat_error, add_cat_message } = _new_category
-
 
     function slugify(string) {
         const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'

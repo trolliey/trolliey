@@ -9,12 +9,30 @@ import { data } from '../../utils/data';
 
 function CategoriesDropdown() {
     const dispatch = useDispatch()
-    const [parent_id, setParentId] = useState('')
+    const [category_slug, setCategorySlug] = useState('')
     const [cat_name, setCatName] = useState('')
+    const [category_image, setCategoryImage] = useState()
 
-    const handle_hover = (id, name) => {
-        setParentId(id)
+    function slugify(string) {
+        const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
+        const b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
+        const p = new RegExp(a.split('').join('|'), 'g')
+
+        return string.toString().toLowerCase()
+            .replace(/\s+/g, '-') // Replace spaces with -
+            .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+            .replace(/&/g, '-and-') // Replace & with 'and'
+            .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+            .replace(/\-\-+/g, '-') // Replace multiple - with single -
+            .replace(/^-+/, '') // Trim - from start of text
+            .replace(/-+$/, '') // Trim - from end of text
+    }
+
+    const handle_hover = (slug, name, imag) => {
+        setCategorySlug(slug)
         setCatName(name)
+        setCategoryImage(imag)
+
     }
 
     useEffect(() => {
@@ -34,7 +52,7 @@ function CategoriesDropdown() {
                     <>
                         {
                             data.categories.slice(0, 10)?.map((category, index) => (
-                                <div key={index} onMouseEnter={() => handle_hover(category._id, category.name)} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100 overflow-ellipsis overflow-hidden">
+                                <div key={index} onMouseEnter={() => handle_hover(slugify(category.name), category.name, category.icon)} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100 overflow-ellipsis overflow-hidden">
                                     <p className='capitalize overflow-ellipsis line-clamp-1'>{category.name}</p>
                                     <ChevronRightIcon height={16} width={16} className='text-gray-400' />
                                 </div>
@@ -48,7 +66,7 @@ function CategoriesDropdown() {
                     </div>
 
                     <>
-                        <SubCategoryComponent category_id={parent_id} cat_name={cat_name} />
+                        <SubCategoryComponent category_id={category_slug} cat_name={cat_name} cat_image={category_image} />
                     </>
 
                 </li>

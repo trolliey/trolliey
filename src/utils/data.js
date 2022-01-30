@@ -20,8 +20,8 @@ import beauty from '../assets/beauty.svg'
 
 export const data = {
     categories : [
-        { name: 'Sports and training', value:"Sports-&-training", icon: sport },
-        { name: 'Books & courses', value: 'Books-&-courses', icon: books },
+        { name: 'Sports and training', value:"sports-&-training", icon: sport },
+        { name: 'Books & courses', value: 'sooks-&-courses', icon: books },
         { name: 'Groceries', value: 'groceries', icon: groceries },
         { name: 'Gaming', value: 'gaming', icon: gaming },
         { name: 'Computer & electronics', value:'computer-&-electronics', icon: computers },
