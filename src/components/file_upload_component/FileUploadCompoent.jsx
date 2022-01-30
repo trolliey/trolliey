@@ -1,7 +1,7 @@
 import { PlusIcon, XIcon } from '@heroicons/react/outline';
 import React, { useState } from 'react';
 
-function FileUploadCompoent({multiple, selectedPictures}) {
+function FileUploadCompoent({ multiple, selectedPictures }) {
     let fileObj = []
     let fileArray = []
     const upload_files = []
@@ -15,9 +15,13 @@ function FileUploadCompoent({multiple, selectedPictures}) {
             fileArray.push(URL.createObjectURL(fileObj[0][i]))
             upload_files.push(fileObj[0][i])
         }
+        for (let i = 0; i < e.target.files.length; i++) {
+            const newImage = e.target.files[i];
+            selectedPictures((prevState) => [...prevState, newImage]);
+        }
         setPreviewFiles(fileArray)
         setUploadFiles(upload_files)
-        selectedPictures([...files_to_upload, upload_files])
+        // selectedPictures(upload_files)
     }
 
     const removePicture = index => {

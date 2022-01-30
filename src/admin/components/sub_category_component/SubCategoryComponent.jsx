@@ -28,13 +28,13 @@ function SubCategoryComponent({ category_slug }) {
     }
 
     const add_sub_cat_Handler = () => {
-        dispatch(add_subcategory_Action(sub_cat, 'picture', category_slug))
+        dispatch(add_subcategory_Action(sub_cat, pictures_for_upload, category_slug))
     }
     useEffect(() => {
         dispatch(get_all_subcategories_Action(category_slug))
     }, [dispatch, category_slug])
 
-    console.log(sub_categories)
+    // console.log(sub_categories)
 
     return (<div>
         <Disclosure.Panel as="dd" className="mt-2 pr-12 bg-white">
@@ -59,6 +59,7 @@ function SubCategoryComponent({ category_slug }) {
                             />
                             <FileUploadCompoent
                                 selectedPictures={selectedPictures}
+                                multiple
                             />
                             <div className="mx-2 ml-auto">
                                 <BlueButton
