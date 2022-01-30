@@ -18,6 +18,7 @@ import logo from '../../assets/full_logo.png'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_all_categories_Action } from '../../redux/actions/categoryActions'
+import { data } from '../../utils/data'
 
 function MobileNavDrawer({ user }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -55,7 +56,7 @@ function MobileNavDrawer({ user }) {
                         show_category ? (
                             <DrawerBody bg={'white'} p={0}>
                                 <Divider />
-                                <div className="flex flex-row items-center py-4 bg-white mt-4 px-4">
+                                <div className="flex flex-row items-center py-4 bg-white px-4">
                                     <UserAvatar size="sm" name={user?.user?.displayName} />
                                     {
                                         user ? (
@@ -73,24 +74,19 @@ function MobileNavDrawer({ user }) {
                                     <p className='font-semibold capitalize text-center my-4 text-gray-700 mx-auto '>a list of categories</p>
                                 </div>
                                 <div className="px-4">
+
                                     {
-                                        cat_loading ? (
-                                            <div className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
-                                                <p>loading...</p>
+                                        data?.categories.map((category, index) => (
+                                            <div key={index} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
+                                                <div className="flex flex-row items-center">
+                                                    <img src={category.icon} alt={category.name} className='h-6 w-6 mr-2' />
+                                                    <p className='capitalize'>{category.name}</p>
+                                                </div>
+                                                <ChevronRightIcon height={16} width={16} className='text-gray-400' />
                                             </div>
-                                        ) : (
-                                            <>
-                                                {
-                                                    categories?.categories.map((category, index) => (
-                                                        <div key={index} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
-                                                            <p className='capitalize'>{category.name}</p>
-                                                            <ChevronRightIcon height={16} width={16} className='text-gray-400' />
-                                                        </div>
-                                                    ))
-                                                }
-                                            </>
-                                        )
+                                        ))
                                     }
+
                                 </div>
 
                             </DrawerBody>

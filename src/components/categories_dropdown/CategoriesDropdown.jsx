@@ -3,13 +3,12 @@ import './CategoriesDropdown.css'
 import { ChevronRightIcon } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { get_all_categories_Action } from '../../redux/actions/categoryActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import SubCategoryComponent from './SubCategoryComponent'
+import { data } from '../../utils/data';
 
 function CategoriesDropdown() {
     const dispatch = useDispatch()
-    const _categories = useSelector(state => state.get_all_categories)
-    const { cat_loading, cat_error, categories } = _categories
     const [parent_id, setParentId] = useState('')
     const [cat_name, setCatName] = useState('')
 
@@ -32,24 +31,16 @@ function CategoriesDropdown() {
                     <ChevronDownIcon height={16} width={16} />
                 </div>
                 <li className='border border-gray-200 rounded-b'>
-                    {
-                        cat_loading ? (
-                            <div className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
-                                <p>loading...</p>
-                            </div>
-                        ) : (
-                            <>
-                                {
-                                    categories?.categories.map((category, index) => (
-                                        <div key={index} onMouseEnter={() => handle_hover(category._id, category.name)} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100 overflow-ellipsis overflow-hidden">
-                                            <p className='capitalize overflow-ellipsis line-clamp-1'>{category.name}</p>
-                                            <ChevronRightIcon height={16} width={16} className='text-gray-400' />
-                                        </div>
-                                    ))
-                                }
-                            </>
-                        )
-                    }
+                    <>
+                        {
+                            data.categories?.map((category, index) => (
+                                <div key={index} onMouseEnter={() => handle_hover(category._id, category.name)} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100 overflow-ellipsis overflow-hidden">
+                                    <p className='capitalize overflow-ellipsis line-clamp-1'>{category.name}</p>
+                                    <ChevronRightIcon height={16} width={16} className='text-gray-400' />
+                                </div>
+                            ))
+                        }
+                    </>
 
                     <div className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
                         <p className='capitalize'>all categories</p>

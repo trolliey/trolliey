@@ -1,18 +1,40 @@
 import { EmojiHappyIcon, CreditCardIcon, ShoppingBagIcon, CurrencyDollarIcon } from '@heroicons/react/outline'
 import picture from '../assets/cat-travel.jpg'
 import image from '../assets/main-banner.jpg'
+import sport from '../assets/sports.svg'
+import books from '../assets/books.svg'
+import groceries from '../assets/groceries.svg'
+import gaming from '../assets/gaming.svg'
+import computers from '../assets/copmuters.svg'
+import camping from '../assets/camping.svg'
+import fashion from '../assets/fashion.svg'
+import homeware from '../assets/homeware.svg'
+import kitchen from '../assets/kitchen.svg'
+import baby from '../assets/baby.svg'
+import office from '../assets/office.svg'
+import outdoor from '../assets/outdoor.svg'
+import tv from '../assets/tv.svg'
+import cellphone from '../assets/cellphone.svg'
+import automotive from '../assets/automotive.svg'
 
 export const data = {
     categories : [
-        { name: 'Accessories parts', value:"accessories" },
-        { name: 'components', value: 'compoents' },
-        { name: 'tables', value: 'tables' },
-        { name: 'software', value:'software' },
-        { name: 'phones & PDAs', value:'phones' },
-        { name: 'cameras', value: 'cameras' },
-        { name: 'tent house', value:'tent_house' },
-        { name: 'kids products', value: 'kids_products' },
-        { name: 'sofa seat', value: "sofa_seat" }
+        { name: 'Sports and training', value:"Sports-&-training", icon: sport },
+        { name: 'Books & courses', value: 'Books-&-courses', icon: books },
+        { name: 'Groceries', value: 'groceries', icon: groceries },
+        { name: 'Gaming', value: 'gaming', icon: gaming },
+        { name: 'Computer & electronics', value:'computer-&-electronics', icon: computers },
+        { name: 'Camping & outdoors', value:'camping-&-outdoors', icon: camping },
+        { name: 'Fashion & luggage', value: 'fashion-&-luggage', icon: fashion },
+        { name: 'Kitchen appliances', value:'kitchen-appliances', icon: kitchen },
+        { name: 'Homeware & appliances', value: 'homeware-&-large-appliances', icon: homeware },
+        { name: 'Baby & toddler', value: "baby-&-toddler", icon: baby },
+        { name: 'Office & Stationery', value: "office-and-stationery", icon: office },
+        { name: 'Outdoor & patio', value: "outdoor-and-patio", icon: outdoor },
+        { name: 'TV audio and electronics', value: "tv-audio-and-electronics", icon: tv },
+        { name: 'Cellphone & wearables ', value: "cellphone-&-wearables ", icon: cellphone },
+        { name: 'Automitive & D.I.Y ', value: "automitive-&-D.I.Y", icon: automotive },
+
     ],
     benefits : [
         { heading: 'Free shipment', details: 'Free shipment for bulk goods', icon: ShoppingBagIcon, },
