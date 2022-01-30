@@ -33,7 +33,7 @@ function CategoriesDropdown() {
                 <li className='border border-gray-200 rounded-b'>
                     <>
                         {
-                            data.categories?.map((category, index) => (
+                            data.categories.slice(0, 10)?.map((category, index) => (
                                 <div key={index} onMouseEnter={() => handle_hover(category._id, category.name)} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100 overflow-ellipsis overflow-hidden">
                                     <p className='capitalize overflow-ellipsis line-clamp-1'>{category.name}</p>
                                     <ChevronRightIcon height={16} width={16} className='text-gray-400' />

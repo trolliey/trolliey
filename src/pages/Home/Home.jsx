@@ -4,15 +4,19 @@ import GeneralLayout from '../../layouts/GeneralLayout'
 import AllProducts from '../../components/home_sections/AllProducts'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_all_ads_Action } from '../../redux/actions/adActions'
-import { Spinner } from '@chakra-ui/react'
-import main_banner from '../../assets/main-banner.png'
 import Courosel from '../../components/courosel/Courosel'
 import surprise from '../../assets/surprise.jpg'
 import tech_stuff from '../../assets/tech_stuff.jpg'
 import clothes from '../../assets/clothes.jpg'
 import { set_search_query_Action } from '../../redux/actions/searchAction'
 import { useHistory } from 'react-router-dom'
-import ProductLoading from '../../components/product_item/ProductLoading'
+import promo_1 from '../../assets/promo_1.png'
+import promo_2 from '../../assets/fregrance_sale.png'
+import samsung from '../../assets/samsung.svg'
+import defy from '../../assets/defy.svg'
+import kenwood from '../../assets/kenwood-logo.svg'
+import dell from '../../assets/dell-logo.svg'
+import oppo from '../../assets/oppo-logo.svg'
 
 function Home() {
 
@@ -23,9 +27,9 @@ function Home() {
     const history = useHistory()
 
     const banner_images = [
-        { body: '', image: main_banner },
-        { body: '', image: main_banner },
-        { body: '', image: main_banner }
+        { body: '', image: promo_1 },
+        { body: '', image: promo_2 },
+        { body: '', image: promo_1 }
     ]
 
     useEffect(() => {
@@ -48,16 +52,24 @@ function Home() {
                     </div>
                     <div className="flex-1">
 
-                        <>
-                            <div className="flex content-center items-center overflow-hidden rounded w-full  h-auto bg-gray-100">
-
+                        <div className='flex flex-col'>
+                            <div className="overflow-hidden w-full  h-auto bg-gray-100 mb-4">
                                 <div className="grid content-center items-center overflow-hidden rounded w-full  bg-white">
                                     {/* <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" /> */}
                                     <Courosel data={banner_images} />
                                 </div>
-
                             </div>
-                        </>
+                            <div className="flex flex-col my-auto">
+                                <p className='text-gray-900 font-semibold capitalize mb-8 text-lg'>Featured Brands</p>
+                                <div className="brands flex flex-row items-center justify-between overflow-auto md:px-8 px-0">
+                                    <img src={samsung} alt="" className='h-6' />
+                                    <img src={defy} alt="" className='h-6' />
+                                    <img src={kenwood} alt="" className='h-6' />
+                                    <img src={dell} alt="" className='h-6' />
+                                    <img src={oppo} alt="" className='h-6' />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

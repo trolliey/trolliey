@@ -16,6 +16,7 @@ import outdoor from '../assets/outdoor.svg'
 import tv from '../assets/tv.svg'
 import cellphone from '../assets/cellphone.svg'
 import automotive from '../assets/automotive.svg'
+import beauty from '../assets/beauty.svg'
 
 export const data = {
     categories : [
@@ -27,6 +28,7 @@ export const data = {
         { name: 'Camping & outdoors', value:'camping-&-outdoors', icon: camping },
         { name: 'Fashion & luggage', value: 'fashion-&-luggage', icon: fashion },
         { name: 'Kitchen appliances', value:'kitchen-appliances', icon: kitchen },
+        { name: 'Beauty & fragrances', value:'beauty-and-fragrances', icon: beauty },
         { name: 'Homeware & appliances', value: 'homeware-&-large-appliances', icon: homeware },
         { name: 'Baby & toddler', value: "baby-&-toddler", icon: baby },
         { name: 'Office & Stationery', value: "office-and-stationery", icon: office },

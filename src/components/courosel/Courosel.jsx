@@ -20,7 +20,7 @@ function Courosel({data}) {
             width="100%"
             height="100%"
             captionStyle={captionStyle}
-            radius="5px"
+            radius="0px"
             slideNumber={false}
             slideNumberStyle={slideNumberStyle}
             captionPosition="bottom"
@@ -35,7 +35,7 @@ function Courosel({data}) {
             style={{
               textAlign: "center",
               maxWidth: "100%",
-              maxHeight: "100%",
+              maxHeight: "300px",
             }}
           />
       </div>
