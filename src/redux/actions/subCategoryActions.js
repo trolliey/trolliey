@@ -24,20 +24,21 @@ export const get_subcategories_Action = (category) => (dispatch) => {
 }
 
 //create sub category action
-export const add_subcategory_Action = (id, sub_category) => (dispatch) =>{
+export const add_subcategory_Action = (sub_cat, picture, category_slug) => (dispatch) => {
     dispatch({
         type: CREATE_SUBCATEGORY_REQUEST,
-        payload: {id}
+        payload: { sub_cat, picture, category_slug }
     })
-    axios.post(`${apiUrl}/sub_category/create/${id}`,{
-        sub_category: sub_category,
-        sub_category_picture: ''
-    }).then(res=>{
+    axios.post(`${apiUrl}/sub_category/create/${category_slug}`, {
+        sub_category: sub_cat,
+        sub_category_picture: picture ? picture : '',
+        description: ''
+    }).then(res => {
         dispatch({
             type: CREATE_SUBCATEGORY_SUCCESS,
             payload: res.data
         })
-    }).catch(error=>{
+    }).catch(error => {
         dispatch({
             type: CREATE_SUBCATEGORY_FAIL,
             payload: error.response && error.response.data.error

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Disclosure } from '@headlessui/react'
-import { add_category_Action, get_all_subcategories_Action } from '../../../redux/actions/categoryActions';
+import { get_all_subcategories_Action } from '../../../redux/actions/categoryActions';
 import BlueButton from '../../../components/buttons/BlueButton';
 import Error from '../../../components/alerts/Error';
 import SuccessAlert from '../../../components/alerts/SuccessAlert';
 import CategoryImageUpload from '../../../components/image_uploads/CategoryImageUpload'
+import { add_subcategory_Action } from '../../../redux/actions/subCategoryActions';
+import FileUploadCompoent from '../../../components/file_upload_component/FileUploadCompoent';
 
-function SubCategoryComponent({ category_id }) {
+function SubCategoryComponent({ category_slug }) {
     const _add_sub_cat = useSelector(state => state.create_subcategory)
     const { add_subcat_loading, add_subcat_error, add_subcat_message } = _add_sub_cat
     const sub_cats = useSelector(state => state.get_all_subcats)
@@ -22,11 +24,11 @@ function SubCategoryComponent({ category_id }) {
     }
 
     const add_sub_cat_Handler = () => {
-        dispatch(add_category_Action(sub_cat, picture[0], category_id))
+        dispatch(add_subcategory_Action(sub_cat, picture[0], category_slug))
     }
     useEffect(() => {
-        dispatch(get_all_subcategories_Action(category_id))
-    }, [dispatch, category_id])
+        dispatch(get_all_subcategories_Action(category_slug))
+    }, [dispatch, category_slug])
 
     console.log(sub_categories)
 
@@ -51,7 +53,7 @@ function SubCategoryComponent({ category_id }) {
                                 placeholder="add category"
                                 onChange={e => setSubCat(e.target.value)}
                             />
-                            <CategoryImageUpload setPictures={setPicture} />
+                            <FileUploadCompoent />
                             <div className="mx-2 ml-auto">
                                 <BlueButton
                                     text="Add Sub-Category"
@@ -64,27 +66,31 @@ function SubCategoryComponent({ category_id }) {
                 }
             </div>
             {sub_cat_error && <Error error={'Error loading sub-categories, try reloading page'} />}
-            {
-                sub_cat_loading ? (
-                    <p>Loading ..</p>
-                ) : (
-                    <>
-                        {
-                            sub_categories?.result.length < 1 ? (
-                                <p className='text-center text-gray-700 font-semibold'>No sub categories under this category</p>
-                            ) : (
-                                <>
-                                    {
-                                        sub_categories?.result.map((sub_cat, index) => (
-                                            <p key={index} className="text-base text-gray-600 mx-2">{index+1}. {sub_cat?.name}</p>
-                                        ))
-                                    }
-                                </>
-                            )
-                        }
-                    </>
-                )
-            }
+
+            {/* <>
+                {
+                    sub_cat_loading ? (
+                        <p>Loading ..</p>
+                    ) : (
+                        <>
+                            {
+                                sub_categories?.result.length < 1 ? (
+                                    <p className='text-center text-gray-700 font-semibold'>No sub categories under this category</p>
+                                ) : (
+                                    <>
+                                        {
+                                            sub_categories?.result.map((sub_cat, index) => (
+                                                <p key={index} className="text-base text-gray-600 mx-2">{index + 1}. {sub_cat?.name}</p>
+                                            ))
+                                        }
+                                    </>
+                                )
+                            }
+                        </>
+                    )
+                }
+            </> */}
+
         </Disclosure.Panel>
     </div>);
 }

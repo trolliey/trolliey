@@ -59,12 +59,12 @@ export const add_category_Action = (category, picture, parent_id) => (dispatch) 
 }
 
 //get all subcategories
-export const get_all_subcategories_Action = (category_id) => (dispatch) =>{
+export const get_all_subcategories_Action = (category_slug) => (dispatch) =>{
     dispatch({
         type: GET_All_SUBCATEGORIES_OF_PARENT_REQUEST,
-        payload: { category_id }
+        payload: { category_slug }
     })
-    axios.get(`${apiUrl}/category/child/get?category_id=${category_id}`).then(res => {
+    axios.get(`${apiUrl}/sub_category/all/${category_slug}`).then(res => {
         dispatch({
             type: GET_All_SUBCATEGORIES_OF_PARENT_SUCCESS,
             payload: res.data
