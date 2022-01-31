@@ -30,7 +30,7 @@ function GeneralNavbar() {
         <div className="bg-white shadow ">
             <div className="md:flex hidden flex-row items-center  h-16 lg:px-0 md:16 md:px-4 px-2 space-x-4 max-w-7xl mx-auto justify-between">
                 <div onClick={() => history.push('/')} className="uppercase cursor-pointer font-bold text-sm text-gray-700 flex flex-row items-center">
-                    <img src={logo} alt="logo representing the website icon" className="h-32" />
+                    <img src={logo} alt="logo representing the website icon" className="h-8 ml-2" />
                 </div>
                 <p className='font-semibold text-gray-700 pr-4 border-r border-gray-300 capitalize cursor-pointer'>Help</p>
                 {
