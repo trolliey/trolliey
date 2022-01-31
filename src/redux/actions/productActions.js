@@ -14,19 +14,37 @@ import axios from 'axios'
 import { apiUrl } from "../../utils/apiUrl"
 import { REMOVE_FROM_CART_REQUEST } from "../constants/cartConstants"
 import { REGISTER_USER_FAIL } from "../constants/authConstants"
+import { storage } from "../../utils/firebase"
 
 //create a product
-export const create_product_Action = (token, values, additional_features, pictures) => (dispatch) => {
+export const create_product_Action = (token, values, additional_features, pictures, description) => async(dispatch) => {
 
     dispatch({
         type: CREATE_PRODUCT_REQUEST,
         payload: token
     })
 
+    const uploads = [];
+    const promises = [];
+    const now = Date.now()
+
+    pictures.forEach(file => {
+        const path = storage.ref().child(`products/${file.name}-${now}`);
+        const uploadPromise = path.put(file).then(async snapshot => {
+            /** @TODO it's a good idea to do some error handling here */
+            const downloadURL = await path.getDownloadURL();
+            uploads.push(downloadURL);
+        });
+        promises.push(uploadPromise);
+    })
+
+    await Promise.all(promises); // Wait for all promises to complete
+    // console.log(uploads)
+
 
     const product = {
         title: values.name,
-        description: values.description,
+        description: description,
         price: values.price,
         category: values.category,
         sub_category: values.sub_category,
@@ -39,7 +57,7 @@ export const create_product_Action = (token, values, additional_features, pictur
         shipping_area: values.shipping_radius,
         shipping_price: values.shipping_price,
         additional_features: additional_features,
-        pictures: pictures
+        pictures: uploads
     }
     axios.post(`${apiUrl}/product/create`, {
         product,

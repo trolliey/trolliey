@@ -4,11 +4,13 @@ import Tags from '../../components/tags/Tags';
 import DashboardLayout from '../../layouts/DashboardLayout'
 import ReactQuill from 'react-quill'; // ES6
 import 'react-quill/dist/quill.snow.css'; // ES6
+import { useState } from 'react';
 
-function Description({ nextStep, handleChange, values, prevStep, setAdditional_features }) {
+function Description({ nextStep, handleChange, values, prevStep, setAdditional_features, setQuillDescription }) {
     const selectedTags = (tags) => {
         setAdditional_features(tags)
     };
+    // const [quill_description, setQuillDescription] = useState('')
     return (
         <DashboardLayout>
             <div className="p-4 h-full flex">
@@ -104,22 +106,15 @@ function Description({ nextStep, handleChange, values, prevStep, setAdditional_f
 
                         <div className=" gap-4 mb-8">
                             <div className="col-span-1">
-                                <label htmlFor="description" className="block text-sm font-medium text-gray-700 capitalize">
+                                <label htmlFor="description" className="block text-sm font-medium text-gray-700 capitalize mb-2">
                                     Description
                                 </label>
-                                {/* <ReactQuill
-                                    value={values.description}
-                                    onChange={handleChange('description')}
-                                /> */}
-                                <textarea
-                                    rows={10}
-                                    id="description"
-                                    value={values.description}
-                                    onChange={handleChange('description')}
-                                    name="stock"
-                                    type="text"
-                                    className="mt-1 w-full p-2 text-base border border-gray-200 focus:outline-none sm:text-sm rounded-md"
-                                    placeholder="Give a thorough description of your product"
+                                <ReactQuill
+                                    theme="snow"
+                                    // value={quill_description}
+                                    placeholder='Enter your description here'
+                                    style={{borderRadius: '5px'}}
+                                    onChange={setQuillDescription}
                                 />
                             </div>
                         </div>

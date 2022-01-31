@@ -6,9 +6,11 @@ import { get_all_categories_Action } from '../../redux/actions/categoryActions';
 import { useDispatch } from 'react-redux';
 import SubCategoryComponent from './SubCategoryComponent'
 import { data } from '../../utils/data';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function CategoriesDropdown() {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [category_slug, setCategorySlug] = useState('')
     const [cat_name, setCatName] = useState('')
     const [category_image, setCategoryImage] = useState()
@@ -60,7 +62,7 @@ function CategoriesDropdown() {
                         }
                     </>
 
-                    <div className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
+                    <div onClick={()=> history.push('/categories')} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
                         <p className='capitalize'>all categories</p>
                         <ChevronRightIcon height={16} width={16} className='text-gray-400' />
                     </div>

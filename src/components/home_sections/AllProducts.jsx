@@ -44,7 +44,7 @@ function AllProducts({ cols, no_text }) {
             </div>
             <div className="w-full">
                 {
-                    !loading ? (
+                    loading ? (
                         <div className={`${loading || error ? "flex-1 flex w-full " : `grid ${cols ? cols : "lg:grid-cols-5 "} md:grid-cols-3 grid-cols-2`}  gap-4`}>
                             {
                                 [1, 2, 3, 4, 5]?.map((item, index) => (
@@ -70,6 +70,7 @@ function AllProducts({ cols, no_text }) {
                                                     discount_price={product.discount_price}
                                                     name={product.title}
                                                     description={product.description}
+                                                    category={product.category}
                                                     rating={product.rating}
                                                     id={product._id}
                                                 />

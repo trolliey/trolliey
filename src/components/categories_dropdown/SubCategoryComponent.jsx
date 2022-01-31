@@ -13,8 +13,6 @@ function SubCategoryComponent({ category_id, cat_name, cat_image }) {
         dispatch(get_all_subcategories_Action(category_id))
     }, [dispatch, category_id])
 
-    console.log(sub_categories)
-
     return (
         <div className="megadrop bg-gray-50 border border-gray-200 rounded flex flex-row">
             <div className="w-3/5 ">

@@ -8,8 +8,6 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { get_store_products_Actions } from '../redux/actions/storeActions'
-import { Spinner, useDisclosure } from '@chakra-ui/react'
-import ChakraModal from '../components/modals/ChakraModal'
 
 function Inventory() {
     const history = useHistory()
@@ -18,8 +16,7 @@ function Inventory() {
     const _user = useSelector(state => state.user_login)
     const { userInfo } = _user
     const _store_p = useSelector(state => state.get_store_products)
-    const { loading, products, error } = _store_p
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { products } = _store_p
 
     const search_items_handler = (e) => {
         e.preventDefault()
@@ -51,52 +48,14 @@ function Inventory() {
                                 placeholder="Search Product"
                             />
                         </form>
-                        {
-                            products ? (
-                                <BlueButton text="Add Product" outline onClick={() => history.push('/dashboard/addproduct')} />
-                            ) : (
-                                <BlueButton text="Add Product" outline onClick={onOpen} />
-                            )
-                        }
-                        <>
-                            <ChakraModal
-                                onClose={onClose}
-                                isOpen={isOpen}
-                                button_text="Proceed"
-                                modal_action={() => history.push('/dashboard/settings')}
-                                title="Become a seller"
-                                body={<div>
-                                    <p className="text-center text-gray-700 font-semibold">Your should provide us with more information about you and become a seller for you to sell to us</p>
-                                </div>} />
-                        </>
+                        <BlueButton text="Add Product" outline onClick={() => history.push('/dashboard/addproduct')} />
                     </div>
                 </div>
+                <>
+                    <InventoryTable data={products} />
+                </>
 
-                {
-                    products ? (
-                        <>
-                            {
-                                loading ? (
-                                    <div className="grid items-center justify-center w-full min-h-screen">
-                                        <Spinner
-                                            colorScheme="blue"
-                                            size="xl"
-                                            thickness={3}
-                                        />
-                                    </div>
-                                ) : error ? (
-                                    <p className="text-center text-gray-700 font-semibold text-lg my-2 py-2 bg-red-100 rounded">{error}</p>
-                                ) : (
-                                    <>
-                                        <InventoryTable data={products} />
-                                    </>
-                                )
-                            }
-                        </>
-                    ) : (
-                        <div onClick={() => history.push('/dashboard/settings')} className="w-full p-2 bg-red-100 text-gray-700 font-semibold text-center rounded mb-2 cursor-pointer">No store yet. Click here to create one!</div>
-                    )
-                }
+
             </div>
         </DashboardLayout>
     )

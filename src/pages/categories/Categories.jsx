@@ -17,21 +17,26 @@ function Categories() {
 
     return (
         <GeneralLayout>
-            <div className="flex flex-row flex-wrap items-center">
-                {data.categories.map((category, index) => (
-                    <div key={index} className="cursor-pointer hover:text-blue-primary">
-                        <CategoryItem text={category.name} />
-                    </div>
-                ))}
+            <div className="flex flex-col flex-wrap items-center max-w-7xl">
+                <div className="grid md:grid-cols-3 grid-cols-2 md:gap-8 gap-4 mx-auto max-w-7xl">
+                    {data.categories.map((category, index) => (
+                        <div  key={index} className="cursor-pointer hover:text-blue-primary col-span-1">
+                            <CategoryItem text={category.name} image={category.icon} />
+                        </div>
+                    ))}
+                </div>
             </div>
         </GeneralLayout>
     )
 }
 
-const CategoryItem = ({ text }) => {
+const CategoryItem = ({ text, image }) => {
     return (
-        <div className="bg-white p-2 rounded-lg m-1">
-            <p>{text}</p>
+        <div className="bg-white p-2 rounded m-1 grid items-center justify-center content-center shadow w-full">
+            <div className='p-4 grid items-center justify-center content-center'>
+            <img src={image} alt="" className='h-16' />
+            </div>
+            <p className='text-center'>{text}</p>
         </div>
     )
 }

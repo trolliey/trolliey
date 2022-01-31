@@ -15,6 +15,7 @@ import ImageMagnifier from '../../components/image_magnifier/ImageMagnifier'
 import { add_to_compare_Action } from '../../redux/actions/compareActions'
 import BlackButton from '../../components/buttons/BlackButton'
 import AllProducts from '../../components/home_sections/AllProducts'
+import logo from '../../assets/full_logo.png'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -95,8 +96,8 @@ function ProductDescription() {
 
     return (
         <GeneralLayout>
-            <div className="flex bg-white md:p-8 px-4 w-full rounded">
-                <div className="bg-white flex-1">
+            <div className="flex md:p-8 px-4 flex-col max-w-7xl">
+                <div className="bg-white flex-1 mx-auto w-full rounded">
                     <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
                         <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
                             {/* Image gallery */}
@@ -175,14 +176,14 @@ function ProductDescription() {
                                     </div>
                                 </div>
 
-                                <div className="mt-6">
+                                {/* <div className="mt-6">
                                     <h3 className="sr-only">Description</h3>
 
-                                    {/* <div
-                                        className="text-base text-gray-700 space-y-6"
+                                    <div
+                                        className="text-base text-gray-700 space-y-6 leading-normal"
                                         dangerouslySetInnerHTML={{ __html: product?.product?.description }}
-                                    /> */}
-                                </div>
+                                    />
+                                </div> */}
 
                                 <div className="mt-6 border-t border-gray-200 pt-4 flex flex-row justify-between">
                                     {/* <h3 className="sr-only">Time added</h3> */}
@@ -218,12 +219,23 @@ function ProductDescription() {
                                 </div>
 
                                 <div className="md:my-8 my-4 pt-4 border-t border-gray-200">
-                                    <p className="mb-2 text-gray-700 font-semibold text-sm capitalize">shipping </p>
+                                    <div className="mb-2 text-gray-800 text-sm capitalize font-semibold flex flex-row items-center justify-between">
+                                        <p>shipping:</p>
+
+                                        <div className="flex flex-row items-center">
+                                            <p className="text-gray-500">Delivered by Trolliey </p>
+                                            <div className="text-gray-500">
+                                                <img src={logo} alt="logo on descriprion page" className='h-6' />
+                                            </div>
+
+                                        </div>
+                                    </div>
                                     <div className="flex flex-row items-center justify-between">
                                         <p className="text-gray-500">Ships to : </p>
                                         <p className="text-gray-500"> {product?.product?.shipping_area}</p>
 
                                     </div>
+
                                     <div className="flex flex-row items-center justify-between">
                                         <p className="text-gray-500">Ships for : </p>
                                         <p className="text-gray-500"> {product?.product?.shipping_type}</p>
@@ -292,13 +304,12 @@ function ProductDescription() {
                             </div>
                         </div>
                     </div>
-                    <div className="related_products mt-32">
-                        <p className='text-gray-700 font-bold text-center'>Related products</p>
-                        {/* // all products */}
-               <>
-                    <AllProducts cols="lg:grid-cols-5 " />
-                </>
-                    </div>
+
+                </div>
+                <div className="related_products mt-16">
+                    <>
+                        <AllProducts cols="lg:grid-cols-5 " />
+                    </>
                 </div>
             </div>
         </GeneralLayout>

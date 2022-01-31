@@ -1,20 +1,25 @@
 import React, { useEffect } from 'react'
 import BlueButton from '../../components/buttons/BlueButton'
 import DashboardLayout from '../../layouts/DashboardLayout'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { get_all_categories_Action } from '../../redux/actions/categoryActions'
-import { get_subcategories_Action } from '../../redux/actions/subCategoryActions'
-import ImageUpload from '../../components/image_uploads/ImageUpload'
+import { useDispatch, useSelector } from 'react-redux'
+import { get_all_subcategories_Action } from '../../redux/actions/categoryActions'
+import { data } from '../../utils/data'
+import slugify from '../../utils/slugify'
+import FileUploadCompoent from '../../components/file_upload_component/FileUploadCompoent'
 
 function Category({ nextStep, handleChange, values, setPictures }) {
-    const _categoeries = useSelector(state => state.get_all_categories)
-    const { cat_loading, categories } = _categoeries
     const dispatch = useDispatch()
+    const sub_cats = useSelector(state => state.get_all_subcats)
+    const { sub_categories, sub_cat_loading } = sub_cats
+
+    //for selecting picures
+    const selectedPictures = (pictures) => {
+        setPictures(pictures)
+    };
 
     useEffect(() => {
-        dispatch(get_all_categories_Action())
-    }, [dispatch])
+        dispatch(get_all_subcategories_Action(values.category))
+    }, [dispatch, slugify(values.category)])
 
     return (
         <DashboardLayout>
@@ -36,23 +41,51 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                                         onChange={handleChange('category')}
                                         className="mt-1 w-full p-2 text-base border border-gray-200 focus:outline-none sm:text-sm rounded-md"
                                     >
+
+                                        <option disabled>Select a category</option>
+                                        <>
+                                            {
+                                                data?.categories.map((category, index) => (
+                                                    <>
+                                                        <option value={slugify(category.name)} key={index}>{category.name}</option>
+                                                    </>
+                                                ))
+                                            }
+                                        </>
+
+                                    </select>
+                                </div>
+                                <div className="flex-1">
+                                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+                                        Sub-Category
+                                    </label>
+                                    <select
+                                        id="sub_category"
+                                        name="sub_category"
+                                        value={values.sub_category}
+                                        onChange={handleChange('sub_category')}
+                                        className="mt-1 w-full p-2 text-base border border-gray-200 focus:outline-none sm:text-sm rounded-md"
+                                    >
+
                                         {
-                                            cat_loading ? (
-                                                <option>loading ... </option>
-                                            ) : cat_loading ? (
-                                                <option>error, reload page</option>
+                                            sub_cat_loading ? (
+                                                <option>loading...</option>
+                                            ) : sub_categories?.sub_categories.length < 1 ? (
+                                                <option disabled>no sub-categories for category</option>
                                             ) : (
                                                 <>
+                                                    <option disabled>Select a sub-category</option>
                                                     {
-                                                        categories?.categories.map((category, index) => (
-                                                            <option key={index} onClick={() => {
-                                                                dispatch(get_subcategories_Action(category._id))
-                                                            }}>{category.name}</option>
+                                                        sub_categories?.sub_categories.map((category, index) => (
+                                                            <>
+                                                                <option key={index} value={category.sub_category} >{category.sub_category}</option>
+                                                            </>
                                                         ))
                                                     }
                                                 </>
                                             )
                                         }
+
                                     </select>
                                 </div>
                             </div>
@@ -72,7 +105,10 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                                 />
                             </div>
 
-                            <ImageUpload setPictures={setPictures} />
+                            <FileUploadCompoent
+                                selectedPictures={selectedPictures}
+                                multiple
+                            />
 
                         </div>
                     </div>

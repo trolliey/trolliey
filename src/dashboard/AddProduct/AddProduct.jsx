@@ -12,6 +12,7 @@ function AddProduct() {
     const [additional_features, setAdditional_features] = useState([])
     const [pictures, setPictures] = useState([])
     const [step, setActiveStep] = useState(1);
+    const [quill_description,setQuillDescription] = useState('')
 
     const [state, setState] = useState({
         category: '',
@@ -101,6 +102,7 @@ function AddProduct() {
                     handleChange={handleChange}
                     prevStep={prevStep}
                     values={values}
+                    setQuillDescription={setQuillDescription}
                     setAdditional_features={setAdditional_features}
                 />
             )
@@ -122,6 +124,7 @@ function AddProduct() {
                     additional_features={additional_features}
                     pictures={pictures}
                     nextStep={nextStep}
+                    quill_description={quill_description}
                 />
             )
         case 5:

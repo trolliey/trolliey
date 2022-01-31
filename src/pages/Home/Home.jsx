@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import CategoriesDropdown from '../../components/categories_dropdown/CategoriesDropdown'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import AllProducts from '../../components/home_sections/AllProducts'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { get_all_ads_Action } from '../../redux/actions/adActions'
 import Courosel from '../../components/courosel/Courosel'
 import surprise from '../../assets/surprise.jpg'
@@ -21,8 +21,6 @@ import oppo from '../../assets/oppo-logo.svg'
 function Home() {
 
     //get all ads from the store
-    const _get_all_ads = useSelector(state => state.get_all_ads)
-    const { ads_loading, ads_error, ads } = _get_all_ads
     const dispatch = useDispatch()
     const history = useHistory()
 

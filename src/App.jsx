@@ -43,12 +43,14 @@ function App() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path='/product/description/:id' component={ProductDescription} />
                 <Route path='/contact' component={Contact} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
                 <Route path='/payment' component={Payment} />
                 <Route path='/help' component={Help} />
+            
+                {/* //product description */}
+                <Route path='/product/description/:id' component={ProductDescription} />
 
                 {/* // user dashboard routes */}
                 <Route exact path='/dashboard/history' component={History} />

@@ -7,7 +7,7 @@ import BlueButton from '../../components/buttons/BlueButton'
 import DashboardLayout from '../../layouts/DashboardLayout'
 import { create_product_Action } from '../../redux/actions/productActions'
 
-function Success({ values, prevStep, pictures, additional_features, nextStep }) {
+function Success({ values, prevStep, pictures, additional_features, nextStep, quill_description }) {
     const _product = useSelector(state => state.create_a_product)
     const { error, message, loading } = _product
     const _user = useSelector(state => state.user_login)
@@ -31,7 +31,7 @@ function Success({ values, prevStep, pictures, additional_features, nextStep }) 
         //     shipping_price: values.shipping_price,
         //     additional_features: additional_features
         // }
-        dispatch(create_product_Action(userInfo?.token, values, additional_features, pictures))
+        dispatch(create_product_Action(userInfo?.token, values, additional_features, pictures, quill_description))
         // console.log(product)   
     }
 
@@ -42,6 +42,8 @@ function Success({ values, prevStep, pictures, additional_features, nextStep }) 
             }, 1000);
         }
     }, [message, nextStep, values])
+
+    console.log(pictures)
     
     return (
         <DashboardLayout>
@@ -60,7 +62,8 @@ function Success({ values, prevStep, pictures, additional_features, nextStep }) 
                             </div>
                             <div className="flex flex-row items-center justify-between text-gray-700 py-3 border-b border-gray-200">
                                 <p className="capitalize">product description : </p>
-                                <p>{values?.description}</p>
+                                {/* {`${(quill_description)}`} */}
+                                <div className='flex flex-col overflow-ellipsis line-clamp-3' dangerouslySetInnerHTML={{__html: quill_description}}></div>
                             </div>
                             <div className="flex flex-row items-center justify-between text-gray-700 py-3 border-b border-gray-200">
                                 <p className="capitalize">product category : </p>

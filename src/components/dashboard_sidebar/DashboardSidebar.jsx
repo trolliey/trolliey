@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 import logo from '../../assets/icon.png'
 
 const navigation = [
-    { name: 'Home', href: '/dashboard', icon: HomeIcon, current: false },
+    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
     { name: 'Inventory', href: '/dashboard/inventory', icon: ClipboardListIcon, current: false },
     { name: 'Orders', href: '/dashboard/orders', icon: ShoppingBagIcon, current: false },
     // { name: 'History', href: '/dashboard/history', icon: ClockIcon, current: false },

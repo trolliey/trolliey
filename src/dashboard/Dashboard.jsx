@@ -1,4 +1,4 @@
-import { PencilIcon, ScaleIcon, ArchiveIcon } from '@heroicons/react/outline'
+import { PencilIcon, ScaleIcon, ArchiveIcon, CreditCardIcon, ShoppingBagIcon, CogIcon } from '@heroicons/react/outline'
 import { CheckCircleIcon } from '@heroicons/react/solid'
 import UserAvatar from '../components/user_avatar/UserAvatar'
 import BlueButton from '../components/buttons/BlueButton'
@@ -106,19 +106,37 @@ export default function Dashboard() {
                                 name='Account balance'
                                 icon={<ScaleIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />}
                                 location='/account'
-                                amount={`$ ${!products ? "No store yet" : products?.store?.balance}`}
+                                amount={0}
                                 loading={loading} />
                             <DashboardCard
                                 name='Page visits'
                                 icon={<PencilIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />}
                                 location='/dashboard'
-                                amount={`${!products ? "No store yet" : products?.store?.page_visits}`}
+                                amount={0}
                                 loading={loading} />
                             <DashboardCard
                                 icon={<ArchiveIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />}
                                 name='Total products'
                                 location='/dashboard/inventory'
-                                amount={`${!products ? "No store yet" : products?.products.length}`}
+                                amount={0}
+                                loading={loading} />
+                            <DashboardCard
+                                icon={<CreditCardIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />}
+                                name='Cards & Payments'
+                                location='/dashboard/cards'
+                                amount={0}
+                                loading={loading} />
+                             <DashboardCard
+                                icon={<ShoppingBagIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />}
+                                name='Orders'
+                                location='/dashboard/orders'
+                                amount={0}
+                                loading={loading} />
+                            <DashboardCard
+                                icon={<CogIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />}
+                                name='Settings'
+                                location='/dashboard/settings'
+                                amount={'store settings'}
                                 loading={loading} />
                         </div>
                     </div>

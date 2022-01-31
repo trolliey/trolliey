@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { add_to_cart_Action } from '../../redux/actions/cartActions'
 
-function ProductItem({ picture, rating, name, description, price, discount_price, id }) {
+function ProductItem({ picture, rating, name, description, price, discount_price, id, category }) {
     const dispatch = useDispatch()
     const history = useHistory()
     const location = useLocation()
@@ -31,7 +31,7 @@ function ProductItem({ picture, rating, name, description, price, discount_price
                 </div>
                 <div onClick={() => history.push(`/product/description/${id}`)} className="flex-1 overflow-ellipsis overflow-hidden">
                     <p className="text-gray-400 text-sm ">{name}</p>
-                    <p className="line-clamp-2 text-sm text-gray-700 my-1 overflow-ellipsis font-semibold">{description}</p>
+                    <p className="line-clamp-1 text-sm text-gray-700 my-1 overflow-ellipsis font-semibold">{category}</p>
                 </div>
 
 

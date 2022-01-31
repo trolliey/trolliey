@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import AdminLayout from '../layouts/AdminLayout'
-import { add_category_Action } from '../redux/actions/categoryActions'
 import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import SubCategoryComponent from './components/sub_category_component/SubCategoryComponent'
@@ -12,11 +10,8 @@ function classNames(...classes) {
 }
 
 function ManageCategories() {
-    const dispatch = useDispatch()
     //for adding category
-    const [category, setCategory] = useState('')
     const [parent_id, setParent_id] = useState('')
-    const [category_picture, setCategory_picture] = useState()
 
     function slugify(string) {
         const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
@@ -31,12 +26,6 @@ function ManageCategories() {
             .replace(/\-\-+/g, '-') // Replace multiple - with single -
             .replace(/^-+/, '') // Trim - from start of text
             .replace(/-+$/, '') // Trim - from end of text
-    }
-
-
-    const add_category = () => {
-        dispatch(add_category_Action(category, category_picture[0], parent_id))
-        setCategory('')
     }
 
     return (
