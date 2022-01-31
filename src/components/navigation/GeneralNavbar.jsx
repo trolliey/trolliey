@@ -5,7 +5,7 @@ import CartSidebar from '../cart_sidebar/CartSidebar'
 import { useHistory } from 'react-router'
 import UserDropdown from '../dropdowns/UserDropdown'
 import MobileNavDrawer from '../drawers/MobileNavDrawer'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/full_logo.png'
 import NavSearch from '../search/NavSearch'
 import { Tooltip } from '@chakra-ui/react'
 import NotificationMenu from '../nav_menus/NotificationMenu'
@@ -103,7 +103,7 @@ function GeneralNavbar() {
                 </div>
                 <div className="flex">
                     <div onClick={() => history.push('/')} className="uppercase cursor-pointer font-bold text-sm text-gray-700 flex flex-row items-center">
-                        <img src={logo} alt="logo representing the website icon" className="h-32" />
+                        <img src={logo} alt="logo representing the website icon" className="h-8" />
                     </div>
                 </div>
 

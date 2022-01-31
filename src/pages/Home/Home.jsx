@@ -44,7 +44,7 @@ function Home() {
             <div className="">
 
                 {/* // banner and categories */}
-                <div className="top w-full flex flex-row md:gap-8 gap-2 bg-white md:p-8 rounded px-4 py-2">
+                <div className="top w-full flex flex-row md:gap-8 gap-2 bg-white md:p-8 rounded md:px-4 px-0  md:py-2 py-0">
                     <div className="md:w-1/5 md:flex hidden">
                         <CategoriesDropdown open={true} />
                     </div>
@@ -58,7 +58,7 @@ function Home() {
                                 </div>
                             </div>
                             <div className="flex flex-col my-auto">
-                                <p className='text-gray-900 font-semibold capitalize md:mb-8 mb-4 md:text-lg text-sm'>Featured Brands</p>
+                                <p className='text-gray-900 font-semibold capitalize md:mb-8 mb-2 md:text-lg text-xs'>Featured Brands</p>
                                 <div className="brands flex flex-row items-center justify-between overflow-auto md:px-8 px-0 gap-4">
                                     <img src={samsung} alt="" className='md:h-6 h-2' />
                                     <img src={defy} alt="" className='md:h-6 h-2' />
