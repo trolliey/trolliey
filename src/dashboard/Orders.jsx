@@ -1,11 +1,11 @@
 import React from 'react';
-import Dashboard from './Dashboard';
+import DashboardLayout from '../layouts/DashboardLayout';
 
 function Orders() {
     return (
-        <Dashboard>
+        <DashboardLayout>
             Orders
-        </Dashboard>
+        </DashboardLayout>
     )
 }
 

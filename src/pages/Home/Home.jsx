@@ -58,13 +58,13 @@ function Home() {
                                 </div>
                             </div>
                             <div className="flex flex-col my-auto">
-                                <p className='text-gray-900 font-semibold capitalize mb-8 text-lg'>Featured Brands</p>
-                                <div className="brands flex flex-row items-center justify-between overflow-auto md:px-8 px-0">
-                                    <img src={samsung} alt="" className='h-6' />
-                                    <img src={defy} alt="" className='h-6' />
-                                    <img src={kenwood} alt="" className='h-6' />
-                                    <img src={dell} alt="" className='h-6' />
-                                    <img src={oppo} alt="" className='h-6' />
+                                <p className='text-gray-900 font-semibold capitalize md:mb-8 mb-4 md:text-lg text-sm'>Featured Brands</p>
+                                <div className="brands flex flex-row items-center justify-between overflow-auto md:px-8 px-0 gap-4">
+                                    <img src={samsung} alt="" className='md:h-6 h-2' />
+                                    <img src={defy} alt="" className='md:h-6 h-2' />
+                                    <img src={kenwood} alt="" className='md:h-6 h-2' />
+                                    <img src={dell} alt="" className='md:h-6 h-2' />
+                                    <img src={oppo} alt="" className='md:h-6 h-2' />
                                 </div>
                             </div>
                         </div>
