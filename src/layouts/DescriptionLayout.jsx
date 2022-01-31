@@ -1,34 +1,30 @@
-import React from 'react'
-import GeneralLayout from '../../layouts/GeneralLayout'
+import React from 'react';
 import { Disclosure, Tab } from '@headlessui/react'
 import { StarIcon } from '@heroicons/react/solid'
 import { HeartIcon, MinusSmIcon, PlusSmIcon, UserCircleIcon } from '@heroicons/react/outline'
-import BlueButton from '../../components/buttons/BlueButton'
-import { useDispatch, useSelector } from 'react-redux'
-import { add_to_cart_Action } from '../../redux/actions/cartActions'
-import { useEffect } from 'react'
-import { get_single_product_Action } from '../../redux/actions/productActions'
-import { useHistory, useParams } from 'react-router'
-import { Spinner } from '@chakra-ui/spinner'
+import BlueButton from '../components/buttons/BlueButton';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { add_to_cart_Action } from '../redux/actions/cartActions';
+import { add_to_compare_Action } from '../redux/actions/compareActions';
+import { useEffect } from 'react';
+import { get_single_product_Action } from '../redux/actions/productActions';
+import GeneralLayout from './GeneralLayout';
+import ImageMagnifier from '../components/image_magnifier/ImageMagnifier';
+import BlackButton from '../components/buttons/BlackButton';
+import AllProducts from '../components/home_sections/AllProducts';
 import moment from 'moment'
-import ImageMagnifier from '../../components/image_magnifier/ImageMagnifier'
-import { add_to_compare_Action } from '../../redux/actions/compareActions'
-import BlackButton from '../../components/buttons/BlackButton'
-import AllProducts from '../../components/home_sections/AllProducts'
-import logo from '../../assets/full_logo.png'
-import { useState } from 'react'
+import logo from '../assets/full_logo.png'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-function ProductDescription() {
+function DescriptionLayout({ children }) {
     const _product = useSelector(state => state.get_single_product)
     const { loading, error, product } = _product
     const { id } = useParams()
-
-    // togglinf between previews and descripion
-    const [show_features, setShowFeatures] = useState(false)
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -61,42 +57,6 @@ function ProductDescription() {
     useEffect(() => {
         dispatch(get_single_product_Action(id))
     }, [dispatch, id])
-
-    console.log(id)
-
-    if (loading) {
-        return (
-            <GeneralLayout>
-                <div className="flex bg-white md:p-8 px-4 w-full rounded">
-                    <div className="bg-white w-full">
-                        <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
-                            <div className="flex flex-col items-center">
-                                <Spinner
-                                    colorScheme="blue"
-                                    size="lg"
-                                    thickness={3}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </GeneralLayout>
-        )
-    }
-
-    if (error) {
-        return (
-            <GeneralLayout>
-                <div className="flex bg-white md:p-8 px-4 w-full rounded">
-                    <div className="bg-white w-full">
-                        <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
-                            <p className="text-center p-2 bg-red-100 rounded text-gray-700 font-semibold text-lg">There seems to be a problem. Try reloading the page!</p>
-                        </div>
-                    </div>
-                </div>
-            </GeneralLayout>
-        )
-    }
 
     return (
         <GeneralLayout>
@@ -180,6 +140,15 @@ function ProductDescription() {
                                     </div>
                                 </div>
 
+                                {/* <div className="mt-6">
+                                    <h3 className="sr-only">Description</h3>
+
+                                    <div
+                                        className="text-base text-gray-700 space-y-6 leading-normal"
+                                        dangerouslySetInnerHTML={{ __html: product?.product?.description }}
+                                    />
+                                </div> */}
+
                                 <div className="mt-6 border-t border-gray-200 pt-4 flex flex-row justify-between">
                                     {/* <h3 className="sr-only">Time added</h3> */}
                                     <p className="mr-2 capitalize font-semibold text-gray-700">added:</p>
@@ -253,48 +222,55 @@ function ProductDescription() {
                                     </div>
                                 </div>
 
+                                <section aria-labelledby="details-heading" className="mt-12">
+                                    <h2 id="details-heading" className="sr-only">
+                                        Additional details
+                                    </h2>
 
+                                    <div className="border-t divide-y divide-gray-200">
+                                        <Disclosure as="div">
+                                            {({ open }) => (
+                                                <>
+                                                    <h3>
+                                                        <Disclosure.Button className="group relative w-full py-6 flex justify-between items-center text-left">
+                                                            <span
+                                                                className={classNames(open ? 'text-blue-primary' : 'text-gray-900', 'text-sm font-medium')}
+                                                            >
+                                                                Product Features
+                                                            </span>
+                                                            <span className="ml-6 flex items-center">
+                                                                {open ? (
+                                                                    <MinusSmIcon
+                                                                        className="block h-6 w-6 text-blue-primary group-hover:text-blue-primary"
+                                                                        aria-hidden="true"
+                                                                    />
+                                                                ) : (
+                                                                    <PlusSmIcon
+                                                                        className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                                                                        aria-hidden="true"
+                                                                    />
+                                                                )}
+                                                            </span>
+                                                        </Disclosure.Button>
+                                                    </h3>
+                                                    <Disclosure.Panel as="div" className="pb-6 prose prose-sm">
+                                                        <ul>
+                                                            {product?.product?.additional_features.map((item) => (
+                                                                <li key={item}>{item}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </Disclosure.Panel>
+                                                </>
+                                            )}
+                                        </Disclosure>
+                                    </div>
+                                </section>
+                                <section className='w-full border-b border-gray-700'>
+                                    more items change here
+                                    {children}
+                                </section>
                             </div>
                         </div>
-
-                        {/* // description compoennt */}
-                        <section className='w-full mt-6 '>
-                            <div className="flex border-b border-t border-gray-200">
-                                {
-                                    show_features ? (
-                                        <div className="flex flex-row items-center">
-                                            <span onClick={() => setShowFeatures(false)} className='hover:bg-gray-50 cursor-pointer p-4'>Description</span>
-                                            <span onClick={() => setShowFeatures(true)} className='p-4 border-b-2 hover:bg-gray-50 cursor-pointer border-blue-primary font-semibold text-blue-primary'>Product Features</span>
-                                        </div>
-                                    ) : (
-                                        <div className="flex flex-row items-center">
-                                            <span onClick={() => setShowFeatures(false)} className=' border-b-2 p-4 hover:bg-gray-50 cursor-pointer border-blue-primary font-semibold text-blue-primary'>Description</span>
-                                            <span onClick={() => setShowFeatures(true)} className='p-4 hover:bg-gray-50 cursor-pointer'>Product Features</span>
-                                        </div>
-                                    )
-                                }
-                            </div>
-                            {
-                                show_features ? (
-                                    <>
-                                        <ul className='mt-6'>
-                                            {product?.product?.additional_features.map((item, index) => (
-                                                <li key={item}>{index+1}. {item}</li>
-                                            ))}
-                                        </ul>
-                                    </>
-                                ) : (
-                                    <div className="mt-2">
-                                        <h3 className="sr-only">Description</h3>
-
-                                        <div
-                                            className="text-base text-gray-700 space-y-6 leading-normal"
-                                            dangerouslySetInnerHTML={{ __html: product?.product?.description }}
-                                        />
-                                    </div>
-                                )
-                            }
-                        </section>
                     </div>
 
                 </div>
@@ -305,7 +281,7 @@ function ProductDescription() {
                 </div>
             </div>
         </GeneralLayout>
-    )
+    );
 }
 
-export default ProductDescription
+export default DescriptionLayout;
