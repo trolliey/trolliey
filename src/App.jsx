@@ -38,6 +38,7 @@ import Chat from './pages/Chat/Chat';
 import BecomeASellerAd from './pages/BecomeASellerAd/BecomeASellerAd';
 import CreateStore from './pages/CreateStore/CreateStore';
 import FinaliseStoreRegistry from './pages/CreateStore/FinaliseStoreRegistry';
+import Orders from './dashboard/Orders';
 
 function App() {
     return (
@@ -58,6 +59,7 @@ function App() {
                 <Route exact path='/dashboard/cards' component={Cards} />
                 <Route exact path='/dashboard/receipts' component={Receipts} />
                 <Route exact path='/dashboard/settings' component={StoreInfo} />
+                <Route exact path='/dashboard/orders' component={Orders} />
                 <Route exact path='/dashboard/usersettings' component={UserSettings} />
                 <Route exact path='/dashboard/addproduct' component={AddProduct} />
                 <Route exact path='/dashboard/inventory' component={Inventory} />
