@@ -218,7 +218,7 @@ function ProductDescription() {
                                         <p>shipping:</p>
 
                                         <div className="flex flex-row items-center">
-                                            <p className="text-gray-500">Delivered by Trolliey </p>
+                                            <p className="text-gray-500 mr-2">Delivered by </p>
                                             <div className="text-gray-500">
                                                 <img src={logo} alt="logo on descriprion page" className='h-6' />
                                             </div>

@@ -83,9 +83,9 @@ export default function CartSidebar({ open, setOpen, cart }) {
                                                                             <h3>
                                                                                 <p >{product.name}</p>
                                                                             </h3>
-                                                                            <p className="ml-4">{product.price}</p>
                                                                         </div>
-                                                                        <p className="line-clamp-1 mt-1 text-sm text-gray-500">{product.description}</p>
+                                                                            <p className="ml-4">{product.price}</p>
+                                                                        {/* <p className="line-clamp-1 mt-1 text-sm text-gray-500">{product.description}</p> */}
                                                                     </div>
                                                                     <div className="flex-1 flex items-end justify-between text-sm">
                                                                         {/* <p className="text-gray-500">Qty {product.quantity}</p> */}
