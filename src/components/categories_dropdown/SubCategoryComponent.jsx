@@ -1,17 +1,25 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { get_all_subcategories_Action } from '../../redux/actions/categoryActions';
+import { set_search_query_Action } from '../../redux/actions/searchAction';
 import './CategoriesDropdown.css'
 
 function SubCategoryComponent({ category_id, cat_name, cat_image }) {
     const dispatch = useDispatch()
     const sub_cats = useSelector(state => state.get_all_subcats)
     const { sub_categories, sub_cat_loading, sub_cat_error } = sub_cats
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(get_all_subcategories_Action(category_id))
     }, [dispatch, category_id])
+
+    const search_handler = (search_query) => {
+        dispatch(set_search_query_Action(search_query))
+        history.push('/explore')
+    }
 
     return (
         <div className="megadrop bg-gray-50 border border-gray-200 rounded flex flex-row">
@@ -30,7 +38,7 @@ function SubCategoryComponent({ category_id, cat_name, cat_image }) {
                                 <>
                                     {
                                         sub_categories?.sub_categories.map((sub_cat, index) => (
-                                            <li key={index} className='bg-gray-50 cursor-pointer hover:text-black hover:font-semibold text-sm p-1 rounded hover:bg-gray-200'>
+                                            <li onClick={()=>search_handler(sub_cat.sub_category)} key={index} className='bg-gray-50 cursor-pointer hover:text-black hover:font-semibold text-sm p-1 rounded hover:bg-gray-200'>
                                                 <p className='text-gray-700 hover:text-black font-normal hover:font-semibold'>{sub_cat.sub_category}</p>
                                             </li>
                                         ))
