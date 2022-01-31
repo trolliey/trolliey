@@ -11,8 +11,6 @@ import {
     GET_STORE_PRODUCTS_REQUEST,
     GET_STORE_PRODUCTS_SUCCESS,
 } from "../constants/storeConstants"
-import firebase from "@firebase/app-compat"
-
 
 //get all products for a single store
 export const get_store_products_Actions = (id) => (dispatch) => {

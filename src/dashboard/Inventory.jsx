@@ -28,6 +28,8 @@ function Inventory() {
         dispatch(get_store_products_Actions(userInfo?.user?._id))
     }, [dispatch, userInfo?.user?._id])
 
+    console.log(products)
+
     return (
         <DashboardLayout>
             <div className="p-4">

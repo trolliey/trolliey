@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import SubCategoryComponent from './SubCategoryComponent'
 import { data } from '../../utils/data';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { set_search_query_Action } from '../../redux/actions/searchAction';
 
 function CategoriesDropdown() {
     const dispatch = useDispatch()
@@ -36,6 +37,10 @@ function CategoriesDropdown() {
         setCategoryImage(imag)
 
     }
+    const search_handler = (search_query) => {
+        dispatch(set_search_query_Action(search_query))
+        history.push('/explore')
+    }
 
     useEffect(() => {
         dispatch(get_all_categories_Action())
@@ -54,7 +59,11 @@ function CategoriesDropdown() {
                     <>
                         {
                             data.categories.slice(0, 10)?.map((category, index) => (
-                                <div key={index} onMouseEnter={() => handle_hover(slugify(category.name), category.name, category.icon)} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100 overflow-ellipsis overflow-hidden">
+                                <div
+                                    key={index}
+                                    onClick={() => search_handler(slugify(category.name))}
+                                    onMouseEnter={() => handle_hover(slugify(category.name), category.name, category.icon)}
+                                    className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100 overflow-ellipsis overflow-hidden">
                                     <p className='capitalize overflow-ellipsis line-clamp-1'>{category.name}</p>
                                     <ChevronRightIcon height={16} width={16} className='text-gray-400' />
                                 </div>
@@ -62,7 +71,7 @@ function CategoriesDropdown() {
                         }
                     </>
 
-                    <div onClick={()=> history.push('/categories')} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
+                    <div onClick={() => history.push('/categories')} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
                         <p className='capitalize'>all categories</p>
                         <ChevronRightIcon height={16} width={16} className='text-gray-400' />
                     </div>

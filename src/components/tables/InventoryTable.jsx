@@ -41,6 +41,8 @@ function InventoryTable({ data }) {
         dispatch(remove_product_Action(id, userInfo?.token))
     }
 
+    console.log(data)
+
     return (
         <div>
 
