@@ -61,7 +61,7 @@ function CategoriesDropdown() {
                             data.categories.slice(0, 10)?.map((category, index) => (
                                 <div
                                     key={index}
-                                    onClick={() => search_handler(slugify(category.name))}
+                                    onClick={() => history.push(`/sub-category/${slugify(category.name)}`)}
                                     onMouseEnter={() => handle_hover(slugify(category.name), category.name, category.icon)}
                                     className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100 overflow-ellipsis overflow-hidden">
                                     <p className='capitalize overflow-ellipsis line-clamp-1'>{category.name}</p>

@@ -68,7 +68,7 @@ function BuyerDashboardHome() {
                                     <BlueButton text="Apply To Sell" outline onClick={() => history.push('/become-a-seller')} />
                                 </div>
                                 <div className="flex">
-                                    <BlueButton text="Manage Account" onClick={() => history.push('/dashboard/settings')} />
+                                    <BlueButton text="Manage Account" onClick={() => history.push('/dashboard/usersettings')} />
                                 </div>
                             </div>
                         </div>

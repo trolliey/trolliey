@@ -24,7 +24,7 @@ function CreateStore() {
         busieness_registration_number: '',
         busines_owner_name: '',
         business_owner_email: '',
-        number_of_uniqe_products: 0,
+        number_of_uniqe_products: '',
         brands_products: [],
         stock: false,
         stock_handle: '',

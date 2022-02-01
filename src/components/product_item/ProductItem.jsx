@@ -18,11 +18,11 @@ function ProductItem({ picture, rating, name, description, price, discount_price
 
     return (
         <div className="cursor-pointer relative flex flex-col min-h-96 w-full bg-white rounded overflow-hidden transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border border-gray-100  hover:shadow-lg">
-            <div onClick={() => history.push(`/product/description/${id}`)} className="md:h-56 h-40 overflow-hidden flex flex-col items-center rounded bg-white">
+            <div onClick={() => history.push(`/product/description/${id}`)} className="md:h-56 h-32 overflow-hidden flex flex-col items-center rounded bg-white">
                 <img src={picture} alt="product" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-full rounded" />
             </div>
             <div className="px-2">
-                <div onClick={() => history.push(`/product/description/${id}`)} className="star flex flex-row items-center mt-2">
+                <div onClick={() => history.push(`/product/description/${id}`)} className="star flex flex-row items-center md:mt-2 mt-1">
                     {
                         rating?.map((rate, index) => (
                             <StarIcon key={index} className="text-yellow-400" height={16} width={16} />

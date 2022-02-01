@@ -1,8 +1,8 @@
 import React from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { Disclosure, Tab } from '@headlessui/react'
-import { StarIcon } from '@heroicons/react/solid'
-import { ChatAltIcon, HeartIcon, MinusSmIcon, PlusSmIcon, UserCircleIcon } from '@heroicons/react/outline'
+import { ShoppingCartIcon, StarIcon } from '@heroicons/react/solid'
+import { ChatAltIcon, HeartIcon, MinusSmIcon, PlusIcon, PlusSmIcon, UserCircleIcon } from '@heroicons/react/outline'
 import BlueButton from '../../components/buttons/BlueButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { add_to_cart_Action } from '../../redux/actions/cartActions'
@@ -17,6 +17,8 @@ import BlackButton from '../../components/buttons/BlackButton'
 import AllProducts from '../../components/home_sections/AllProducts'
 import logo from '../../assets/full_logo.png'
 import { useState } from 'react'
+import { Divider } from '@chakra-ui/react'
+import UserAvatar from '../../components/user_avatar/UserAvatar'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -101,20 +103,20 @@ function ProductDescription() {
     }
 
     return (
-        <GeneralLayout>
-            <div className="flex md:p-8 px-4 flex-col max-w-7xl">
-                <div className="bg-white flex-1 mx-auto w-full rounded">
-                    <div className="max-w-2xl mx-auto md:py-16 py-4  lg:max-w-7xl lg:px-8 md:px-0 px-0">
-                        <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
+        <GeneralLayout no_text>
+            <div className="flex md:px-4 px-4 flex-col max-w-7xl bg-gray-100">
+                <div className="flex-1 mx-auto w-full rounded ">
+                    <div className="max-w-2xl mx-auto md:py-8  lg:max-w-7xl lg:px-8 md:px-0 px-0">
+                        <div className="lg:grid lg:grid-cols-3 lg:gap-x-8 lg:items-start">
                             {/* Image gallery */}
-                            <Tab.Group as="div" className="flex flex-col-reverse">
+                            <Tab.Group as="div" className="flex flex-col-reverse bg-white md:p-8 p-0 rounded col-span-2">
                                 {/* Image selector */}
                                 <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-                                    <Tab.List className="grid grid-cols-4 gap-6">
+                                    <Tab.List className="grid grid-cols-8 gap-2">
                                         {product?.product?.pictures.map((image, index) => (
                                             <Tab
                                                 key={index}
-                                                className="relative h-24 bg-gray-100 rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+                                                className="relative h-16 w-16 bg-gray-100 rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
                                             >
                                                 {({ selected }) => (
                                                     <>
@@ -139,124 +141,142 @@ function ProductDescription() {
                                 <Tab.Panels className="w-full aspect-w-1 aspect-h-1 flex-1">
                                     {product?.product?.pictures.map((image, index) => (
                                         <Tab.Panel key={index} className=" rounded">
-                                            <>
+                                            {/* <>
                                                 <ImageMagnifier src={image} height={'100%'} width={"100%"} />
-                                            </>
-                                            {/* <img
+                                            </> */}
+                                            <img
                                                 src={image}
                                                 alt={'for the product'}
                                                 className="w-full h-full object-center object-cover sm:rounded-lg bg-gray-100"
-                                            /> */}
+                                            />
                                         </Tab.Panel>
                                     ))}
                                 </Tab.Panels>
                             </Tab.Group>
 
                             {/* Product info */}
-                            <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-                                <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{product?.product?.title}</h1>
+                            <div className="mt-10 sm:px-0 sm:mt-16 lg:mt-0 rounded">
+                                <div className="flex bg-white md:px-8 px-2 py-4 flex-col rounded">
+                                    <h1 className=" tracking-tight text-gray-400 text-sm font-semibold">{product?.product?.category}</h1>
+                                    <h1 className="text-3xl font-bold tracking-tight text-gray-900 uppercase">{product?.product?.title}</h1>
 
-                                <div className="mt-3">
-                                    <h2 className="sr-only">Product information</h2>
-                                    <p className="text-3xl text-gray-900">$ {product?.product?.price - product?.product?.discount_price}</p>
-                                </div>
-
-                                {/* Reviews */}
-                                <div className="mt-3">
-                                    <h3 className="sr-only">Reviews</h3>
-                                    <div className="flex items-center">
+                                    {/* Reviews */}
+                                    <div className="mt-2">
+                                        <h3 className="sr-only">Reviews</h3>
                                         <div className="flex items-center">
-                                            {[0, 1, 2, 3, 4].map((rating, index) => (
-                                                <StarIcon
-                                                    key={index}
-                                                    onMouseEnter={() => console.log(index)}
-                                                    className={classNames(
-                                                        product?.product?.ratings.length > rating ? 'text-yellow-400' : 'text-gray-300',
-                                                        'h-5 w-5 flex-shrink-0 hover:text-yellow-400 cursor-pointer'
-                                                    )}
-                                                    aria-hidden="true"
-                                                />
-                                            ))}
-                                        </div>
-                                        <p className="sr-only">{product?.product?.ratings.length} out of 5 stars</p>
-                                    </div>
-                                </div>
-
-                                <div className="mt-6 border-t border-gray-200 pt-4 flex flex-row justify-between">
-                                    {/* <h3 className="sr-only">Time added</h3> */}
-                                    <p className="mr-2 capitalize font-semibold text-gray-700">added:</p>
-
-                                    <div
-                                        className="text-base text-gray-700 space-y-6"
-                                        dangerouslySetInnerHTML={{ __html: moment(product?.product?.createdAt).fromNow() }}
-                                    />
-                                </div>
-
-                                <div className="mt-6">
-                                    {/* Colors */}
-                                    <div className="mt-10 grid grid-cols-4 gap-4">
-                                        <div className="md:col-span-2 col-span-4">
-                                            <BlueButton text="Add to cart" className="flex-1 w-full" onClick={add_to_basket} />
-                                        </div>
-
-                                        <div className="md:col-span-2 col-span-4 flex flex-row items-center w-full">
-                                            <div onClick={add_to_compare} className="text-blue-primary flex-1 border border-blue-primary rounded-l p-2 text-center font-semibold capitalize hover:bg-blue-primary hover:text-white cursor-pointer">
-                                                compare
+                                            <div className="flex items-center">
+                                                {[0, 1, 2, 3, 4].map((rating, index) => (
+                                                    <StarIcon
+                                                        key={index}
+                                                        onMouseEnter={() => console.log(index)}
+                                                        className={classNames(
+                                                            product?.product?.ratings.length > rating ? 'text-yellow-400' : 'text-gray-300',
+                                                            'h-4 w-4 flex-shrink-0 hover:text-yellow-400 cursor-pointer'
+                                                        )}
+                                                        aria-hidden="true"
+                                                    />
+                                                ))}
                                             </div>
-                                            <div className="flex">
-                                                <div onClick={() => history.push(`/chat/${product?.product.owner}`)} className="border border-gray-400 p-2 text-gray-500 hover:bg-gray-400 hover:text-white cursor-pointer">
-                                                    <ChatAltIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                                            <p className="sr-only">{product?.product?.ratings.length} out of 5 stars</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="my-3">
+                                        <h2 className="sr-only">Product information</h2>
+                                        <div className="flex flex-row items-center gap-4">
+                                            <p className="text-2xl font-bold text-gray-700">${product?.product?.price - product?.product?.discount_price}</p>
+                                            <p className="text-xl line-through text-gray-300">${product?.product?.price}</p>
+                                        </div>
+                                    </div>
+                                    <div className=" mb-2">
+                                        <BlueButton
+                                            text={
+                                                <div className='flex flex-row items-center space-x-1 mx-auto w-full justify-center content-center'>
+                                                    <PlusIcon height={10} width={10} />
+                                                    <ShoppingCartIcon height={12} width={12} />
+                                                    <p>Add to cart </p>
                                                 </div>
-                                                <div className="border border-new-primary p-2 text-new-primary rounded-r hover:bg-new-primary hover:text-white cursor-pointer">
-                                                    <HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                                            }
+                                            className="flex-1 w-full" onClick={add_to_basket} />
+                                    </div>
+                                </div>
+
+
+                                <div className="flex flex-col bg-white my-4 md:px-8 px-2 py-4 rounded">
+
+                                    {/* <Divider className='my-2' /> */}
+
+                                    <div className="">
+                                        {/* Colors */}
+
+                                        <div className="mt-2">
+                                            <div className="mb-2 text-gray-800 text-sm capitalize font-semibold flex flex-row items-center ">
+
+                                                <div className="flex flex-row items-center">
+                                                    <p className="text-gray-500 mr-2">Delivered by </p>
+                                                    <div className="text-gray-500">
+                                                        <img src={logo} alt="logo on descriprion page" className='h-6' />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col md:w-2/3 w-full mr-auto">
+                                                <div className="flex flex-row items-center justify-between ">
+                                                    <p className="text-gray-500">Ships to : </p>
+                                                    <p className="text-gray-500"> {product?.product?.shipping_area}</p>
+
+                                                </div>
+
+                                                <div className="flex flex-row items-center justify-between ">
+                                                    <p className="text-gray-500">Ships for : </p>
+                                                    <p className="text-gray-500"> {product?.product?.shipping_type}</p>
+
+                                                </div>
+                                                <div className="flex flex-row items-center justify-between ">
+                                                    <p className="text-gray-500">Shipment expense : </p>
+                                                    <p className="text-gray-500"> ${product?.product?.shipping_price}</p>
+
                                                 </div>
                                             </div>
                                         </div>
 
-                                    </div>
-                                    <div className="my-4"></div>
-                                    <BlackButton text='Buy Item Now' className="w-full flex-1" onClick={() => {
-                                        add_to_basket()
-                                        history.push('/payment')
-                                    }} />
-                                </div>
+                                        <Divider className='py-2' />
 
-                                <div className="md:my-8 my-4 pt-4 border-t border-gray-200">
-                                    <div className="mb-2 text-gray-800 text-sm capitalize font-semibold flex flex-row items-center justify-between">
-                                        <p>shipping:</p>
 
-                                        <div className="flex flex-row items-center">
-                                            <p className="text-gray-500 mr-2">Delivered by </p>
-                                            <div className="text-gray-500">
-                                                <img src={logo} alt="logo on descriprion page" className='h-6' />
+                                        <div className="mt-4">
+                                            <div className="md:col-span-2 col-span-3 flex flex-row items-center w-full">
+                                                <div onClick={add_to_compare} className="text-blue-primary flex-1 border border-blue-primary rounded-l p-2 text-center font-semibold capitalize hover:bg-blue-primary hover:text-white cursor-pointer">
+                                                    compare
+                                                </div>
+                                                <div className="flex">
+                                                    <div onClick={() => history.push(`/chat/${product?.product.owner}`)} className="border border-new-primary p-2 text-new-primary hover:bg-new-primary border-t-none hover:text-white cursor-pointer rounded-r">
+                                                        <ChatAltIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                                                    </div>
+                                                    {/* <div className="border border-new-primary p-2 text-new-primary rounded-r hover:bg-new-primary hover:text-white cursor-pointer">
+                                                        <HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                                                    </div> */}
+                                                </div>
                                             </div>
 
                                         </div>
+                                        <div className="my-2"></div>
+                                        <div className="">
+                                            <BlackButton text='Buy Item Now' className="w-full flex-1" onClick={() => {
+                                                add_to_basket()
+                                                history.push('/payment')
+                                            }} />
+                                        </div>
                                     </div>
-                                    <div className="flex flex-row items-center justify-between">
-                                        <p className="text-gray-500">Ships to : </p>
-                                        <p className="text-gray-500"> {product?.product?.shipping_area}</p>
 
-                                    </div>
 
-                                    <div className="flex flex-row items-center justify-between">
-                                        <p className="text-gray-500">Ships for : </p>
-                                        <p className="text-gray-500"> {product?.product?.shipping_type}</p>
-
-                                    </div>
-                                    <div className="flex flex-row items-center justify-between">
-                                        <p className="text-gray-500">Shipment expense : </p>
-                                        <p className="text-gray-500"> ${product?.product?.shipping_price}</p>
-
-                                    </div>
-                                </div>
-                                <div className="flex pt-4 border-t border-gray-200">
 
                                 </div>
-                                <div onClick={() => history.push(`/stores/single/${product?.product?.owner}`)} className="flex flex-row mt-8 space-x-4 items-center p-4 rounded border border-gray-200 hover:bg-gray-100 cursor-pointer">
-                                    <UserCircleIcon className="text-gray-700" height={40} width={40} />
+
+
+                                <div onClick={() => history.push(`/stores/single/${product?.product?.owner}`)} className="flex flex-row space-x-4 items-center p-4 rounded border border-gray-200 hover:bg-gray-100 bg-white cursor-pointer">
+                                    <UserAvatar className="text-gray-700" height={40} width={40} />
                                     <div className="flex flex-col">
-                                        <p className="text-gray-700 font-semibold">View Store</p>
+                                        <p className="text-gray-700 font-semibold">Sold Buy</p>
                                         <p className="text-gray-400 text-sm">View the seller's shop and catalogues</p>
                                     </div>
                                 </div>

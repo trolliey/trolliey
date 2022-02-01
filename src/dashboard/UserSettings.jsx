@@ -4,8 +4,6 @@ import DashboardLayout from '../layouts/DashboardLayout'
 import { Spinner } from '@chakra-ui/react'
 import { get_store_products_Actions } from '../redux/actions/storeActions'
 import BlueButton from '../components/buttons/BlueButton'
-import SuccessAlert from '../components/alerts/SuccessAlert'
-import Error from '../components/alerts/Error'
 
 function UserSettings() {
     const _user = useSelector(state => state.user_login)
@@ -20,10 +18,8 @@ function UserSettings() {
     const [city, setCity] = useState('')
     const [province, setProvince] = useState('')
     const [postal, setPostal] = useState('')
-    const _create = useSelector(state => state.create_store)
-    const { edit_loading, message, edit_error } = _create
     const _info = useSelector(state => state.get_store_products)
-    const { loading, products } = _info
+    const { loading } = _info
 
     useEffect(() => {
         dispatch(get_store_products_Actions(userInfo?.user?._id))
@@ -56,7 +52,7 @@ function UserSettings() {
                         <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                             <div>
                                 <h3 className="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
-                                <p className="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+                                <p className="mt-1 max-w-2xl text-sm text-gray-500">Enter your information to add or edit.</p>
                             </div>
                             <div className="space-y-6 sm:space-y-5">
                                 <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -106,6 +102,7 @@ function UserSettings() {
                                             value={email}
                                             onChange={e => setEmail(e.target.value)}
                                             className="block max-w-lg w-full shadow-sm border p-2 sm:text-sm border-gray-300 rounded-md"
+                                            placeholder={userInfo?.user.email}
                                         />
                                     </div>
                                 </div>

@@ -49,7 +49,7 @@ function Home() {
             <div className="">
 
                 {/* // banner and categories */}
-                <div className="top w-full flex flex-row md:gap-8 gap-2 bg-white md:p-8 rounded md:px-4 px-0  md:py-2 py-0">
+                <div className="top w-full flex flex-row md:gap-8 gap-2 bg-white md:p-8 rounded md:px-4 px-0  md:py-4 py-0">
                     <div className="md:w-1/5 md:flex hidden">
                         <CategoriesDropdown open={true} />
                     </div>

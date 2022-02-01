@@ -57,7 +57,7 @@ function DashboardNavbar({setSidebarOpen}) {
                                     name="search-field"
                                     onChange={e => setQuery(e.target.value)}
                                     className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 outline-none sm:text-sm"
-                                    placeholder="Search transactions"
+                                    placeholder="Search items"
                                     type="search"
                                 />
                             </div>
@@ -114,6 +114,16 @@ function DashboardNavbar({setSidebarOpen}) {
                                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                             >
                                                 Settings
+                                            </a>
+                                        )}
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        {({ active }) => (
+                                            <a
+                                                href="/dashboard/settings"
+                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                            >
+                                                Switch to buying
                                             </a>
                                         )}
                                     </Menu.Item>

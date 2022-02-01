@@ -68,6 +68,7 @@ function ProductsInfo({ brands, handleChange, values, setBrands, prevStep }) {
                                                         id="unique-products"
                                                         autoComplete="unique-products"
                                                         className="flex-1 block w-full outline-none p-3 min-w-0 rounded-none rounded-r-md sm:text-sm border border-gray-300"
+                                                        placeholder='0'
                                                         required
                                                     />
                                                 </div>

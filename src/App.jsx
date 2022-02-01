@@ -41,6 +41,8 @@ import FinaliseStoreRegistry from './pages/CreateStore/FinaliseStoreRegistry';
 import Orders from './dashboard/Orders';
 import BuyerDashboardHome from './dashboard/BuyerDashboardHome';
 import BuyerOrders from './dashboard/BuyerOrders';
+import TotalProducts from './dashboard/TotalProducts';
+import SubCategories from './pages/sub_categories/SubCategories';
 
 function App() {
     return (
@@ -71,6 +73,7 @@ function App() {
                 {/* //dashboard for buyer */}
                 <Route exact path='/dashboard/buyer-home' component={BuyerDashboardHome} />
                 <Route exact path='/dashboard/buyer-orders' component={BuyerOrders} />
+                <Route exact path='/dashboard/buyer-products' component={TotalProducts} />
 
                 {/* //store page */}
                 <Route path='/stores/single/about/:id' component={AboutStore} />
@@ -95,9 +98,9 @@ function App() {
                 <Route path='/create-store' component={CreateStore} />
                 <Route path='/become-a-seller' component={BecomeASellerAd} />
                 <Route path='/compare' component={Compare} />
+                <Route exact path='/sub-category/:category' component={SubCategories} />
                 <Route exact path='/categories' component={Categories} />
                 <Route path='/about' component={About} />
-                <Route exact path='/explore' component={Home} />
                 <Route exact path='/jobs' component={Jobs} />
                 <Route exact path='/explore' component={Explore} />
                 <Route exact path='/' component={Home} />

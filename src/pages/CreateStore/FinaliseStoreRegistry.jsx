@@ -20,7 +20,7 @@ function FinaliseStoreRegistry() {
                     <div className="py-16">
                         <div className="text-center">
                             <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">Applied to Trolliey.</h1>
-                            <p className="mt-2 text-base text-gray-500">Thank you for appliyiong to Trolliey sellers program. We will contract you as soon as we have approved of your application. Thank you.</p>
+                            <p className="mt-2 text-base text-gray-500">Thank you for applying to Trolliey sellers program. We will contract you as soon as we have approved of your application. Thank you.</p>
                             <div className="mt-6">
                                 <a href="/explore" className="text-base font-medium text-blue-primary hover:text-blue-primary">
                                     Go back to buying<span aria-hidden="true"> &rarr;</span>

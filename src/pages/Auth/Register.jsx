@@ -130,7 +130,7 @@ function Register() {
                             <div>
                                 <BlueButton text="Register" className="w-full" loading={loading} />
                             </div>
-                            <p onClick={() => history.push('/register')} className="text-center text-gray-500 hover:text-gray-700 font-semibold text-sm my-4 cursor-pointer">Already registered? Login instead!</p>
+                            <p onClick={() => history.push('/login')} className="text-center text-gray-500 hover:text-gray-700 font-semibold text-sm my-4 cursor-pointer">Already registered? Login instead!</p>
                         </form>
 
 

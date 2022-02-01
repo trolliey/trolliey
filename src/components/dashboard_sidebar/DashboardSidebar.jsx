@@ -5,11 +5,11 @@ import {
     CogIcon,
     CreditCardIcon,
     HomeIcon,
-    ScaleIcon,
     XIcon,
     ClipboardListIcon,
     UserIcon,
-    ShoppingBagIcon
+    ShoppingBagIcon,
+    ClockIcon
 } from '@heroicons/react/outline'
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -17,22 +17,25 @@ import logo from '../../assets/icon.png'
 import { useSelector } from 'react-redux'
 
 const navigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
+    { name: 'Home', href: '/dashboard', icon: HomeIcon, current: false },
     { name: 'Inventory', href: '/dashboard/inventory', icon: ClipboardListIcon, current: false },
-    { name: 'Orders', href: '/dashboard/orders', icon: ShoppingBagIcon, current: false },
+    { name: 'Customer Orders', href: '/dashboard/orders', icon: ShoppingBagIcon, current: false },
     // { name: 'History', href: '/dashboard/history', icon: ClockIcon, current: false },
     // { name: 'Balances', href: '/dashboard/balances', icon: ScaleIcon, current: false },
     { name: 'Cards', href: '/dashboard/cards', icon: CreditCardIcon, current: false },
     // { name: 'Recipients', href: '/dashboard/receipts', icon: UserGroupIcon, current: false },
+    { name: 'Store Settings', href: '/dashboard/settings', icon: CogIcon },
 ]
 const secondaryNavigation = [
+    { name: 'My Orders', href: '/dashboard/buyer-orders', icon: ShoppingBagIcon, current: false },
     { name: 'User Settings', href: '/dashboard/usersettings', icon: UserIcon },
-    { name: 'Store Settings', href: '/dashboard/settings', icon: CogIcon },
+
 ]
 
 const buyer_navigation = [
-    { name: 'Dashboard', href: '/dashboard/buyer-home', icon: HomeIcon, current: false },
-    { name: 'Order History', href: '/dashboard/buyer-orders', icon: ShoppingBagIcon, current: false },
+    { name: 'Home', href: '/dashboard/buyer-home', icon: HomeIcon, current: false },
+    { name: 'My Orders', href: '/dashboard/buyer-orders', icon: ShoppingBagIcon, current: false },
+    { name: 'Purchase History', href: '/dashboard/buyer-products', icon: ClockIcon, current: false },
     { name: 'User Settings', href: '/dashboard/usersettings', icon: UserIcon },
 ]
 
@@ -122,6 +125,7 @@ function DashboardSidebar({ sidebarOpen, setSidebarOpen }) {
                                                 </Link>
                                             ))}
                                         </div>
+                                       
                                         <div className="mt-6 pt-6">
                                             <div className="px-2 space-y-1">
                                                 {secondaryNavigation.map((item) => (
@@ -169,7 +173,7 @@ function DashboardSidebar({ sidebarOpen, setSidebarOpen }) {
                                             </Link>
                                         ))}
                                     </div>
-                                    
+
                                 </nav>
                             ) : (
                                 <nav className="mt-5 flex-1 flex flex-col divide-y divide-blue-dark overflow-y-auto" aria-label="Sidebar">
@@ -184,6 +188,7 @@ function DashboardSidebar({ sidebarOpen, setSidebarOpen }) {
                                             </Link>
                                         ))}
                                     </div>
+                                   
                                     <div className="mt-6 pt-6">
                                         <div className="px-2 space-y-1">
                                             {secondaryNavigation.map((item) => (

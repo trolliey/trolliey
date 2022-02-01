@@ -4,7 +4,8 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    MenuDivider
+    MenuDivider,
+    
 } from "@chakra-ui/react"
 import { UserIcon } from '@heroicons/react/outline'
 import UserAvatar from '../user_avatar/UserAvatar'
@@ -50,12 +51,12 @@ function UserDropdown({ user }) {
                                         user?.user?.role === 'user' ? (
                                             <div onClick={() => history.push('/dashboard/buyer-home')} className="flex">
                                                 <UserAvatar size="sm" source={user?.user?.photoURL} name={user?.user?.displayName} />
-                                                <Username name={'Dashboard'} />
+                                                <Username name={'My Account'} />
                                             </div>
                                         ) : (
                                             <div onClick={() => history.push('/dashboard')} className="flex">
                                                 <UserAvatar size="sm" source={user?.user?.photoURL} name={user?.user?.displayName} />
-                                                <Username name={'Dashboard'} />
+                                                <Username name={'My Account'} />
                                             </div>
                                         )
                                     }
