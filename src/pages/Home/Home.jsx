@@ -56,15 +56,15 @@ function Home() {
                     <div className="flex-1">
 
                         <div className='flex flex-col'>
-                            <div className="overflow-hidden w-full  h-auto bg-gray-100 mb-4">
+                            <div className="overflow-hidden w-full  h-auto bg-gray-100 md:mb-4 mb-2">
                                 <div className="grid content-center items-center overflow-hidden rounded w-full  bg-white">
                                     {/* <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" /> */}
                                     <Courosel data={banner_images} />
                                 </div>
                             </div>
                             <div className="flex flex-col my-auto">
-                                <p className='text-gray-900 font-semibold capitalize md:mb-8 mb-2 md:text-lg text-xs'>Featured Brands</p>
-                                <div className="brands flex flex-row items-center justify-between overflow-auto md:px-8 px-0 gap-4">
+                                <p className='text-gray-900 font-semibold capitalize md:mb-8 mb-2 md:text-lg text-xs md:flex hidden'>Featured Brands</p>
+                                <div className="brands flex flex-row items-center justify-between overflow-auto md:px-8 px-2 md:py-0 py-2 gap-4">
                                     <img src={samsung} alt="" className='md:h-6 h-2' />
                                     <img src={defy} alt="" className='md:h-6 h-2' />
                                     <img src={kenwood} alt="" className='md:h-6 h-2' />
