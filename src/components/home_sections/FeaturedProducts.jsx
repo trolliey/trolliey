@@ -19,7 +19,7 @@ function FeaturedProducts() {
 
     return (
         <div className="items flex-col bg-white rounded md:px-8 px-4 w-full">
-            <div className="text-lg py-8 flex flex-row items-center justify-between">
+            <div className="md:text-lg text-sm py-8 flex flex-row items-center justify-between">
                 <p className="font-semibold text-gray-700 capitalize ">featured products</p>
                 <div onClick={() => history.push('/explore')} className="text-new-primary capitalize font-semibold flex flex-row items-center cursor-pointer hover:text-new-light">
                     View all
@@ -39,7 +39,7 @@ function FeaturedProducts() {
                             }
                         </div>
                     ) : error ? (
-                        <p className="text-gray-700 font-semibold text-lg text-center py-8 w-full">Could not load featured products, Try reloading the page! </p>
+                        <p className="text-gray-700 font-semibold text-center py-8 w-full md:text-lg text-sm">Could not load featured products, Try reloading the page! </p>
                     ) : (
                         <div className={`${loading || error ? "flex-1 flex w-full " : "grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 "}  gap-4`}>
                             {
@@ -62,7 +62,7 @@ function FeaturedProducts() {
                                     </>
                                 ) : (
                                     <div onClick={() => history.push('/dashboard/inventory')} className="flex lg:col-span-5 md:col-span-3 col-span-2">
-                                        <p className="text-lg text-gray-700 text-center flex-1 p-1 cursor-pointer hover:bg-gray-50 rounded w-full font-semibold my-4 capitalize">No featured products to show. click here to become a seller?</p>
+                                        <p className="md:text-lg text-sm text-gray-700 text-center flex-1 p-1 cursor-pointer hover:bg-gray-50 rounded w-full font-semibold my-4 capitalize">No featured products to show. click here to become a seller?</p>
                                     </div>
                                 )
                             }

@@ -55,7 +55,7 @@ function AllProducts({ cols, no_text }) {
                             }
                         </div>
                     ) : error ? (
-                        <p className="text-gray-700 font-semibold text-lg text-center py-8 w-full min-h-96">Could not load products, Try reloading the page! </p>
+                        <p className="text-gray-700 font-semibold text-center py-8 w-full min-h-96">Could not load products, Try reloading the page! </p>
                     ) : (
                         <div className={`${loading || error ? "flex-1 flex w-full " : `grid ${cols ? cols : "lg:grid-cols-5 "} md:grid-cols-3 grid-cols-2`}  gap-4`}>
                             {
