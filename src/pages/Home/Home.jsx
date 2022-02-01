@@ -17,6 +17,8 @@ import defy from '../../assets/defy.svg'
 import kenwood from '../../assets/kenwood-logo.svg'
 import dell from '../../assets/dell-logo.svg'
 import oppo from '../../assets/oppo-logo.svg'
+import FeaturedProducts from '../../components/home_sections/FeaturedProducts'
+import { data } from '../../utils/data'
 
 function Home() {
 
@@ -38,6 +40,9 @@ function Home() {
         dispatch(set_search_query_Action(category))
         history.push('/explore')
     }
+
+    var randomItem = data.categories[Math.floor(Math.random() * data.categories.length)];
+    console.log(randomItem)
 
     return (
         <GeneralLayout>
@@ -73,7 +78,7 @@ function Home() {
 
                 {/* // all products */}
                 <div className='flex md:my-16 my-8 w-full'>
-                    <AllProducts cols="lg:grid-cols-5 " />
+                    <FeaturedProducts />
                 </div>
 
                 <section aria-labelledby="category-heading" className="">
@@ -88,7 +93,7 @@ function Home() {
                         </div>
 
                         <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8 ">
-                            <div onClick={() => search_by_category('tech')} className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:aspect-h-1 sm:aspect-w-1 sm:row-span-2 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
+                            <div onClick={() => search_by_category(randomItem.value)} className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:aspect-h-1 sm:aspect-w-1 sm:row-span-2 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
                                 <img
                                     src={surprise}
                                     alt="suprised user."
@@ -98,10 +103,10 @@ function Home() {
                                 <div className="p-6 flex items-end">
                                     <div>
                                         <h3 className="font-semibold text-white">
-                                            <a href="#">
+                                            <span>
                                                 <span className="absolute inset-0" />
                                                 Suprise Me
-                                            </a>
+                                            </span>
                                         </h3>
                                         <p aria-hidden="true" className="mt-1 text-sm text-white">
                                             Shop now
@@ -122,10 +127,10 @@ function Home() {
                                 <div className="p-6 flex items-end sm:absolute sm:inset-0">
                                     <div>
                                         <h3 className="font-semibold text-white">
-                                            <a href="#">
+                                            <span>
                                                 <span className="absolute inset-0" />
                                                 Tech Stuff
-                                            </a>
+                                            </span>
                                         </h3>
                                         <p aria-hidden="true" className="mt-1 text-sm text-white">
                                             Shop now
@@ -133,7 +138,7 @@ function Home() {
                                     </div>
                                 </div>
                             </div>
-                            <div onClick={() => search_by_category('fashion')} className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
+                            <div onClick={() => search_by_category('Fashion-And-Luggage')} className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none border">
                                 <img
                                     src={clothes}
                                     alt="Clothes and fashion"

@@ -2,7 +2,7 @@ import React from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { Disclosure, Tab } from '@headlessui/react'
 import { StarIcon } from '@heroicons/react/solid'
-import { HeartIcon, MinusSmIcon, PlusSmIcon, UserCircleIcon } from '@heroicons/react/outline'
+import { ChatAltIcon, HeartIcon, MinusSmIcon, PlusSmIcon, UserCircleIcon } from '@heroicons/react/outline'
 import BlueButton from '../../components/buttons/BlueButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { add_to_cart_Action } from '../../redux/actions/cartActions'
@@ -62,7 +62,7 @@ function ProductDescription() {
         dispatch(get_single_product_Action(id))
     }, [dispatch, id])
 
-    console.log(id)
+    console.log(product)
 
     if (loading) {
         return (
@@ -156,7 +156,7 @@ function ProductDescription() {
 
                                 <div className="mt-3">
                                     <h2 className="sr-only">Product information</h2>
-                                    <p className="text-3xl text-gray-900">{product?.product?.discount_price}</p>
+                                    <p className="text-3xl text-gray-900">$ {product?.product?.price - product?.product?.discount_price}</p>
                                 </div>
 
                                 {/* Reviews */}
@@ -202,6 +202,9 @@ function ProductDescription() {
                                                 compare
                                             </div>
                                             <div className="flex">
+                                                <div onClick={()=> history.push(`/chat/${product?.product.owner}`)} className="border border-gray-400 p-2 text-gray-500 hover:bg-gray-400 hover:text-white cursor-pointer">
+                                                    <ChatAltIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                                                </div>
                                                 <div className="border border-new-primary p-2 text-new-primary rounded-r hover:bg-new-primary hover:text-white cursor-pointer">
                                                     <HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                                                 </div>
@@ -279,7 +282,7 @@ function ProductDescription() {
                                     <>
                                         <ul className='mt-6'>
                                             {product?.product?.additional_features.map((item, index) => (
-                                                <li key={item}>{index+1}. {item}</li>
+                                                <li key={item}>{index + 1}. {item}</li>
                                             ))}
                                         </ul>
                                     </>

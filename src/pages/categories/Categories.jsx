@@ -1,26 +1,32 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { get_all_categories_Action } from '../../redux/actions/categoryActions'
+import { set_search_query_Action } from '../../redux/actions/searchAction'
 import { data } from '../../utils/data'
+import slugify from '../../utils/slugify'
 
 function Categories() {
-    const _categoeries = useSelector(state => state.get_all_categories)
-    const { cat_loading, cat_error, categories } = _categoeries
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(get_all_categories_Action())
     }, [dispatch])
 
-    console.log(cat_error, cat_loading, categories)
+    const history = useHistory()
+
+    const search_by_category = (category) => {
+        dispatch(set_search_query_Action(category))
+        history.push('/explore')
+    }
 
     return (
         <GeneralLayout>
             <div className="flex flex-col flex-wrap items-center max-w-7xl">
                 <div className="grid md:grid-cols-3 grid-cols-2 md:gap-8 gap-4 mx-auto max-w-7xl">
                     {data.categories.map((category, index) => (
-                        <div  key={index} className="cursor-pointer hover:text-blue-primary col-span-1">
+                        <div onClick={search_by_category(slugify(category.name))}  key={index} className="cursor-pointer hover:text-blue-primary col-span-1">
                             <CategoryItem text={category.name} image={category.icon} />
                         </div>
                     ))}

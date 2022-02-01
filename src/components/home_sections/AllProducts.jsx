@@ -36,7 +36,7 @@ function AllProducts({ cols, no_text }) {
     return (
         <div className="items flex-col bg-white rounded md:px-8 px-4 w-full">
             <div className="text-lg md:py-8 py-4 flex flex-row items-center justify-between">
-                <p className="font-semibold text-gray-700 capitalize ">all products</p>
+                <p className="font-semibold text-gray-700 capitalize ">{query ? query : 'all products'}</p>
                 {!no_text && <div onClick={() => history.push('/explore')} className="text-new-primary capitalize font-semibold flex flex-row items-center cursor-pointer hover:text-new-light">
                     View all
                     <ArrowRightIcon height={16} width={16} className="ml-2" />
