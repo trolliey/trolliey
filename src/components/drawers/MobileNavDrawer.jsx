@@ -156,9 +156,9 @@ function MobileNavDrawer({ user }) {
                             <div className="flex-1"></div>
                             {
                                 user ? (
-                                    <p className='font-bold text-gray-700 ml-8'>Logout</p>
+                                    <p onClick={()=> history.push('/login')} className='font-bold text-gray-700 ml-8'>Logout</p>
                                 ) : (
-                                    <p className='font-bold text-gray-700 ml-8'>Join/Login</p>
+                                    <p onClick={() => history.push('/login')} className='font-bold text-gray-700 ml-8'>Join/Login</p>
                                 )
                             }
                         </div>
