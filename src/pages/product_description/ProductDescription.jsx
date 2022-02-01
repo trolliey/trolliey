@@ -2,7 +2,7 @@ import React from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { Disclosure, Tab } from '@headlessui/react'
 import { ShoppingCartIcon, StarIcon } from '@heroicons/react/solid'
-import { ChatAltIcon, HeartIcon, MinusSmIcon, PlusIcon, PlusSmIcon, UserCircleIcon } from '@heroicons/react/outline'
+import { ChatAltIcon, HeartIcon, MinusSmIcon, PlusIcon, PlusSmIcon, InformationCircleIcon } from '@heroicons/react/outline'
 import BlueButton from '../../components/buttons/BlueButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { add_to_cart_Action } from '../../redux/actions/cartActions'
@@ -220,28 +220,17 @@ function ProductDescription() {
 
                                                 </div>
                                             </div>
-                                            <div className="flex flex-col md:w-2/3 w-full mr-auto">
-                                                <div className="flex flex-row items-center justify-between ">
-                                                    <p className="text-gray-500">Ships to : </p>
-                                                    <p className="text-gray-500"> {product?.product?.shipping_area}</p>
-
-                                                </div>
-
-                                                <div className="flex flex-row items-center justify-between ">
-                                                    <p className="text-gray-500">Ships for : </p>
-                                                    <p className="text-gray-500"> {product?.product?.shipping_type}</p>
-
-                                                </div>
-                                                <div className="flex flex-row items-center justify-between ">
-                                                    <p className="text-gray-500">Shipment expense : </p>
-                                                    <p className="text-gray-500"> ${product?.product?.shipping_price}</p>
-
-                                                </div>
+                                            <p className='text-gray-700 text-sm font-semibold'>Free delivery around Zimbabwe</p>
+                                            <div className="border-t border-b py-2 my-2 flex flex-row items-center">
+                                                <p className='text-gray-700 font-semibold text-sm'>In Stock</p>
+                                                <p className='p-1 bg-gray-200 rounded text-xs ml-2'>HRE</p>
                                             </div>
+                                            <div className="flex flex-row items-center">
+                                                <p className='text-xs text-gray-700'>Eligible in cash on delivery</p>
+                                                <p className='bg-green-700 px-2 py-1 text-white rounded-full'>&#9432;</p>
+                                            </div>
+                                            <p className='text-xs text-gray-700 my-1'>6-Months Limited Waranty</p>
                                         </div>
-
-                                        <Divider className='py-2' />
-
 
                                         <div className="mt-4">
                                             <div className="md:col-span-2 col-span-3 flex flex-row items-center w-full">

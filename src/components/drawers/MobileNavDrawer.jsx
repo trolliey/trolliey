@@ -16,21 +16,26 @@ import UserAvatar from '../user_avatar/UserAvatar'
 import Username from '../username/Username'
 import logo from '../../assets/full_logo.png'
 import { useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { get_all_categories_Action } from '../../redux/actions/categoryActions'
 import { data } from '../../utils/data'
+import { set_search_query_Action } from '../../redux/actions/searchAction'
+import slugify from '../../utils/slugify'
 
 function MobileNavDrawer({ user }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [show_category, setShowCotegory] = useState(false)
     const history = useHistory()
     const dispatch = useDispatch()
-    const _categories = useSelector(state => state.get_all_categories)
-    const { cat_loading, cat_error, categories } = _categories
 
     useEffect(() => {
         dispatch(get_all_categories_Action())
     }, [dispatch])
+
+    const search_handler = (search_query) => {
+        dispatch(set_search_query_Action(search_query))
+        history.push('/explore')
+    }
 
     return (
         <>
@@ -78,7 +83,7 @@ function MobileNavDrawer({ user }) {
                                     {
                                         data?.categories.map((category, index) => (
                                             <div key={index} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
-                                                <div className="flex flex-row items-center">
+                                                <div onClick={()=> search_handler(slugify(category.name))} className="flex flex-row items-center">
                                                     <img src={category.icon} alt={category.name} className='h-6 w-6 mr-2' />
                                                     <p className='capitalize'>{category.name}</p>
                                                 </div>
@@ -148,7 +153,7 @@ function MobileNavDrawer({ user }) {
                                         user ? (
                                             <Username name={user?.user?.displayName} />
                                         ) : (
-                                            <Username name={'Guest User'} />
+                                            <Username name={'Register'} />
                                         )
                                     }
                                 </div>
