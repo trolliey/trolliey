@@ -45,10 +45,21 @@ function UserDropdown({ user }) {
                     <MenuItem>
                         {
                             user ? (
-                                <div onClick={() => history.push('/dashboard')} className="flex">
-                                    <UserAvatar size="sm" source={user?.user?.photoURL} name={user?.user?.displayName} />
-                                    <Username name={'Dashboard'} />
-                                </div>
+                                <>
+                                    {
+                                        user?.user?.role === 'seller' ? (
+                                            <div onClick={() => history.push('/dashboard')} className="flex">
+                                                <UserAvatar size="sm" source={user?.user?.photoURL} name={user?.user?.displayName} />
+                                                <Username name={'Dashboard'} />
+                                            </div>
+                                        ) : (
+                                            <div onClick={() => history.push('/dashboard/buyer-home')} className="flex">
+                                                <UserAvatar size="sm" source={user?.user?.photoURL} name={user?.user?.displayName} />
+                                                <Username name={'Dashboard'} />
+                                            </div>
+                                        )
+                                    }
+                                </>
                             ) : (
                                 <div className="flex">
                                     <UserAvatar size="sm" />

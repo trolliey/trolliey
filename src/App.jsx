@@ -39,6 +39,8 @@ import BecomeASellerAd from './pages/BecomeASellerAd/BecomeASellerAd';
 import CreateStore from './pages/CreateStore/CreateStore';
 import FinaliseStoreRegistry from './pages/CreateStore/FinaliseStoreRegistry';
 import Orders from './dashboard/Orders';
+import BuyerDashboardHome from './dashboard/BuyerDashboardHome';
+import BuyerOrders from './dashboard/BuyerOrders';
 
 function App() {
     return (
@@ -65,6 +67,10 @@ function App() {
                 <Route exact path='/dashboard/inventory' component={Inventory} />
                 <Route exact path='/dashboard/edit-product/:id' component={EditProduct} />
                 <Route exact path='/dashboard' component={Dashboard} />
+
+                {/* //dashboard for buyer */}
+                <Route exact path='/dashboard/buyer-home' component={BuyerDashboardHome} />
+                <Route exact path='/dashboard/buyer-orders' component={BuyerOrders} />
 
                 {/* //store page */}
                 <Route path='/stores/single/about/:id' component={AboutStore} />

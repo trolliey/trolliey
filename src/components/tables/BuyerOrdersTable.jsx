@@ -1,12 +1,11 @@
+import React from 'react'
 import { useDisclosure } from '@chakra-ui/react'
 import { ChevronRightIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { remove_product_Action } from '../../redux/actions/productActions'
 import BlueButton from '../buttons/BlueButton'
-
 import {
     Modal,
     ModalOverlay,
@@ -18,18 +17,7 @@ import {
 } from '@chakra-ui/react'
 import RedButton from '../buttons/RedButton'
 
-const statusStyles = {
-    public: 'bg-green-100 text-green-800',
-    out_of_stock: 'bg-yellow-100 text-yellow-800',
-    private: 'bg-gray-100 text-gray-800',
-}
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
-
-function InventoryTable({ data }) {
-
+function BuyerOrdersTable({ data }) {
     const history = useHistory()
     const dispatch = useDispatch()
     const _user = useSelector(state => state.user_login)
@@ -40,15 +28,13 @@ function InventoryTable({ data }) {
         dispatch(remove_product_Action(id, userInfo?.token))
     }
 
-    console.log(data)
-
     return (
         <div>
 
             {/* //on mobile view  */}
-            <div className="shadow sm:hidden">
+            <div className="shadow sm:hidden w-full">
                 <ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-                    {data?.products?.map((product, index) => (
+                    {[1,2,3,4,5]?.map((product, index) => (
                         <li key={product?._id}>
                             <div className="block px-4 py-4 bg-white hover:bg-gray-50">
                                 <span className="flex items-center space-x-4">
@@ -56,12 +42,12 @@ function InventoryTable({ data }) {
                                         {/* <CashIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
                                         <p className="flex-shrink-0 h-5 w-5 text-gray-400">{index + 1}</p>
                                         <span className="flex flex-col text-gray-500 text-sm truncate">
-                                            <span className="truncate">{product?.title}</span>
+                                            <span className="truncate">{'title'}</span>
                                             <span>
-                                                <span className="text-gray-900 font-medium">Price - ${product?.price}</span>{' '}
+                                                <span className="text-gray-900 font-medium">Price - ${'price'}</span>{' '}
                                                 {/* {product?.currency} */}
                                             </span>
-                                            <span className="truncate">{product?.category}</span>
+                                            <span className="truncate">{'category'}</span>
                                             {/* <time dateTime={product?.datetime}>{product?.date}</time> */}
                                         </span>
                                     </span>
@@ -96,62 +82,51 @@ function InventoryTable({ data }) {
                                 <thead>
                                     <tr>
                                         <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            product
+                                            description
                                         </th>
                                         <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             category
                                         </th>
                                         <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            stock
+                                            name
                                         </th>
                                         <th className="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:block">
                                             Status
                                         </th>
-                                        <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Orders
-                                        </th>
+                                       
                                         <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Actions
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {data?.products?.map((product, index) => (
+                                    {[1,2,3,4,5]?.map((product, index) => (
                                         <tr key={product?._id} className="bg-white">
                                             <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                                 <div className="flex">
                                                     <div className="group inline-flex space-x-2 truncate text-sm">
                                                         {/* <CashIcon
-                                                            className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                                                            aria-hidden="true"
-                                                        /> */}
+                                                    className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                                                    aria-hidden="true"
+                                                /> */}
                                                         <p className="flex-shrink-0 h-5 w-5 text-gray-400">{index + 1}</p>
-                                                        <p className="text-gray-500 truncate group-hover:text-gray-900">{product?.title}</p>
+                                                        <p className="text-gray-500 truncate group-hover:text-gray-900">{'description'}</p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                <p className="text-gray-500 truncate group-hover:text-gray-900">{product?.category}</p>
+                                                <p className="text-gray-500 truncate group-hover:text-gray-900">{'category'}</p>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                <span className="text-gray-900 font-medium">{product?.stock} </span>
+                                                <span className="text-gray-900 font-medium">{'name'} </span>
                                                 {/* {product?.msrment} */}
                                             </td>
-                                            <td className="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
-                                                <span
-                                                    className={classNames(
-                                                        statusStyles[product?.status],
-                                                        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize'
-                                                    )}
-                                                >
-                                                    {product?.status}
-                                                </span>
-                                            </td>
+                                           
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                <span >{product?.orders.length}</span>
+                                                <span >{'length'}</span>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500 mr-2">
-                                                <button onClick={() => history.push(`/dashboard/edit-product/${product?._id}`)} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-blue-primary">
+                                                <button onClick={() => history.push(`/dashboard/edit-product/${'product?._id'}`)} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-blue-primary">
                                                     <PencilIcon height={12} width={12} className="" />
                                                 </button>
                                                 <button onClick={onOpen} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-red-400 ml-2">
@@ -170,9 +145,9 @@ function InventoryTable({ data }) {
                                                         </ModalBody>
 
                                                         <ModalFooter>
-                                                            <RedButton text={'Close'} colorScheme='blue' mr={3} onClick={onClose} outline/>
+                                                            <RedButton text={'Close'} colorScheme='blue' mr={3} onClick={onClose} outline />
                                                             <div className="mr-1"></div>
-                                                            <RedButton text={'Confirm Delete'} variant='ghost' onClick={() => delete_product(product?._id)} />
+                                                            <RedButton text={'Confirm Delete'} variant='ghost' onClick={() => delete_product('product?._id')} />
                                                         </ModalFooter>
                                                     </ModalContent>
                                                 </Modal>
@@ -191,8 +166,8 @@ function InventoryTable({ data }) {
                             >
                                 <div className="hidden sm:block">
                                     <p className="text-sm text-gray-700">
-                                        Showing <span className="font-medium">1</span> to <span className="font-medium">{data?.products?.length}</span> of{' '}
-                                        <span className="font-medium">{data?.products.length}</span> results
+                                        Showing <span className="font-medium">1</span> to <span className="font-medium">{'length'}</span> of{' '}
+                                        <span className="font-medium">{'length'}</span> results
                                     </p>
                                 </div>
                                 <div className="flex-1 flex justify-between sm:justify-end">
@@ -209,12 +184,8 @@ function InventoryTable({ data }) {
                 </div>
             </div>
 
-
-
-
-
         </div>
-    )
+    );
 }
 
-export default InventoryTable
+export default BuyerOrdersTable;

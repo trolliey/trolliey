@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import BlueButton from '../../components/buttons/BlueButton'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/full_logo.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { register_user_Action } from '../../redux/actions/authActions'
 import Error from '../../components/alerts/Error'
@@ -38,7 +38,7 @@ function Register() {
         <GeneralLayout no_text>
             <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-4 sm:px-6 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                    <img src={logo} alt="login page indicator of website" className="mx-auto self-center h-32" />
+                    <img src={logo} alt="login page indicator of website" className="mx-auto self-center h-16 m-4" />
                     <h2 className="mt-2 text-center text-3xl font-extrabold text-gray-900">Register your account</h2>
                 </div>
 

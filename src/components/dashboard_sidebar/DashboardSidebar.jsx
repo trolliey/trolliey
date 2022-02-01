@@ -14,6 +14,7 @@ import {
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/icon.png'
+import { useSelector } from 'react-redux'
 
 const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
@@ -29,7 +30,19 @@ const secondaryNavigation = [
     { name: 'Store Settings', href: '/dashboard/settings', icon: CogIcon },
 ]
 
+const buyer_navigation = [
+    { name: 'Dashboard', href: '/dashboard/buyer-home', icon: HomeIcon, current: false },
+    { name: 'Order History', href: '/dashboard/buyer-orders', icon: ShoppingBagIcon, current: false },
+    { name: 'User Settings', href: '/dashboard/usersettings', icon: UserIcon },
+]
+
 function DashboardSidebar({ sidebarOpen, setSidebarOpen }) {
+
+    const _user = useSelector(state => state.user_login)
+    const { userInfo } = _user
+
+    console.log(userInfo?.user.role)
+
     const location = useLocation()
 
     return (
@@ -80,33 +93,52 @@ function DashboardSidebar({ sidebarOpen, setSidebarOpen }) {
                             <Link to='/' className="cursor pointer flex-shrink-0 flex items-center px-4">
                                 <img src={logo} alt="dashboard indicator of site name" className="self-center mx-auto h-28 my-4" />
                             </Link>
-                            <nav className="mt-5 flex-shrink-0 h-full divide-y divide-blue-dark overflow-y-auto" aria-label="Sidebar">
-                                <div className="px-2 space-y-1">
-                                    {navigation.map((item) => (
-                                        <Link to={item.href}
-                                            key={item.name}
-                                            className={`${location.pathname === item.href ? "bg-blue-dark" : "bg-blue-primary"} text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md`}
-                                        >
-                                            <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-white" aria-hidden="true" />
-                                            {item.name}
-                                        </Link>
-                                    ))}
-                                </div>
-                                <div className="mt-6 pt-6">
-                                    <div className="px-2 space-y-1">
-                                        {secondaryNavigation.map((item) => (
-                                            <a
-                                                key={item.name}
-                                                href={item.href}
-                                                className="group flex items-center px-2 py-2 text-base font-medium rounded-md text-white hover:text-white hover:bg-blue-dark"
-                                            >
-                                                <item.icon className="mr-4 h-6 w-6 text-white" aria-hidden="true" />
-                                                {item.name}
-                                            </a>
-                                        ))}
-                                    </div>
-                                </div>
-                            </nav>
+                            {
+                                userInfo?.user.role === 'user' ? (
+                                    <nav className="mt-5 flex-shrink-0 h-full divide-y divide-blue-dark overflow-y-auto" aria-label="Sidebar">
+                                        <div className="px-2 space-y-1">
+                                            {buyer_navigation.map((item) => (
+                                                <Link to={item.href}
+                                                    key={item.name}
+                                                    className={`${location.pathname === item.href ? "bg-blue-dark" : "bg-blue-primary"} text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md`}
+                                                >
+                                                    <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-white" aria-hidden="true" />
+                                                    {item.name}
+                                                </Link>
+                                            ))}
+                                        </div>
+
+                                    </nav>
+                                ) : (
+                                    <nav className="mt-5 flex-shrink-0 h-full divide-y divide-blue-dark overflow-y-auto" aria-label="Sidebar">
+                                        <div className="px-2 space-y-1">
+                                            {navigation.map((item) => (
+                                                <Link to={item.href}
+                                                    key={item.name}
+                                                    className={`${location.pathname === item.href ? "bg-blue-dark" : "bg-blue-primary"} text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md`}
+                                                >
+                                                    <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-white" aria-hidden="true" />
+                                                    {item.name}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                        <div className="mt-6 pt-6">
+                                            <div className="px-2 space-y-1">
+                                                {secondaryNavigation.map((item) => (
+                                                    <a
+                                                        key={item.name}
+                                                        href={item.href}
+                                                        className="group flex items-center px-2 py-2 text-base font-medium rounded-md text-white hover:text-white hover:bg-blue-dark"
+                                                    >
+                                                        <item.icon className="mr-4 h-6 w-6 text-white" aria-hidden="true" />
+                                                        {item.name}
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </nav>
+                                )
+                            }
                         </div>
                     </Transition.Child>
                     <div className="flex-shrink-0 w-14" aria-hidden="true">
@@ -123,32 +155,51 @@ function DashboardSidebar({ sidebarOpen, setSidebarOpen }) {
                         <Link to='/' className="flex items-center flex-shrink-0">
                             <img src={logo} alt="dashboard indicator of site name" className="py-2 h-28 self-center mx-auto" />
                         </Link>
-                        <nav className="mt-5 flex-1 flex flex-col divide-y divide-blue-dark overflow-y-auto" aria-label="Sidebar">
-                            <div className="px-2 space-y-1">
-                                {navigation.map((item) => (
-                                    <Link to={item.href}
-                                        key={item.name}
-                                        className={`${location.pathname === item.href ? "bg-blue-dark" : "bg-blue-primary hover:bg-blue-dark "} text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md`}
-                                    >
-                                        <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-white" aria-hidden="true" />
-                                        {item.name}
-                                    </Link>
-                                ))}
-                            </div>
-                            <div className="mt-6 pt-6">
-                                <div className="px-2 space-y-1">
-                                    {secondaryNavigation.map((item) => (
-                                        <Link key={item.name} to={item.href}
-                                            href={item.href}
-                                            className={`${location.pathname === item.href ? "bg-blue-dark" : "bg-blue-primary hover:bg-blue-dark "} group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-white hover:text-white `}
-                                        >
-                                            <item.icon className="mr-4 h-6 w-6 text-white" aria-hidden="true" />
-                                            {item.name}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-                        </nav>
+                        {
+                            userInfo?.user.role === 'user' ? (
+                                <nav className="mt-5 flex-1 flex flex-col divide-y divide-blue-dark overflow-y-auto" aria-label="Sidebar">
+                                    <div className="px-2 space-y-1">
+                                        {buyer_navigation.map((item) => (
+                                            <Link to={item.href}
+                                                key={item.name}
+                                                className={`${location.pathname === item.href ? "bg-blue-dark" : "bg-blue-primary hover:bg-blue-dark "} text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md`}
+                                            >
+                                                <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-white" aria-hidden="true" />
+                                                {item.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                    
+                                </nav>
+                            ) : (
+                                <nav className="mt-5 flex-1 flex flex-col divide-y divide-blue-dark overflow-y-auto" aria-label="Sidebar">
+                                    <div className="px-2 space-y-1">
+                                        {navigation.map((item) => (
+                                            <Link to={item.href}
+                                                key={item.name}
+                                                className={`${location.pathname === item.href ? "bg-blue-dark" : "bg-blue-primary hover:bg-blue-dark "} text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md`}
+                                            >
+                                                <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-white" aria-hidden="true" />
+                                                {item.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                    <div className="mt-6 pt-6">
+                                        <div className="px-2 space-y-1">
+                                            {secondaryNavigation.map((item) => (
+                                                <Link key={item.name} to={item.href}
+                                                    href={item.href}
+                                                    className={`${location.pathname === item.href ? "bg-blue-dark" : "bg-blue-primary hover:bg-blue-dark "} group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-white hover:text-white `}
+                                                >
+                                                    <item.icon className="mr-4 h-6 w-6 text-white" aria-hidden="true" />
+                                                    {item.name}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </nav>
+                            )
+                        }
                     </div>
                 </div>
             </div>
