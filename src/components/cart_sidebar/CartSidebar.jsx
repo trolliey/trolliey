@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import BlueButton from '../buttons/BlueButton'
 import RedButton from '../buttons/RedButton'
-import { getBasketTotal } from '../../utils/getBasketTotal'
+import { getBasketTotal, getShipmentTotal } from '../../utils/getBasketTotal'
 import { useDispatch } from 'react-redux'
 import { remove_from_cart_Action } from '../../redux/actions/cartActions'
 import { useHistory } from 'react-router'
@@ -16,6 +16,8 @@ export default function CartSidebar({ open, setOpen, cart }) {
     const remove_from_cart = () =>{
         dispatch(remove_from_cart_Action())
     }
+
+    console.log(getBasketTotal(cart), getShipmentTotal(cart))
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -109,9 +111,9 @@ export default function CartSidebar({ open, setOpen, cart }) {
                                     <div className="border-t border-gray-200 bg-white shadow py-2 px-4 sm:px-6">
                                         <div className="flex justify-between text-base font-medium text-gray-900">
                                             <p>Subtotal</p>
-                                            <p>${getBasketTotal(cart)}</p>
+                                            <p>${getBasketTotal(cart) + getShipmentTotal(cart)}</p>
                                         </div>
-                                        <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                                        <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes included on grand total.</p>
                                         <div className="mt-6">
                                             <BlueButton text="Checkout" className="flex justify-center w-full" onClick={() => history.push('/payment')} />
                                         </div>

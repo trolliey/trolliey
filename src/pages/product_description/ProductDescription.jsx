@@ -40,7 +40,8 @@ function ProductDescription() {
             description: product?.product?.description,
             price: product?.product?.price,
             id: id,
-            name: product?.product?.title
+            name: product?.product?.title,
+            shipment_price: product?.product?.shipping_price
         }
         dispatch(add_to_cart_Action(item))
     }
@@ -53,7 +54,8 @@ function ProductDescription() {
             price: product?.product?.price,
             id: id,
             name: product?.product?.title,
-            features: product?.product.additional_features
+            features: product?.product.additional_features,
+            shipment_price: product?.product?.shipping_price
         }
         dispatch(add_to_compare_Action(item))
     }
@@ -213,7 +215,10 @@ function ProductDescription() {
 
                                     </div>
                                     <div className="my-4"></div>
-                                    <BlackButton text='Buy Item Now' className="w-full flex-1" onClick={() => history.push('/payment')} />
+                                    <BlackButton text='Buy Item Now' className="w-full flex-1" onClick={() => {
+                                        add_to_basket()
+                                        history.push('/payment')
+                                }} />
                                 </div>
 
                                 <div className="md:my-8 my-4 pt-4 border-t border-gray-200">
