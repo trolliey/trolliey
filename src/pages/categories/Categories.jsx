@@ -26,7 +26,7 @@ function Categories() {
             <div className="flex flex-col flex-wrap items-center max-w-7xl">
                 <div className="grid md:grid-cols-3 grid-cols-2 md:gap-8 gap-4 mx-auto max-w-7xl">
                     {data.categories.map((category, index) => (
-                        <div onClick={search_by_category(slugify(category.name))}  key={index} className="cursor-pointer hover:text-blue-primary col-span-1">
+                        <div onClick={()=>search_by_category(slugify(category.name))}  key={index} className="cursor-pointer hover:text-blue-primary col-span-1">
                             <CategoryItem text={category.name} image={category.icon} />
                         </div>
                     ))}

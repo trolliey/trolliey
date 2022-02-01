@@ -204,7 +204,7 @@ function ProductDescription() {
                                                 compare
                                             </div>
                                             <div className="flex">
-                                                <div onClick={()=> history.push(`/chat/${product?.product.owner}`)} className="border border-gray-400 p-2 text-gray-500 hover:bg-gray-400 hover:text-white cursor-pointer">
+                                                <div onClick={() => history.push(`/chat/${product?.product.owner}`)} className="border border-gray-400 p-2 text-gray-500 hover:bg-gray-400 hover:text-white cursor-pointer">
                                                     <ChatAltIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                                                 </div>
                                                 <div className="border border-new-primary p-2 text-new-primary rounded-r hover:bg-new-primary hover:text-white cursor-pointer">
@@ -218,7 +218,7 @@ function ProductDescription() {
                                     <BlackButton text='Buy Item Now' className="w-full flex-1" onClick={() => {
                                         add_to_basket()
                                         history.push('/payment')
-                                }} />
+                                    }} />
                                 </div>
 
                                 <div className="md:my-8 my-4 pt-4 border-t border-gray-200">

@@ -95,11 +95,11 @@ function App() {
                 <Route path='/create-store' component={CreateStore} />
                 <Route path='/become-a-seller' component={BecomeASellerAd} />
                 <Route path='/compare' component={Compare} />
-                <Route path='/categories' component={Categories} />
-                <Route path='/explore' component={Explore} />
+                <Route exact path='/categories' component={Categories} />
                 <Route path='/about' component={About} />
                 <Route exact path='/explore' component={Home} />
                 <Route exact path='/jobs' component={Jobs} />
+                <Route exact path='/explore' component={Explore} />
                 <Route exact path='/' component={Home} />
                 <Route path='*' component={NotFound} />
             </Switch>

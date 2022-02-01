@@ -165,7 +165,7 @@ function Home() {
                         </div>
 
                         <div className="mt-6 sm:hidden">
-                            <a href="#" className="block font-semibold text-blue-primary hover:text-blue-primary">
+                            <a href="/categories" className="block font-semibold text-blue-primary hover:text-blue-primary">
                                 Browse all categories<span aria-hidden="true"> &rarr;</span>
                             </a>
                         </div>
@@ -174,7 +174,10 @@ function Home() {
 
 
 
-
+                {/* // all products */}
+                <div className='flex md:my-16 my-8 w-full'>
+                    <AllProducts />
+                </div>
 
 
 
