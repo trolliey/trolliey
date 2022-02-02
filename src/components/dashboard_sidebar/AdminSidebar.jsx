@@ -21,6 +21,7 @@ const navigation = [
     { name: 'Ads', href: '/admin/ads', icon: ClipboardListIcon, current: false },
     { name: 'Stores', href: '/admin/stores', icon: ShoppingCartIcon, current: false },
     { name: 'Users', href: '/admin/users', icon: UserGroupIcon, current: false },
+    { name: 'Applications', href: '/admin/manage-applications', icon: UserGroupIcon, current: false },
 ]
 const secondaryNavigation = [
     { name: 'Admin Settings', href: '/admin/settings', icon: CogIcon },

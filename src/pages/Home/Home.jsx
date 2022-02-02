@@ -56,8 +56,8 @@ function Home() {
                     <div className="flex-1">
 
                         <div className='flex flex-col'>
-                            <div className="overflow-hidden w-full  h-auto bg-gray-100 md:mb-4 mb-2">
-                                <div className="grid content-center items-center overflow-hidden rounded w-full  bg-white">
+                            <div className="z-0 overflow-hidden w-full  h-auto bg-gray-100 md:mb-4 mb-2">
+                                <div className="z-0 grid content-center items-center overflow-hidden rounded w-full  bg-white">
                                     {/* <img src={banner} alt="banner showing ads for the home page" className="flex-1 max-h-full flex-shrink-0 object-cover w-auto h-auto" /> */}
                                     <Courosel data={banner_images} />
                                 </div>

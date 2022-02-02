@@ -43,6 +43,7 @@ import BuyerDashboardHome from './dashboard/BuyerDashboardHome';
 import BuyerOrders from './dashboard/BuyerOrders';
 import TotalProducts from './dashboard/TotalProducts';
 import SubCategories from './pages/sub_categories/SubCategories';
+import StoreApplications from './admin/StoreApplications';
 
 function App() {
     return (
@@ -92,6 +93,7 @@ function App() {
                 <AdminRoute path='/admin/products' component={ManageProducts} />
                 <AdminRoute path='/admin/settings' component={AdminSettings} />
                 <AdminRoute path='/admin/categories' component={ManageCategories} />
+                <AdminRoute path='/admin/manage-applications' component={StoreApplications} />
                 <Route exact path='/admin' component={AdminLogin} />
 
                 <Route path='/store-created' component={FinaliseStoreRegistry} />

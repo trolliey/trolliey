@@ -47,8 +47,8 @@ function AllProducts({ cols, no_text }) {
                     loading ? (
                         <div className={`${loading || error ? "flex-1 flex w-full " : `grid ${cols ? cols : "lg:grid-cols-5 "} md:grid-cols-3 grid-cols-2`}  gap-4`}>
                             {
-                                [1, 2, 3, 4, 5]?.map((item, index) => (
-                                    <div key={index} className="flex">
+                                [1, 2, 3, 4]?.map((item, index) => (
+                                    <div key={index} className="flex flex-1 col-span-1">
                                         <ProductLoading />
                                     </div>
                                 ))

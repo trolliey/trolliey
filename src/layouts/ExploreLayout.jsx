@@ -15,6 +15,7 @@ function ExploreLayout({ children }) {
     const dispatch = useDispatch()
     const [min_price, setMinPrice] = useState(0)
     const [max_price, setMaxPrice] = useState(0)
+    const [slice_number, setSliceNumber] = useState(5)
 
     useEffect(() => {
         dispatch(get_all_categories_Action())
@@ -40,7 +41,7 @@ function ExploreLayout({ children }) {
                             <p className="text-gray-700 font-bold mt-4">Categories</p>
 
                             {
-                                data?.categories.map((category, index) => (
+                                data.categories.slice(0, slice_number)?.map((category, index) => (
                                     <div key={index} onClick={() => filter_by_category(slugify(category.name))} className="flex text-gray-700 hover:text-gray-900 flex-row items-center p-2 cursor-pointer hover:bg-gray-50 rounded">
                                         {/* <ArrowRightIcon className="text-gray-700 mr-3" height={12} width={12} /> */}
                                         <p className=" text-sm capitalize ">{category.name}</p>
@@ -48,7 +49,7 @@ function ExploreLayout({ children }) {
                                     </div>
                                 ))
                             }
-                            <p className="font-semibold text-center text-sm text-gray-700 my-2 cursor-pointer hover:text-gray-500">Show more</p>
+                            <div onClick={() => setSliceNumber(slice_number + 6)} className="font-semibold text-center text-sm text-gray-700 my-2 cursor-pointer hover:text-gray-500">Show more</div>
 
                         </>
 
