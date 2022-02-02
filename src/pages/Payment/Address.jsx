@@ -1,144 +1,165 @@
-import React from 'react';
-import BlueButton from '../../components/buttons/BlueButton';
-import GeneralLayout from '../../layouts/GeneralLayout';
+import { useDisclosure } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import PayNow from '../PayNow/PayNow'
 
-function Address({ handleChange, values, nextStep }) {
-    return <GeneralLayout no_text>
-        <p className='pt-8 text-gray-400 text-sm'>Step 1 of 3</p>
-        <div className="md:p-4 p-2 flex flex-col max-w-7xl">
-            <div>
-                <h3 className="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
-                <p className="mt-1 text-sm text-gray-500">Use a permanent address where you can receive the package.</p>
-            </div>
-            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                <div className="sm:col-span-3">
-                    <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                        First name
-                    </label>
-                    <div className="mt-1">
-                        <input
-                            type="text"
-                            name="first-name"
-                            id="first-name"
-                            autoComplete="given-name"
-                            className="shadow-sm md:p-3 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        />
-                    </div>
-                </div>
+function Address() {
+    const [address, setAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [province, setProvince] = useState('')
+    const [postal_code, setPostalCode] = useState('')
+    const [card_name, setCardName] = useState('')
+    const [card_number, setCardNumber] = useState('')
+    const [expiry_date, setExpiryDate] = useState('')
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [modal_body, setModalBody] = useState('')
+    const [pay_button, setPayButton] = useState()
+    const [pay_modal, setPayModalOpen] = useState()
+    const [cvv, setCVV] = useState('')
 
-                <div className="sm:col-span-3">
-                    <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                        Last name
-                    </label>
-                    <div className="mt-1">
-                        <input
-                            type="text"
-                            name="last-name"
-                            id="last-name"
-                            autoComplete="family-name"
-                            className="shadow-sm md:p-3 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        />
-                    </div>
-                </div>
+    const _add_to_cart = useSelector(state => state.add_to_cart)
+    const { basket } = _add_to_cart
 
-                <div className="sm:col-span-4">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                        Phone Number
-                    </label>
-                    <div className="mt-1">
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            autoComplete="email"
-                            className="shadow-sm md:p-3 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        />
-                    </div>
-                </div>
+    const [items, setItems] = useState([])
 
-                <div className="sm:col-span-3">
-                    <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-                        Country
-                    </label>
-                    <div className="mt-1">
-                        <select
-                            id="country"
-                            name="country"
-                            autoComplete="country-name"
-                            className="shadow-sm md:p-3 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        >
-                            <option>South Africa</option>
-                            <option>Zimbabwe</option>
-                            <option>Zambia</option>
-                        </select>
-                    </div>
-                </div>
+    useEffect(() => {
+        basket.map(basket_item => {
+            setItems(prevArray => [...prevArray, {
+                title: basket_item.name,
+                amount: basket_item.price,
+                quantity: 1,
+                image: basket_item.picture
+            }])
+        })
+    }, [])
 
-                <div className="sm:col-span-6">
-                    <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-                        Street address
-                    </label>
-                    <div className="mt-1">
-                        <input
-                            type="text"
-                            name="street-address"
-                            id="street-address"
-                            autoComplete="street-address"
-                            className="shadow-sm md:p-3 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        />
+    return (
+        <div className="bg-white w-full items-center">
+            <main className="flex md:flex-row flex-col items-center">
+                {/* Checkout form */}
+                <section
+                    aria-labelledby="payment-heading"
+                    className="mx-auto"
+                >
+                    <div className='mt-4 mx-4'>
+                        <h3 className="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
+                        <p className="mt-1 text-sm text-gray-500">Use a permanent address where you can receive the package.</p>
                     </div>
-                </div>
+                    <div className="max-w-lg mx-4">
 
-                <div className="sm:col-span-2">
-                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                        City
-                    </label>
-                    <div className="mt-1">
-                        <input
-                            type="text"
-                            name="city"
-                            id="city"
-                            autoComplete="address-level2"
-                            className="shadow-sm md:p-3 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        />
-                    </div>
-                </div>
+                        <div className="mt-6">
+                            <div className="grid grid-cols-12 gap-y-6 gap-x-4">
 
-                <div className="sm:col-span-2">
-                    <label htmlFor="region" className="block text-sm font-medium text-gray-700">
-                        State / Province
-                    </label>
-                    <div className="mt-1">
-                        <input
-                            type="text"
-                            name="region"
-                            id="region"
-                            autoComplete="address-level1"
-                            className="shadow-sm md:p-3 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        />
-                    </div>
-                </div>
+                                <div className="col-span-full">
+                                    <label htmlFor="name-on-card" className="block text-sm font-medium text-gray-700">
+                                        Full Name
+                                    </label>
+                                    <div className="mt-1">
+                                        <input
+                                            type="text"
+                                            onChange={e => setCardName(e.target.value)}
+                                            id="name-on-card"
+                                            name="name-on-card"
+                                            autoComplete="cc-name"
+                                            className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                        />
+                                    </div>
+                                </div>
 
-                <div className="sm:col-span-2">
-                    <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
-                        ZIP / Postal code
-                    </label>
-                    <div className="mt-1">
-                        <input
-                            type="text"
-                            name="postal-code"
-                            id="postal-code"
-                            autoComplete="postal-code"
-                            className="shadow-sm md:p-3 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        />
+                                <div className="col-span-full">
+                                    <label htmlFor="card-number" className="block text-sm font-medium text-gray-700">
+                                        Contact Number
+                                    </label>
+                                    <div className="mt-1">
+                                        <input
+                                            type="text"
+                                            onChange={e => setCardNumber(e.target.value)}
+                                            id="card-number"
+                                            name="card-number"
+                                            autoComplete="cc-number"
+                                            className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                        />
+                                    </div>
+                                </div>
+
+
+
+                                <div className="col-span-full">
+                                    <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                                        Address
+                                    </label>
+                                    <div className="mt-1">
+                                        <input
+                                            type="text"
+                                            onChange={e => setAddress(e.target.value)}
+                                            id="address"
+                                            name="address"
+                                            autoComplete="street-address"
+                                            className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="col-span-full sm:col-span-4">
+                                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                                        City
+                                    </label>
+                                    <div className="mt-1">
+                                        <input
+                                            type="text"
+                                            onChange={e => setCity(e.target.value)}
+                                            id="city"
+                                            name="city"
+                                            className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="col-span-full sm:col-span-4">
+                                    <label htmlFor="province" className="block text-sm font-medium text-gray-700">
+                                        Province
+                                    </label>
+                                    <div className="mt-1">
+                                        <input
+                                            type="text"
+                                            onChange={e => setProvince(e.target.value)}
+                                            id="province"
+                                            name="province"
+                                            className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="col-span-full sm:col-span-4">
+                                    <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
+                                        Postal code
+                                    </label>
+                                    <div className="mt-1">
+                                        <input
+                                            type="text"
+                                            onChange={e => setPostalCode(e.target.value)}
+                                            id="postal-code"
+                                            name="postal-code"
+                                            autoComplete="postal-code"
+                                            className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                        />
+                                    </div>
+                                </div>
+                                <div onClick={() => setPayModalOpen(true)} className="bg-blue-dark cursor-pointer hover:bg-blue-primary text-white font-semibold w-full col-span-full p-2 rounded text-center flex flex-col items-center">
+                                    Pay For Items
+                                </div>
+                                <>
+                                    <PayNow isOpen={pay_modal} setIsOpen={setPayModalOpen} items={items} />
+                                </>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div onClick={() => nextStep(values)} className="flex mt-8 self-end ml-auto">
-                <BlueButton text={'Next Step'} />
-            </div>
+                </section>
+
+            </main>
         </div>
-    </GeneralLayout>;
+    );
 }
 
 export default Address;

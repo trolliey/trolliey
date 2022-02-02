@@ -1,29 +1,28 @@
-import { InformationCircleIcon } from '@heroicons/react/solid'
-import { Button, useDisclosure } from '@chakra-ui/react'
+import { LockClosedIcon } from '@heroicons/react/solid'
+import { Divider } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
-import CustomModal from '../../components/modals/CustomModal'
-import Error from '../../components/alerts/Error'
-import ecocash from '../../assets/eco_cash.svg'
 import { useSelector } from 'react-redux'
 import { getBasketTotal } from '../../utils/getBasketTotal'
-import PayNow from '../PayNow/PayNow'
+import BlueButton from '../../components/buttons/BlueButton'
+import truck from '../../assets/delivery-truck.png'
+import Address from './Address'
+import PickUpLocation from './PickUpLocation'
 
 function Payment() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const [modal_body, setModalBody] = useState('')
-    const [pay_button, setPayButton] = useState()
-    const [card_name, setCardName] = useState('')
-    const [card_number, setCardNumber] = useState('')
-    const [expiry_date, setExpiryDate] = useState('')
-    const [cvv, setCVV] = useState('')
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [province, setProvince] = useState('')
-    const [postal_code, setPostalCode] = useState('')
-    const [err, setErr] = useState()
+    // for delivery input
+    const [do_delivery, setDoDelivery] = useState(false)
+    const [do_collection, setDoCollection] = useState(false)
 
-    const [pay_modal, setPayModalOpen] = useState(false)
+    const handle_do_delivery = () => {
+        do_delivery ? setDoDelivery(false) : setDoDelivery(true)
+        setDoCollection(false)
+    }
+
+    const handle_do_collection = () => {
+        do_collection ? setDoCollection(false) : setDoCollection(true)
+        setDoDelivery(false)
+    }
 
     const _add_to_cart = useSelector(state => state.add_to_cart)
     const { basket } = _add_to_cart
@@ -45,129 +44,65 @@ function Payment() {
 
     return (
         <GeneralLayout>
-            <div className="bg-white w-full items-center">
-                <main className="flex md:flex-row flex-col items-center">
+            <div className="w-full items-center">
+                <main className=" grid grid-cols-4 gap-8  max-w-7xl">
                     {/* Checkout form */}
-                    <section
-                        aria-labelledby="payment-heading"
-                        className=" p-8 mx-auto"
-                    >
-                        <div className='md:mt-16 mt-4 mx-4'>
-                            <h3 className="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
-                            <p className="mt-1 text-sm text-gray-500">Use a permanent address where you can receive the package.</p>
-                        </div>
-                        <div className="max-w-lg mx-4">
-
-                            <div className="mt-6">
-                                <div className="grid grid-cols-12 gap-y-6 gap-x-4">
-
-                                    <div className="col-span-full">
-                                        <label htmlFor="name-on-card" className="block text-sm font-medium text-gray-700">
-                                            Full Name
-                                        </label>
-                                        <div className="mt-1">
-                                            <input
-                                                type="text"
-                                                onChange={e => setCardName(e.target.value)}
-                                                id="name-on-card"
-                                                name="name-on-card"
-                                                autoComplete="cc-name"
-                                                className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="col-span-full">
-                                        <label htmlFor="card-number" className="block text-sm font-medium text-gray-700">
-                                            Contact Number
-                                        </label>
-                                        <div className="mt-1">
-                                            <input
-                                                type="text"
-                                                onChange={e => setCardNumber(e.target.value)}
-                                                id="card-number"
-                                                name="card-number"
-                                                autoComplete="cc-number"
-                                                className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                            />
-                                        </div>
-                                    </div>
-
-
-
-                                    <div className="col-span-full">
-                                        <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-                                            Address
-                                        </label>
-                                        <div className="mt-1">
-                                            <input
-                                                type="text"
-                                                onChange={e => setAddress(e.target.value)}
-                                                id="address"
-                                                name="address"
-                                                autoComplete="street-address"
-                                                className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="col-span-full sm:col-span-4">
-                                        <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                                            City
-                                        </label>
-                                        <div className="mt-1">
-                                            <input
-                                                type="text"
-                                                onChange={e => setCity(e.target.value)}
-                                                id="city"
-                                                name="city"
-                                                className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="col-span-full sm:col-span-4">
-                                        <label htmlFor="province" className="block text-sm font-medium text-gray-700">
-                                            Province
-                                        </label>
-                                        <div className="mt-1">
-                                            <input
-                                                type="text"
-                                                onChange={e => setProvince(e.target.value)}
-                                                id="province"
-                                                name="province"
-                                                className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="col-span-full sm:col-span-4">
-                                        <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
-                                            Postal code
-                                        </label>
-                                        <div className="mt-1">
-                                            <input
-                                                type="text"
-                                                onChange={e => setPostalCode(e.target.value)}
-                                                id="postal-code"
-                                                name="postal-code"
-                                                autoComplete="postal-code"
-                                                className="block w-full border-gray-200 p-2 border outline-none rounded-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div onClick={() => setPayModalOpen(true)} className="bg-blue-dark cursor-pointer hover:bg-blue-primary text-white font-semibold w-full col-span-full p-2 rounded text-center flex flex-col items-center">
-                                        Pay For Items
-                                    </div>
-                                    <>
-                                        <PayNow isOpen={pay_modal} setIsOpen={setPayModalOpen} items={items} />
-                                    </>
+                    <div className="flex flex-col col-span-3">
+                        <div className="flex flex-row items-center bg-white justify-between p-4 w-full mx-auto shadow">
+                            <div className="flex flex-row items-center gap-8 overflow-hidden">
+                                <div className="picture bg-blue-500 h-16 w-16 rounded-full grid items-center content-center justify-center">
+                                    <img src={truck} alt="truck representation" className='w-12 h-12' />
                                 </div>
+                                <div className="flex flex-col">
+                                    <p className='text-gray-700 font-semibold text-sm'>Delivery</p>
+                                    <p className='text-gray-400 text-xs'>Courier delivery to your door</p>
+                                </div>
+                            </div>
+                            <BlueButton text={'Deliver My Order'} outline onClick={handle_do_delivery} />
+                        </div>
+                        {
+                            do_delivery && (
+                                <Address />
+                            )
+                        }
+                        <div className="flex flex-row items-center bg-white justify-between p-4 w-full mx-auto mt-2 shadow">
+                            <div className="flex flex-row items-center gap-8 overflow-hidden">
+                                <div className="picture bg-green-500 h-16 w-16 rounded-full grid items-center content-center justify-center">
+                                    <img src={truck} alt="truck representation" className='w-12 h-12' />
+                                </div>
+                                <div className="flex flex-col">
+                                    <p className='text-gray-700 font-semibold text-sm'>Collect</p>
+                                    <p className='text-gray-400 text-xs'>Collect at our pickup point. Open 6 days a week</p>
+                                </div>
+                            </div>
+                            <BlueButton text={'Collect My Order'} onClick={handle_do_collection} outline />
+                        </div>
+                        {
+                            do_collection && (
+                                <PickUpLocation />
+                            )
+                        }
+                    </div>
 
+                    <div className="flex flex-col">
+                        <div className="col-span-1 bg-white rounded shadow p-4">
+                            <p className='text-gray-800 font-semibold'>Order Summary</p>
+                            <div className="flex flex-row items-center text-gray-400 text-sm w-full justify-between font-semibold mt-4">
+                                <p>{basket?.length} items</p>
+                                <p>$ {getBasketTotal(basket)}</p>
+                            </div>
+                            <Divider className='my-4 text-gray-500' color={'gray.400'} />
+                            <div className="flex flex-row items-center w-full justify-between font-semibold mt-4">
+                                <p className='text-gray-800 font-bold'>TO PAY</p>
+                                <p className='text-blue-primary font-bold'>$ {getBasketTotal(basket)}</p>
+                            </div>
+                            <Divider className='mt-4 mb-2 text-gray-500' color={'gray.400'} />
+                            <div className="flex justify-center flex-row items-center">
+                                <LockClosedIcon className='text-gray-500' height={12} width={12} />
+                                <p className='text-sm text-gray-500 font-semibold'>Secure Checkout</p>
                             </div>
                         </div>
-                    </section>
-
+                    </div>
                 </main>
             </div>
         </GeneralLayout>
