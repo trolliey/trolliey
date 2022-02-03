@@ -16,6 +16,7 @@ function AddProduct() {
 
     const [state, setState] = useState({
         category: '',
+        category_slug: '',
         sub_category: '',
         brand: '',
         name: '',
@@ -29,7 +30,8 @@ function AddProduct() {
         sub_title:'',
         shipping_offered: '',
         shipping_price: '',
-        shipping_radius:''
+        shipping_radius:'',
+        pay_on_delivery: ''
     })
 
     // go back to previous page
@@ -51,6 +53,7 @@ function AddProduct() {
 
     const {
         category,
+        category_slug,
         sub_category,
         name,
         description,
@@ -64,11 +67,13 @@ function AddProduct() {
         sub_title,
         shipping_offered,
         shipping_price,
-        shipping_radius
+        shipping_radius,
+        pay_on_delivery
     } = state;
 
     const values = {
         category,
+        category_slug,
         sub_category,
         name,
         description,
@@ -82,7 +87,8 @@ function AddProduct() {
         sub_title,
         shipping_offered,
         shipping_price,
-        shipping_radius
+        shipping_radius,
+        pay_on_delivery
     }
 
     switch (step) {

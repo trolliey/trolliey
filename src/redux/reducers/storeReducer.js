@@ -1,4 +1,4 @@
-import { CREATE_SINGLE_STORE_INFO_FAIL, CREATE_SINGLE_STORE_INFO_REQUEST, CREATE_SINGLE_STORE_INFO_SUCCESS, GET_ALL_STORES_FAIL, GET_ALL_STORES_REQUEST, GET_ALL_STORES_SUCCESS, GET_STORE_PRODUCTS_FAIL, GET_STORE_PRODUCTS_REQUEST, GET_STORE_PRODUCTS_SUCCESS } from "../constants/storeConstants"
+import { CREATE_SINGLE_STORE_INFO_FAIL, CREATE_SINGLE_STORE_INFO_REQUEST, CREATE_SINGLE_STORE_INFO_SUCCESS, GET_ALL_STORES_FAIL, GET_ALL_STORES_REQUEST, GET_ALL_STORES_SUCCESS, GET_DASHBOARD_PRODUCTS_FAIL, GET_DASHBOARD_PRODUCTS_REQUEST, GET_DASHBOARD_PRODUCTS_SUCCESS, GET_STORE_PRODUCTS_FAIL, GET_STORE_PRODUCTS_REQUEST, GET_STORE_PRODUCTS_SUCCESS } from "../constants/storeConstants"
 
 //create productr reducer
 export const get_store_products_Reducer = (state = { loading: false }, action) => {
@@ -8,6 +8,20 @@ export const get_store_products_Reducer = (state = { loading: false }, action) =
         case GET_STORE_PRODUCTS_SUCCESS:
             return { loading: false, products: action.payload }
         case GET_STORE_PRODUCTS_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+//create productr reducer
+export const get_dashboard_products_Reducer = (state = { loading: false }, action) => {
+    switch (action.type) {
+        case GET_DASHBOARD_PRODUCTS_REQUEST:
+            return { loading: true }
+        case GET_DASHBOARD_PRODUCTS_SUCCESS:
+            return { loading: false, products: action.payload }
+        case GET_DASHBOARD_PRODUCTS_FAIL:
             return { loading: false, error: action.payload }
         default:
             return state

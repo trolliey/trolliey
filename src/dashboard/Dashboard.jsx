@@ -20,7 +20,7 @@ export default function Dashboard() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const _info = useSelector(state => state.get_store_products)
     const dispatch = useDispatch()
-    const { loading, products } = _info
+    const { loading } = _info
 
     useEffect(() => {
         dispatch(get_store_products_Actions(userInfo?.user?._id))
@@ -71,10 +71,10 @@ export default function Dashboard() {
 
                                 <div className="flex mr-2">
                                     {
-                                        products ? (
-                                            <BlueButton text="Add Product" outline onClick={() => history.push('/dashboard/addproduct')} />
-                                        ) : (
+                                        userInfo?.user.role === 'user' ? (
                                             <BlueButton text="Add Product" outline onClick={onOpen} />
+                                        ) : (
+                                            <BlueButton text="Add Product" outline onClick={() => history.push('/dashboard/addproduct')} />
                                         )
                                     }
                                     <>
@@ -126,7 +126,7 @@ export default function Dashboard() {
                                 location='/dashboard/cards'
                                 amount={0}
                                 loading={loading} />
-                             <DashboardCard
+                            <DashboardCard
                                 icon={<ShoppingBagIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />}
                                 name='Orders'
                                 location='/dashboard/orders'

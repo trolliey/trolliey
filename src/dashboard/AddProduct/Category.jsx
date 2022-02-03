@@ -18,7 +18,7 @@ function Category({ nextStep, handleChange, values, setPictures }) {
     };
 
     useEffect(() => {
-        dispatch(get_all_subcategories_Action(values.category))
+        dispatch(get_all_subcategories_Action((slugify(values.category))))
     }, [dispatch, slugify(values.category)])
 
     return (
@@ -47,7 +47,7 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                                             {
                                                 data?.categories.map((category, index) => (
                                                     <>
-                                                        <option value={slugify(category.name)} key={index}>{category.name}</option>
+                                                        <option value={category.name} key={index}>{category.name}</option>
                                                     </>
                                                 ))
                                             }

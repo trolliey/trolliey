@@ -31,7 +31,7 @@ function EditProduct() {
         return (
             <DashboardLayout>
                 <div className="flex-1 w-full grid items-center justify-center content-center min-h-screen">
-                <p className="capitalize text-gray-700 my-4 font-semibold text-center bg-red-100 p-2 rounded">problem loading item. Refresh page</p>
+                    <p className="capitalize text-gray-700 my-4 font-semibold text-center bg-red-100 p-2 rounded">problem loading item. Refresh page</p>
                 </div>
             </DashboardLayout>
         )
@@ -39,8 +39,90 @@ function EditProduct() {
 
     return (
         <DashboardLayout>
-            <div className="flex-1 w-full">
-                <p className="capitalize text-gray-700 my-4 font-semibold text-lg text-center">edit a product</p>
+            <div className='p-8 bg-white m-4 rounded shadow min-h-96'>
+                <div>
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">Product details</h3>
+                    <p className="mt-1 max-w-2xl text-sm text-gray-500">Edit and change product details.</p>
+                </div>
+                <div className="mt-5 border-t border-gray-200">
+                    <dl className="divide-y divide-gray-200">
+                        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                            <dt className="text-sm font-medium text-gray-500">Product title</dt>
+                            <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <span className="flex-grow">Margot Foster</span>
+                                <span className="ml-4 flex-shrink-0">
+                                    <button
+                                        type="button"
+                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        Update
+                                    </button>
+                                </span>
+                            </dd>
+                        </div>
+                        <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                            <dt className="text-sm font-medium text-gray-500">Category</dt>
+                            <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <span className="flex-grow">Backend Developer</span>
+                                <span className="ml-4 flex-shrink-0">
+                                    <button
+                                        type="button"
+                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        Update
+                                    </button>
+                                </span>
+                            </dd>
+                        </div>
+                        <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                            <dt className="text-sm font-medium text-gray-500">Sub-Category</dt>
+                            <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <span className="flex-grow">margotfoster@example.com</span>
+                                <span className="ml-4 flex-shrink-0">
+                                    <button
+                                        type="button"
+                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        Update
+                                    </button>
+                                </span>
+                            </dd>
+                        </div>
+                        <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                            <dt className="text-sm font-medium text-gray-500">Condition</dt>
+                            <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <span className="flex-grow"> $120,000</span>
+                                <span className="ml-4 flex-shrink-0">
+                                    <button
+                                        type="button"
+                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        Update
+                                    </button>
+                                </span>
+                            </dd>
+                        </div>
+                        <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                            <dt className="text-sm font-medium text-gray-500">Description</dt>
+                            <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <span className="flex-grow">
+                                    Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur
+                                    qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure
+                                    nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
+                                </span>
+                                <span className="ml-4 flex-shrink-0">
+                                    <button
+                                        type="button"
+                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        Update
+                                    </button>
+                                </span>
+                            </dd>
+                        </div>
+                        
+                    </dl>
+                </div>
             </div>
         </DashboardLayout>
     )

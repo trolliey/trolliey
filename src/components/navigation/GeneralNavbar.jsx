@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ShoppingCartIcon, BellIcon, ChevronDownIcon } from '@heroicons/react/outline'
+import { ShoppingCartIcon, BellIcon } from '@heroicons/react/outline'
 import { useSelector } from 'react-redux'
 import CartSidebar from '../cart_sidebar/CartSidebar'
 import { useHistory } from 'react-router'
@@ -64,10 +64,8 @@ function GeneralNavbar() {
 
                 
                 {/* //dropdown when suer icon has been presses */}
-                <div className="md:flex hidden rounded-full gap-1 cursor-pointer flex-row items-center">
+                <div className="md:flex hidden">
                     <UserDropdown user={userInfo} />
-                    <p className='text-gray-700 font-semibold'>{userInfo?.user?.displayName}</p>
-                    <ChevronDownIcon height={12} width={12} />
                 </div>
 
                 <div onClick={toggle_cart} className="relative flex p-2 hover:bg-gray-200 cursor-pointer rounded-full">

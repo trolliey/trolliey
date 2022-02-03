@@ -7,6 +7,9 @@ import {
     GET_ALL_STORES_FAIL,
     GET_ALL_STORES_REQUEST,
     GET_ALL_STORES_SUCCESS,
+    GET_DASHBOARD_PRODUCTS_FAIL,
+    GET_DASHBOARD_PRODUCTS_REQUEST,
+    GET_DASHBOARD_PRODUCTS_SUCCESS,
     GET_STORE_PRODUCTS_FAIL,
     GET_STORE_PRODUCTS_REQUEST,
     GET_STORE_PRODUCTS_SUCCESS,
@@ -32,6 +35,28 @@ export const get_store_products_Actions = (id) => (dispatch) => {
         })
     })
 }
+
+//get all products for a single store
+export const get_products_for_dashboard_Action = (id) => (dispatch) => {
+    dispatch({
+        type: GET_DASHBOARD_PRODUCTS_REQUEST,
+        payload: id // id of the user
+    })
+    axios.get(`${apiUrl}/store/seller/${id}`).then(res => {
+        dispatch({
+            type: GET_DASHBOARD_PRODUCTS_SUCCESS,
+            payload: res.data
+        })
+    }).catch(error => {
+        dispatch({
+            type: GET_DASHBOARD_PRODUCTS_FAIL,
+            payload: error.response && error.response.data.error
+                ? error.response.data.error
+                : error.message,
+        })
+    })
+}
+
 //edit single store actions
 export const create_single_store_Actions = (values, brands, token) => (dispatch) => {
     dispatch({

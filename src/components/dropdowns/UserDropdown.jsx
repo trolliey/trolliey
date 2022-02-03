@@ -5,9 +5,9 @@ import {
     MenuList,
     MenuItem,
     MenuDivider,
-    
+
 } from "@chakra-ui/react"
-import { UserIcon } from '@heroicons/react/outline'
+import { ChevronDownIcon, UserIcon } from '@heroicons/react/outline'
 import UserAvatar from '../user_avatar/UserAvatar'
 import Username from '../username/Username'
 import { useHistory } from 'react-router'
@@ -34,7 +34,11 @@ function UserDropdown({ user }) {
                 <MenuButton>
                     {
                         user ? (
-                            <UserAvatar size="sm" source={user?.user?.photoURL} name={user?.user?.displayName} />
+                            <div className="flex rounded-full gap-1 cursor-pointer flex-row items-center">
+                                <UserAvatar size="sm" source={user?.user?.photoURL} name={user?.user?.displayName} />
+                                <p className='text-gray-700 font-semibold'>{user?.user?.displayName}</p>
+                                <ChevronDownIcon height={12} width={12} />
+                            </div>
                         ) : (
                             <div className="p-2 bg-gray-100 hover:bg-gray-200  rounded-full">
                                 <UserIcon height={20} width={20} className="text-gray-700" />

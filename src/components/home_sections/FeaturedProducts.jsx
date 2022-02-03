@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Spinner } from '@chakra-ui/spinner'
 import { get_featured_products_Actions } from '../../redux/actions/featuredProductsActions'
 import ProductItem from '../product_item/ProductItem'
 import { ArrowRightIcon } from '@heroicons/react/outline'
@@ -62,7 +61,7 @@ function FeaturedProducts() {
                                     </>
                                 ) : (
                                     <div onClick={() => history.push('/dashboard/inventory')} className="flex lg:col-span-5 md:col-span-3 col-span-2">
-                                        <p className="md:text-lg text-sm text-gray-700 text-center flex-1 p-1 cursor-pointer hover:bg-gray-50 rounded w-full font-semibold my-4 capitalize">No featured products to show. click here to become a seller?</p>
+                                        <p className="md:text-lg text-sm text-gray-700 text-center flex-1 p-1 cursor-pointer hover:bg-gray-50 rounded w-full my-4 capitalize">No featured products to show. click here to become a seller?</p>
                                     </div>
                                 )
                             }
