@@ -253,7 +253,6 @@ function ProductDescription() {
                                             </div>
 
                                         </div>
-
                                         <div className="mt-4">
                                             <div className="md:col-span-2 col-span-3 flex flex-row items-center w-full">
                                                 <div onClick={add_to_compare} className="text-blue-primary flex-1 border border-blue-primary rounded p-2 text-center font-semibold capitalize hover:bg-blue-primary hover:text-white cursor-pointer">
@@ -270,21 +269,14 @@ function ProductDescription() {
                                             }} />
                                         </div>
                                     </div>
-
-
-
                                 </div>
-
-
-                                <div onClick={() => history.push(`/stores/single/${product?.product?.owner}`)} className="flex flex-row space-x-4 items-center p-4 rounded border border-gray-200 hover:bg-gray-100 bg-white cursor-pointer">
+                                <div onClick={() => history.push(`/stores/single/${product?.product?.owner}`)} className="flex flex-row space-x-4 items-center p-4 rounded border border-gray-200 bg-white cursor-pointer">
                                     <UserAvatar className="text-gray-700" height={40} width={40} />
                                     <div className="flex flex-col">
-                                        <p className="text-gray-700 font-semibold">Sold Buy</p>
+                                        <p className="text-gray-700 font-semibold">View Seller</p>
                                         <p className="text-gray-400 text-sm">View the seller's shop and catalogues</p>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
 
