@@ -1,22 +1,23 @@
+import React, { useState } from 'react'
 import { Spinner } from '@chakra-ui/spinner'
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { useParams } from 'react-router'
+import { useSelector, useDispatch } from 'react-redux'
+import BlueButton from '../../components/buttons/BlueButton'
 import ProductItem from '../../components/product_item/ProductItem'
 import StoreLayout from '../../layouts/StoreLayout'
 import { get_store_products_Actions } from '../../redux/actions/storeActions'
 
-
 function SingleStore() {
-    const { id } = useParams()
     const _info = useSelector(state => state.get_store_products)
     const { loading, products, error } = _info
+    const [search_query, setSearchQuery] = useState('')
     const dispatch = useDispatch()
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(10)
 
-    useEffect(() => {
-        dispatch(get_store_products_Actions(id))
-    }, [dispatch, id])
+    const handle_search_query = () => {
+        console.log(search_query)
+        dispatch(get_store_products_Actions('61fa717fed7351a503342da9', search_query, page, limit))
+    }
 
     if (loading) {
         return (
@@ -40,37 +41,44 @@ function SingleStore() {
 
     return (
         <StoreLayout loading={loading} error={error}>
-
-            <p className="my-8 mx-4 capitalize text-gray-700 font-semibold text-lg">All Store products</p>
-            <div className={`${loading || error ? "flex-1 flex w-full " : `grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2`}  gap-4 relative  p-4 bg-white rounded`}>
-
-                {
-                    products?.products.length >= 1 ? (
-                        <>
-                            {
-                                products?.products?.map((product, index) => (
-                                    <ProductItem
-                                        key={index}
-                                        picture={product.pictures[0]}
-                                        price={product.price}
-                                        discount_price={product.discount_price}
-                                        name={product.title}
-                                        description={product.description}
-                                        rating={product.rating}
-                                        id={product._id}
-                                    />
-                                ))
-                            }
-                        </>
-                    ) : (
-                        <div className="flex lg:col-span-5 md:col-span-3 col-span-2">
-                            <p className="text-lg text-gray-700 text-center flex-1 p-1 cursor-pointer hover:bg-gray-50 rounded w-full font-semibold my-4 capitalize">The store has not products yet.</p>
-                        </div>
-                    )
-                }
-
+            <div className="flex flex-col">
+                <div className="flex flex-row items-center gap-4 w-full">
+                    <input onChange={(e) => setSearchQuery(e.target.value)} type="text" className='flex-1 p-3 text-sm bg-gray-200 rounded order-none outline-none' placeholder='search store products ...' />
+                    <div className="flex">
+                        <BlueButton text={'Search'} onClick={handle_search_query} />
+                    </div>
+                </div>
+                <p className="m-4 capitalize text-gray-700 font-semibold md:text-lg text-sm text-center">{search_query ? search_query : 'Store Products'}</p>
+                <div className={`${loading || error ? "flex-1 flex w-full " : `grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2`}  gap-4 relative  p-4 bg-white rounded`}>
+                    {
+                        products?.products.length >= 1 ? (
+                            <>
+                                {
+                                    products?.products?.map((product, index) => (
+                                        <ProductItem
+                                            key={index}
+                                            picture={product.pictures[0]}
+                                            price={product.price}
+                                            discount_price={product.discount_price}
+                                            name={product.title}
+                                            description={product.description}
+                                            rating={product.rating}
+                                            id={product._id}
+                                        />
+                                    ))
+                                }
+                            </>
+                        ) : (
+                            <div className="flex lg:col-span-5 md:col-span-3 col-span-2">
+                                <p className="text-lg text-gray-700 text-center flex-1 p-1 cursor-pointer hover:bg-gray-50 rounded w-full font-semibold my-4 capitalize">The store has not products yet.</p>
+                            </div>
+                        )
+                    }
+                </div>
+                <div className="flex self-center">
+                    <BlueButton text={'Show More'} />
+                </div>
             </div>
-
         </StoreLayout>
     )
 }

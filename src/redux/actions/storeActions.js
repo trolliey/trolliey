@@ -16,12 +16,14 @@ import {
 } from "../constants/storeConstants"
 
 //get all products for a single store
-export const get_store_products_Actions = (id) => (dispatch) => {
+export const get_store_products_Actions = (id, query, page, limit) => (dispatch) => {
     dispatch({
         type: GET_STORE_PRODUCTS_REQUEST,
         payload: id // id of the user
     })
-    axios.get(`${apiUrl}/store/single/${id}`).then(res => {
+    axios.get(`${apiUrl}/store/single/${id}?page=${page}&limit=${limit}`,{
+        search: query
+    }).then(res => {
         dispatch({
             type: GET_STORE_PRODUCTS_SUCCESS,
             payload: res.data

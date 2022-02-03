@@ -1,8 +1,9 @@
 import React from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
-import { Disclosure, Tab } from '@headlessui/react'
+import { Tab } from '@headlessui/react'
 import { ShoppingCartIcon, StarIcon } from '@heroicons/react/solid'
-import { ChatAltIcon, HeartIcon, MinusSmIcon, PlusIcon, PlusSmIcon, InformationCircleIcon } from '@heroicons/react/outline'
+import { ChatAltIcon, PlusIcon } from '@heroicons/react/outline'
+import { InformationCircleIcon } from '@heroicons/react/solid'
 import BlueButton from '../../components/buttons/BlueButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { add_to_cart_Action } from '../../redux/actions/cartActions'
@@ -10,14 +11,11 @@ import { useEffect } from 'react'
 import { get_single_product_Action } from '../../redux/actions/productActions'
 import { useHistory, useParams } from 'react-router'
 import { Spinner } from '@chakra-ui/spinner'
-import moment from 'moment'
-import ImageMagnifier from '../../components/image_magnifier/ImageMagnifier'
 import { add_to_compare_Action } from '../../redux/actions/compareActions'
 import BlackButton from '../../components/buttons/BlackButton'
 import AllProducts from '../../components/home_sections/AllProducts'
 import logo from '../../assets/full_logo.png'
 import { useState } from 'react'
-import { Divider } from '@chakra-ui/react'
 import UserAvatar from '../../components/user_avatar/UserAvatar'
 
 function classNames(...classes) {
@@ -220,30 +218,46 @@ function ProductDescription() {
 
                                                 </div>
                                             </div>
-                                            <p className='text-gray-700 text-sm font-semibold'>Free delivery around Zimbabwe</p>
-                                            <div className="border-t border-b py-2 my-2 flex flex-row items-center">
-                                                <p className='text-gray-700 font-semibold text-sm'>In Stock</p>
-                                                <p className='p-1 bg-gray-200 rounded text-xs ml-2'>HRE</p>
-                                            </div>
-                                            <div className="flex flex-row items-center">
+                                            {
+                                                product?.product.price > 50 ? (
+                                                    <p className='text-gray-700 text-sm font-semibold'>Free delivery around Zimbabwe</p>
+                                                ) : (
+                                                    <p className='text-gray-700 text-sm font-semibold'>Buy items for more than $50 for free delivery</p>
+                                                )
+                                            }
+                                            {
+                                                product?.stock.in_stock === "stock_handled_by_trolliey" && (
+                                                    <div className="border-t border-b py-2 my-2 flex flex-row items-center">
+                                                        <p className='text-gray-700 font-semibold text-sm'>In Stock</p>
+                                                        <p className='p-1 bg-gray-200 rounded text-xs ml-2'>HRE</p>
+                                                    </div>
+                                                )
+                                            }
+                                            <div className="flex flex-row items-center gap-2">
                                                 <p className='text-xs text-gray-700'>Eligible in cash on delivery</p>
-                                                <p className='bg-green-700 px-2 py-1 text-white rounded-full'>&#9432;</p>
+                                                <div className="flex flex-col rounded-full">
+                                                    <InformationCircleIcon className='text-green-700' height={16} width={16} />
+                                                </div>
                                             </div>
-                                            <p className='text-xs text-gray-700 my-1'>6-Months Limited Waranty</p>
+                                            <div className="flex flex-row items-center gap-2">
+                                                <p className='text-xs text-gray-700 my-1'>6-Months Limited Waranty</p>
+                                                <div className="flex flex-col rounded-full">
+                                                    <InformationCircleIcon className='text-green-700' height={16} width={16} />
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-row items-center gap-2">
+                                                <p className='text-xs text-gray-700 my-1'>Cash on delivery accepted</p>
+                                                <div className="flex flex-col rounded-full">
+                                                    <InformationCircleIcon className='text-green-700' height={16} width={16} />
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                         <div className="mt-4">
                                             <div className="md:col-span-2 col-span-3 flex flex-row items-center w-full">
-                                                <div onClick={add_to_compare} className="text-blue-primary flex-1 border border-blue-primary rounded-l p-2 text-center font-semibold capitalize hover:bg-blue-primary hover:text-white cursor-pointer">
+                                                <div onClick={add_to_compare} className="text-blue-primary flex-1 border border-blue-primary rounded p-2 text-center font-semibold capitalize hover:bg-blue-primary hover:text-white cursor-pointer">
                                                     compare
-                                                </div>
-                                                <div className="flex">
-                                                    <div onClick={() => history.push(`/chat/${product?.product.owner}`)} className="border border-new-primary p-2 text-new-primary hover:bg-new-primary border-t-none hover:text-white cursor-pointer rounded-r">
-                                                        <ChatAltIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
-                                                    </div>
-                                                    {/* <div className="border border-new-primary p-2 text-new-primary rounded-r hover:bg-new-primary hover:text-white cursor-pointer">
-                                                        <HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
-                                                    </div> */}
                                                 </div>
                                             </div>
 
@@ -313,7 +327,6 @@ function ProductDescription() {
                             }
                         </section>
                     </div>
-
                 </div>
                 <div className="related_products mt-16">
                     <>

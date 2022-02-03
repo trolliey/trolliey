@@ -24,6 +24,8 @@ function StoreLayout({ children, loading, error }) {
         dispatch(get_store_products_Actions(id))
     }, [dispatch, id])
 
+    console.log(products)
+
     return (
         <GeneralLayout>
             <div className="flex w-full rounded min-h-screen">
@@ -33,10 +35,10 @@ function StoreLayout({ children, loading, error }) {
                             <div className="flex flex-col bg-white">
                                 <div className="header relative w-full lg:h-80 md:h-64 h-40 bg-gray-200">
                                     <div className="absolute md:flex hidden bg-gray-200 border-4 border-white rounded-full -bottom-16 md:left-12 left-4 ">
-                                        <UserAvatar size="2xl" name={products?.store?.name} />
+                                        <UserAvatar size="2xl" name={products?.store?.company_name} />
                                     </div>
                                     <div className="absolute md:hidden flex bg-gray-200 border-4 border-white rounded-full -bottom-12 md:left-12 left-4 ">
-                                        <UserAvatar size="xl" name={products?.store?.name} />
+                                        <UserAvatar size="xl" name={products?.store?.company_name} />
                                     </div>
                                 </div>
                                 <div className="flex flex-row items-center md:mt-20 mt-16 mx-2 border-t border-gray-200 ">
