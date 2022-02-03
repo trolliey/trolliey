@@ -28,11 +28,11 @@ export const add_to_cart_Reducer = (state = initialState, action) => {
 }
 
 // remove from basket reducer
-export const remove_from_cart_Reducer = (state = { basket: [] }, action) => {
+export const remove_from_cart_Reducer = (state = initialState, action) => {
     switch (action.type) {
         case REMOVE_FROM_CART_SUCCESS:
             let newBasket = [...state.basket];
-            const index = state.basket.findIndex((basketItem) => basketItem.id === action.id)
+            const index = state.basket.find((basketItem) => basketItem.id === action.payload.id)
             if (index >= 0) {
                 newBasket.splice(index, 1);
             } else {
