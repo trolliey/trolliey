@@ -45,6 +45,7 @@ import TotalProducts from './dashboard/TotalProducts';
 import SubCategories from './pages/sub_categories/SubCategories';
 import StoreApplications from './admin/StoreApplications';
 import ApplicationReview from './admin/StoreApplications/ApplicationReview';
+import VerifyEmail from './pages/Auth/VerifyEmail';
 
 function App() {
     return (
@@ -54,6 +55,7 @@ function App() {
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
                 <Route path='/payment' component={Payment} />
+                <Route path='/verify/:id' component={VerifyEmail} />
                 <Route path='/help' component={Help} />
             
                 {/* //product description */}
