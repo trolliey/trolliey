@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState} from 'react'
 import BlueButton from '../../components/buttons/BlueButton'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline'
@@ -25,14 +25,6 @@ function Register() {
         e.preventDefault()
         dispatch(register_user_Action(username, email, password, agreed))
     }
-
-    useEffect(() => {
-        if (message) {
-            setTimeout(() => {
-                history.push('/login')
-            }, 1000);
-        }
-    }, [message, history])
 
     return (
         <GeneralLayout no_text>
