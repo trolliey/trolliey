@@ -71,16 +71,17 @@ function CategoriesDropdown() {
                         }
                     </>
 
-                    <div onClick={() => history.push('/categories')} className="flex flex-row items-center gap-2 py-2 px-4 cursor-pointer justify-between text-sm hover:bg-gray-100">
-                        <p className='capitalize'>all categories</p>
-                        <ChevronRightIcon height={16} width={16} className='text-gray-400' />
-                    </div>
+
 
                     <>
                         <SubCategoryComponent category_id={category_slug} cat_name={cat_name} cat_image={category_image} />
                     </>
 
                 </li>
+                <div onClick={() => history.push('/categories')} className="flex flex-row items-center gap-2 py-2 px-4 border border-gra-200 rounded cursor-pointer justify-between text-sm hover:bg-gray-100">
+                    <p className='capitalize'>all categories</p>
+                    <ChevronRightIcon height={16} width={16} className='text-gray-400' />
+                </div>
 
             </ul>
         </div>

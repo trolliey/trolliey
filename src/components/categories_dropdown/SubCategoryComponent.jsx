@@ -24,7 +24,7 @@ function SubCategoryComponent({ category_id, cat_name, cat_image }) {
     console.log(sub_categories)
 
     return (
-        <div className="megadrop bg-gray-50 border border-gray-200 rounded flex flex-row">
+        <div className="megadrop bg-gray-50 border border-gray-200 rounded flex flex-row z-10">
             <div className="w-3/5 ">
                 <p className='text-blue-primary font-semibold items-center text-lg p-4 capitalize'>{cat_name}</p>
                 <div className=" px-4">
