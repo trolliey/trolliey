@@ -105,13 +105,13 @@ export default function Dashboard() {
                             <DashboardCard
                                 name='Account balance'
                                 icon={<ScaleIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />}
-                                location='/account'
+                                location='dashboard/reports'
                                 amount={0}
                                 loading={loading} />
                             <DashboardCard
                                 name='Page visits'
                                 icon={<PencilIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />}
-                                location='/dashboard'
+                                location='/dashboard/reports'
                                 amount={0}
                                 loading={loading} />
                             <DashboardCard

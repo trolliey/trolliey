@@ -4,12 +4,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import {
     CogIcon,
     CreditCardIcon,
-    HomeIcon,
     XIcon,
     ClipboardListIcon,
     UserIcon,
     ShoppingBagIcon,
-    ClockIcon
+    ClockIcon,
+    TemplateIcon,
+    TrendingUpIcon
 } from '@heroicons/react/outline'
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -17,12 +18,13 @@ import logo from '../../assets/icon.png'
 import { useSelector } from 'react-redux'
 
 const navigation = [
-    { name: 'Home', href: '/dashboard', icon: HomeIcon, current: false },
+    { name: 'Home', href: '/dashboard', icon: TemplateIcon, current: false },
     { name: 'Inventory', href: '/dashboard/inventory', icon: ClipboardListIcon, current: false },
-    { name: 'Customer Orders', href: '/dashboard/orders', icon: ShoppingBagIcon, current: false },
+    { name: "Customers Orders", href: '/dashboard/orders', icon: ShoppingBagIcon, current: false },
     // { name: 'History', href: '/dashboard/history', icon: ClockIcon, current: false },
     // { name: 'Balances', href: '/dashboard/balances', icon: ScaleIcon, current: false },
     { name: 'Cards', href: '/dashboard/cards', icon: CreditCardIcon, current: false },
+    { name: 'Reports', href: '/dashboard/reports', icon: TrendingUpIcon, current: false },
     // { name: 'Recipients', href: '/dashboard/receipts', icon: UserGroupIcon, current: false },
     { name: 'Store Settings', href: '/dashboard/settings', icon: CogIcon },
 ]
@@ -33,7 +35,7 @@ const secondaryNavigation = [
 ]
 
 const buyer_navigation = [
-    { name: 'Home', href: '/dashboard/buyer-home', icon: HomeIcon, current: false },
+    { name: 'Home', href: '/dashboard/buyer-home', icon: TemplateIcon, current: false },
     { name: 'My Orders', href: '/dashboard/buyer-orders', icon: ShoppingBagIcon, current: false },
     { name: 'Purchase History', href: '/dashboard/buyer-products', icon: ClockIcon, current: false },
     { name: 'User Settings', href: '/dashboard/usersettings', icon: UserIcon },

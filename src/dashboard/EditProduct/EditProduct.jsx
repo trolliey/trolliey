@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Spinner } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
@@ -7,6 +7,7 @@ import { get_single_product_Action } from '../../redux/actions/productActions'
 
 function EditProduct() {
     const _product = useSelector(state => state.get_single_product)
+    const [isReadMore, setIsReadMore] = useState(true);
     const { loading, error, product } = _product
     const { id } = useParams()
     const dispatch = useDispatch()
@@ -49,7 +50,7 @@ function EditProduct() {
                         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500">Product title</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <span className="flex-grow">Margot Foster</span>
+                                <span className="flex-grow">{product?.product.title}</span>
                                 <span className="ml-4 flex-shrink-0">
                                     <button
                                         type="button"
@@ -63,7 +64,7 @@ function EditProduct() {
                         <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500">Category</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <span className="flex-grow">Backend Developer</span>
+                                <span className="flex-grow">{product?.product.category}</span>
                                 <span className="ml-4 flex-shrink-0">
                                     <button
                                         type="button"
@@ -77,7 +78,7 @@ function EditProduct() {
                         <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500">Sub-Category</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <span className="flex-grow">margotfoster@example.com</span>
+                                <span className="flex-grow">{product?.product.sub_category}</span>
                                 <span className="ml-4 flex-shrink-0">
                                     <button
                                         type="button"
@@ -89,9 +90,9 @@ function EditProduct() {
                             </dd>
                         </div>
                         <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-                            <dt className="text-sm font-medium text-gray-500">Condition</dt>
+                            <dt className="text-sm font-medium text-gray-500">Price</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <span className="flex-grow"> $120,000</span>
+                                <span className="flex-grow"> ${product?.product.price}</span>
                                 <span className="ml-4 flex-shrink-0">
                                     <button
                                         type="button"
@@ -106,9 +107,10 @@ function EditProduct() {
                             <dt className="text-sm font-medium text-gray-500">Description</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 <span className="flex-grow">
-                                    Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur
-                                    qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure
-                                    nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
+                                    <div
+                                        className="text-base text-gray-700 space-y-6 leading-normal"
+                                        dangerouslySetInnerHTML={{ __html: product?.product?.description }}
+                                    />
                                 </span>
                                 <span className="ml-4 flex-shrink-0">
                                     <button
@@ -120,7 +122,7 @@ function EditProduct() {
                                 </span>
                             </dd>
                         </div>
-                        
+
                     </dl>
                 </div>
             </div>

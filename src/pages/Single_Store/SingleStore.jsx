@@ -5,18 +5,20 @@ import BlueButton from '../../components/buttons/BlueButton'
 import ProductItem from '../../components/product_item/ProductItem'
 import StoreLayout from '../../layouts/StoreLayout'
 import { get_store_products_Actions } from '../../redux/actions/storeActions'
+import { useParams } from 'react-router-dom'
 
 function SingleStore() {
     const _info = useSelector(state => state.get_store_products)
     const { loading, products, error } = _info
     const [search_query, setSearchQuery] = useState('')
+    const { id } = useParams()
     const dispatch = useDispatch()
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(10)
 
     const handle_search_query = () => {
         console.log(search_query)
-        dispatch(get_store_products_Actions('61fa717fed7351a503342da9', search_query, page, limit))
+        dispatch(get_store_products_Actions(id, search_query, page, limit))
     }
 
     if (loading) {

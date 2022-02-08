@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { useDisclosure } from '@chakra-ui/react'
 import AuthModal from '../../components/auth_modal/AuthModal';
+import dashboard from '../../assets/dashboard_screenshot.png'
 
 const features = [
     {
@@ -79,7 +80,7 @@ function BecomeASellerAd() {
 
             <main>
                 {/* Hero section */}
-                <div className="relative">
+                <div className="relative py-8">
                     <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100" />
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div className="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
@@ -89,7 +90,7 @@ function BecomeASellerAd() {
                                     src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2830&q=80&sat=-100"
                                     alt="People working on laptops"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-r from-purple-800 to-indigo-700 mix-blend-multiply" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-primary to-blue-dark mix-blend-multiply" />
                             </div>
                             <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
                                 <h1 className="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
@@ -143,7 +144,7 @@ function BecomeASellerAd() {
                             <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
                                 <div>
                                     <div>
-                                        <span className="h-12 w-12 rounded-md flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600">
+                                        <span className="h-12 w-12 rounded-md flex items-center justify-center bg-gradient-to-r from-blue-primary to-blue-dark">
                                             <InboxIcon className="h-6 w-6 text-white" aria-hidden="true" />
                                         </span>
                                     </div>
@@ -159,7 +160,7 @@ function BecomeASellerAd() {
                                         <div className="mt-6">
                                             <a
                                                 href="#"
-                                                className="inline-flex bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
+                                                className="inline-flex bg-gradient-to-r from-blue-primary to-blue-dark bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
                                             >
                                                 Get started
                                             </a>
@@ -195,7 +196,7 @@ function BecomeASellerAd() {
                                 <div className="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                                     <img
                                         className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                                        src="https://tailwindui.com/img/component-images/inbox-app-screenshot-1.jpg"
+                                        src={dashboard}
                                         alt="Inbox user interface"
                                     />
                                 </div>
@@ -207,7 +208,7 @@ function BecomeASellerAd() {
                             <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2">
                                 <div>
                                     <div>
-                                        <span className="h-12 w-12 rounded-md flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600">
+                                        <span className="h-12 w-12 rounded-md flex items-center justify-center bg-gradient-to-r from-blue-primary to-blue-dark">
                                             <SparklesIcon className="h-6 w-6 text-white" aria-hidden="true" />
                                         </span>
                                     </div>
@@ -223,7 +224,7 @@ function BecomeASellerAd() {
                                         <div className="mt-6">
                                             <a
                                                 href="#"
-                                                className="inline-flex bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
+                                                className="inline-flex bg-gradient-to-r from-blue-primary to-blue-dark bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
                                             >
                                                 Get started
                                             </a>
@@ -235,7 +236,7 @@ function BecomeASellerAd() {
                                 <div className="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                                     <img
                                         className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
-                                        src="https://tailwindui.com/img/component-images/inbox-app-screenshot-2.jpg"
+                                        src={dashboard}
                                         alt="Customer profile user interface"
                                     />
                                 </div>
@@ -245,7 +246,7 @@ function BecomeASellerAd() {
                 </div>
 
                 {/* Gradient Feature Section */}
-                <div className="bg-gradient-to-r from-purple-800 to-indigo-700">
+                <div className="bg-blue-dark">
                     <div className="max-w-4xl mx-auto px-4 py-16 sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:pt-24 lg:px-8">
                         <h2 className="text-3xl font-extrabold text-white tracking-tight">Inbox support built for efficiency</h2>
                         <p className="mt-4 max-w-3xl text-lg text-purple-200">
@@ -321,14 +322,14 @@ function BecomeASellerAd() {
                     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 lg:flex lg:items-center lg:justify-between">
                         <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                             <span className="block">Ready to get started?</span>
-                            <span className="block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                            <span className="block bg-gradient-to-r from-blue-primary to-blue-dark bg-clip-text text-transparent">
                                 Get in touch or create an account.
                             </span>
                         </h2>
                         <div className="mt-6 space-y-4 sm:space-y-0 sm:flex sm:space-x-5">
                             <a
                                 href="#"
-                                className="flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
+                                className="flex items-center justify-center bg-gradient-to-r from-blue-primary to-blue-dark bg-origin-border px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
                             >
                                 Learn more
                             </a>

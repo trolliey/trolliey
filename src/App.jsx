@@ -46,6 +46,7 @@ import SubCategories from './pages/sub_categories/SubCategories';
 import StoreApplications from './admin/StoreApplications';
 import ApplicationReview from './admin/StoreApplications/ApplicationReview';
 import VerifyEmail from './pages/Auth/VerifyEmail';
+import Reports from './dashboard/Reports';
 
 function App() {
     return (
@@ -66,6 +67,7 @@ function App() {
                 <Route exact path='/dashboard/balances' component={Balances} />
                 <Route exact path='/dashboard/cards' component={Cards} />
                 <Route exact path='/dashboard/receipts' component={Receipts} />
+                <Route exact path='/dashboard/reports' component={Reports} />
                 <Route exact path='/dashboard/settings' component={StoreInfo} />
                 <Route exact path='/dashboard/orders' component={Orders} />
                 <Route exact path='/dashboard/usersettings' component={UserSettings} />

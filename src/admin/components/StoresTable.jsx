@@ -28,10 +28,7 @@ function StoresTable({ stores }) {
                 <div className="col-span-1 text-gray-400 uppercase p-2 bg-gray-50  ">
                     logo
                 </div>
-                <div className="col-span-1 text-gray-400 uppercase p-2 bg-gray-50 ">
-                    name
-                </div>
-                <div className="col-span-1 text-gray-400 uppercase p-2 bg-gray-50 ">
+                <div className="col-span-2 text-gray-400 uppercase p-2 bg-gray-50 ">
                     email
                 </div>
                 <div className="col-span-1 text-gray-400 uppercase p-2 bg-gray-50 ">
@@ -46,15 +43,15 @@ function StoresTable({ stores }) {
             </div>
 
             {
-                stores?.map((store, index) => (
+                stores?.all_stores?.map((store, index) => (
                     <div key={index} className="grid grid-cols-6 w-full bg-white p-2 flex-1 items-center rounded-t shadow border-b text-gray-800 border-gray-100 ">
-                        <div className="col-span-1   ">
-                            <Avatar src={store?.photoURL} name={store?.displayName} />
+                        <div className="col-span-1 flex flex-row items-center gap-2  ">
+                            <Avatar src={store?.photoURL} name={store?.company_name} />
+                            <p>
+                                {store?.company_name}
+                            </p>
                         </div>
-                        <div className="col-span-1  ">
-                            {store?.displayName}
-                        </div>
-                        <div className="col-span-1  ">
+                        <div className="col-span-2  ">
                             {store?.email}
                         </div>
                         <div className="col-span-1  ">
@@ -64,7 +61,7 @@ function StoresTable({ stores }) {
                             {moment(store?.createdAt).fromNow()}
                         </div>
                         <div className="col-span-1  text-blue-primary ">
-                            <UsersDropdown id={store?.store_owner} />
+                            <UsersDropdown id={store._id} />
                         </div>
                     </div>
                 ))

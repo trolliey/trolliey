@@ -21,7 +21,7 @@ function StoreLayout({ children, loading, error }) {
     const history = useHistory()
 
     useEffect(() => {
-        dispatch(get_store_products_Actions(id))
+        dispatch(get_store_products_Actions(id, '', 1, 10))
     }, [dispatch, id])
 
     console.log(products)

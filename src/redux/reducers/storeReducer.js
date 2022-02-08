@@ -1,4 +1,20 @@
-import { CREATE_SINGLE_STORE_INFO_FAIL, CREATE_SINGLE_STORE_INFO_REQUEST, CREATE_SINGLE_STORE_INFO_SUCCESS, GET_ALL_STORES_FAIL, GET_ALL_STORES_REQUEST, GET_ALL_STORES_SUCCESS, GET_DASHBOARD_PRODUCTS_FAIL, GET_DASHBOARD_PRODUCTS_REQUEST, GET_DASHBOARD_PRODUCTS_SUCCESS, GET_STORE_PRODUCTS_FAIL, GET_STORE_PRODUCTS_REQUEST, GET_STORE_PRODUCTS_SUCCESS } from "../constants/storeConstants"
+import {
+    APPROVE_STORE_FAIL,
+    APPROVE_STORE_REQUEST,
+    APPROVE_STORE_SUCCESS,
+    CREATE_SINGLE_STORE_INFO_FAIL,
+    CREATE_SINGLE_STORE_INFO_REQUEST,
+    CREATE_SINGLE_STORE_INFO_SUCCESS,
+    GET_ALL_STORES_FAIL,
+    GET_ALL_STORES_REQUEST,
+    GET_ALL_STORES_SUCCESS,
+    GET_DASHBOARD_PRODUCTS_FAIL,
+    GET_DASHBOARD_PRODUCTS_REQUEST,
+    GET_DASHBOARD_PRODUCTS_SUCCESS,
+    GET_STORE_PRODUCTS_FAIL,
+    GET_STORE_PRODUCTS_REQUEST,
+    GET_STORE_PRODUCTS_SUCCESS
+} from "../constants/storeConstants"
 
 //create productr reducer
 export const get_store_products_Reducer = (state = { loading: false }, action) => {
@@ -50,6 +66,20 @@ export const get_all_stores_Reducer = (state = { loading: false }, action) => {
             return { loading: false, stores: action.payload }
         case GET_ALL_STORES_FAIL:
             return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+// APROVE STORE REDCUER
+export const approve_store_Reducer = (state = { loading: false }, action) => {
+    switch (action.type) {
+        case APPROVE_STORE_REQUEST:
+            return { loading: true }
+        case APPROVE_STORE_SUCCESS:
+            return { loading: false, message: 'Sucessfully!' }
+        case APPROVE_STORE_FAIL:
+            return { loading: false, error: 'Error approving for store. Try again later' }
         default:
             return state
     }
