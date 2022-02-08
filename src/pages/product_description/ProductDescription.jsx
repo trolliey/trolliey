@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { Tab } from '@headlessui/react'
 import { ShoppingCartIcon, StarIcon } from '@heroicons/react/solid'
@@ -7,7 +7,6 @@ import { InformationCircleIcon } from '@heroicons/react/solid'
 import BlueButton from '../../components/buttons/BlueButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { add_to_cart_Action } from '../../redux/actions/cartActions'
-import { useEffect } from 'react'
 import { get_single_product_Action } from '../../redux/actions/productActions'
 import { useHistory, useParams } from 'react-router'
 import { Spinner } from '@chakra-ui/spinner'
@@ -15,8 +14,8 @@ import { add_to_compare_Action } from '../../redux/actions/compareActions'
 import BlackButton from '../../components/buttons/BlackButton'
 import AllProducts from '../../components/home_sections/AllProducts'
 import logo from '../../assets/full_logo.png'
-import { useState } from 'react'
 import UserAvatar from '../../components/user_avatar/UserAvatar'
+import RatingComponent from '../../components/rating_component/RatingComponent'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -26,6 +25,9 @@ function ProductDescription() {
     const _product = useSelector(state => state.get_single_product)
     const { loading, error, product } = _product
     const { id } = useParams()
+    const [showMore, setShowMore] = useState(false);
+    const user_login = useSelector(state => state.user_login)
+    const { userInfo } = user_login
 
     // togglinf between previews and descripion
     const [show_features, setShowFeatures] = useState(false)
@@ -163,17 +165,10 @@ function ProductDescription() {
                                         <h3 className="sr-only">Reviews</h3>
                                         <div className="flex items-center">
                                             <div className="flex items-center">
-                                                {[0, 1, 2, 3, 4].map((rating, index) => (
-                                                    <StarIcon
-                                                        key={index}
-                                                        onMouseEnter={() => console.log(index)}
-                                                        className={classNames(
-                                                            product?.product?.ratings.length > rating ? 'text-yellow-400' : 'text-gray-300',
-                                                            'h-4 w-4 flex-shrink-0 hover:text-yellow-400 cursor-pointer'
-                                                        )}
-                                                        aria-hidden="true"
-                                                    />
-                                                ))}
+                                                <RatingComponent
+                                                    ratings={product?.product?.ratings}
+                                                    user={userInfo}
+                                                />
                                             </div>
                                             <p className="sr-only">{product?.product?.ratings.length} out of 5 stars</p>
                                         </div>
@@ -310,10 +305,21 @@ function ProductDescription() {
                                     <div className="mt-2">
                                         <h3 className="sr-only">Description</h3>
 
-                                        <div
-                                            className="text-base text-gray-700 space-y-6 leading-normal"
-                                            dangerouslySetInnerHTML={{ __html: product?.product?.description }}
-                                        />
+                                        <span className="flex-grow w-full">
+                                            <div className="flex mb-4 flex-col">
+                                                {showMore ? <div
+                                                    className="text-base text-gray-700 space-y-6 leading-normal"
+                                                    dangerouslySetInnerHTML={{ __html: product?.product?.description }}
+                                                /> : <div
+                                                    className="text-base text-gray-700 space-y-6 leading-normal"
+                                                    dangerouslySetInnerHTML={{ __html: product?.product?.description.substring(0, 500) }}
+                                                />}
+                                            </div>
+                                            <span onClick={() => setShowMore(!showMore)} className="bg-blue-primary self-center mx-auto text-white font-semibold text-center my-4 p-2 rounded text-xs">
+                                                {showMore ? "Read Less" : "Read More"}
+                                            </span>
+
+                                        </span>
                                     </div>
                                 )
                             }
