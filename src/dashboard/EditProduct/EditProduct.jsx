@@ -35,7 +35,6 @@ function EditProduct() {
 
     // update product title
     const change_title = () => {
-        console.log(title)
         const body = {
             title: title
         }
@@ -46,17 +45,32 @@ function EditProduct() {
 
     // update product category
     const change_category = () => {
-        console.log(category)
+        const body = {
+            category: category
+        }
+        // console.log(userInfo?.token)
+        dispatch(edit_single_product_Action(id, body, userInfo?.token))
+        setTitle('')
     }
 
     // update product price
     const change_price = () => {
-        console.log(price)
+        const body = {
+            price: price
+        }
+        // console.log(userInfo?.token)
+        dispatch(edit_single_product_Action(id, body, userInfo?.token))
+        setPrice('')
     }
 
     // update product price
     const change_access = () => {
-        console.log(access)
+        const body = {
+            product_type: access
+        }
+        // console.log(userInfo?.token)
+        dispatch(edit_single_product_Action(id, body, userInfo?.token))
+        setPrice('')
     }
 
     // update product price
@@ -147,6 +161,7 @@ function EditProduct() {
                                         type="button"
                                         onClick={change_category}
                                         text={'Update'}
+                                        loading={edit_loading}
                                         outline
                                     />
                                 </span>
@@ -182,6 +197,7 @@ function EditProduct() {
                                         type="button"
                                         onClick={change_price}
                                         text={'Update'}
+                                        loading={edit_loading}
                                         outline
                                     />
                                 </span>
@@ -192,7 +208,7 @@ function EditProduct() {
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 {/* <span className="flex-grow"> {product?.product.product_type}</span> */}
                                 <select
-                                    name="category"
+                                    name="access"
                                     onChange={e => setAccess(e.target.value)}
                                     defaultValue={product?.product.product_type}
                                     className='flex-grow p-2 rounded border border-gray-300 outline-none'
@@ -206,6 +222,7 @@ function EditProduct() {
                                         type="button"
                                         onClick={change_access}
                                         text={'Update'}
+                                        loading={edit_loading}
                                         outline
                                     />
                                 </span>
@@ -227,6 +244,7 @@ function EditProduct() {
                                         type="button"
                                         onClick={change_in_stock}
                                         text={'Update'}
+                                        loading={edit_loading}
                                         outline
                                     />
                                 </span>
@@ -250,6 +268,7 @@ function EditProduct() {
                                         type="button"
                                         onClick={change_condition}
                                         text={'Update'}
+                                        loading={edit_loading}
                                         outline
                                     />
                                 </span>

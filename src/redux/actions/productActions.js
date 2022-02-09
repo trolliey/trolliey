@@ -154,17 +154,15 @@ export const remove_product_Action = (id, token) => (dispatch) => {
 }
 
 // edit single product
-export const edit_single_product_Action = (id, body, token) => (dispatch) => {
+export const edit_single_product_Action = (id,body,token) => (dispatch) => {
     dispatch({
         type: EDIT_PRODUCT_REQUEST,
         payload: { id, token }
     })
-    axios.patch(`${apiUrl}/product/edit/${id}`, {
+    axios.patch(`${apiUrl}/product/edit/${id}`, { body }, {
         headers: {
             Authorization: token
         }
-    }, {
-        body
     }).then(res => {
         dispatch({
             type: EDIT_PRODUCT_SUCCESS,
