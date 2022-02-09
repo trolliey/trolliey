@@ -20,7 +20,7 @@ const items = [
 function PayNow({isOpen, setIsOpen}) {
 
     // const [isOpen, setIsOpen] = useState(true);
-    console.log(items)
+    // console.log(items)
 
     const onClose = data => {
         setIsOpen(false);

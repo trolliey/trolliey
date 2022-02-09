@@ -1,5 +1,5 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
-import { Divider } from '@chakra-ui/react'
+import { Avatar, Divider } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { useSelector } from 'react-redux'
@@ -36,7 +36,8 @@ function Payment() {
                 title: basket_item.name,
                 amount: basket_item.price,
                 quantity: 1,
-                image: basket_item.picture
+                image: basket_item.picture,
+                store_id: basket_item.store_id
             }])
         })
     }, [])
@@ -133,6 +134,20 @@ function Payment() {
                                 <p>{basket?.length} items</p>
                                 <p>$ {getBasketTotal(basket)}</p>
                             </div>
+                            <Divider className='my-4 text-gray-500' color={'gray.400'} />
+                            {basket?.map((item, index)=>(
+                                <div key={index} className="flex flex-row gap-4 items-center w-full">
+                                    <Avatar src={item.picture} />
+                                    <div className="flex flex-col">
+                                        <p className='text-gray-900 font-semibold'>{item.name}</p>
+                                        <p className='text-sm text-gray-500'>{item.price}</p>
+                                    </div>
+                                    <div className="flex-1"></div>
+                                    <div className="ml-auto">
+                                        <input type="number" defaultValue={1} />
+                                    </div>
+                                </div>  
+                            ))}
                             <Divider className='my-4 text-gray-500' color={'gray.400'} />
                             <div className="flex flex-row items-center w-full justify-between font-semibold mt-4">
                                 <p className='text-gray-800 font-bold'>TO PAY</p>

@@ -1,6 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { create_order_Action } from '../../redux/actions/orderActions'
 import PayNow from '../PayNow/PayNow'
 
 function Address({ pay_on_delivery }) {
@@ -17,8 +18,17 @@ function Address({ pay_on_delivery }) {
     const [pay_modal, setPayModalOpen] = useState()
     const [cvv, setCVV] = useState('')
 
+    const dispatch = useDispatch()
+
     const _add_to_cart = useSelector(state => state.add_to_cart)
     const { basket } = _add_to_cart
+
+    const _create_order = useSelector(state => state.create_order)
+    const { order_loading, order_message, order_error } = _create_order
+
+    const create_an_order_Handler = () =>{
+        // dispatch(create_order_Action())
+    }
 
     const [items, setItems] = useState([])
 
@@ -32,6 +42,8 @@ function Address({ pay_on_delivery }) {
             }])
         })
     }, [])
+
+    console.log(basket)
 
     return (
         <div className="bg-white w-full items-center">

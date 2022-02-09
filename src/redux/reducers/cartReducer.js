@@ -2,9 +2,9 @@ import { ADD_TO_CART_SUCCESS, REMOVE_FROM_CART_SUCCESS } from '../constants/cart
 
 const initialState = {
     basket: [],
-    qty: 0,
+    qty: 1,
     total: 0,
-    delivery: 5,
+    delivery: 5
 };
 
 // add items to cart reducer

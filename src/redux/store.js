@@ -8,6 +8,7 @@ import { add_category_Reducer, get_all_categories_Reducer, get_all_subcategories
 import { get_all_messages_Reducer, get_all_user_chats_Reducer, send_message_Reducer, toggle_chat_Reducer } from "./reducers/chatReducers";
 import { add_to_compare_Reducer } from "./reducers/compareReducers";
 import { get_featured_products_Reducer } from "./reducers/featuredProductsReducers";
+import { create_order_Reducer } from "./reducers/orderReducers";
 import { create_a_product_Reducer, edit_single_product_Reducer, get_all_products_Reducer, get_single_product_Reducer, remove_product_Reducer } from "./reducers/productReducer";
 import { create_a_review_Reducer, get_all_store_reviews_Reducer, like_a_review_Reducer } from "./reducers/reviewReducers";
 import { set_search_query_Reducer } from "./reducers/searchReducers";
@@ -89,7 +90,10 @@ const reducer = combineReducers({
   get_messages: get_all_messages_Reducer,
 
   //for applications
-  get_applications: get_all_applications_Reducer
+  get_applications: get_all_applications_Reducer,
+
+  //for orders
+  create_order: create_order_Reducer
 });
 
 const composeForBrowser =

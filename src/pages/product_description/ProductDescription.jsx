@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { Tab } from '@headlessui/react'
-import { ShoppingCartIcon, StarIcon } from '@heroicons/react/solid'
+import { ShoppingCartIcon } from '@heroicons/react/solid'
 import { PlusIcon } from '@heroicons/react/outline'
 import { InformationCircleIcon } from '@heroicons/react/solid'
 import BlueButton from '../../components/buttons/BlueButton'
@@ -16,6 +16,7 @@ import AllProducts from '../../components/home_sections/AllProducts'
 import logo from '../../assets/full_logo.png'
 import UserAvatar from '../../components/user_avatar/UserAvatar'
 import RatingComponent from '../../components/rating_component/RatingComponent'
+import RelatedProducts from '../../components/home_sections/RelatedProducts'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -40,10 +41,11 @@ function ProductDescription() {
             picture: product?.product?.pictures[0],
             rating: product?.product?.ratings,
             description: product?.product?.description,
-            price: product?.product?.price,
+            price: product?.product?.price - product?.product?.discount_price,
             id: id,
             name: product?.product?.title,
-            shipment_price: product?.product?.shipping_price
+            shipment_price: product?.product?.shipping_price,
+            store_id: product?.store_id,
         }
         dispatch(add_to_cart_Action(item))
     }
@@ -53,11 +55,12 @@ function ProductDescription() {
             pictures: product?.product?.pictures,
             rating: product?.product?.ratings,
             description: product?.product?.description,
-            price: product?.product?.price,
+            price: product?.product?.price - product?.product?.discount_price,
             id: id,
             name: product?.product?.title,
             features: product?.product.additional_features,
-            shipment_price: product?.product?.shipping_price
+            shipment_price: product?.product?.shipping_price,
+            store_id: product?.store_id
         }
         dispatch(add_to_compare_Action(item))
     }
@@ -106,12 +109,12 @@ function ProductDescription() {
 
     return (
         <GeneralLayout no_text>
-            <div className="flex md:px-4 px-4 flex-col max-w-7xl bg-gray-100">
+            <div className="flex md:px-0 px-4 flex-col max-w-7xl bg-gray-100">
                 <div className="flex-1 mx-auto w-full rounded ">
-                    <div className="max-w-2xl mx-auto md:py-8  lg:max-w-7xl lg:px-8 md:px-0 px-0">
+                    <div className="max-w-2xl mx-auto md:py-8  lg:max-w-7xl lg:px-0 md:px-0 px-2">
                         <div className="lg:grid lg:grid-cols-3 lg:gap-x-8 lg:items-start">
                             {/* Image gallery */}
-                            <Tab.Group as="div" className="flex flex-col-reverse bg-white md:p-8 p-0 rounded col-span-2">
+                            <Tab.Group as="div" className="flex flex-col-reverse bg-white md:p-8 p-0 rounded-lg col-span-2">
                                 {/* Image selector */}
                                 <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
                                     <Tab.List className="grid grid-cols-8 gap-2">
@@ -222,7 +225,7 @@ function ProductDescription() {
                                                     <p className='text-gray-700 text-sm font-semibold'>Buy items for more than $50 for free delivery</p>
                                                 )
                                             }
-                                            
+
                                             {
                                                 product?.stock.in_stock === "stock_handled_by_trolliey" && (
                                                     <div className="border-t border-b py-2 mt-2 flex flex-row items-center">
@@ -331,7 +334,7 @@ function ProductDescription() {
                 </div>
                 <div className="related_products mt-16">
                     <>
-                        <AllProducts cols="lg:grid-cols-5 " />
+                        <RelatedProducts cols="lg:grid-cols-5 " category={product?.product.category} />
                     </>
                 </div>
             </div>
