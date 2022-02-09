@@ -13,6 +13,7 @@ function Payment() {
     // for delivery input
     const [do_delivery, setDoDelivery] = useState(false)
     const [do_collection, setDoCollection] = useState(false)
+    const [pay_on_delivery, setPayOnDelivery] = useState(false)
 
     const handle_do_delivery = () => {
         do_delivery ? setDoDelivery(false) : setDoDelivery(true)
@@ -58,11 +59,52 @@ function Payment() {
                                     <p className='text-gray-400 text-xs'>Courier delivery to your door</p>
                                 </div>
                             </div>
-                            <BlueButton text={'Deliver My Order'} outline onClick={handle_do_delivery} />
+                            <BlueButton
+                                text={'Deliver My Order'}
+                                outline
+                                onClick={handle_do_delivery}
+                            />
                         </div>
                         {
                             do_delivery && (
-                                <Address />
+                                <div className='bg-white w-full'>
+                                    <div className="flex flex-col px-16 py-4">
+                                        <label htmlFor="username" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 mb-4">
+                                            Do you want to pay on delivery? <span className='text-red-600'>*</span>
+                                        </label>
+                                        <div className="mt-1 sm:mt-0 sm:col-span-2">
+                                            <div className="flex items-center p-3 rounded bg-gray-100">
+                                                <input
+                                                    id="stock_handle"
+                                                    name="stock_handle"
+                                                    type="radio"
+                                                    value={'stock_handled_by_self'}
+                                                    onChange={() => setPayOnDelivery(true)}
+                                                    className="focus:ring-blue-primary h-4 w-4 textblue-primary border-gray-300"
+                                                    required
+                                                />
+                                                <label htmlFor="push-nothing" className="ml-3 block text-sm font-semibold text-gray-700">
+                                                    I want to pay on delivery
+                                                </label>
+                                            </div>
+                                            <div className="flex items-center p-3 rounded bg-gray-100 mt-2">
+                                                <input
+                                                    id="stock_handle"
+                                                    name="stock_handle"
+                                                    type="radio"
+                                                    value={'stock_handled_by_trolliey'}
+                                                    onChange={() => setPayOnDelivery(false)}
+                                                    className="focus:ring-blue-primary h-4 w-4 textblue-primary border-gray-300"
+                                                    required
+                                                />
+                                                <label htmlFor="push-nothing" className="ml-3 block text-sm font-semibold text-gray-700">
+                                                    I want to pay online
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <Address pay_on_delivery={pay_on_delivery} />
+                                </div>
                             )
                         }
                         <div className="flex flex-row items-center bg-white justify-between p-4 w-full mx-auto mt-2 shadow">

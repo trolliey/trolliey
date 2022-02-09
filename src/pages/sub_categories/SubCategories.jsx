@@ -25,7 +25,7 @@ function SubCategories() {
     }
 
     return (
-        <GeneralLayout>
+        <GeneralLayout title={`Sub-Categories under ${category} `}>
             <div className="flex flex-col flex-wrap items-center max-w-7xl">
                 <div className="grid md:grid-cols-3 grid-cols-2 md:gap-8 gap-4 mx-auto max-w-7xl bg-white p-4 rounded">
                     {sub_categories?.sub_categories.map((sub_cat, index) => (

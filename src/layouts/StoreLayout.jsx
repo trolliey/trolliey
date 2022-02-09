@@ -27,7 +27,7 @@ function StoreLayout({ children, loading, error }) {
     console.log(products)
 
     return (
-        <GeneralLayout>
+        <GeneralLayout title={products?.store?.company_name} description={products?.store?.about}>
             <div className="flex w-full rounded min-h-screen">
                 <div className=" w-full rounded overflow-hidden">
                     <div className="max-w-2xl mx-auto lg:max-w-7xl">

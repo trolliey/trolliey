@@ -50,7 +50,7 @@ function InventoryTable({ data }) {
                 <ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
                     {data?.products?.map((product, index) => (
                         <li key={product?._id}>
-                            <div className="block px-4 py-4 bg-white hover:bg-gray-50">
+                            <div className="block px-4 py-2 bg-white hover:bg-gray-50">
                                 <span className="flex items-center space-x-4">
                                     <span className="flex-1 flex space-x-2 truncate">
                                         {/* <CashIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
@@ -118,7 +118,7 @@ function InventoryTable({ data }) {
                                 <tbody className="bg-white divide-y divide-gray-200">
                                     {data?.products?.map((product, index) => (
                                         <tr key={product?._id} className="bg-white">
-                                            <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <td className="max-w-0 w-full px-6 py-2 whitespace-nowrap text-sm text-gray-900">
                                                 <div className="flex">
                                                     <div className="group inline-flex space-x-2 truncate text-sm">
                                                         {/* <CashIcon
@@ -130,14 +130,14 @@ function InventoryTable({ data }) {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
+                                            <td className="px-6 py-2 text-right whitespace-nowrap text-sm text-gray-500">
                                                 <p className="text-gray-500 truncate group-hover:text-gray-900">{product?.category}</p>
                                             </td>
-                                            <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
+                                            <td className="px-6 py-2 text-right whitespace-nowrap text-sm text-gray-500">
                                                 <span className="text-gray-900 font-medium">{product?.stock} </span>
                                                 {/* {product?.msrment} */}
                                             </td>
-                                            <td className="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
+                                            <td className="hidden px-6 py-2 whitespace-nowrap text-sm text-gray-500 md:block">
                                                 <span
                                                     className={classNames(
                                                         statusStyles[product?.status],
@@ -147,10 +147,10 @@ function InventoryTable({ data }) {
                                                     {product?.status}
                                                 </span>
                                             </td>
-                                            <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
+                                            <td className="px-6 py-2 text-right whitespace-nowrap text-sm text-gray-500">
                                                 <span >{product?.orders.length}</span>
                                             </td>
-                                            <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500 mr-2">
+                                            <td className="px-6 py-2 text-right whitespace-nowrap text-sm text-gray-500 mr-2">
                                                 <button onClick={() => history.push(`/dashboard/edit-product/${product?._id}`)} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-blue-primary">
                                                     <PencilIcon height={12} width={12} className="" />
                                                 </button>

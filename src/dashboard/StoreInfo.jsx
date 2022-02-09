@@ -4,12 +4,14 @@ import BlueButton from '../components/buttons/BlueButton'
 import DashboardLayout from '../layouts/DashboardLayout'
 import Dropzone from 'react-dropzone'
 import { Spinner } from '@chakra-ui/react'
-import { create_single_store_Actions, get_store_products_Actions } from '../redux/actions/storeActions'
+import { edit_store_info_Action, get_store_products_Actions } from '../redux/actions/storeActions'
 import { useRef } from 'react'
 import { CameraIcon } from '@heroicons/react/outline'
 import UserAvatar from '../components/user_avatar/UserAvatar'
 import SuccessAlert from '../components/alerts/SuccessAlert'
 import Error from '../components/alerts/Error'
+import { storage } from '../utils/firebase'
+import firebase from 'firebase/compat'
 
 function StoreInfo() {
 
@@ -26,10 +28,11 @@ function StoreInfo() {
     const [picture, setPicture] = useState(null);
     const dropRef = useRef();
     const [push_type, setpushType] = useState('')
-    const _create = useSelector(state => state.create_store)
-    const { edit_loading, message, edit_error } = _create
     const _info = useSelector(state => state.get_store_products)
     const { loading } = _info
+
+    const _edit_store = useSelector(state => state.edit_store)
+    const { store_edit_loading, store_edit_error, store_edit_message } = _edit_store
 
     useEffect(() => {
         dispatch(get_store_products_Actions(userInfo?.user?._id))
@@ -46,20 +49,57 @@ function StoreInfo() {
         setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
     };
 
+    //change the profile picture
     const changeProPic = (e) => {
         e.preventDefault();
-        console.log(picture)
+        var uploadTask = storage.ref().child(`images/${picture.name}-${Date.now()}`).put(picture)
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            },
+            (error) => {
+                // Handle unsuccessful uploads
+            },
+            () => {
+                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+                    const body = {
+                        logo: downloadURL
+                    }
+                    dispatch(edit_store_info_Action(body, userInfo?.user?._id))
+                });
+            }
+        );
+
     };
 
-    const create_store = (e) => {
-        dispatch(create_single_store_Actions(username, about, picture, userInfo?.token))
+    // edit  store name
+    const change_store_name = () => {
+        const body = {
+            company_name: username
+        }
+        dispatch(edit_store_info_Action(body, userInfo?.user?._id))
+        setUsername('')
     }
 
-    useEffect(() => {
-        if (message === 'Successfully edited') {
-            window.location.reload()
+    //change the description of the store
+    const change_about = () => {
+        const body = {
+            about: about
         }
-    }, [message])
+        dispatch(edit_store_info_Action(body, userInfo?.user?._id))
+        setAbout('')
+    }
+
 
     if (loading) {
         return (
@@ -143,6 +183,7 @@ function StoreInfo() {
                                                                         outline
                                                                         onClick={changeProPic}
                                                                         text="Save Image"
+                                                                        loading={store_edit_loading}
                                                                     />
                                                                 </div>
                                                             )}
@@ -183,10 +224,14 @@ function StoreInfo() {
                                             </div>
                                         </div>
                                     </div>
-                                    {message && <SuccessAlert message={message} />}
-                                    {edit_error && <Error error={edit_error} />}
-                                    <div className="ml-auto">
-                                        <BlueButton text={'Change Name'} outline />
+                                    {store_edit_message && <SuccessAlert message={store_edit_message} />}
+                                    {store_edit_error && <Error error={store_edit_error} />}
+                                    <div className="ml-auto mt-2">
+                                        <BlueButton
+                                            text={'Change Name'}
+                                            outline
+                                            onClick={change_store_name}
+                                            loading={store_edit_loading} />
                                     </div>
                                 </div>
 
@@ -208,10 +253,14 @@ function StoreInfo() {
                                             <p className="mt-2 text-sm text-gray-500">Write a few sentences about your store or your business.</p>
                                         </div>
                                     </div>
-                                    {message && <SuccessAlert message={message} />}
-                                    {edit_error && <Error error={edit_error} />}
+                                    {store_edit_message && <SuccessAlert message={store_edit_message} />}
+                                    {store_edit_error && <Error error={store_edit_error} />}
                                     <div className="ml-auto">
-                                        <BlueButton text={'Change Description'} outline />
+                                        <BlueButton
+                                            onClick={change_about}
+                                            text={'Change Description'}
+                                            loading={store_edit_loading}
+                                            outline />
                                     </div>
                                 </div>
                             </div>
@@ -284,17 +333,6 @@ function StoreInfo() {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        {message && <SuccessAlert message={message} />}
-                                        {edit_error && <Error error={edit_error} />}
-                                        <div className="pt-5">
-                                            <div className="flex justify-end">
-                                                <div className="flex">
-                                                    <BlueButton text="Edit Notofication Type" onClick={create_store} outline loading={edit_loading} />
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>

@@ -13,16 +13,17 @@ function RatingComponent({ ratings, user }) {
         setRating(index)
         axios.post(`${apiUrl}/rating/add/${id}`, { rating: index }, {
             headers: {
-                Authorization: user?.user.token
+                Authorization: user?.token
             }
         }).then(res => {
             console.log(res)
         }).catch(error => {
             console.log(error)
         })
+        // console.log(user?.token)
     }
 
-    console.log(id, rating, ratings)
+    console.log(rating, ratings)
     return (
         <>
             {
@@ -51,7 +52,7 @@ function RatingComponent({ ratings, user }) {
                             <button
                                 type="button"
                                 key={index}
-                                className={index <= (3) ? "on" : "off"}
+                                className={index <= (ratings) ? "on" : "off"}
                                 onClick={() => add_review(index)}
                             >
                                 <span className="star">

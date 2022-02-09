@@ -30,7 +30,7 @@ function ExploreLayout({ children }) {
     }
 
     return (
-        <GeneralLayout>
+        <GeneralLayout title={'Explore Products'} description={'Explore all our available products on Trolliey that you can buy in an instant'}>
             <div className="bg-white md:p-8 p-2 rounded max-w-7xl mx-auto">
                 <div className="top w-full flex flex-row md:gap-8 gap-2">
                     <div className="md:w-1/5 md:flex flex-col hidden">

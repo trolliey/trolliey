@@ -5,6 +5,9 @@ import {
     CREATE_SINGLE_STORE_INFO_FAIL,
     CREATE_SINGLE_STORE_INFO_REQUEST,
     CREATE_SINGLE_STORE_INFO_SUCCESS,
+    EDIT_SINGLE_STORE_INFO_FAIL,
+    EDIT_SINGLE_STORE_INFO_REQUEST,
+    EDIT_SINGLE_STORE_INFO_SUCCESS,
     GET_ALL_STORES_FAIL,
     GET_ALL_STORES_REQUEST,
     GET_ALL_STORES_SUCCESS,
@@ -80,6 +83,20 @@ export const approve_store_Reducer = (state = { loading: false }, action) => {
             return { loading: false, message: 'Sucessfully!' }
         case APPROVE_STORE_FAIL:
             return { loading: false, error: 'Error approving for store. Try again later' }
+        default:
+            return state
+    }
+}
+
+// edit single store info
+export const edit_store_info_Reducer = (state = { store_edit_loading: false }, action) => {
+    switch (action.type) {
+        case EDIT_SINGLE_STORE_INFO_REQUEST:
+            return { store_edit_loading: true }
+        case EDIT_SINGLE_STORE_INFO_SUCCESS:
+            return { store_edit_loading: false, store_edit_message: 'Sucessfully Edited!' }
+        case EDIT_SINGLE_STORE_INFO_FAIL:
+            return { store_edit_loading: false, store_edit_error: 'Error editing for store. Try again later' }
         default:
             return state
     }

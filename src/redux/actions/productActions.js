@@ -2,6 +2,9 @@ import {
     CREATE_PRODUCT_FAIL,
     CREATE_PRODUCT_REQUEST,
     CREATE_PRODUCT_SUCCESS,
+    EDIT_PRODUCT_FAIL,
+    EDIT_PRODUCT_REQUEST,
+    EDIT_PRODUCT_SUCCESS,
     GET_ALL_PRODUCTS_FAIL,
     GET_ALL_PRODUCTS_REQUEST,
     GET_ALL_PRODUCTS_SUCCESS,
@@ -17,7 +20,7 @@ import { REGISTER_USER_FAIL } from "../constants/authConstants"
 import { storage } from "../../utils/firebase"
 
 //create a product
-export const create_product_Action = (token, values, additional_features, pictures, description) => async(dispatch) => {
+export const create_product_Action = (token, values, additional_features, pictures, description) => async (dispatch) => {
 
     dispatch({
         type: CREATE_PRODUCT_REQUEST,
@@ -126,21 +129,50 @@ export const get_single_product_Action = (id) => (dispatch) => {
 }
 
 //remove a product action
-export const remove_product_Action = (id, token) => (dispatch) =>{
+export const remove_product_Action = (id, token) => (dispatch) => {
     dispatch({
         type: REMOVE_PRODUCT_REQUEST,
-        payload: {id, token}
+        payload: { id, token }
     })
-    axios.delete(`${apiUrl}/product/delete/${id}`,{headers:{
-        Authorization: token
-    }}).then(res=>{
+    axios.delete(`${apiUrl}/product/delete/${id}`, {
+        headers: {
+            Authorization: token
+        }
+    }).then(res => {
         dispatch({
             type: REMOVE_FROM_CART_REQUEST,
             payload: res.data
         })
-    }).catch(error=>{
+    }).catch(error => {
         dispatch({
             type: REGISTER_USER_FAIL,
+            payload: error.response && error.response.data.error
+                ? error.response.data.error
+                : error.message,
+        })
+    })
+}
+
+// edit single product
+export const edit_single_product_Action = (id, body, token) => (dispatch) => {
+    dispatch({
+        type: EDIT_PRODUCT_REQUEST,
+        payload: { id, token }
+    })
+    axios.patch(`${apiUrl}/product/edit/${id}`, {
+        headers: {
+            Authorization: token
+        }
+    }, {
+        body
+    }).then(res => {
+        dispatch({
+            type: EDIT_PRODUCT_SUCCESS,
+            payload: res.data
+        })
+    }).catch(error => {
+        dispatch({
+            type: EDIT_PRODUCT_FAIL,
             payload: error.response && error.response.data.error
                 ? error.response.data.error
                 : error.message,

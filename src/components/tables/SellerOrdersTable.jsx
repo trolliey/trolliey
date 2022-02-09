@@ -99,7 +99,7 @@ function SellerOrdersTable() {
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {[1, 2, 3, 4, 5]?.map((product, index) => (
+                                    {[1]?.map((product, index) => (
                                         <tr key={product?._id} className="bg-white">
                                             <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                                 <div className="flex">

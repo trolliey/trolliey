@@ -38,7 +38,7 @@ function ProductDescription() {
     const add_to_basket = () => {
         const item = {
             picture: product?.product?.pictures[0],
-            rating: product?.product?.ratings.length,
+            rating: product?.product?.ratings,
             description: product?.product?.description,
             price: product?.product?.price,
             id: id,
@@ -51,7 +51,7 @@ function ProductDescription() {
     const add_to_compare = () => {
         const item = {
             pictures: product?.product?.pictures,
-            rating: product?.product?.ratings.length,
+            rating: product?.product?.ratings,
             description: product?.product?.description,
             price: product?.product?.price,
             id: id,
@@ -101,6 +101,8 @@ function ProductDescription() {
             </GeneralLayout>
         )
     }
+
+    console.log(product)
 
     return (
         <GeneralLayout no_text>
@@ -166,11 +168,11 @@ function ProductDescription() {
                                         <div className="flex items-center">
                                             <div className="flex items-center">
                                                 <RatingComponent
-                                                    ratings={product?.product?.ratings}
+                                                    ratings={Math.floor(product?.product?.averageRating)}
                                                     user={userInfo}
                                                 />
                                             </div>
-                                            <p className="sr-only">{product?.product?.ratings.length} out of 5 stars</p>
+                                            <p className="sr-only">{product?.product?.averageRating} out of 5 stars</p>
                                         </div>
                                     </div>
 
@@ -220,15 +222,16 @@ function ProductDescription() {
                                                     <p className='text-gray-700 text-sm font-semibold'>Buy items for more than $50 for free delivery</p>
                                                 )
                                             }
+                                            
                                             {
                                                 product?.stock.in_stock === "stock_handled_by_trolliey" && (
-                                                    <div className="border-t border-b py-2 my-2 flex flex-row items-center">
+                                                    <div className="border-t border-b py-2 mt-2 flex flex-row items-center">
                                                         <p className='text-gray-700 font-semibold text-sm'>In Stock</p>
                                                         <p className='p-1 bg-gray-200 rounded text-xs ml-2'>HRE</p>
                                                     </div>
                                                 )
                                             }
-                                            <div className="flex flex-row items-center gap-2">
+                                            <div className="flex flex-row items-center gap-2 mt-2">
                                                 <p className='text-xs text-gray-700'>Eligible in cash on delivery</p>
                                                 <div className="flex flex-col rounded-full">
                                                     <InformationCircleIcon className='text-green-700' height={16} width={16} />
@@ -265,7 +268,7 @@ function ProductDescription() {
                                         </div>
                                     </div>
                                 </div>
-                                <div onClick={() => history.push(`/stores/single/${product?.product?.owner}`)} className="flex flex-row space-x-4 items-center p-4 rounded border border-gray-200 bg-white cursor-pointer">
+                                <div onClick={() => history.push(`/stores/single/${product?.store_id}`)} className="flex flex-row space-x-4 items-center p-4 rounded border border-gray-200 bg-white cursor-pointer">
                                     <UserAvatar className="text-gray-700" height={40} width={40} />
                                     <div className="flex flex-col">
                                         <p className="text-gray-700 font-semibold">View Seller</p>

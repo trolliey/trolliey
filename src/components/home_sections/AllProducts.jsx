@@ -71,7 +71,7 @@ function AllProducts({ cols, no_text }) {
                                                     name={product.title}
                                                     description={product.description}
                                                     category={product.category}
-                                                    rating={product.rating}
+                                                    rating={product.averageRating}
                                                     id={product._id}
                                                 />
                                             ))

@@ -45,7 +45,7 @@ function Home() {
     console.log(randomItem)
 
     return (
-        <GeneralLayout>
+        <GeneralLayout title={'Buy More. Spend Less'} description={"Zimbabwe's best buy and sell modern ecommerce platform. You can become a seller or become a buyer and trade your items from anywhere you like."}>
             <div className="">
 
                 {/* // banner and categories */}
@@ -84,7 +84,7 @@ function Home() {
                 <section aria-labelledby="category-heading" className="">
                     <div className="max-w-7xl mx-auto bg-white md:p-8 p-4 rounded">
                         <div className="sm:flex sm:items-baseline sm:justify-between">
-                            <h2 id="category-heading" className="text-xl font-bold tracking-tight text-gray-700">
+                            <h2 id="category-heading" className="md:text-xl text-base font-bold tracking-tight text-gray-700">
                                 Shop by Category
                             </h2>
                             <a href="/categories" className="hidden font-semibold text-blue-primary hover:text-blue-primary sm:block">

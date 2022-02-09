@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import PayNow from '../PayNow/PayNow'
 
-function Address() {
+function Address({ pay_on_delivery }) {
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [province, setProvince] = useState('')
@@ -145,9 +145,17 @@ function Address() {
                                         />
                                     </div>
                                 </div>
-                                <div onClick={() => setPayModalOpen(true)} className="bg-blue-dark cursor-pointer hover:bg-blue-primary text-white font-semibold w-full col-span-full p-2 rounded text-center flex flex-col items-center">
-                                    Pay For Items
-                                </div>
+                                {
+                                    pay_on_delivery ? (
+                                        <div className="bg-blue-dark cursor-pointer hover:bg-blue-primary text-white font-semibold w-full col-span-full p-2 rounded text-center flex flex-col items-center">
+                                            Order Items Now
+                                        </div>
+                                    ) : (
+                                        <div onClick={() => setPayModalOpen(true)} className="bg-blue-dark cursor-pointer hover:bg-blue-primary text-white font-semibold w-full col-span-full p-2 rounded text-center flex flex-col items-center">
+                                            Pay For Items
+                                        </div>
+                                    )
+                                }
                                 <>
                                     <PayNow isOpen={pay_modal} setIsOpen={setPayModalOpen} items={items} />
                                 </>

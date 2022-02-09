@@ -7,6 +7,9 @@ import {
     CREATE_SINGLE_STORE_INFO_FAIL,
     CREATE_SINGLE_STORE_INFO_REQUEST,
     CREATE_SINGLE_STORE_INFO_SUCCESS,
+    EDIT_SINGLE_STORE_INFO_FAIL,
+    EDIT_SINGLE_STORE_INFO_REQUEST,
+    EDIT_SINGLE_STORE_INFO_SUCCESS,
     GET_ALL_STORES_FAIL,
     GET_ALL_STORES_REQUEST,
     GET_ALL_STORES_SUCCESS,
@@ -153,6 +156,27 @@ export const approve_store_Action = (id) => (dispatch) => {
             payload: error.response && error.response.data.error
                 ? error.response.data.error
                 : error.message,
+        })
+    })
+}
+
+//edit sinlg store
+export const edit_store_info_Action = (body, id) => (dispatch) => {
+    dispatch({
+        type: EDIT_SINGLE_STORE_INFO_REQUEST,
+        payload: body
+    })
+    axios.patch(`${apiUrl}/store/edit/${id}`, { body }).then(res=>{
+        dispatch({
+            type: EDIT_SINGLE_STORE_INFO_SUCCESS,
+            payload: res.data
+        })
+    }).catch(error=>{
+        dispatch({
+            type: EDIT_SINGLE_STORE_INFO_FAIL,
+            payload: error.response && error.response.data.error
+            ? error.response.data.error
+            : error.message,
         })
     })
 }

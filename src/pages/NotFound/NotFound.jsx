@@ -4,7 +4,7 @@ import logo from '../../assets/full_logo.png'
 
 function NotFound() {
     return (
-        <GeneralLayout>
+        <GeneralLayout title={'Page Not Found'} description={'Page not found on Trolliey'}>
             <div className="flex flex-col items-center bg-white p-4 rounded min-h-screen">
                 <main className="flex-grow flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex-shrink-0 flex justify-center">

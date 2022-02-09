@@ -3,20 +3,76 @@ import { Spinner } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import DashboardLayout from '../../layouts/DashboardLayout'
-import { get_single_product_Action } from '../../redux/actions/productActions'
+import { edit_single_product_Action, get_single_product_Action } from '../../redux/actions/productActions'
+import { data } from '../../utils/data'
+import BlueButton from '../../components/buttons/BlueButton'
 
 function EditProduct() {
     const _product = useSelector(state => state.get_single_product)
     const [showMore, setShowMore] = useState(false);
+
+    const _info = useSelector(state => state.user_login)
+    const { userInfo } = _info
+    const _edit_product = useSelector(state => state.edit_product)
+    const { edit_loading } = _edit_product
+
     const { loading, error, product } = _product
     const { id } = useParams()
     const dispatch = useDispatch()
+
+    const [title, setTitle] = useState('')
+    const [category, setCategory] = useState('')
+    const [sub_category, setSubCategory] = useState('')
+    const [price, setPrice] = useState('')
+    const [access, setAccess] = useState('')
+    const [in_stock, setInStock] = useState('')
+    const [condition, setCondition] = useState('')
+    const [description, setDescription] = useState('')
 
     useEffect(() => {
         dispatch(get_single_product_Action(id))
     }, [dispatch, id])
 
-    // console.log(product)
+    // update product title
+    const change_title = () => {
+        console.log(title)
+        const body = {
+            title: title
+        }
+        // console.log(userInfo?.token)
+        dispatch(edit_single_product_Action(id, body, userInfo?.token))
+        setTitle('')
+    }
+
+    // update product category
+    const change_category = () => {
+        console.log(category)
+    }
+
+    // update product price
+    const change_price = () => {
+        console.log(price)
+    }
+
+    // update product price
+    const change_access = () => {
+        console.log(access)
+    }
+
+    // update product price
+    const change_in_stock = () => {
+        console.log(in_stock)
+    }
+    // update product price
+    const change_condition = () => {
+        console.log(condition)
+    }
+
+    // update product price
+    const change_description = () => {
+        console.log(description)
+    }
+
 
     if (loading) {
         return (
@@ -50,28 +106,49 @@ function EditProduct() {
                         <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500">Product title</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <span className="flex-grow">{product?.product.title}</span>
+                                {/* <span className="flex-grow">{product?.product.title}</span> */}
+                                <input
+                                    type="text"
+                                    className='flex-grow p-2 rounded border border-gray-300 outline-none'
+                                    placeholder={product?.product.title}
+                                    defaultValue={product?.product.title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
                                 <span className="ml-4 flex-shrink-0">
-                                    <button
+                                    <BlueButton
                                         type="button"
-                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
-                                        Update
-                                    </button>
+                                        onClick={change_title}
+                                        text={'Update'}
+                                        loading={edit_loading}
+                                        outline
+                                    />
                                 </span>
                             </dd>
                         </div>
                         <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500">Category</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <span className="flex-grow">{product?.product.category}</span>
+                                {/* <span className="flex-grow">{product?.product.category}</span> */}
+                                <select
+                                    name="category"
+                                    onChange={e => setCategory(e.target.value)}
+                                    defaultValue={product?.product.category}
+                                    className='flex-grow p-2 rounded border border-gray-300 outline-none'
+                                    id="category">
+                                    {data.categories.map((cat, index) => (
+                                        <option
+                                            key={index}
+                                            value={cat.value}
+                                        >{cat.name}</option>
+                                    ))}
+                                </select>
                                 <span className="ml-4 flex-shrink-0">
-                                    <button
+                                    <BlueButton
                                         type="button"
-                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
-                                        Update
-                                    </button>
+                                        onClick={change_category}
+                                        text={'Update'}
+                                        outline
+                                    />
                                 </span>
                             </dd>
                         </div>
@@ -80,68 +157,101 @@ function EditProduct() {
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 <span className="flex-grow">{product?.product.sub_category}</span>
                                 <span className="ml-4 flex-shrink-0">
-                                    <button
+                                    <BlueButton
                                         type="button"
-                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
-                                        Update
-                                    </button>
+                                        onClick={() => console.log('not edited')}
+                                        text={'Update'}
+                                        outline
+                                    />
                                 </span>
                             </dd>
                         </div>
                         <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500">Price</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <span className="flex-grow"> ${product?.product.price}</span>
+                                {/* <span className="flex-grow"> ${product?.product.price}</span> */}
+                                <input
+                                    type="number"
+                                    className='flex-grow p-2 rounded border border-gray-300 outline-none'
+                                    placeholder={product?.product.price}
+                                    defaultValue={product?.product.price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                />
                                 <span className="ml-4 flex-shrink-0">
-                                    <button
+                                    <BlueButton
                                         type="button"
-                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
-                                        Update
-                                    </button>
+                                        onClick={change_price}
+                                        text={'Update'}
+                                        outline
+                                    />
                                 </span>
                             </dd>
                         </div>
                         <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500">Product Access</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <span className="flex-grow"> ${product?.product.product_type}</span>
+                                {/* <span className="flex-grow"> {product?.product.product_type}</span> */}
+                                <select
+                                    name="category"
+                                    onChange={e => setAccess(e.target.value)}
+                                    defaultValue={product?.product.product_type}
+                                    className='flex-grow p-2 rounded border border-gray-300 outline-none'
+                                    id="category">
+                                    <option value={'private'} >{'Private'}</option>
+                                    <option value={'public'} >{'Public'}</option>
+                                </select>
+
                                 <span className="ml-4 flex-shrink-0">
-                                    <button
+                                    <BlueButton
                                         type="button"
-                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
-                                        Update
-                                    </button>
+                                        onClick={change_access}
+                                        text={'Update'}
+                                        outline
+                                    />
                                 </span>
                             </dd>
                         </div>
                         <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500">In Stock</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <span className="flex-grow"> ${product?.product.stock}</span>
+                                {/* <span className="flex-grow"> {product?.product.stock}</span> */}
+                                <input
+                                    type="number"
+                                    className='flex-grow p-2 rounded border border-gray-300 outline-none'
+                                    placeholder={product?.product.stock}
+                                    defaultValue={product?.product.stock}
+                                    onChange={(e) => setInStock(e.target.value)}
+                                />
                                 <span className="ml-4 flex-shrink-0">
-                                    <button
+                                    <BlueButton
                                         type="button"
-                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
-                                        Update
-                                    </button>
+                                        onClick={change_in_stock}
+                                        text={'Update'}
+                                        outline
+                                    />
                                 </span>
                             </dd>
                         </div>
                         <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500">Condition</dt>
                             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <span className="flex-grow"> ${product?.product.condition}</span>
+                                {/* <span className="flex-grow"> ${product?.product.condition}</span> */}
+
+                                <input
+                                    type="text"
+                                    className='flex-grow p-2 rounded border border-gray-300 outline-none'
+                                    placeholder={product?.product.condition}
+                                    defaultValue={product?.product.condition}
+                                    onChange={(e) => setCondition(e.target.value)}
+                                />
+
                                 <span className="ml-4 flex-shrink-0">
-                                    <button
+                                    <BlueButton
                                         type="button"
-                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
-                                        Update
-                                    </button>
+                                        onClick={change_condition}
+                                        text={'Update'}
+                                        outline
+                                    />
                                 </span>
                             </dd>
                         </div>

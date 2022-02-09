@@ -22,7 +22,7 @@ function Categories() {
     }
 
     return (
-        <GeneralLayout>
+        <GeneralLayout title={'Categories'} description={'All our available categories in Trolliey'}>
             <div className="flex flex-col flex-wrap items-center max-w-7xl">
                 <div className="grid md:grid-cols-3 grid-cols-2 md:gap-8 gap-4 mx-auto max-w-7xl bg-white p-4 rounded">
                     {data.categories.map((category, index) => (

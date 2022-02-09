@@ -8,11 +8,11 @@ import { add_category_Reducer, get_all_categories_Reducer, get_all_subcategories
 import { get_all_messages_Reducer, get_all_user_chats_Reducer, send_message_Reducer, toggle_chat_Reducer } from "./reducers/chatReducers";
 import { add_to_compare_Reducer } from "./reducers/compareReducers";
 import { get_featured_products_Reducer } from "./reducers/featuredProductsReducers";
-import { create_a_product_Reducer, get_all_products_Reducer, get_single_product_Reducer, remove_product_Reducer } from "./reducers/productReducer";
+import { create_a_product_Reducer, edit_single_product_Reducer, get_all_products_Reducer, get_single_product_Reducer, remove_product_Reducer } from "./reducers/productReducer";
 import { create_a_review_Reducer, get_all_store_reviews_Reducer, like_a_review_Reducer } from "./reducers/reviewReducers";
 import { set_search_query_Reducer } from "./reducers/searchReducers";
 import { get_all_special_products_Reducer } from "./reducers/specialProductsReducers";
-import { approve_store_Reducer, create_single_store_Reducer, get_all_stores_Reducer, get_dashboard_products_Reducer, get_store_products_Reducer } from "./reducers/storeReducer";
+import { approve_store_Reducer, create_single_store_Reducer, edit_store_info_Reducer, get_all_stores_Reducer, get_dashboard_products_Reducer, get_store_products_Reducer } from "./reducers/storeReducer";
 import { add_subcategory_Reducer, get_subcategories_Reducer } from "./reducers/subcategoryReducer";
 import { get_all_users_Reducer } from "./reducers/userReducer";
 
@@ -44,6 +44,7 @@ const reducer = combineReducers({
   get_single_product: get_single_product_Reducer,
   get_all_products: get_all_products_Reducer,
   remove_product: remove_product_Reducer,
+  edit_product: edit_single_product_Reducer,
 
   //for categories
   get_all_categories: get_all_categories_Reducer,
@@ -60,6 +61,7 @@ const reducer = combineReducers({
   get_all_stores: get_all_stores_Reducer,
   get_dashboard_products: get_dashboard_products_Reducer,
   approve_store: approve_store_Reducer,
+  edit_store: edit_store_info_Reducer,
 
   //for special products
   get_special_products: get_all_special_products_Reducer,
