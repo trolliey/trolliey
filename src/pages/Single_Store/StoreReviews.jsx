@@ -28,8 +28,12 @@ function StoreReviews() {
     const [all_reviews, setAllReviews] = useState([])
 
     const post_review = () => {
-        dispatch(create_a_review_Action(id, review, userInfo?.token))
-        setReview('')
+        if (review === '') {
+            console.log('empty review')
+        } else {
+            dispatch(create_a_review_Action(id, review, userInfo?.token))
+            setReview('')
+        }
     }
 
     // const next_page = () => {

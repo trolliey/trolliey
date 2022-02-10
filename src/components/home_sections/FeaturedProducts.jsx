@@ -6,7 +6,7 @@ import { ArrowRightIcon } from '@heroicons/react/outline'
 import { useHistory } from 'react-router'
 import ProductLoading from '../product_item/ProductLoading'
 
-function FeaturedProducts() {
+function FeaturedProducts({ cols }) {
     const _featured_p = useSelector(state => state.get_featured_products)
     const { featured_products, loading, error } = _featured_p
     const dispatch = useDispatch()
@@ -28,10 +28,10 @@ function FeaturedProducts() {
             <div >
                 {
                     loading ? (
-                        <div className={`${loading || error ? "flex-1 flex w-full " : "grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 "}  gap-4`}>
-                             {
-                                [1, 2, 3, 4, 5]?.map((item, index) => (
-                                    <div key={index} className="col-span-1">
+                        <div className={`${loading || error ? "flex-1 flex w-full " : `grid ${cols ? cols : "lg:grid-cols-5 "} md:grid-cols-3 grid-cols-2`}  gap-4`}>
+                            {
+                                [1, 2, 3, 4]?.map((item, index) => (
+                                    <div key={index} className="flex flex-1 col-span-1">
                                         <ProductLoading />
                                     </div>
                                 ))

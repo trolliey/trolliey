@@ -27,12 +27,12 @@ function ReviewItem({ name, pro_pic, review, likes, dislikes, id }) {
                 <div className="flex flex-col">
                     <p className="text-gray-700 font-semibold">{name}</p>
                     <p className="text-gray-500 text-sm">{review}</p>
-                    <div className="flex flex-row items-center">
-                        <div onClick={toggle_like_handler} className="flex flex-row items-center mt-2 mx-4 p-2 cursor-pointer rounded-full hover:bg-gray-100">
+                    <div className="flex flex-row items-center gap-2 ml-8">
+                        <div onClick={toggle_like_handler} className="flex flex-row items-center p-2 cursor-pointer rounded-full hover:bg-gray-100">
                             <ThumbUpIcon className="text-gray-700" height={20} width={20} />
                             <p className="text-sm font-semibold">{likes}</p>
                         </div>
-                        <div className="flex flex-row items-center mt-2 mx-4 p-2 cursor-pointer rounded-full hover:bg-gray-100">
+                        <div className="flex flex-row items-center p-2 cursor-pointer rounded-full hover:bg-gray-100">
                             <ThumbDownIcon className="text-gray-700" height={20} width={20} />
                             <p className="text-sm font-semibold">{dislikes}</p>
                         </div>

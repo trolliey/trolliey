@@ -17,6 +17,7 @@ import logo from '../../assets/full_logo.png'
 import UserAvatar from '../../components/user_avatar/UserAvatar'
 import RatingComponent from '../../components/rating_component/RatingComponent'
 import RelatedProducts from '../../components/home_sections/RelatedProducts'
+import { Avatar } from '@chakra-ui/react'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -272,9 +273,9 @@ function ProductDescription() {
                                     </div>
                                 </div>
                                 <div onClick={() => history.push(`/stores/single/${product?.store_id}`)} className="flex flex-row space-x-4 items-center p-4 rounded border border-gray-200 bg-white cursor-pointer">
-                                    <UserAvatar className="text-gray-700" height={40} width={40} />
+                                    <Avatar src={product?.store_pic} name={product?.store_name} className="text-gray-700" />
                                     <div className="flex flex-col">
-                                        <p className="text-gray-700 font-semibold">View Seller</p>
+                                        <p className="text-gray-700 font-semibold">View {product?.store_name}'s store</p>
                                         <p className="text-gray-400 text-sm">View the seller's shop and catalogues</p>
                                     </div>
                                 </div>

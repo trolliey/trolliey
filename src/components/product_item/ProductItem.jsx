@@ -30,13 +30,19 @@ function ProductItem({ picture, rating, name, description, price, discount_price
                             <StarIcon key={index} className="text-yellow-400" height={16} width={16} />
                         ))
                     } */}
-                    <div className="star-rating gap-1 flex flex-row ">
-                        {[...Array(Math.floor(rating))].map((star, index) => (
-                            <span key={index} className="star">
-                                <StarIcon className="text-yellow-400" height={16} width={16} />
-                            </span>
-                        ))}
-                    </div>
+                    {
+                        location.pathname === '/' ? (
+                            null
+                        ) : (
+                            <div className="star-rating gap-1 flex flex-row ">
+                                {[...Array(Math.floor(rating))].map((star, index) => (
+                                    <span key={index} className="star">
+                                        <StarIcon className="text-yellow-400" height={16} width={16} />
+                                    </span>
+                                ))}
+                            </div>
+                        )
+                    }
                 </div>
                 <div onClick={() => history.push(`/product/description/${id}`)} className="flex-1 overflow-ellipsis overflow-hidden">
                     <p className="text-gray-500 text-sm ">{name}</p>
@@ -69,8 +75,8 @@ function ProductItem({ picture, rating, name, description, price, discount_price
                                     <ShoppingCartIcon height={16} width={16} />
                                 </div>
                             ) : <div className=" mb-2 text-xs font-semibold text-center capitalize mr-4 flex flex-row items-center">
-                                <StarIcon className="text-yellow-400 font-semibold text-gray-700" height={20} width={20} />
-                                <p>{rating}</p>
+                                <StarIcon className="text-yellow-400 font-semibold" height={20} width={20} />
+                                <p>{Math.floor(rating)}(5)</p>
                             </div>
                         }
                     </div>
