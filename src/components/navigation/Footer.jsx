@@ -62,7 +62,7 @@ export default function Footer() {
         <footer className="bg-white flex-col w-full">
 
             <div className=" md:border-b border-b-none border-gray-200">
-                <div className="md:grid hidden lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 md:py-8 py-4 items-center w-full mx-auto max-w-7xl items-center">
+                <div className="md:grid hidden lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 md:py-8 py-4 items-center w-full mx-auto max-w-7xl ">
                     {
                         data.benefits.map((benefit, index) => (
                             <div key={index} className="col-span-1 flex md:flex-row flex-col md:border-none border-b border-gray-200 md:pb-0 pb-4 text-blue-primary mx-auto hover:text-new-primary cursor-pointer items-center">
