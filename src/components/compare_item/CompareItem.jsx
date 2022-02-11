@@ -1,18 +1,16 @@
 import React from 'react'
 import { XIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import BlueButton from '../buttons/BlueButton'
-import { useDispatch } from 'react-redux'
 
 function CompareItem({picture, name, add_features, description, id, price}) {
     console.log(id)
-    const dispatch = useDispatch()
     const add_to_basket_handler = () =>{}
     return (
         <div className="border border-gray-200 w-full md:p-4 p-2 min-h-screen flex flex-col">
             <div className="flex flex-col items-end">
-                <div className="md:pb-4 pb-2">
-                    <XIcon height={16} height={16} className="text-red-700" />
-                </div>
+                <span className="md:pb-4 pb-2">
+                    <XIcon width={16} height={16} className="text-red-700" />
+                </span>
             </div>
             <div className="flex max-h-40 overflow-hidden rounded">
                 <img src={picture} alt="showing visula representation of compare item" className="object-contain rounded" />

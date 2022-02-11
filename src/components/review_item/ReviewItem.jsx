@@ -6,8 +6,6 @@ import { like_a_review_Action } from '../../redux/actions/reviewActions'
 
 function ReviewItem({ name, pro_pic, review, likes, dislikes, id }) {
 
-    const _like = useSelector(state => state.like_a_review)
-    const { like_loading, like_error } = _like
     const dispatch = useDispatch()
     const _user = useSelector(state => state.user_login)
     const { userInfo } = _user

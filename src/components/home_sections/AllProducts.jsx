@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import ProductItem from '../product_item/ProductItem'
-import { get_all_products_Action } from '../../redux/actions/productActions'
 import BlackButton from '../buttons/BlackButton'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 import { useHistory } from 'react-router'
 import ProductLoading from '../product_item/ProductLoading'
+import useSWR from 'swr'
+import { apiUrl } from '../../utils/apiUrl'
 
 function AllProducts({ cols, no_text }) {
-    const _products = useSelector(state => state.get_all_products)
-    const { products, loading, error } = _products
-    const dispatch = useDispatch()
     const history = useHistory()
     const _search_query = useSelector(state => state.search_query)
     const { query } = _search_query
     const [page, setPage] = useState(1)
+     // eslint-disable-next-line
     const [limit, setLimit] = useState(5)
+    const { data: products, error  } = useSWR(`${apiUrl}/product/all?page=${page}&limit=${limit}`)
 
     const next_page = () => {
         if (products?.result.next) {
@@ -28,11 +28,6 @@ function AllProducts({ cols, no_text }) {
         }
     }
 
-    useEffect(() => {
-        dispatch(get_all_products_Action(query, page, limit))
-        setLimit(5)
-    }, [dispatch, query, page, limit])
-
     return (
         <div className="items flex-col bg-white rounded md:px-8 px-4 w-full">
             <div className="md:text-lg text-sm md:py-8 py-4 flex flex-row items-center justify-between">
@@ -44,8 +39,8 @@ function AllProducts({ cols, no_text }) {
             </div>
             <div className="w-full">
                 {
-                    loading ? (
-                        <div className={`${loading || error ? "flex-1 flex w-full " : `grid ${cols ? cols : "lg:grid-cols-5 "} md:grid-cols-3 grid-cols-2`}  gap-4`}>
+                    !products ? (
+                        <div className={`${!products || error ? "flex-1 flex w-full " : `grid ${cols ? cols : "lg:grid-cols-5 "} md:grid-cols-3 grid-cols-2`}  gap-4`}>
                             {
                                 [1, 2, 3, 4]?.map((item, index) => (
                                     <div key={index} className="flex flex-1 col-span-1">
@@ -57,7 +52,7 @@ function AllProducts({ cols, no_text }) {
                     ) : error ? (
                         <p className="text-gray-700 text-center py-8 w-full min-h-96">Could not load products, Try reloading the page! </p>
                     ) : (
-                        <div className={`${loading || error ? "flex-1 flex w-full " : `grid ${cols ? cols : "lg:grid-cols-5 "} md:grid-cols-3 grid-cols-2`}  gap-4`}>
+                        <div className={`${!products || error ? "flex-1 flex w-full " : `grid ${cols ? cols : "lg:grid-cols-5 "} md:grid-cols-3 grid-cols-2`}  gap-4`}>
                             {
                                 products?.products.length >= 1 ? (
                                     <>

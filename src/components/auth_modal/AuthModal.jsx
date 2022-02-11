@@ -4,31 +4,14 @@ import {
     ModalOverlay,
     ModalContent,
 } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux';
-import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
-import BlueButton from '../buttons/BlueButton';
-import Error from '../alerts/Error';
-import SuccessAlert from '../alerts/SuccessAlert';
-import { login_user_Action } from '../../redux/actions/authActions';
-import { useHistory } from 'react-router-dom';
-import logo from '../../assets/logo.png'
+import { useSelector } from 'react-redux';
 import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
 
 function AuthModal({ isOpen, onClose }) {
     const [register_on, setRegisterOn] = useState(false)
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [show_password, setShowPassword] = useState(false)
     const _login = useSelector(state => state.user_login)
-    const { message, loading, error } = _login
-    const history = useHistory()
-
-    const dispatch = useDispatch()
-
-    const login_user_handler = () => {
-        dispatch(login_user_Action(email, password))
-    }
+    const { message } = _login
 
     useEffect(() => {
         if (message === 'Login Success!') {
@@ -36,7 +19,7 @@ function AuthModal({ isOpen, onClose }) {
                 window.location.reload()
             }, 1000);
         }
-    }, [history, message])
+    }, [message])
 
     return (
         <div>

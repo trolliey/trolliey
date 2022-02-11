@@ -36,7 +36,7 @@ function NavSearch() {
                             onChange={e => setSearchQuery(e.target.value)}
                             className='md:p-4 p-2 rounded outline-none border-none w-full '
                             placeholder='Search product, store, category...' />
-                        <div className="span" onClick={search_handler} className='cursor-pointer'>
+                        <div onClick={search_handler} className='cursor-pointer'>
                             <SearchIcon height={20} width={20} className="text-gray-500" />
                         </div>
                     </div>

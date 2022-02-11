@@ -58,7 +58,7 @@ function App() {
                 <Route path='/payment' component={Payment} />
                 <Route path='/verify/:id' component={VerifyEmail} />
                 <Route path='/help' component={Help} />
-            
+
                 {/* //product description */}
                 <Route path='/product/description/:id' component={ProductDescription} />
 

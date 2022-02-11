@@ -1,27 +1,20 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { get_all_subcategories_Action } from '../../redux/actions/categoryActions';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { set_search_query_Action } from '../../redux/actions/searchAction';
+import { apiUrl } from '../../utils/apiUrl';
+import useSWR from "swr";
 import './CategoriesDropdown.css'
 
 function SubCategoryComponent({ category_id, cat_name, cat_image }) {
     const dispatch = useDispatch()
-    const sub_cats = useSelector(state => state.get_all_subcats)
-    const { sub_categories, sub_cat_loading, sub_cat_error } = sub_cats
     const history = useHistory()
-
-    useEffect(() => {
-        dispatch(get_all_subcategories_Action(category_id))
-    }, [dispatch, category_id])
+    const { data: sub_categories, error: sub_cat_error  } = useSWR(`${apiUrl}/sub_category/all/${category_id}`)
 
     const search_handler = (search_query) => {
         dispatch(set_search_query_Action(search_query))
         history.push('/explore')
     }
-
-    console.log(sub_categories)
 
     return (
         <div className="megadrop bg-gray-50 border border-gray-200 rounded flex flex-row z-10">
@@ -30,7 +23,7 @@ function SubCategoryComponent({ category_id, cat_name, cat_image }) {
                 <div className=" px-4">
                     <ul className='bg-gray-50'>
                         {
-                            sub_cat_loading ? (
+                            !sub_categories ? (
                                 <p>loading...</p>
                             ) : sub_cat_error ? (
                                 <p>error</p>

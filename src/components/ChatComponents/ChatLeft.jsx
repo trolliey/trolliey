@@ -16,7 +16,7 @@ function ChatLeft() {
 
     useEffect(() => {
         dispatch(get_all_user_chats_Action(userInfo?.token))
-    }, [dispatch])
+    }, [dispatch, userInfo?.token])
 
     console.log(chats)
 

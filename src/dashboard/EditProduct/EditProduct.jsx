@@ -22,11 +22,11 @@ function EditProduct() {
 
     const [title, setTitle] = useState('')
     const [category, setCategory] = useState('')
-    const [sub_category, setSubCategory] = useState('')
     const [price, setPrice] = useState('')
     const [access, setAccess] = useState('')
     const [in_stock, setInStock] = useState('')
     const [condition, setCondition] = useState('')
+    // eslint-disable-next-line
     const [description, setDescription] = useState('')
 
     useEffect(() => {
@@ -80,11 +80,6 @@ function EditProduct() {
     // update product price
     const change_condition = () => {
         console.log(condition)
-    }
-
-    // update product price
-    const change_description = () => {
-        console.log(description)
     }
 
 

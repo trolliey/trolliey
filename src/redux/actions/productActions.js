@@ -89,7 +89,7 @@ export const get_all_products_Action = (query, page, limit) => (dispatch) => {
     dispatch({
         type: GET_ALL_PRODUCTS_REQUEST,
     })
-    axios.post(`${apiUrl}/product/all?page=${page}&limit=${limit}`, {
+    axios.get(`${apiUrl}/product/all?page=${page}&limit=${limit}`, {
         search: query
     }).then(res => {
         dispatch({

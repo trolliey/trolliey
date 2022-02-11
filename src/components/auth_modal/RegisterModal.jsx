@@ -35,7 +35,7 @@ function RegisterModal({ onClose, isOpen, setRegisterOn }) {
                 setRegisterOn(false)
             }, 1000);
         }
-    }, [message, history])
+    }, [message, history, setRegisterOn])
 
     return (
         <div>

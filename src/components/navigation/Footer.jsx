@@ -1,10 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React from 'react'
-import { useHistory } from 'react-router-dom'
-import logo from '../../assets/logo.png'
-import android from '../../assets/android.svg'
-import apple from '../../assets/apple.svg'
-import { PaperAirplaneIcon } from '@heroicons/react/solid'
 import { data } from '../../utils/data'
 
 const navigation = {
@@ -62,8 +57,6 @@ const navigation = {
 }
 
 export default function Footer() {
-
-    const history = useHistory()
 
     return (
         <footer className="bg-white flex-col w-full">

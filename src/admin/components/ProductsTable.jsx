@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { Avatar } from "@chakra-ui/react"
 import ProductsDropdown from "./ProductsDropdown"
 import { SearchIcon } from "@heroicons/react/outline"
 import BlueButton from "../../components/buttons/BlueButton"

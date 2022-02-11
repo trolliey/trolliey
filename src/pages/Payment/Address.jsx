@@ -1,38 +1,30 @@
-import { useDisclosure } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { create_order_Action } from '../../redux/actions/orderActions'
+import { useSelector } from 'react-redux'
 import PayNow from '../PayNow/PayNow'
 
 function Address({ pay_on_delivery }) {
+    // eslint-disable-next-line
     const [address, setAddress] = useState('')
+    // eslint-disable-next-line
     const [city, setCity] = useState('')
+    // eslint-disable-next-line
     const [province, setProvince] = useState('')
+    // eslint-disable-next-line
     const [postal_code, setPostalCode] = useState('')
+    // eslint-disable-next-line
     const [card_name, setCardName] = useState('')
+    // eslint-disable-next-line
     const [card_number, setCardNumber] = useState('')
-    const [expiry_date, setExpiryDate] = useState('')
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const [modal_body, setModalBody] = useState('')
-    const [pay_button, setPayButton] = useState()
+    // eslint-disable-next-line
     const [pay_modal, setPayModalOpen] = useState()
-    const [cvv, setCVV] = useState('')
-
-    const dispatch = useDispatch()
 
     const _add_to_cart = useSelector(state => state.add_to_cart)
     const { basket } = _add_to_cart
 
-    const _create_order = useSelector(state => state.create_order)
-    const { order_loading, order_message, order_error } = _create_order
-
-    const create_an_order_Handler = () =>{
-        // dispatch(create_order_Action())
-    }
-
     const [items, setItems] = useState([])
 
     useEffect(() => {
+        // eslint-disable-next-line
         basket.map(basket_item => {
             setItems(prevArray => [...prevArray, {
                 title: basket_item.name,
@@ -41,7 +33,7 @@ function Address({ pay_on_delivery }) {
                 image: basket_item.picture
             }])
         })
-    }, [])
+    }, [basket])
 
     console.log(basket)
 

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Disclosure } from '@headlessui/react'
-import { get_all_subcategories_Action } from '../../../redux/actions/categoryActions';
 import BlueButton from '../../../components/buttons/BlueButton';
 import Error from '../../../components/alerts/Error';
 import SuccessAlert from '../../../components/alerts/SuccessAlert';
@@ -11,8 +10,6 @@ import FileUploadCompoent from '../../../components/file_upload_component/FileUp
 function SubCategoryComponent({ category_slug }) {
     const _add_sub_cat = useSelector(state => state.create_subcategory)
     const { add_subcat_loading, add_subcat_error, add_subcat_message } = _add_sub_cat
-    const sub_cats = useSelector(state => state.get_all_subcats)
-    const { sub_categories, sub_cat_loading, sub_cat_error } = sub_cats
     const [toggle_subcategory_on, setToggleCategory] = useState(false)
     const [sub_cat, setSubCat] = useState('')
     const dispatch = useDispatch()
@@ -30,11 +27,6 @@ function SubCategoryComponent({ category_slug }) {
     const add_sub_cat_Handler = () => {
         dispatch(add_subcategory_Action(sub_cat, pictures_for_upload, category_slug))
     }
-    useEffect(() => {
-        dispatch(get_all_subcategories_Action(category_slug))
-    }, [dispatch, category_slug])
-
-    // console.log(sub_categories)
 
     return (<div>
         <Disclosure.Panel as="dd" className="mt-2 pr-12 bg-white">
@@ -72,7 +64,6 @@ function SubCategoryComponent({ category_slug }) {
                     ) : null
                 }
             </div>
-            {sub_cat_error && <Error error={'Error loading sub-categories, try reloading page'} />}
 
             {/* <>
                 {

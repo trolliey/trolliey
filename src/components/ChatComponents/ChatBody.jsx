@@ -44,12 +44,13 @@ function ChatBody() {
             setAllMessages(res.data.messages)
             setPageLoading(false)
         })
-    }, [id])
+    }, [id, userInfo?.token, userInfo?.user?._id])
 
     useEffect(() => {
         socket.on('message', data => {
             setAllMessages((old_messages) => [...old_messages, data])
         })
+        // eslint-disable-next-line
     }, [socket])
 
     const dispatch = useDispatch()
@@ -96,7 +97,7 @@ function ChatBody() {
                                 }
                             </>
                         )}
-                        <div className="input" className="text-gray-700 rounded-full bottom-4 w-full mt-4 flex flex-row  pb-8 self-end">
+                        <div className="text-gray-700 rounded-full bottom-4 w-full mt-4 flex flex-row  pb-8 self-end">
                             <textarea
                                 rows={rows}
                                 type="text"

@@ -1,25 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import BlueButton from '../../components/buttons/BlueButton'
 import DashboardLayout from '../../layouts/DashboardLayout'
-import { useDispatch, useSelector } from 'react-redux'
-import { get_all_subcategories_Action } from '../../redux/actions/categoryActions'
 import { data } from '../../utils/data'
 import slugify from '../../utils/slugify'
 import FileUploadCompoent from '../../components/file_upload_component/FileUploadCompoent'
+import useSWR from 'swr'
+import { apiUrl } from '../../utils/apiUrl'
 
 function Category({ nextStep, handleChange, values, setPictures }) {
-    const dispatch = useDispatch()
-    const sub_cats = useSelector(state => state.get_all_subcats)
-    const { sub_categories, sub_cat_loading } = sub_cats
-
+    const { data: sub_categories  } = useSWR(`${apiUrl}/sub_category/all/${slugify(values.category)}`)
     //for selecting picures
     const selectedPictures = (pictures) => {
         setPictures(pictures)
     };
-
-    useEffect(() => {
-        dispatch(get_all_subcategories_Action((slugify(values.category))))
-    }, [dispatch, slugify(values.category)])
 
     return (
         <DashboardLayout>
@@ -68,7 +61,7 @@ function Category({ nextStep, handleChange, values, setPictures }) {
                                     >
 
                                         {
-                                            sub_cat_loading ? (
+                                            !sub_categories ? (
                                                 <option>loading...</option>
                                             ) : sub_categories?.sub_categories.length < 1 ? (
                                                 <option disabled>no sub-categories for category</option>

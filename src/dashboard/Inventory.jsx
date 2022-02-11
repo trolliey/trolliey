@@ -5,32 +5,23 @@ import BlueButton from '../components/buttons/BlueButton'
 import InventoryTable from '../components/tables/InventoryTable'
 import { useHistory } from 'react-router'
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { get_products_for_dashboard_Action } from '../redux/actions/storeActions'
 import { Spinner } from '@chakra-ui/react'
 import { PlusIcon } from '@heroicons/react/solid'
+import useSWR from 'swr'
+import { apiUrl } from '../utils/apiUrl'
 
 function Inventory() {
     const history = useHistory()
-    const dispatch = useDispatch()
     const [query, setQuery] = useState('')
     const _user = useSelector(state => state.user_login)
     const { userInfo } = _user
-    const _store_p = useSelector(state => state.get_dashboard_products)
-    const { products, loading } = _store_p
+
+    const { data: products  } = useSWR(`${apiUrl}/store/seller/${userInfo?.user?._id}`)
 
     const search_items_handler = (e) => {
         e.preventDefault()
         setQuery('')
-        console.log(query)
     }
-
-    useEffect(() => {
-        dispatch(get_products_for_dashboard_Action(userInfo?.user?._id))
-    }, [dispatch, userInfo?.user?._id])
-
-    console.log(products)
 
     return (
         <DashboardLayout>
@@ -63,7 +54,7 @@ function Inventory() {
                     </div>
                 </div>
                 {
-                    loading ? (
+                    !products ? (
                         <div className='grid items-center content-center justify-center min-h-96'>
                             <Spinner />
                         </div>

@@ -1,33 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AdminLayout from '../layouts/AdminLayout'
 import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import SubCategoryComponent from './components/sub_category_component/SubCategoryComponent'
 import { data } from '../utils/data'
+import slugify from '../utils/slugify'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 function ManageCategories() {
-    //for adding category
-    const [parent_id, setParent_id] = useState('')
-
-    function slugify(string) {
-        const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
-        const b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
-        const p = new RegExp(a.split('').join('|'), 'g')
-
-        return string.toString().toLowerCase()
-            .replace(/\s+/g, '-') // Replace spaces with -
-            .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
-            .replace(/&/g, '-and-') // Replace & with 'and'
-            .replace(/[^\w\-]+/g, '') // Remove all non-word characters
-            .replace(/\-\-+/g, '-') // Replace multiple - with single -
-            .replace(/^-+/, '') // Trim - from start of text
-            .replace(/-+$/, '') // Trim - from end of text
-    }
-
     return (
         <AdminLayout>
             <p className="text-gray-900 font-semibold text-center m-4">Expand to see sub-categories</p>
@@ -37,7 +20,7 @@ function ManageCategories() {
                         <Disclosure as="div" key={index} className="pt-6">
                             {({ open }) => (
                                 <>
-                                    <dt className="text-lg" onClick={() => setParent_id(category._id)}>
+                                    <dt className="text-lg">
                                         <Disclosure.Button className="text-left w-full flex justify-between items-start text-gray-400" >
 
                                             <div className="flex flex-row items-center">

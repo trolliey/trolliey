@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import CategoriesDropdown from '../../components/categories_dropdown/CategoriesDropdown'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import AllProducts from '../../components/home_sections/AllProducts'
 import { useDispatch } from 'react-redux'
-import { get_all_ads_Action } from '../../redux/actions/adActions'
 import Courosel from '../../components/courosel/Courosel'
 import surprise from '../../assets/surprise.jpg'
 import tech_stuff from '../../assets/tech_stuff.jpg'
@@ -25,16 +24,11 @@ function Home() {
     //get all ads from the store
     const dispatch = useDispatch()
     const history = useHistory()
-
     const banner_images = [
         { body: '', image: promo_1 },
         { body: '', image: promo_2 },
         { body: '', image: promo_1 }
     ]
-
-    useEffect(() => {
-        dispatch(get_all_ads_Action())
-    }, [dispatch])
 
     const search_by_category = (category) => {
         dispatch(set_search_query_Action(category))
@@ -42,7 +36,6 @@ function Home() {
     }
 
     var randomItem = data.categories[Math.floor(Math.random() * data.categories.length)];
-    console.log(randomItem)
 
     return (
         <GeneralLayout title={'Buy More. Spend Less'} description={"Zimbabwe's best buy and sell modern ecommerce platform. You can become a seller or become a buyer and trade your items from anywhere you like."}>
@@ -151,10 +144,10 @@ function Home() {
                                 <div className="p-6 flex items-end sm:absolute sm:inset-0">
                                     <div>
                                         <h3 className="font-semibold text-white">
-                                            <a href="#">
+                                            <div>
                                                 <span className="absolute inset-0" />
                                                 Clothes and fashion
-                                            </a>
+                                            </div>
                                         </h3>
                                         <p aria-hidden="true" className="mt-1 text-sm text-white">
                                             Shop now

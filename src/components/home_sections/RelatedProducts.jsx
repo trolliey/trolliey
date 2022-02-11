@@ -34,7 +34,8 @@ function RelatedProducts({ cols, no_text , category}) {
 
     useEffect(()=>{
         dispatch(set_search_query_Action(category))
-    },[])
+    },[category, dispatch])
+
     return (
         <div className="items flex-col bg-white rounded md:px-8 px-4 w-full">
             <div className="md:text-lg text-sm md:py-8 py-4 flex flex-row items-center justify-between">

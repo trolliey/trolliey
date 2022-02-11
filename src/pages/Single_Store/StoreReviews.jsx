@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import StoreLayout from '../../layouts/StoreLayout'
 import { PaperAirplaneIcon } from '@heroicons/react/solid'
 import ReviewItem from '../../components/review_item/ReviewItem'
@@ -9,9 +9,8 @@ import { create_a_review_Action } from '../../redux/actions/reviewActions'
 import { useParams } from 'react-router'
 import { Spinner } from '@chakra-ui/react'
 import { apiUrl } from '../../utils/apiUrl'
-import axios from 'axios'
-import { socket } from '../../utils/socket'
 import AuthModal from '../../components/auth_modal/AuthModal'
+import useSWR, { useSWRConfig } from 'swr'
 
 function StoreReviews() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -22,43 +21,25 @@ function StoreReviews() {
     const dispatch = useDispatch()
     const user_login = useSelector(state => state.user_login)
     const { userInfo } = user_login
+    // eslint-disable-next-line
     const [page, setPage] = useState(1)
+    // eslint-disable-next-line
     const [limit, setLimit] = useState(10)
-    const [page_loading, setPageLoading] = useState(false)
-    const [all_reviews, setAllReviews] = useState([])
+    const { mutate } = useSWRConfig()
+
+
+    const { data } = useSWR(`${apiUrl}/reviews/all/${id}?page=${page}&limit=${limit}`)
 
     const post_review = () => {
         if (review === '') {
             console.log('empty review')
         } else {
+            mutate(`${apiUrl}/reviews/all/${id}?page=${page}&limit=${limit}`, [...data.reviews, review], false)
             dispatch(create_a_review_Action(id, review, userInfo?.token))
+            mutate(`${apiUrl}/reviews/all/${id}?page=${page}&limit=${limit}`)
             setReview('')
         }
     }
-
-    // const next_page = () => {
-    //     setPage(page + 1)
-    // }
-    // const prev_page = () => {
-    //     setPage(page - 1)
-    // }
-
-
-
-    useEffect(() => {
-        setLimit(10)
-        setPageLoading(true)
-        axios.post(`${apiUrl}/reviews/all/${id}?page=${page}&limit=${limit}`).then(res => {
-            setAllReviews(res.data.reviews)
-            setPageLoading(false)
-        })
-    }, [dispatch, limit, page, id])
-
-    useEffect(() => {
-        socket.on('review', data => {
-            setAllReviews((old_reviews) => [data, ...old_reviews])
-        })
-    }, [socket])
 
     return (
         <StoreLayout>
@@ -95,37 +76,37 @@ function StoreReviews() {
                 </div>
                 <div className="flex flex-col">
                     {
-                        page_loading ? (
+                        !data && (
                             <div className="w-full md:pt-8 pt-4 grid items-center justify-center content-center">
                                 <Spinner size="lg" thickness={3} />
                             </div>
-                        ) : (
-                            <>
-                                {
-                                    all_reviews?.length < 1 ? (
-                                        <p className="text-gray-700 capitalize text-center font-semibold mt-4">no reviews yet</p>
-                                    ) : (
-                                        <>
-                                            {
-                                                all_reviews?.map((review, index) => (
-                                                    <div key={index} className="flex flex-col">
-                                                        <ReviewItem
-                                                            name={review.username}
-                                                            review={review.body}
-                                                            likes={review.likes.length}
-                                                            dislikes={review.disliked.length}
-                                                            pro_pic={review.photoURL}
-                                                            id={review._id}
-                                                        />
+                        )}
+                    {
+                        <>
+                            {
+                                data?.reviews?.length < 1 ? (
+                                    <p className="text-gray-700 capitalize text-center font-semibold mt-4">no reviews yet</p>
+                                ) : (
+                                    <>
+                                        {
+                                            data?.reviews?.map((review, index) => (
+                                                <div key={index} className="flex flex-col">
+                                                    <ReviewItem
+                                                        name={review.username}
+                                                        review={review.body}
+                                                        likes={review.likes.length}
+                                                        dislikes={review.disliked.length}
+                                                        pro_pic={review.photoURL}
+                                                        id={review._id}
+                                                    />
 
-                                                    </div>
-                                                ))
-                                            }
-                                        </>
-                                    )
-                                }
-                            </>
-                        )
+                                                </div>
+                                            ))
+                                        }
+                                    </>
+                                )
+                            }
+                        </>
                     }
                 </div>
                 {/* <div className="flex flex-row w-full py-16 justify-between">

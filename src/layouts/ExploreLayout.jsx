@@ -2,10 +2,8 @@ import { StarIcon } from '@heroicons/react/outline'
 import { StarIcon as SolidStarIcon } from '@heroicons/react/solid'
 import React from 'react'
 import { useState } from 'react'
-import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import SearchInput from '../components/search/SearchInput'
-import { get_all_categories_Action } from '../redux/actions/categoryActions'
 import { set_search_query_Action } from '../redux/actions/searchAction'
 import { data } from '../utils/data'
 import slugify from '../utils/slugify'
@@ -16,10 +14,6 @@ function ExploreLayout({ children }) {
     const [min_price, setMinPrice] = useState(0)
     const [max_price, setMaxPrice] = useState(0)
     const [slice_number, setSliceNumber] = useState(5)
-
-    useEffect(() => {
-        dispatch(get_all_categories_Action())
-    }, [dispatch])
 
     const filter_by_price = () => {
         console.log(min_price, max_price)

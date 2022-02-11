@@ -13,7 +13,9 @@ function SingleStore() {
     const [search_query, setSearchQuery] = useState('')
     const { id } = useParams()
     const dispatch = useDispatch()
+    // eslint-disable-next-line
     const [page, setPage] = useState(1)
+    // eslint-disable-next-line
     const [limit, setLimit] = useState(10)
 
     const handle_search_query = () => {

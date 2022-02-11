@@ -34,7 +34,7 @@ function ProductsInfo({ brands, handleChange, values, setBrands, prevStep }) {
                 history.push('/store-created')
             }, 1500);
         }
-    }, [])
+    }, [message, history])
 
     return (
         <GeneralLayout no_text>

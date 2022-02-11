@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
     Drawer,
     DrawerBody,
@@ -17,7 +17,6 @@ import Username from '../username/Username'
 import logo from '../../assets/full_logo.png'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { get_all_categories_Action } from '../../redux/actions/categoryActions'
 import { data } from '../../utils/data'
 import { set_search_query_Action } from '../../redux/actions/searchAction'
 import slugify from '../../utils/slugify'
@@ -27,10 +26,6 @@ function MobileNavDrawer({ user }) {
     const [show_category, setShowCotegory] = useState(false)
     const history = useHistory()
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(get_all_categories_Action())
-    }, [dispatch])
 
     const search_handler = (search_query) => {
         dispatch(set_search_query_Action(search_query))

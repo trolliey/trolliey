@@ -1,6 +1,6 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { Avatar, Divider } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { useSelector } from 'react-redux'
 import { getBasketTotal } from '../../utils/getBasketTotal'
@@ -28,21 +28,6 @@ function Payment() {
     const _add_to_cart = useSelector(state => state.add_to_cart)
     const { basket } = _add_to_cart
 
-    const [items, setItems] = useState([])
-
-    useEffect(() => {
-        basket.map(basket_item => {
-            setItems(prevArray => [...prevArray, {
-                title: basket_item.name,
-                amount: basket_item.price,
-                quantity: 1,
-                image: basket_item.picture,
-                store_id: basket_item.store_id
-            }])
-        })
-    }, [])
-
-    console.log(basket)
 
     return (
         <GeneralLayout>

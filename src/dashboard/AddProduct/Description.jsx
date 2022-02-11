@@ -4,13 +4,11 @@ import Tags from '../../components/tags/Tags';
 import DashboardLayout from '../../layouts/DashboardLayout'
 import ReactQuill from 'react-quill'; // ES6
 import 'react-quill/dist/quill.snow.css'; // ES6
-import { useState } from 'react';
 
 function Description({ nextStep, handleChange, values, prevStep, setAdditional_features, setQuillDescription }) {
     const selectedTags = (tags) => {
         setAdditional_features(tags)
     };
-    // const [quill_description, setQuillDescription] = useState('')
     return (
         <DashboardLayout>
             <div className="p-4 h-full flex">

@@ -7,7 +7,9 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { ChakraProvider } from "@chakra-ui/react"
 // 1. import `PaynowReactWrapper` component
-import PaynowReactWrapper  from 'paynow-react';
+import PaynowReactWrapper from 'paynow-react';
+import axios from 'axios'
+import { SWRConfig } from 'swr'
 
 
 
@@ -20,15 +22,18 @@ const paynow_config = {
 };
 ReactDOM.render(
 
-  <PaynowReactWrapper {...paynow_config}>
-    <Provider store={store}>
-      <ChakraProvider>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </ChakraProvider>
-    </Provider>
-  </PaynowReactWrapper>,
+  <SWRConfig value={{ fetcher: (url) => axios(url).then(r => r.data) }}>
+
+    <PaynowReactWrapper {...paynow_config}>
+      <Provider store={store}>
+        <ChakraProvider>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </ChakraProvider>
+      </Provider>
+    </PaynowReactWrapper>
+  </SWRConfig>,
   document.getElementById('root')
 );
 

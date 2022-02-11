@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import GeneralLayout from '../../layouts/GeneralLayout'
 import { Tab } from '@headlessui/react'
 import { ShoppingCartIcon } from '@heroicons/react/solid'
@@ -7,29 +7,28 @@ import { InformationCircleIcon } from '@heroicons/react/solid'
 import BlueButton from '../../components/buttons/BlueButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { add_to_cart_Action } from '../../redux/actions/cartActions'
-import { get_single_product_Action } from '../../redux/actions/productActions'
 import { useHistory, useParams } from 'react-router'
 import { Spinner } from '@chakra-ui/spinner'
 import { add_to_compare_Action } from '../../redux/actions/compareActions'
 import BlackButton from '../../components/buttons/BlackButton'
-import AllProducts from '../../components/home_sections/AllProducts'
 import logo from '../../assets/full_logo.png'
-import UserAvatar from '../../components/user_avatar/UserAvatar'
 import RatingComponent from '../../components/rating_component/RatingComponent'
 import RelatedProducts from '../../components/home_sections/RelatedProducts'
 import { Avatar } from '@chakra-ui/react'
+import useSWR from 'swr'
+import { apiUrl } from '../../utils/apiUrl'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 function ProductDescription() {
-    const _product = useSelector(state => state.get_single_product)
-    const { loading, error, product } = _product
     const { id } = useParams()
     const [showMore, setShowMore] = useState(false);
     const user_login = useSelector(state => state.user_login)
     const { userInfo } = user_login
+
+    const {data: product, error} = useSWR(`${apiUrl}/product/single/${id}`)
 
     // togglinf between previews and descripion
     const [show_features, setShowFeatures] = useState(false)
@@ -66,13 +65,7 @@ function ProductDescription() {
         dispatch(add_to_compare_Action(item))
     }
 
-    useEffect(() => {
-        dispatch(get_single_product_Action(id))
-    }, [dispatch, id])
-
-    console.log(product)
-
-    if (loading) {
+    if (!product) {
         return (
             <GeneralLayout>
                 <div className="flex bg-white md:p-8 px-4 w-full rounded">
@@ -106,7 +99,7 @@ function ProductDescription() {
         )
     }
 
-    console.log(product)
+    // console.log(product)
 
     return (
         <GeneralLayout no_text>
@@ -115,10 +108,10 @@ function ProductDescription() {
                     <div className="max-w-2xl mx-auto md:py-8  lg:max-w-7xl lg:px-0 md:px-0 px-2">
                         <div className="lg:grid lg:grid-cols-3 lg:gap-x-8 lg:items-start">
                             {/* Image gallery */}
-                            <Tab.Group as="div" className="flex flex-col-reverse bg-white md:p-8 p-0 rounded-lg col-span-2">
+                            <Tab.Group as="div" className="flex flex-col-reverse bg-white md:p-8 p-4 rounded-lg col-span-2">
                                 {/* Image selector */}
-                                <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-                                    <Tab.List className="grid grid-cols-8 gap-2">
+                                <div className="mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
+                                    <Tab.List className="grid md:grid-cols-8 grid-cols-5 gap-2">
                                         {product?.product?.pictures.map((image, index) => (
                                             <Tab
                                                 key={index}
@@ -128,7 +121,7 @@ function ProductDescription() {
                                                     <>
                                                         <span className="sr-only">{image.name}</span>
                                                         <span className="absolute inset-0 rounded-md overflow-hidden">
-                                                            <img src={image} alt="for a single product" className="w-full h-full object-center object-cover" />
+                                                            <img src={image} alt="for a single product" className="w-full h-full object-center object-cover rounded" />
                                                         </span>
                                                         <span
                                                             className={classNames(
@@ -335,7 +328,7 @@ function ProductDescription() {
                 </div>
                 <div className="related_products mt-16">
                     <>
-                        <RelatedProducts cols="lg:grid-cols-5 " category={product?.product.category} />
+                        <RelatedProducts cols="lg:grid-cols-5 " category={product?.product.category_slug} />
                     </>
                 </div>
             </div>

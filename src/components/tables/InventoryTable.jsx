@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { remove_product_Action } from '../../redux/actions/productActions'
 import BlueButton from '../buttons/BlueButton'
+import { mutate } from 'swr'
 
 import {
     Modal,
@@ -17,6 +18,7 @@ import {
     ModalCloseButton,
 } from '@chakra-ui/react'
 import RedButton from '../buttons/RedButton'
+import { apiUrl } from '../../utils/apiUrl'
 
 const statusStyles = {
     public: 'bg-green-100 text-green-800',
@@ -37,10 +39,11 @@ function InventoryTable({ data }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const delete_product = (id) => {
+        mutate(`${apiUrl}/product/delete/${id}`, data?.products.filter(p => p._id !== id), false)
         dispatch(remove_product_Action(id, userInfo?.token))
+        mutate(`${apiUrl}/product/delete/${id}`)
+        window.location.reload()
     }
-
-    console.log(data)
 
     return (
         <div>
@@ -170,7 +173,7 @@ function InventoryTable({ data }) {
                                                         </ModalBody>
 
                                                         <ModalFooter>
-                                                            <RedButton text={'Close'} colorScheme='blue' mr={3} onClick={onClose} outline/>
+                                                            <RedButton text={'Close'} colorScheme='blue' mr={3} onClick={onClose} outline />
                                                             <div className="mr-1"></div>
                                                             <RedButton text={'Confirm Delete'} variant='ghost' onClick={() => delete_product(product?._id)} />
                                                         </ModalFooter>

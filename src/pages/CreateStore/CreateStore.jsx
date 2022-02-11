@@ -135,6 +135,14 @@ function CreateStore() {
                     brands={brands}
                 />
             )
+        default:
+            return (
+                <ContactInfo
+                    nextStep={nextStep}
+                    handleChange={handleChange}
+                    values={values}
+                />
+            )
     }
 
 }

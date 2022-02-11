@@ -1,18 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import GeneralLayout from '../../layouts/GeneralLayout'
-import { get_all_categories_Action } from '../../redux/actions/categoryActions'
 import { set_search_query_Action } from '../../redux/actions/searchAction'
 import { data } from '../../utils/data'
 import slugify from '../../utils/slugify'
 
 function Categories() {
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(get_all_categories_Action())
-    }, [dispatch])
 
     const history = useHistory()
 

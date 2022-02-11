@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import Error from '../../components/alerts/Error';
 import BlueButton from '../../components/buttons/BlueButton';
 import GeneralLayout from '../../layouts/GeneralLayout';
@@ -29,10 +28,6 @@ const business_categories = [
 
 function BusinessInfo({ nextStep, handleChange, values, prevStep }) {
     const [page_err, setPageErr] = useState('')
-
-    useEffect(() => {
-        console.log(values)
-    }, [])
     return (
         <GeneralLayout>
             <div className="py-8 max-w-7xl">
