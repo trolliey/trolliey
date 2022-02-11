@@ -103,7 +103,7 @@ function ProductDescription() {
 
     return (
         <GeneralLayout no_text>
-            <div className="flex md:px-0 px-4 flex-col max-w-7xl bg-gray-100">
+            <div className="flex flex-col max-w-7xl bg-gray-100">
                 <div className="flex-1 mx-auto w-full rounded ">
                     <div className="max-w-2xl mx-auto md:py-8  lg:max-w-7xl lg:px-0 md:px-0 px-2">
                         <div className="lg:grid lg:grid-cols-3 lg:gap-x-8 lg:items-start">
