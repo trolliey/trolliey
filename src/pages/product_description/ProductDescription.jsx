@@ -111,7 +111,7 @@ function ProductDescription() {
                             <Tab.Group as="div" className="flex flex-col-reverse bg-white md:p-8 p-4 rounded-lg col-span-2">
                                 {/* Image selector */}
                                 <div className="mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-                                    <Tab.List className="grid md:grid-cols-8 grid-cols-5 gap-2">
+                                    <Tab.List className="grid md:grid-cols-8 grid-cols-4 gap-2">
                                         {product?.product?.pictures.map((image, index) => (
                                             <Tab
                                                 key={index}
