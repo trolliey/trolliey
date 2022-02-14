@@ -1,20 +1,14 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { get_featured_products_Actions } from '../../redux/actions/featuredProductsActions'
+import React from 'react'
 import ProductItem from '../product_item/ProductItem'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 import { useHistory } from 'react-router'
 import ProductLoading from '../product_item/ProductLoading'
+import { apiUrl } from '../../utils/apiUrl'
+import useSWR from 'swr'
 
-function FeaturedProducts({ cols }) {
-    const _featured_p = useSelector(state => state.get_featured_products)
-    const { featured_products, loading, error } = _featured_p
-    const dispatch = useDispatch()
+function FeaturedProducts() {
     const history = useHistory()
-
-    useEffect(() => {
-        dispatch(get_featured_products_Actions())
-    }, [dispatch])
+    const { data: featured_products, error  } = useSWR(`${apiUrl}/featured/all`)
 
     return (
         <div className="items flex-col bg-white rounded md:px-8 px-4 w-full">
@@ -27,10 +21,10 @@ function FeaturedProducts({ cols }) {
             </div>
             <div >
                 {
-                    loading ? (
-                        <div className={`${loading || error ? "flex-1 flex w-full " : `grid ${cols ? cols : "lg:grid-cols-5 "} md:grid-cols-3 grid-cols-2`}  gap-4`}>
+                    !featured_products ? (
+                        <div className={`grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4`}>
                             {
-                                [1, 2, 3, 4]?.map((item, index) => (
+                                [1, 2, 3, 4, 5]?.map((item, index) => (
                                     <div key={index} className="flex flex-1 col-span-1">
                                         <ProductLoading />
                                     </div>
@@ -40,7 +34,7 @@ function FeaturedProducts({ cols }) {
                     ) : error ? (
                         <p className="text-gray-700 font-semibold text-center py-8 w-full md:text-lg text-sm">Could not load featured products, Try reloading the page! </p>
                     ) : (
-                        <div className={`${loading || error ? "flex-1 flex w-full " : "grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 "}  gap-4`}>
+                        <div className={`${!featured_products || error ? "flex-1 flex w-full " : "grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 "}  gap-4`}>
                             {
                                 featured_products?.all_products.length >= 1 ? (
                                     <>
