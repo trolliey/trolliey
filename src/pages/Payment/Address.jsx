@@ -4,10 +4,14 @@ import telecash_logo from '../../assets/telecash1.png'
 import ecocash_logo from '../../assets/eco_cash.svg'
 import { apiUrl } from '../../utils/apiUrl'
 import axios from 'axios'
+import AuthModal from '../../components/auth_modal/AuthModal'
+import { useDisclosure } from '@chakra-ui/react'
+import BlueButton from '../../components/buttons/BlueButton'
 
 function Address({ pay_on_delivery }) {
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [full_name, setFullName] = useState('')
     const [province, setProvince] = useState('')
@@ -17,10 +21,13 @@ function Address({ pay_on_delivery }) {
     const _add_to_cart = useSelector(state => state.add_to_cart)
     const { basket } = _add_to_cart
 
+    const [order_loading, setOrderLoading] = useState(false)
+
     const _user_login = useSelector(state => state.user_login)
     const { userInfo } = _user_login
 
     const process_payment = () => {
+        setOrderLoading(true)
         console.log(full_name, contact_phone_number, address, province, pay_on_delivery, city, paying_number, method)
         axios.post(`${apiUrl}/order/create`, {
             full_name: full_name,
@@ -38,8 +45,10 @@ function Address({ pay_on_delivery }) {
             }
         }).then(res => {
             console.log(res.data)
+            setOrderLoading(false)
         }).catch(error => {
             console.log(error)
+            setOrderLoading(false)
         })
     }
 
@@ -183,9 +192,23 @@ function Address({ pay_on_delivery }) {
                                                 </div>
 
                                             </div>
-                                            <div onClick={process_payment} className="bg-blue-dark cursor-pointer hover:bg-blue-primary text-white font-semibold w-full col-span-full p-2 rounded text-center flex flex-col items-center">
-                                                Pay For Items
-                                            </div>
+                                            {
+                                                userInfo ? (
+                                                    <>
+                                                        <BlueButton
+                                                            text={'Pay For Items'}
+                                                            loading={order_loading}
+                                                        />
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <div onClick={onOpen} className="bg-blue-dark cursor-pointer hover:bg-blue-primary text-white font-semibold w-full col-span-full p-2 rounded text-center flex flex-col items-center">
+                                                            Pay For Items
+                                                        </div>
+                                                        <AuthModal onClose={onClose} isOpen={isOpen} />
+                                                    </>
+                                                )
+                                            }
                                         </>
                                     )
                                 }

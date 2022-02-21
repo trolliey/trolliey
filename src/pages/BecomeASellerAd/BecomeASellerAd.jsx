@@ -150,45 +150,33 @@ function BecomeASellerAd() {
                                     </div>
                                     <div className="mt-6">
                                         <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-                                            Stay on top of customer support
+                                            We are customer oriented
                                         </h2>
                                         <p className="mt-4 text-lg text-gray-500">
-                                            Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia
-                                            porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at.
-                                            Lectus viverra dui tellus ornare pharetra.
+                                            More than half of the products sold in our stores are from independent sellers. We made online shopping easier, apply to sell and access tools you need to increase sales and grow your business.
                                         </p>
                                         <div className="mt-6">
-                                            <div
-                                                className="inline-flex bg-gradient-to-r from-blue-primary to-blue-dark bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
-                                            >
-                                                Get started
+                                            <div className="mt-6">
+                                                {
+                                                    userInfo ? (
+                                                        <div
+                                                            onClick={() => history.push('/create-store')}
+                                                            className="inline-flex bg-gradient-to-r from-blue-primary to-blue-dark bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
+                                                        >
+                                                            Get started
+                                                        </div>
+                                                    ) : (
+                                                        <div
+                                                            onClick={onOpen}
+                                                            className="inline-flex bg-gradient-to-r from-blue-primary to-blue-dark bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
+                                                        >
+                                                            Get started
+                                                        </div>
+                                                    )
+                                                }
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="mt-8 border-t border-gray-200 pt-6">
-                                    <blockquote>
-                                        <div>
-                                            <p className="text-base text-gray-500">
-                                                &ldquo;Cras velit quis eros eget rhoncus lacus ultrices sed diam. Sit orci risus aenean
-                                                curabitur donec aliquet. Mi venenatis in euismod ut.&rdquo;
-                                            </p>
-                                        </div>
-                                        <footer className="mt-3">
-                                            <div className="flex items-center space-x-3">
-                                                <div className="flex-shrink-0">
-                                                    <img
-                                                        className="h-6 w-6 rounded-full"
-                                                        src="https://images.unsplash.com/photo-1509783236416-c9ad59bae472?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80"
-                                                        alt=""
-                                                    />
-                                                </div>
-                                                <div className="text-base font-medium text-gray-700">
-                                                    Marcia Hill, Digital Marketing Manager
-                                                </div>
-                                            </div>
-                                        </footer>
-                                    </blockquote>
                                 </div>
                             </div>
                             <div className="mt-12 sm:mt-16 lg:mt-0">
@@ -213,19 +201,29 @@ function BecomeASellerAd() {
                                     </div>
                                     <div className="mt-6">
                                         <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-                                            Better understand your customers
+                                            Grow your busienss online
                                         </h2>
                                         <p className="mt-4 text-lg text-gray-500">
-                                            Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia
-                                            porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at.
-                                            Lectus viverra dui tellus ornare pharetra.
+                                            Get access  to over a thousand and still growing customers on trolliey. Manage your stock the way you want, Safe and secure online payments
                                         </p>
                                         <div className="mt-6">
-                                            <div
-                                                className="inline-flex bg-gradient-to-r from-blue-primary to-blue-dark bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
-                                            >
-                                                Get started
-                                            </div>
+                                            {
+                                                userInfo ? (
+                                                    <div
+                                                        onClick={() => history.push('/create-store')}
+                                                        className="inline-flex bg-gradient-to-r from-blue-primary to-blue-dark bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
+                                                    >
+                                                        Get started
+                                                    </div>
+                                                ) : (
+                                                    <div
+                                                        onClick={onOpen}
+                                                        className="inline-flex bg-gradient-to-r from-blue-primary to-blue-dark bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
+                                                    >
+                                                        Get started
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                 </div>
