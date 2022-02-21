@@ -17,3 +17,13 @@ export const getShipmentTotal = (basket)=>{
 
     return total
 }
+
+export const getProductTotal = (products) =>{
+    let total = 0
+    products?.map(elem => {
+        total = total + elem.price
+        return total
+    })
+
+    return total
+}

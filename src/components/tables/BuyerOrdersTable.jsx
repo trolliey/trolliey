@@ -16,6 +16,7 @@ import {
     ModalCloseButton,
 } from '@chakra-ui/react'
 import RedButton from '../buttons/RedButton'
+import { getProductTotal } from '../../utils/getBasketTotal'
 
 function BuyerOrdersTable({ data }) {
     const history = useHistory()
@@ -87,6 +88,9 @@ function BuyerOrdersTable({ data }) {
                                         <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             payment
                                         </th>
+                                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            amount
+                                        </th>
       
                                         <th className="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:block">
                                             Status
@@ -129,6 +133,11 @@ function BuyerOrdersTable({ data }) {
                                                             <p>{product.payment_type}</p>
                                                         )
                                                     }
+                                                </p>
+                                            </td>
+                                            <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
+                                                <p className="text-gray-500 truncate group-hover:text-gray-900 capitalize">
+                                                    {getProductTotal(product?.ordered_products)}
                                                 </p>
                                             </td>
                            
