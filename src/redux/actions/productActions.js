@@ -20,7 +20,7 @@ import { REGISTER_USER_FAIL } from "../constants/authConstants"
 import { storage } from "../../utils/firebase"
 
 //create a product
-export const create_product_Action = (token, values, additional_features, pictures, description) => async (dispatch) => {
+export const create_product_Action = (token, values, additional_features, pictures, description, store_id) => async (dispatch) => {
 
     dispatch({
         type: CREATE_PRODUCT_REQUEST,
@@ -60,7 +60,8 @@ export const create_product_Action = (token, values, additional_features, pictur
         shipping_area: values.shipping_radius,
         shipping_price: values.shipping_price,
         additional_features: additional_features,
-        pictures: uploads
+        pictures: uploads,
+        store_id: store_id
     }
     axios.post(`${apiUrl}/product/create`, {
         product,

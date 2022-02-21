@@ -54,7 +54,7 @@ export const create_single_store_Reducer = (state = { create_loading: false }, a
         case CREATE_SINGLE_STORE_INFO_SUCCESS:
             return { create_loading: false, message: 'Sucessfully Applied!' }
         case CREATE_SINGLE_STORE_INFO_FAIL:
-            return { create_loading: false, create_error: 'Error applying for store. Try again later' }
+            return { create_loading: false, create_error: action.payload }
         default:
             return state
     }

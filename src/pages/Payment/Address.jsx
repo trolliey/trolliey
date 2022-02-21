@@ -7,6 +7,8 @@ import axios from 'axios'
 import AuthModal from '../../components/auth_modal/AuthModal'
 import { useDisclosure } from '@chakra-ui/react'
 import BlueButton from '../../components/buttons/BlueButton'
+import SuccessAlert from '../../components/alerts/SuccessAlert'
+import Error from '../../components/alerts/Error'
 
 function Address({ pay_on_delivery }) {
     const [address, setAddress] = useState('')
@@ -21,6 +23,8 @@ function Address({ pay_on_delivery }) {
     const _add_to_cart = useSelector(state => state.add_to_cart)
     const { basket } = _add_to_cart
 
+    const [msg, setMsg] = useState('')
+    const [err, setErr] = useState('')
     const [order_loading, setOrderLoading] = useState(false)
 
     const _user_login = useSelector(state => state.user_login)
@@ -46,9 +50,12 @@ function Address({ pay_on_delivery }) {
         }).then(res => {
             console.log(res.data)
             setOrderLoading(false)
+            setMsg(res.data.message)
+
         }).catch(error => {
             console.log(error)
             setOrderLoading(false)
+            setErr(error.error)
         })
     }
 
@@ -152,12 +159,30 @@ function Address({ pay_on_delivery }) {
                                 </div>
 
 
-
+                                {msg && <SuccessAlert message={msg} />}
+                                {err && <Error error={err} />}
                                 {
                                     pay_on_delivery ? (
-                                        <div onClick={process_payment} className="bg-blue-dark cursor-pointer hover:bg-blue-primary text-white font-semibold w-full col-span-full p-2 rounded text-center flex flex-col items-center">
-                                            Order Items Now
-                                        </div>
+                                        <>
+                                            {
+                                                userInfo ? (
+                                                    <>
+                                                        <BlueButton
+                                                            onClick={process_payment}
+                                                            text={'Order Items Now'}
+                                                            loading={order_loading}
+                                                        />
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <div onClick={onOpen} className="bg-blue-dark cursor-pointer hover:bg-blue-primary text-white font-semibold w-full col-span-full p-2 rounded text-center flex flex-col items-center">
+                                                            Order Items Now
+                                                        </div>
+                                                        <AuthModal onClose={onClose} isOpen={isOpen} />
+                                                    </>
+                                                )
+                                            }
+                                        </>
                                     ) : (
                                         <>
                                             <div className="flex border-t border-gray-300 py-4 flex-col">
@@ -196,6 +221,7 @@ function Address({ pay_on_delivery }) {
                                                 userInfo ? (
                                                     <>
                                                         <BlueButton
+                                                            onClick={process_payment}
                                                             text={'Pay For Items'}
                                                             loading={order_loading}
                                                         />

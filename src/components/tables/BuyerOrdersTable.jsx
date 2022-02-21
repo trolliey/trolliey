@@ -34,7 +34,7 @@ function BuyerOrdersTable({ data }) {
             {/* //on mobile view  */}
             <div className="shadow sm:hidden w-full">
                 <ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-                    {[1,2,3,4,5]?.map((product, index) => (
+                    {data?.map((product, index) => (
                         <li key={product?._id}>
                             <div className="block px-4 py-4 bg-white hover:bg-gray-50">
                                 <span className="flex items-center space-x-4">
@@ -82,25 +82,23 @@ function BuyerOrdersTable({ data }) {
                                 <thead>
                                     <tr>
                                         <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            description
+                                            items
                                         </th>
                                         <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            category
+                                            payment
                                         </th>
-                                        <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            name
-                                        </th>
+      
                                         <th className="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:block">
                                             Status
                                         </th>
-                                       
+
                                         <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Actions
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {[1,2,3,4,5]?.map((product, index) => (
+                                    {data?.map((product, index) => (
                                         <tr key={product?._id} className="bg-white">
                                             <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                                 <div className="flex">
@@ -110,20 +108,39 @@ function BuyerOrdersTable({ data }) {
                                                     aria-hidden="true"
                                                 /> */}
                                                         <p className="flex-shrink-0 h-5 w-5 text-gray-400">{index + 1}</p>
-                                                        <p className="text-gray-500 truncate group-hover:text-gray-900">{'description'}</p>
+                                                        <p className="text-gray-500 truncate group-hover:text-gray-900 flex flex-col space-y-2">
+                                                            {
+                                                                product?.ordered_products?.map((item, index) => (
+                                                                    <div key={index} className="item text-gray-700 font-semibold">
+                                                                       {index+1}. {item.name}
+                                                                    </div>
+                                                                ))
+                                                            }
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                <p className="text-gray-500 truncate group-hover:text-gray-900">{'category'}</p>
+                                                <p className="text-gray-500 truncate group-hover:text-gray-900 capitalize">
+                                                    {
+                                                        product.pay_on_delivery ? (
+                                                            <p>to pay on delivery</p>
+                                                        ) : (
+                                                            <p>{product.payment_type}</p>
+                                                        )
+                                                    }
+                                                </p>
                                             </td>
+                           
+
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                <span className="text-gray-900 font-medium">{'name'} </span>
-                                                {/* {product?.msrment} */}
-                                            </td>
-                                           
-                                            <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                <span >{'length'}</span>
+                                                {
+                                                    product.status === 'pending' ? (
+                                                        <span className='bg-blue-700 text-white text-xs font-semibold py-1 px-2 animate-pulse capitalize rounded-full text-center' >{product.status}</span>
+                                                    ):(
+                                                        <span className='bg-green-700 text-white text-xs font-semibold py-1 px-2 rounded-full text-center' >{product.status}</span>
+                                                    )
+                                                }
                                             </td>
                                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500 mr-2">
                                                 <button onClick={() => history.push(`/dashboard/edit-product/${'product?._id'}`)} className="bg-gray-200 outline-none rounded-full p-1 text-gray-500 hover:text-blue-primary">

@@ -32,11 +32,11 @@ function Payment() {
     return (
         <GeneralLayout>
             <div className="w-full items-center">
-                <main className=" grid grid-cols-4 gap-8  max-w-7xl">
+                <main className=" flex md:flex-row flex-col-reverse  gap-8  max-w-7xl">
                     {/* Checkout form */}
-                    <div className="flex flex-col col-span-3">
-                        <div className="flex flex-row items-center bg-white justify-between p-4 w-full mx-auto shadow">
-                            <div className="flex flex-row items-center gap-8 overflow-hidden">
+                    <div className="flex flex-col md:w-3/4 w-full">
+                        <div className="flex flex-row items-center bg-white justify-between md:p-4 p-2 w-full mx-auto shadow">
+                            <div className="flex flex-row items-center md:gap-8 gap-4 overflow-hidden">
                                 <div className="picture bg-blue-500 h-16 w-16 rounded-full grid items-center content-center justify-center">
                                     <img src={truck} alt="truck representation" className='w-12 h-12' />
                                 </div>
@@ -93,14 +93,14 @@ function Payment() {
                                 </div>
                             )
                         }
-                        <div className="flex flex-row items-center bg-white justify-between p-4 w-full mx-auto mt-2 shadow">
-                            <div className="flex flex-row items-center gap-8 overflow-hidden">
+                        <div className="flex flex-row items-center bg-white justify-between md:p-4 p-2 w-full mx-auto mt-2 shadow">
+                            <div className="flex flex-row items-center md:gap-8 gap-4 overflow-hidden">
                                 <div className="picture bg-green-500 h-16 w-16 rounded-full grid items-center content-center justify-center">
                                     <img src={truck} alt="truck representation" className='w-12 h-12' />
                                 </div>
                                 <div className="flex flex-col">
                                     <p className='text-gray-700 font-semibold text-sm'>Collect</p>
-                                    <p className='text-gray-400 text-xs'>Collect at our pickup point. Open 6 days a week</p>
+                                    <p className='text-gray-400 text-xs'>Collect at our pickup point.</p>
                                 </div>
                             </div>
                             <BlueButton text={'Collect My Order'} onClick={handle_do_collection} outline />
@@ -112,8 +112,8 @@ function Payment() {
                         }
                     </div>
 
-                    <div className="flex flex-col">
-                        <div className="col-span-1 bg-white rounded shadow p-4">
+                    <div className="md:w-1/4 w-full flex flex-col">
+                        <div className="bg-white rounded shadow p-4 w-full">
                             <p className='text-gray-800 font-semibold'>Order Summary</p>
                             <div className="flex flex-row items-center text-gray-400 text-sm w-full justify-between font-semibold mt-4">
                                 <p>{basket?.length} items</p>
@@ -121,16 +121,16 @@ function Payment() {
                             </div>
                             <Divider className='my-4 text-gray-500' color={'gray.400'} />
                             {basket?.map((item, index)=>(
-                                <div key={index} className="flex flex-row gap-4 items-center w-full">
+                                <div key={index} className="flex flex-1 flex-row md:gap-4 gap-2 items-center w-full">
                                     <Avatar src={item.picture} />
                                     <div className="flex flex-col">
                                         <p className='text-gray-900 font-semibold'>{item.name}</p>
                                         <p className='text-sm text-gray-500'>{item.price}</p>
                                     </div>
                                     <div className="flex-1"></div>
-                                    <div className="ml-auto">
+                                    {/* <div className="ml-auto">
                                         <input type="number" defaultValue={1} />
-                                    </div>
+                                    </div> */}
                                 </div>  
                             ))}
                             <Divider className='my-4 text-gray-500' color={'gray.400'} />
