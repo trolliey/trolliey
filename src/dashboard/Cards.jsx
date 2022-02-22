@@ -18,7 +18,7 @@ function Cards() {
                     <div className="col-span-1">
                         <CreditCard
                             type={'ecocash'}
-                            number={'+263771445411'}
+                            number={'+2637 7144 5411'}
                             picture={ecocash}
                             user_name={'Tatenda Bako'}
                             date={Date.now()}
@@ -28,7 +28,7 @@ function Cards() {
                     <div className="col-span-1">
                         <CreditCard
                             type={'telecash'}
-                            number={'+263738705551'}
+                            number={'+2637 3870 5551'}
                             picture={telecash}
                             user_name={'Tatenda Bako'}
                             date={Date.now()}
