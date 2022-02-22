@@ -1,13 +1,6 @@
 import {
-    ChatAltIcon,
-    DocumentReportIcon,
-    HeartIcon,
     InboxIcon,
-    PencilAltIcon,
-    ReplyIcon,
     SparklesIcon,
-    TrashIcon,
-    UsersIcon,
 } from '@heroicons/react/outline'
 import GeneralNavbar from '../../components/navigation/GeneralNavbar'
 import Footer from '../../components/navigation/Footer'
@@ -16,49 +9,18 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { useDisclosure } from '@chakra-ui/react'
 import AuthModal from '../../components/auth_modal/AuthModal';
 import dashboard from '../../assets/dashboard_screenshot.png'
+/* This example requires Tailwind CSS v2.0+ */
+import { CheckCircleIcon } from '@heroicons/react/solid'
+import BlueButton from '../../components/buttons/BlueButton'
 
-const features = [
-    {
-        name: 'Unlimited Inboxes',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
-        icon: InboxIcon,
-    },
-    {
-        name: 'Manage Team Members',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
-        icon: UsersIcon,
-    },
-    {
-        name: 'Spam Report',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
-        icon: TrashIcon,
-    },
-    {
-        name: 'Compose in Markdown',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
-        icon: PencilAltIcon,
-    },
-    {
-        name: 'Team Reporting',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
-        icon: DocumentReportIcon,
-    },
-    {
-        name: 'Saved Replies',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
-        icon: ReplyIcon,
-    },
-    {
-        name: 'Email Commenting',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
-        icon: ChatAltIcon,
-    },
-    {
-        name: 'Connect with Customers',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
-        icon: HeartIcon,
-    },
+const includedFeatures = [
+    'Unlimited products',
+    'Free delivery service',
+    'Inventory management dashboard',
+    'Official member t-shirt',
 ]
+
+
 const metrics = [
     { id: 1, stat: '8K+', emphasis: 'Companies', rest: 'use laoreet amet lacus nibh integer quis.' },
     { id: 2, stat: '25K+', emphasis: 'Countries around the globe', rest: 'lacus nibh integer quis.' },
@@ -98,7 +60,7 @@ function BecomeASellerAd() {
                                     <span className="block text-indigo-200">business online</span>
                                 </h1>
                                 <p className="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                                    We can help you grow you business world wide and internationally by provoding you with the necessary tools for online selling.
+                                    We can help you grow you business world wide and internationally by providing you with the necessary tools for online selling.
                                 </p>
                                 <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                                     <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
@@ -135,6 +97,80 @@ function BecomeASellerAd() {
                     </div>
                 </div>
 
+                {/* // price section */}
+                <section>
+                    <div className="bg-gray-100">
+                        <div className="pt-12 sm:pt-16 lg:pt-20">
+                            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                                <div className="text-center">
+                                    <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl lg:text-5xl">Pricing</h2>
+                                    <p className="mt-4 text-xl text-gray-600">
+                                        For every new shop you get 3 months free trial
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-8 bg-white pb-16 sm:mt-12 sm:pb-20 lg:pb-28">
+                            <div className="relative">
+                                <div className="absolute inset-0 h-1/2 bg-gray-100" />
+                                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                                    <div className="max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
+                                        <div className="flex-1 bg-white px-6 py-8 lg:p-12">
+                                            <h3 className="text-2xl font-extrabold text-gray-900 sm:text-3xl">Monthly Subscription</h3>
+                                            <p className="mt-6 text-base text-gray-500">
+                                                You pay a subscription Fee of $10 per seller account per month and you can un subscribe or cancel at any time you want
+                                            </p>
+                                            <div className="mt-8">
+                                                <div className="flex items-center">
+                                                    <h4 className="flex-shrink-0 pr-4 bg-white text-sm tracking-wider font-semibold uppercase text-blue-primary">
+                                                        What's included
+                                                    </h4>
+                                                    <div className="flex-1 border-t-2 border-gray-200" />
+                                                </div>
+                                                <ul role="list" className="mt-8 space-y-5 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5">
+                                                    {includedFeatures.map((feature) => (
+                                                        <li key={feature} className="flex items-start lg:col-span-1">
+                                                            <div className="flex-shrink-0">
+                                                                <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+                                                            </div>
+                                                            <p className="ml-3 text-sm text-gray-700">{feature}</p>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div className="py-8 px-6 text-center bg-gray-50 lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12">
+                                            <p className="text-lg leading-6 font-medium text-gray-900">Pay,Grow, Rest</p>
+                                            <div className="mt-4 flex items-center justify-center text-5xl font-extrabold text-gray-900">
+                                                <span>$10/m</span>
+                                                <span className="ml-3 text-xl font-medium text-gray-500">USD</span>
+                                            </div>
+                                            <p className="mt-4 text-sm">
+                                                <a href="#" className="font-medium text-gray-500 underline">
+                                                    Learn about our membership policy
+                                                </a>
+                                            </p>
+                                            <div className="mt-6">
+                                                {
+                                                    userInfo ? (
+
+                                                        <BlueButton onClick={() => history.push('/create-store')} text={'Apply Now'} />
+                                                    ) : (
+
+                                                        <>
+                                                            <BlueButton onClick={onOpen} text={'Apply Now'} />
+                                                            <AuthModal onClose={onClose} isOpen={isOpen} />
+                                                        </>
+                                                    )
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 {/* Alternating Feature Sections */}
                 <div className="relative pt-16 pb-32 overflow-hidden">
@@ -241,31 +277,7 @@ function BecomeASellerAd() {
                     </div>
                 </div>
 
-                {/* Gradient Feature Section */}
-                <div className="bg-blue-dark">
-                    <div className="max-w-4xl mx-auto px-4 py-16 sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:pt-24 lg:px-8">
-                        <h2 className="text-3xl font-extrabold text-white tracking-tight">Inbox support built for efficiency</h2>
-                        <p className="mt-4 max-w-3xl text-lg text-purple-200">
-                            Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis. Blandit
-                            aliquam sit nisl euismod mattis in.
-                        </p>
-                        <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
-                            {features.map((feature) => (
-                                <div key={feature.name}>
-                                    <div>
-                                        <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
-                                            <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
-                                        </span>
-                                    </div>
-                                    <div className="mt-6">
-                                        <h3 className="text-lg font-medium text-white">{feature.name}</h3>
-                                        <p className="mt-2 text-base text-purple-200">{feature.description}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+
 
                 {/* Stats section */}
                 <div className="relative bg-gray-900">
